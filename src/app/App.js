@@ -23,7 +23,9 @@ export default class PageBuilder extends React.Component {
     dragulaDecorator(componentBackingInstance){
         console.log(componentBackingInstance);
         if (componentBackingInstance) {
-            let options = {};
+            let options = {
+                mirrorContainer: document.body
+            };
             Dragula([componentBackingInstance], options);
         }
     }

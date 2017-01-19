@@ -21512,7 +21512,9 @@ webpackJsonp([0,1],[
 	        value: function dragulaDecorator(componentBackingInstance) {
 	            console.log(componentBackingInstance);
 	            if (componentBackingInstance) {
-	                var options = {};
+	                var options = {
+	                    mirrorContainer: document.body
+	                };
 	                (0, _reactDragula2.default)([componentBackingInstance], options);
 	            }
 	        }
