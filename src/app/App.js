@@ -5,6 +5,8 @@
 import React from 'react'
 import Dragula from 'react-dragula'
 
+
+
 /* Root App Component */
 export default class PageBuilder extends React.Component {
 
@@ -19,6 +21,7 @@ export default class PageBuilder extends React.Component {
     }
 
     dragulaDecorator(componentBackingInstance){
+        console.log(componentBackingInstance);
         if (componentBackingInstance) {
             let options = {};
             Dragula([componentBackingInstance], options);
@@ -26,7 +29,7 @@ export default class PageBuilder extends React.Component {
     }
     render() {
         return (
-            <div id="app-page-builder" ref={this.dragulaDecorator}>
+            <div id="app-page-builder" >
 
                         <div className="pb-canvas">
 
@@ -51,8 +54,9 @@ export default class PageBuilder extends React.Component {
 
         {/* Tab panes */}
         <div className="tab-content">
-            <div role="tabpanel" className="tab-pane fade in active" id="pb-tab-content">
-                <div className="pb-element pb-content-element">
+            <div role="tabpanel" className="tab-pane fade in active" id="pb-tab-content" ref={this.dragulaDecorator}>
+
+                <div className="pb-element pb-content-element" >
                     <div className="pb-element-body">
                         <span className="glyphicon glyphicon-font icon" aria-hidden="true"></span>
                         <span className="text">Text</span>
