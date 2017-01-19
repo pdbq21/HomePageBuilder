@@ -3,6 +3,7 @@
  */
 
 import React from 'react'
+import Dragula from 'react-dragula'
 
 /* Root App Component */
 export default class PageBuilder extends React.Component {
@@ -14,17 +15,18 @@ export default class PageBuilder extends React.Component {
 
             },
         };
-        this.onClickSelect = this.onClickSelect.bind(this);
+        this.dragulaDecorator = this.dragulaDecorator.bind(this);
     }
 
-
-    onClickSelect(element) {
-
+    dragulaDecorator(componentBackingInstance){
+        if (componentBackingInstance) {
+            let options = {};
+            Dragula([componentBackingInstance], options);
+        }
     }
-
     render() {
         return (
-            <div id="app-page-builder">
+            <div id="app-page-builder" ref={this.dragulaDecorator}>
 
                         <div className="pb-canvas">
 
@@ -162,4 +164,3 @@ export default class PageBuilder extends React.Component {
         );
     }
 }
-
