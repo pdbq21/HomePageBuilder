@@ -21511,8 +21511,267 @@ webpackJsonp([0,1],[
 	        value: function render() {
 	            return _react2.default.createElement(
 	                "div",
-	                { className: "" },
-	                "Test"
+	                { id: "app-page-builder" },
+	                _react2.default.createElement("div", { className: "pb-canvas" }),
+	                _react2.default.createElement(
+	                    "div",
+	                    { className: "pb-toolbar" },
+	                    _react2.default.createElement(
+	                        "ul",
+	                        { className: "nav nav-tabs", role: "tablist" },
+	                        _react2.default.createElement(
+	                            "li",
+	                            { role: "presentation", className: "active" },
+	                            _react2.default.createElement(
+	                                "a",
+	                                { href: "#pb-tab-content", "aria-controls": "pb-tab-content", role: "tab", "data-toggle": "tab" },
+	                                "Content"
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            "li",
+	                            { role: "presentation" },
+	                            _react2.default.createElement(
+	                                "a",
+	                                { href: "#pb-tab-templates", "aria-controls": "pb-tab-templates", role: "tab", "data-toggle": "tab" },
+	                                "Templates"
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            "li",
+	                            { role: "presentation" },
+	                            _react2.default.createElement(
+	                                "a",
+	                                { href: "#pb-tab-profile", "aria-controls": "pb-tab-profile", role: "tab", "data-toggle": "tab" },
+	                                "Structure"
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            "li",
+	                            { role: "presentation" },
+	                            _react2.default.createElement(
+	                                "a",
+	                                { href: "#pb-tab-messages", "aria-controls": "pb-tab-messages", role: "tab", "data-toggle": "tab" },
+	                                "Body"
+	                            )
+	                        )
+	                    ),
+	                    _react2.default.createElement(
+	                        "div",
+	                        { className: "tab-content" },
+	                        _react2.default.createElement(
+	                            "div",
+	                            { role: "tabpanel", className: "tab-pane fade in active", id: "pb-tab-content" },
+	                            _react2.default.createElement(
+	                                "div",
+	                                { className: "pb-element pb-content-element" },
+	                                _react2.default.createElement(
+	                                    "div",
+	                                    { className: "pb-element-body" },
+	                                    _react2.default.createElement("span", { className: "glyphicon glyphicon-font icon", "aria-hidden": "true" }),
+	                                    _react2.default.createElement(
+	                                        "span",
+	                                        { className: "text" },
+	                                        "Text"
+	                                    )
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                "div",
+	                                { className: "pb-element pb-content-element" },
+	                                _react2.default.createElement(
+	                                    "div",
+	                                    { className: "pb-element-body" },
+	                                    _react2.default.createElement("span", { className: "glyphicon glyphicon-picture icon", "aria-hidden": "true" }),
+	                                    _react2.default.createElement(
+	                                        "span",
+	                                        { className: "text" },
+	                                        "Image"
+	                                    )
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                "div",
+	                                { className: "pb-element pb-content-element" },
+	                                _react2.default.createElement(
+	                                    "div",
+	                                    { className: "pb-element-body" },
+	                                    _react2.default.createElement("span", { className: "glyphicon glyphicon-modal-window icon", "aria-hidden": "true" }),
+	                                    _react2.default.createElement(
+	                                        "span",
+	                                        { className: "text" },
+	                                        "Button"
+	                                    )
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                "div",
+	                                { className: "pb-element pb-content-element" },
+	                                _react2.default.createElement(
+	                                    "div",
+	                                    { className: "pb-element-body" },
+	                                    _react2.default.createElement("span", { className: "glyphicon glyphicon-resize-horizontal icon", "aria-hidden": "true" }),
+	                                    _react2.default.createElement(
+	                                        "span",
+	                                        { className: "text" },
+	                                        "Divider"
+	                                    )
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                "div",
+	                                { className: "pb-element pb-content-element" },
+	                                _react2.default.createElement(
+	                                    "div",
+	                                    { className: "pb-element-body" },
+	                                    _react2.default.createElement("span", { className: "glyphicon glyphicon-bullhorn icon", "aria-hidden": "true" }),
+	                                    _react2.default.createElement(
+	                                        "span",
+	                                        { className: "text" },
+	                                        "Social"
+	                                    )
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                "div",
+	                                { className: "pb-element pb-content-element" },
+	                                _react2.default.createElement(
+	                                    "div",
+	                                    { className: "pb-element-body" },
+	                                    _react2.default.createElement("span", { className: "glyphicon glyphicon-file icon", "aria-hidden": "true" }),
+	                                    _react2.default.createElement(
+	                                        "span",
+	                                        { className: "text" },
+	                                        "Html"
+	                                    )
+	                                )
+	                            ),
+	                            _react2.default.createElement(
+	                                "div",
+	                                { className: "pb-element pb-content-element" },
+	                                _react2.default.createElement(
+	                                    "div",
+	                                    { className: "pb-element-body" },
+	                                    _react2.default.createElement("span", { className: "glyphicon glyphicon-header icon", "aria-hidden": "true" }),
+	                                    _react2.default.createElement(
+	                                        "span",
+	                                        { className: "text" },
+	                                        "Heading"
+	                                    )
+	                                )
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            "div",
+	                            { role: "tabpanel", className: "tab-pane fade", id: "pb-tab-templates" },
+	                            _react2.default.createElement(
+	                                "ol",
+	                                { className: "pb-list-element" },
+	                                _react2.default.createElement(
+	                                    "li",
+	                                    null,
+	                                    _react2.default.createElement(
+	                                        "a",
+	                                        { className: "btn btn-link", href: "#" },
+	                                        "Template One"
+	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    "li",
+	                                    null,
+	                                    _react2.default.createElement(
+	                                        "a",
+	                                        { className: "btn btn-link", href: "#" },
+	                                        "Template Two"
+	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    "li",
+	                                    null,
+	                                    _react2.default.createElement(
+	                                        "a",
+	                                        { className: "btn btn-link", href: "#" },
+	                                        "Template Three"
+	                                    )
+	                                ),
+	                                _react2.default.createElement(
+	                                    "li",
+	                                    null,
+	                                    _react2.default.createElement(
+	                                        "a",
+	                                        { className: "btn btn-link", href: "#" },
+	                                        "Template Four"
+	                                    )
+	                                )
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            "div",
+	                            { role: "tabpanel", className: "tab-pane fade", id: "pb-tab-profile" },
+	                            _react2.default.createElement(
+	                                "div",
+	                                { className: "pb-element pb-structure-element" },
+	                                _react2.default.createElement("span", { className: "block block-12" })
+	                            ),
+	                            _react2.default.createElement(
+	                                "div",
+	                                { className: "pb-element pb-structure-element" },
+	                                _react2.default.createElement("span", { className: "block block-6" }),
+	                                _react2.default.createElement("span", { className: "block block-6" })
+	                            ),
+	                            _react2.default.createElement(
+	                                "div",
+	                                { className: "pb-element pb-structure-element" },
+	                                _react2.default.createElement("span", { className: "block block-4" }),
+	                                _react2.default.createElement("span", { className: "block block-8" })
+	                            ),
+	                            _react2.default.createElement(
+	                                "div",
+	                                { className: "pb-element pb-structure-element" },
+	                                _react2.default.createElement("span", { className: "block block-8" }),
+	                                _react2.default.createElement("span", { className: "block block-4" })
+	                            ),
+	                            _react2.default.createElement(
+	                                "div",
+	                                { "class": "pb-element pb-structure-element" },
+	                                _react2.default.createElement("span", { className: "block block-4" }),
+	                                _react2.default.createElement("span", { className: "block block-4" }),
+	                                _react2.default.createElement("span", { className: "block block-4" })
+	                            ),
+	                            _react2.default.createElement(
+	                                "div",
+	                                { "class": "pb-element pb-structure-element" },
+	                                _react2.default.createElement("span", { className: "block block-3" }),
+	                                _react2.default.createElement("span", { className: "block block-3" }),
+	                                _react2.default.createElement("span", { className: "block block-3" }),
+	                                _react2.default.createElement("span", { className: "block block-3" })
+	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            "div",
+	                            { role: "tabpanel", className: "tab-pane fade", id: "pb-tab-messages" },
+	                            _react2.default.createElement(
+	                                "div",
+	                                { className: "pb-section-name" },
+	                                _react2.default.createElement(
+	                                    "h4",
+	                                    { className: "headline" },
+	                                    "General options"
+	                                ),
+	                                _react2.default.createElement(
+	                                    "div",
+	                                    { className: "pb-section-item" },
+	                                    _react2.default.createElement(
+	                                        "span",
+	                                        { className: "name" },
+	                                        "Adjust to width"
+	                                    ),
+	                                    _react2.default.createElement("div", { className: "value" })
+	                                )
+	                            )
+	                        )
+	                    )
+	                )
 	            );
 	        }
 	    }]);
