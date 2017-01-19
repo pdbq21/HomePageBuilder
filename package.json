@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel src -d publish --preset latest"
+    "build": "babel src -d publish --preset latest",
+    "start": "node server.js"
   },
   "author": "ruslan",
   "license": "ISC",
