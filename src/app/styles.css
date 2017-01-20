@@ -4,6 +4,10 @@
     border: 1px dashed black;
     background-color: whitesmoke;
 }
+.drop-zone-active{
+    border: 3px dashed #409e7b;
+    background-color: #dff0d8;
+}
 .new-content-block .glyphicon-plus{
     font-size: 4em;
     color: gainsboro;
@@ -12,7 +16,11 @@
     top: 25%;
 }
 
-#cross {
+
+{
+
+}
+#add-new-icon-plus {
     left: 50%;
     top: 25%;
     background: rgb(157, 157, 157);;
@@ -20,7 +28,7 @@
     position: relative;
     width: 1em;
 }
-#cross:after {
+#add-new-icon-plus:after {
     background: rgb(157, 157, 157);;
     content: "";
     height: 1em;
@@ -28,4 +36,9 @@
     position: absolute;
     top: 2.1em;
     width: 5em;
+}
+
+.drop-zone-active #add-new-icon-plus,
+.drop-zone-active #add-new-icon-plus:after{
+    background: #077323;
 }

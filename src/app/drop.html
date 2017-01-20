@@ -43,6 +43,7 @@
         function drag_drop(event) {
             event.preventDefault(); /* Prevent undesirable default behavior while dropping */
             var elem_id = event.dataTransfer.getData("text");
+
             event.target.appendChild( _(elem_id) );
             _('app_status').innerHTML = "Dropped "+elem_id+" into the "+event.target.getAttribute('id');
             _(elem_id).removeAttribute("draggable");
@@ -66,10 +67,18 @@
 <body>
 <h2 id="app_status">App status...</h2>
 <h1>Drop Zone</h1>
-<div id="drop_zone" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" ></div>
+<div id="drop_zone" ondragenter="drag_enter(event)" ondrop="drag_drop(event)" ondragover="return false" ondragleave="drag_leave(event)" >
+
+
+</div>
+
 <div id="object1" class="objects" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)">object 1</div>
 <div id="object2" class="objects" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)">object 2</div>
 <div id="object3" class="objects" draggable="true" ondragstart="drag_start(event)" ondragend="drag_end(event)">object 3</div>
+
+<div id="object4" class="objects" draggable="true" ondragstart="drag_start(event)" >object 4</div>
+<div id="object5" class="objects" draggable="true"  ondragend="drag_end(event)">object 5</div>
+<div id="object6" class="objects"  ondragstart="drag_start(event)" ondragend="drag_end(event)">object 6</div>
 <hr>
 <button onclick="readDropZone()">Get Object Data</button>
 </body>
