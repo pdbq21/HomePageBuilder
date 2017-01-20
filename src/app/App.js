@@ -14,15 +14,18 @@ import ToolBarTabContent from './components/ToolBarTabContent'
 
 /* Tool Bar Block*/
 function ToolBarBlock(props) {
-    const {onClickNavigation, activeTabContent} = props;
-    console.log(activeTabContent);
+    const {onClickNavigation, activeTabContent, onDragStart, onDragEnd} = props;
     return (
         <div className="pb-toolbar">
             {/* Nav tabs */}
             <ToolBarNav onClickNavigation={onClickNavigation}/>
 
             {/* Tab panes */}
-            <ToolBarTabContent activeTabContent={activeTabContent} />
+            <ToolBarTabContent
+                activeTabContent={activeTabContent}
+                onDragStart={onDragStart}
+                onDragEnd={onDragEnd}
+            />
         </div>
     );
 }
@@ -42,6 +45,8 @@ export default class PageBuilder extends React.Component {
         };
         this.dragAndDrop = this.dragAndDrop.bind(this);
         this.onClickNavigation = this.onClickNavigation.bind(this);
+        this.onDragStart = this.onDragStart.bind(this);
+        this.onDragEnd = this.onDragEnd.bind(this);
 
     }
 
@@ -49,6 +54,21 @@ export default class PageBuilder extends React.Component {
     dragAndDrop(element) {
 
 //empty
+    }
+
+    // add function start drag
+    onDragStart(element){
+        document.querySelector('.new-content-block').classList.add('drop-zone-active');
+    }
+    onDragEnd(element){
+        document.querySelector('.new-content-block').classList.remove('drop-zone-active');
+        document.getElementById('drop_zone');
+
+        let div = document.createElement('div');
+        div.className = "alert alert-success";
+        div.innerHTML = "<strong>Ура!</strong> Вы прочитали это важное сообщение.";
+
+        document.getElementById('drop_zone').insertBefore(div, document.getElementById('drop_zone').firstChild);
     }
 
     onClickNavigation(element) {
@@ -72,6 +92,10 @@ export default class PageBuilder extends React.Component {
                 <ToolBarBlock
                     onClickNavigation={this.onClickNavigation}
                     activeTabContent={this.state.activeNavigation}
+
+                    onDragStart={this.onDragStart}
+                    onDragEnd={this.onDragEnd}
+
                 />
 
             </div>

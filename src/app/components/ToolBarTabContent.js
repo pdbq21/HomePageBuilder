@@ -58,34 +58,37 @@ function ContentTabContent() {
     </div>)
 }
 
-function ContentTabStructure() {
-    return (<div id="pb-tab-structure">
-        <div className="pb-element pb-structure-element">
+function ContentTabStructure(props) {
+    return (<div id="pb-tab-structure"
+                 onDragStart={props.onDragStart}
+                 onDragEnd={props.onDragEnd}
+    >
+        <div className="pb-element pb-structure-element" draggable="true">
             <span className="block block-12"></span>
         </div>
 
-        <div className="pb-element pb-structure-element">
+        <div className="pb-element pb-structure-element" draggable="true">
             <span className="block block-6"></span>
             <span className="block block-6"></span>
         </div>
 
-        <div className="pb-element pb-structure-element">
+        <div className="pb-element pb-structure-element" draggable="true">
             <span className="block block-4"></span>
             <span className="block block-8"></span>
         </div>
 
-        <div className="pb-element pb-structure-element">
+        <div className="pb-element pb-structure-element" draggable="true">
             <span className="block block-8"></span>
             <span className="block block-4"></span>
         </div>
 
-        <div className="pb-element pb-structure-element">
+        <div className="pb-element pb-structure-element" draggable="true">
             <span className="block block-4"></span>
             <span className="block block-4"></span>
             <span className="block block-4"></span>
         </div>
 
-        <div className="pb-element pb-structure-element">
+        <div className="pb-element pb-structure-element" draggable="true">
             <span className="block block-3"></span>
             <span className="block block-3"></span>
             <span className="block block-3"></span>
@@ -118,14 +121,17 @@ function ContentTabBody() {
 }
 
 export default function ToolBarTabContent(props) {
-    const {activeTabContent} = props;
+    const {activeTabContent, onDragStart, onDragEnd} = props;
     let tabContentItem;
     switch (activeTabContent) {
         case 'Content':
             tabContentItem = <ContentTabContent />;
             break;
         case 'Structure':
-            tabContentItem = <ContentTabStructure />;
+            tabContentItem = <ContentTabStructure
+                onDragStart={onDragStart}
+                onDragEnd={onDragEnd}
+            />;
             break;
         case 'Templates':
             tabContentItem = <ContentTabTemplates />;

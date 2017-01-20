@@ -21512,14 +21512,19 @@ webpackJsonp([0,1],[
 	/* Tool Bar Block*/
 	function ToolBarBlock(props) {
 	    var onClickNavigation = props.onClickNavigation,
-	        activeTabContent = props.activeTabContent;
+	        activeTabContent = props.activeTabContent,
+	        onDragStart = props.onDragStart,
+	        onDragEnd = props.onDragEnd;
 
-	    console.log(activeTabContent);
 	    return _react2.default.createElement(
 	        'div',
 	        { className: 'pb-toolbar' },
 	        _react2.default.createElement(_ToolBarNav2.default, { onClickNavigation: onClickNavigation }),
-	        _react2.default.createElement(_ToolBarTabContent2.default, { activeTabContent: activeTabContent })
+	        _react2.default.createElement(_ToolBarTabContent2.default, {
+	            activeTabContent: activeTabContent,
+	            onDragStart: onDragStart,
+	            onDragEnd: onDragEnd
+	        })
 	    );
 	}
 
@@ -21541,15 +21546,37 @@ webpackJsonp([0,1],[
 	        };
 	        _this.dragAndDrop = _this.dragAndDrop.bind(_this);
 	        _this.onClickNavigation = _this.onClickNavigation.bind(_this);
+	        _this.onDragStart = _this.onDragStart.bind(_this);
+	        _this.onDragEnd = _this.onDragEnd.bind(_this);
 
 	        return _this;
 	    }
 
 	    _createClass(PageBuilder, [{
 	        key: 'dragAndDrop',
-	        value: function dragAndDrop(element) {
+	        value: function dragAndDrop(element) {}
 
-	            //empty
+	        //empty
+
+
+	        // add function start drag
+
+	    }, {
+	        key: 'onDragStart',
+	        value: function onDragStart(element) {
+	            document.querySelector('.new-content-block').classList.add('drop-zone-active');
+	        }
+	    }, {
+	        key: 'onDragEnd',
+	        value: function onDragEnd(element) {
+	            document.querySelector('.new-content-block').classList.remove('drop-zone-active');
+	            document.getElementById('drop_zone');
+
+	            var div = document.createElement('div');
+	            div.className = "alert alert-success";
+	            div.innerHTML = "<strong>Ура!</strong> Вы прочитали это важное сообщение.";
+
+	            document.getElementById('drop_zone').insertBefore(div, document.getElementById('drop_zone').firstChild);
 	        }
 	    }, {
 	        key: 'onClickNavigation',
@@ -21572,7 +21599,11 @@ webpackJsonp([0,1],[
 	                _react2.default.createElement(_PreviewBlock2.default, null),
 	                _react2.default.createElement(ToolBarBlock, {
 	                    onClickNavigation: this.onClickNavigation,
-	                    activeTabContent: this.state.activeNavigation
+	                    activeTabContent: this.state.activeNavigation,
+
+	                    onDragStart: this.onDragStart,
+	                    onDragEnd: this.onDragEnd
+
 	                })
 	            );
 	        }
@@ -22154,43 +22185,46 @@ webpackJsonp([0,1],[
 	   */
 
 
-	function ContentTabStructure() {
+	function ContentTabStructure(props) {
 	    return _react2.default.createElement(
 	        "div",
-	        { id: "pb-tab-structure" },
+	        { id: "pb-tab-structure",
+	            onDragStart: props.onDragStart,
+	            onDragEnd: props.onDragEnd
+	        },
 	        _react2.default.createElement(
 	            "div",
-	            { className: "pb-element pb-structure-element" },
+	            { className: "pb-element pb-structure-element", draggable: "true" },
 	            _react2.default.createElement("span", { className: "block block-12" })
 	        ),
 	        _react2.default.createElement(
 	            "div",
-	            { className: "pb-element pb-structure-element" },
+	            { className: "pb-element pb-structure-element", draggable: "true" },
 	            _react2.default.createElement("span", { className: "block block-6" }),
 	            _react2.default.createElement("span", { className: "block block-6" })
 	        ),
 	        _react2.default.createElement(
 	            "div",
-	            { className: "pb-element pb-structure-element" },
+	            { className: "pb-element pb-structure-element", draggable: "true" },
 	            _react2.default.createElement("span", { className: "block block-4" }),
 	            _react2.default.createElement("span", { className: "block block-8" })
 	        ),
 	        _react2.default.createElement(
 	            "div",
-	            { className: "pb-element pb-structure-element" },
+	            { className: "pb-element pb-structure-element", draggable: "true" },
 	            _react2.default.createElement("span", { className: "block block-8" }),
 	            _react2.default.createElement("span", { className: "block block-4" })
 	        ),
 	        _react2.default.createElement(
 	            "div",
-	            { className: "pb-element pb-structure-element" },
+	            { className: "pb-element pb-structure-element", draggable: "true" },
 	            _react2.default.createElement("span", { className: "block block-4" }),
 	            _react2.default.createElement("span", { className: "block block-4" }),
 	            _react2.default.createElement("span", { className: "block block-4" })
 	        ),
 	        _react2.default.createElement(
 	            "div",
-	            { className: "pb-element pb-structure-element" },
+	            { className: "pb-element pb-structure-element", draggable: "true" },
 	            _react2.default.createElement("span", { className: "block block-3" }),
 	            _react2.default.createElement("span", { className: "block block-3" }),
 	            _react2.default.createElement("span", { className: "block block-3" }),
@@ -22273,7 +22307,9 @@ webpackJsonp([0,1],[
 	}
 
 	function ToolBarTabContent(props) {
-	    var activeTabContent = props.activeTabContent;
+	    var activeTabContent = props.activeTabContent,
+	        onDragStart = props.onDragStart,
+	        onDragEnd = props.onDragEnd;
 
 	    var tabContentItem = void 0;
 	    switch (activeTabContent) {
@@ -22281,7 +22317,10 @@ webpackJsonp([0,1],[
 	            tabContentItem = _react2.default.createElement(ContentTabContent, null);
 	            break;
 	        case 'Structure':
-	            tabContentItem = _react2.default.createElement(ContentTabStructure, null);
+	            tabContentItem = _react2.default.createElement(ContentTabStructure, {
+	                onDragStart: onDragStart,
+	                onDragEnd: onDragEnd
+	            });
 	            break;
 	        case 'Templates':
 	            tabContentItem = _react2.default.createElement(ContentTabTemplates, null);
