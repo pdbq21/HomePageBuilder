@@ -1,4 +1,3 @@
-var path = require('path');
 const webpack = require("webpack");
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
@@ -6,16 +5,13 @@ module.exports = {
 
     context: __dirname + "/src",
 
-    entry: [
-        'webpack-hot-middleware/client',
-        "./app/index.js"
-
-    ],
+    entry: {
+        app: "./app/index.js"
+    },
     output: {
-    path: path.join(__dirname, 'dist'),
-        filename: 'bundle.js',
-    publicPath: '/publish/'
-},
+        path: "./publish",
+        filename: "[name].bundle.js"
+    },
 
     watch: NODE_ENV === 'development',
 
@@ -33,9 +29,8 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loaders:  ['react-hot', 'babel-loader'],
-                plugins: ["transform-runtime"],
-                include: path.join(__dirname, 'src')
+                loader:  'babel-loader',
+                plugins: ["transform-runtime"]
             },
             {
                 test: /\.css$/,
@@ -54,11 +49,9 @@ module.exports = {
          warnings: false,
          drop_console: true
          }),*/
-
-        new webpack.HotModuleReplacementPlugin(),
-        /*new webpack.optimize.CommonsChunkPlugin({
+        new webpack.optimize.CommonsChunkPlugin({
             name: "common"
-        })*/
+        })
     ]
 
 };
