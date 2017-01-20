@@ -21481,6 +21481,8 @@ webpackJsonp([0,1],[
 
 	var _reactDragula2 = _interopRequireDefault(_reactDragula);
 
+	__webpack_require__(191);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21524,7 +21526,15 @@ webpackJsonp([0,1],[
 	            return _react2.default.createElement(
 	                'div',
 	                { id: 'app-page-builder' },
-	                _react2.default.createElement('div', { className: 'pb-canvas' }),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'pb-canvas' },
+	                    _react2.default.createElement(
+	                        'div',
+	                        { className: 'new-content-block' },
+	                        _react2.default.createElement('div', { className: '', id: 'cross' })
+	                    )
+	                ),
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'pb-toolbar' },
@@ -23039,7 +23049,7 @@ webpackJsonp([0,1],[
 
 
 	// module
-	exports.push([module.id, "", ""]);
+	exports.push([module.id, ".new-content-block{\n    height: 10em;\n    position: relative;\n    border: 1px dashed black;\n    background-color: whitesmoke;\n}\n.new-content-block .glyphicon-plus{\n    font-size: 4em;\n    color: gainsboro;\n    position: absolute;\n    left: 50%;\n    top: 25%;\n}\n\n#cross {\n    left: 50%;\n    top: 25%;\n    background: rgb(157, 157, 157);;\n    height: 5em;\n    position: relative;\n    width: 1em;\n}\n#cross:after {\n    background: rgb(157, 157, 157);;\n    content: \"\";\n    height: 1em;\n    left: -2.1em;\n    position: absolute;\n    top: 2.1em;\n    width: 5em;\n}", ""]);
 
 	// exports
 

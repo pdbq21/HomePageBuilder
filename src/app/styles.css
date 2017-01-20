@@ -1,0 +1,31 @@
+.new-content-block{
+    height: 10em;
+    position: relative;
+    border: 1px dashed black;
+    background-color: whitesmoke;
+}
+.new-content-block .glyphicon-plus{
+    font-size: 4em;
+    color: gainsboro;
+    position: absolute;
+    left: 50%;
+    top: 25%;
+}
+
+#cross {
+    left: 50%;
+    top: 25%;
+    background: rgb(157, 157, 157);;
+    height: 5em;
+    position: relative;
+    width: 1em;
+}
+#cross:after {
+    background: rgb(157, 157, 157);;
+    content: "";
+    height: 1em;
+    left: -2.1em;
+    position: absolute;
+    top: 2.1em;
+    width: 5em;
+}

@@ -5,7 +5,7 @@
 import React from 'react'
 import Dragula from 'react-dragula'
 
-
+import './styles.css'
 
 /* Root App Component */
 export default class PageBuilder extends React.Component {
@@ -34,6 +34,10 @@ export default class PageBuilder extends React.Component {
             <div id="app-page-builder" >
 
                         <div className="pb-canvas">
+
+<div className="new-content-block">
+<div className="" id="cross"></div>
+</div>
 
                         </div>
 
