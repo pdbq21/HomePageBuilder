@@ -65,32 +65,48 @@ function ContentTabStructure(props) {
     >
         <div className="pb-element pb-structure-element"
              draggable="true"
+             id="element-12"
         >
             <span className="block block-12"></span>
         </div>
 
-        <div className="pb-element pb-structure-element" draggable="true">
+        <div className="pb-element pb-structure-element"
+             draggable="true"
+             id="element-6-6"
+        >
             <span className="block block-6"></span>
             <span className="block block-6"></span>
         </div>
 
-        <div className="pb-element pb-structure-element" draggable="true">
+        <div className="pb-element pb-structure-element"
+             draggable="true"
+             id="element-4-8"
+        >
             <span className="block block-4"></span>
             <span className="block block-8"></span>
         </div>
 
-        <div className="pb-element pb-structure-element" draggable="true">
+        <div className="pb-element pb-structure-element"
+             draggable="true"
+             id="element-8-4"
+        >
             <span className="block block-8"></span>
             <span className="block block-4"></span>
         </div>
 
-        <div className="pb-element pb-structure-element" draggable="true">
+        <div className="pb-element pb-structure-element"
+             draggable="true"
+             id="element-4-4-4"
+        >
             <span className="block block-4"></span>
             <span className="block block-4"></span>
             <span className="block block-4"></span>
         </div>
 
-        <div className="pb-element pb-structure-element" draggable="true">
+        <div className="pb-element pb-structure-element"
+             draggable="true"
+             id="element-3-3-3-3"
+        >
             <span className="block block-3"></span>
             <span className="block block-3"></span>
             <span className="block block-3"></span>

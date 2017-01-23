@@ -6,11 +6,13 @@ import React from 'react'
 
 // import styles
 import './styles.css'
+import './flexbox.css'
 
 // import Components
 import PreviewBlock from './components/PreviewBlock'
 import ToolBarNav from './components/ToolBarNav'
 import ToolBarTabContent from './components/ToolBarTabContent'
+import PreviewElementRow from './components/PreviewElementRow'
 
 /* Tool Bar Block*/
 function ToolBarBlock(props) {
@@ -40,9 +42,12 @@ export default class PageBuilder extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: {},
+            data: {
+                rows: []
+            },
             activeNavigation: 'Content',// - default Content/Structure/Templates/Body
-            activeDrop: false
+            //activeDrop: false
+
         };
 
         this.onClickNavigation = this.onClickNavigation.bind(this);
@@ -58,10 +63,26 @@ export default class PageBuilder extends React.Component {
     }
 
 
-    createNewContentBlock() {
-        let div = document.createElement('div');
-        div.className = "content-block";
-        document.getElementById('drop_zone').insertBefore(div, document.getElementById('drop_zone').firstChild);
+    createNewContentBlock(id) {
+
+        // Перетворення строки в масив з видаленням нульового елементу
+        // 'element-4-4-4' => ["4", "4", "4"]
+        const cols = id.split('-').splice(1);
+        let newColData = [];
+        cols.map(function (key) {
+            newColData.push({index: key})
+        });
+
+        const newRowData = {
+            row: id,
+            cols: newColData
+        };
+
+        this.setState((prevState) => ({
+            data: {
+                rows: prevState.data.rows.concat(newRowData)
+            },
+        }));
     }
 
     // add function start drag
@@ -69,32 +90,22 @@ export default class PageBuilder extends React.Component {
         console.log('start');
         document.querySelector('.new-content-block').classList.add('drop-zone-active');
         event.dataTransfer.dropEffect = "move";
-        //event.dataTransfer.setData("text", event.target.getAttribute('id') );
+        event.dataTransfer.setData("text", event.target.getAttribute('id'));
     }
 
     onDragEnd() {
-
         document.querySelector('.new-content-block').classList.remove('drop-zone-active');
-        //document.getElementById('drop_zone');
-        if (this.state.activeDrop === true) {
-            this.createNewContentBlock();
-            console.log(25);
-            this.setState({
-                activeDrop: false
-            });
-        }
     }
 
     handelDragEnter(event) {
         event.preventDefault();
-        this.setState({
-            activeDrop: true
-        });
     }
 
     handleDrop(event) {
         // Stop default browser behavior
         event.preventDefault();
+        this.createNewContentBlock(event.dataTransfer.getData("text"));
+        console.log(event.dataTransfer.getData("text"));
     }
 
     handleDragOver(event) {
@@ -106,9 +117,6 @@ export default class PageBuilder extends React.Component {
     handleDragLeave(event) {
         event.preventDefault();
         console.log('leave');
-        this.setState({
-            activeDrop: false
-        });
     }
 
     onClickNavigation(element) {
@@ -120,10 +128,14 @@ export default class PageBuilder extends React.Component {
                 activeNavigation: element.target.text
             });
         }
-
     }
 
     render() {
+
+        let testComponent = this.state.data.rows.map(function (key, index) {
+            return <PreviewElementRow name={key.row} key={`${key.row}-${index}`}/>
+        });
+
         return (
             <div id="app-page-builder">
 
@@ -132,6 +144,8 @@ export default class PageBuilder extends React.Component {
                     handleDrop={this.handleDrop}
                     handleDragOver={this.handleDragOver}
                     handleDragLeave={this.handleDragLeave}
+
+                    testComponent={testComponent}
                 />
 
                 <ToolBarBlock
@@ -149,3 +163,7 @@ export default class PageBuilder extends React.Component {
 }
 
 // List const name (Image/Text/button...)
+/*
+ Todo: ? use Redux ?
+
+ */

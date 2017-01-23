@@ -21479,17 +21479,23 @@ webpackJsonp([0,1],[
 
 	__webpack_require__(179);
 
-	var _PreviewBlock = __webpack_require__(183);
+	__webpack_require__(183);
+
+	var _PreviewBlock = __webpack_require__(185);
 
 	var _PreviewBlock2 = _interopRequireDefault(_PreviewBlock);
 
-	var _ToolBarNav = __webpack_require__(184);
+	var _ToolBarNav = __webpack_require__(186);
 
 	var _ToolBarNav2 = _interopRequireDefault(_ToolBarNav);
 
-	var _ToolBarTabContent = __webpack_require__(185);
+	var _ToolBarTabContent = __webpack_require__(187);
 
 	var _ToolBarTabContent2 = _interopRequireDefault(_ToolBarTabContent);
+
+	var _PreviewElementRow = __webpack_require__(188);
+
+	var _PreviewElementRow2 = _interopRequireDefault(_PreviewElementRow);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -21541,10 +21547,10 @@ webpackJsonp([0,1],[
 	        var _this = _possibleConstructorReturn(this, (PageBuilder.__proto__ || Object.getPrototypeOf(PageBuilder)).call(this, props));
 
 	        _this.state = {
-	            data: {},
-	            activeNavigation: 'Content', // - default Content/Structure/Templates/Body
-	            activeDrop: false
-	        };
+	            data: {
+	                rows: []
+	            },
+	            activeNavigation: 'Content' };
 
 	        _this.onClickNavigation = _this.onClickNavigation.bind(_this);
 	        _this.onDragStart = _this.onDragStart.bind(_this);
@@ -21561,10 +21567,28 @@ webpackJsonp([0,1],[
 
 	    _createClass(PageBuilder, [{
 	        key: 'createNewContentBlock',
-	        value: function createNewContentBlock() {
-	            var div = document.createElement('div');
-	            div.className = "content-block";
-	            document.getElementById('drop_zone').insertBefore(div, document.getElementById('drop_zone').firstChild);
+	        value: function createNewContentBlock(id) {
+
+	            // Перетворення строки в масив з видаленням нульового елементу
+	            // 'element-4-4-4' => ["4", "4", "4"]
+	            var cols = id.split('-').splice(1);
+	            var newColData = [];
+	            cols.map(function (key) {
+	                newColData.push({ index: key });
+	            });
+
+	            var newRowData = {
+	                row: id,
+	                cols: newColData
+	            };
+
+	            this.setState(function (prevState) {
+	                return {
+	                    data: {
+	                        rows: prevState.data.rows.concat(newRowData)
+	                    }
+	                };
+	            });
 	        }
 
 	        // add function start drag
@@ -21575,35 +21599,25 @@ webpackJsonp([0,1],[
 	            console.log('start');
 	            document.querySelector('.new-content-block').classList.add('drop-zone-active');
 	            event.dataTransfer.dropEffect = "move";
-	            //event.dataTransfer.setData("text", event.target.getAttribute('id') );
+	            event.dataTransfer.setData("text", event.target.getAttribute('id'));
 	        }
 	    }, {
 	        key: 'onDragEnd',
 	        value: function onDragEnd() {
-
 	            document.querySelector('.new-content-block').classList.remove('drop-zone-active');
-	            //document.getElementById('drop_zone');
-	            if (this.state.activeDrop === true) {
-	                this.createNewContentBlock();
-	                console.log(25);
-	                this.setState({
-	                    activeDrop: false
-	                });
-	            }
 	        }
 	    }, {
 	        key: 'handelDragEnter',
 	        value: function handelDragEnter(event) {
 	            event.preventDefault();
-	            this.setState({
-	                activeDrop: true
-	            });
 	        }
 	    }, {
 	        key: 'handleDrop',
 	        value: function handleDrop(event) {
 	            // Stop default browser behavior
 	            event.preventDefault();
+	            this.createNewContentBlock(event.dataTransfer.getData("text"));
+	            console.log(event.dataTransfer.getData("text"));
 	        }
 	    }, {
 	        key: 'handleDragOver',
@@ -21617,9 +21631,6 @@ webpackJsonp([0,1],[
 	        value: function handleDragLeave(event) {
 	            event.preventDefault();
 	            console.log('leave');
-	            this.setState({
-	                activeDrop: false
-	            });
 	        }
 	    }, {
 	        key: 'onClickNavigation',
@@ -21636,6 +21647,11 @@ webpackJsonp([0,1],[
 	    }, {
 	        key: 'render',
 	        value: function render() {
+
+	            var testComponent = this.state.data.rows.map(function (key, index) {
+	                return _react2.default.createElement(_PreviewElementRow2.default, { name: key.row, key: key.row + '-' + index });
+	            });
+
 	            return _react2.default.createElement(
 	                'div',
 	                { id: 'app-page-builder' },
@@ -21643,7 +21659,9 @@ webpackJsonp([0,1],[
 	                    handelDragEnter: this.handelDragEnter,
 	                    handleDrop: this.handleDrop,
 	                    handleDragOver: this.handleDragOver,
-	                    handleDragLeave: this.handleDragLeave
+	                    handleDragLeave: this.handleDragLeave,
+
+	                    testComponent: testComponent
 	                }),
 	                _react2.default.createElement(ToolBarBlock, {
 	                    onClickNavigation: this.onClickNavigation,
@@ -21661,6 +21679,10 @@ webpackJsonp([0,1],[
 	}(_react2.default.Component);
 
 	// List const name (Image/Text/button...)
+	/*
+	 Todo: ? use Redux ?
+
+	 */
 
 
 	exports.default = PageBuilder;
@@ -22017,6 +22039,46 @@ webpackJsonp([0,1],[
 /* 183 */
 /***/ function(module, exports, __webpack_require__) {
 
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(184);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(182)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./flexbox.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./flexbox.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 184 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(181)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "/* description of the structure */", ""]);
+
+	// exports
+
+
+/***/ },
+/* 185 */
+/***/ function(module, exports, __webpack_require__) {
+
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
@@ -22034,11 +22096,13 @@ webpackJsonp([0,1],[
 	    var handelDragEnter = props.handelDragEnter,
 	        handleDrop = props.handleDrop,
 	        handleDragOver = props.handleDragOver,
-	        handleDragLeave = props.handleDragLeave;
+	        handleDragLeave = props.handleDragLeave,
+	        testComponent = props.testComponent;
 
 	    return _react2.default.createElement(
 	        "div",
 	        { className: "pb-canvas col-md-8", id: "drop_zone" },
+	        testComponent,
 	        _react2.default.createElement(
 	            "div",
 	            { className: "new-content-block",
@@ -22055,7 +22119,7 @@ webpackJsonp([0,1],[
 	   */
 
 /***/ },
-/* 184 */
+/* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -22118,7 +22182,7 @@ webpackJsonp([0,1],[
 	   */
 
 /***/ },
-/* 185 */
+/* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -22253,38 +22317,54 @@ webpackJsonp([0,1],[
 	        _react2.default.createElement(
 	            "div",
 	            { className: "pb-element pb-structure-element",
-	                draggable: "true"
+	                draggable: "true",
+	                id: "element-12"
 	            },
 	            _react2.default.createElement("span", { className: "block block-12" })
 	        ),
 	        _react2.default.createElement(
 	            "div",
-	            { className: "pb-element pb-structure-element", draggable: "true" },
+	            { className: "pb-element pb-structure-element",
+	                draggable: "true",
+	                id: "element-6-6"
+	            },
 	            _react2.default.createElement("span", { className: "block block-6" }),
 	            _react2.default.createElement("span", { className: "block block-6" })
 	        ),
 	        _react2.default.createElement(
 	            "div",
-	            { className: "pb-element pb-structure-element", draggable: "true" },
+	            { className: "pb-element pb-structure-element",
+	                draggable: "true",
+	                id: "element-4-8"
+	            },
 	            _react2.default.createElement("span", { className: "block block-4" }),
 	            _react2.default.createElement("span", { className: "block block-8" })
 	        ),
 	        _react2.default.createElement(
 	            "div",
-	            { className: "pb-element pb-structure-element", draggable: "true" },
+	            { className: "pb-element pb-structure-element",
+	                draggable: "true",
+	                id: "element-8-4"
+	            },
 	            _react2.default.createElement("span", { className: "block block-8" }),
 	            _react2.default.createElement("span", { className: "block block-4" })
 	        ),
 	        _react2.default.createElement(
 	            "div",
-	            { className: "pb-element pb-structure-element", draggable: "true" },
+	            { className: "pb-element pb-structure-element",
+	                draggable: "true",
+	                id: "element-4-4-4"
+	            },
 	            _react2.default.createElement("span", { className: "block block-4" }),
 	            _react2.default.createElement("span", { className: "block block-4" }),
 	            _react2.default.createElement("span", { className: "block block-4" })
 	        ),
 	        _react2.default.createElement(
 	            "div",
-	            { className: "pb-element pb-structure-element", draggable: "true" },
+	            { className: "pb-element pb-structure-element",
+	                draggable: "true",
+	                id: "element-3-3-3-3"
+	            },
 	            _react2.default.createElement("span", { className: "block block-3" }),
 	            _react2.default.createElement("span", { className: "block block-3" }),
 	            _react2.default.createElement("span", { className: "block block-3" }),
@@ -22397,6 +22477,33 @@ webpackJsonp([0,1],[
 	        tabContentItem
 	    );
 	}
+
+/***/ },
+/* 188 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function PreviewElementRow(props) {
+	    return _react2.default.createElement(
+	        "div",
+	        { className: "content-block" },
+	        props.name
+	    );
+	} /**
+	   * Created by ruslan on 23.01.17.
+	   */
+	exports.default = PreviewElementRow;
 
 /***/ }
 ]);
