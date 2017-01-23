@@ -21534,8 +21534,6 @@ webpackJsonp([0,1],[
 	    );
 	}
 
-	/* Tab Content Tool Bar*/
-
 	/* Root App Component */
 
 	var PageBuilder = function (_React$Component) {
@@ -21574,7 +21572,7 @@ webpackJsonp([0,1],[
 	            var cols = id.split('-').splice(1);
 	            var newColData = [];
 	            cols.map(function (key) {
-	                newColData.push({ index: key });
+	                newColData.push({ indexCol: key });
 	            });
 
 	            var newRowData = {
@@ -21649,7 +21647,11 @@ webpackJsonp([0,1],[
 	        value: function render() {
 
 	            var testComponent = this.state.data.rows.map(function (key, index) {
-	                return _react2.default.createElement(_PreviewElementRow2.default, { name: key.row, key: key.row + '-' + index });
+	                return _react2.default.createElement(_PreviewElementRow2.default, {
+	                    key: key.row + '-' + index,
+	                    name: key.row,
+	                    cols: key.cols
+	                });
 	            });
 
 	            return _react2.default.createElement(
@@ -21669,7 +21671,6 @@ webpackJsonp([0,1],[
 
 	                    onDragStart: this.onDragStart,
 	                    onDragEnd: this.onDragEnd
-
 	                })
 	            );
 	        }
@@ -21681,6 +21682,7 @@ webpackJsonp([0,1],[
 	// List const name (Image/Text/button...)
 	/*
 	 Todo: ? use Redux ?
+
 
 	 */
 
@@ -22494,15 +22496,33 @@ webpackJsonp([0,1],[
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function PreviewElementRow(props) {
+	function ElementCol(props) {
 	    return _react2.default.createElement(
 	        "div",
-	        { className: "content-block" },
+	        { className: "content-block col-md-" + props.col },
 	        props.name
 	    );
 	} /**
 	   * Created by ruslan on 23.01.17.
 	   */
+
+
+	function PreviewElementRow(props) {
+	    var name = props.name,
+	        cols = props.cols;
+
+
+	    var elementCols = cols.map(function (key) {
+	        return _react2.default.createElement(ElementCol, { name: name, col: key.indexCol });
+	    });
+
+	    return _react2.default.createElement(
+	        "div",
+	        { className: "content-block" },
+	        elementCols
+	    );
+	}
+
 	exports.default = PreviewElementRow;
 
 /***/ }

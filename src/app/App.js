@@ -32,9 +32,6 @@ function ToolBarBlock(props) {
     );
 }
 
-/* Tab Content Tool Bar*/
-
-
 
 /* Root App Component */
 export default class PageBuilder extends React.Component {
@@ -70,7 +67,7 @@ export default class PageBuilder extends React.Component {
         const cols = id.split('-').splice(1);
         let newColData = [];
         cols.map(function (key) {
-            newColData.push({index: key})
+            newColData.push({indexCol: key})
         });
 
         const newRowData = {
@@ -133,7 +130,13 @@ export default class PageBuilder extends React.Component {
     render() {
 
         let testComponent = this.state.data.rows.map(function (key, index) {
-            return <PreviewElementRow name={key.row} key={`${key.row}-${index}`}/>
+            return (
+                <PreviewElementRow
+                    key={`${key.row}-${index}`}
+                    name={key.row}
+                    cols={key.cols}
+                />
+            );
         });
 
         return (
@@ -154,7 +157,6 @@ export default class PageBuilder extends React.Component {
 
                     onDragStart={this.onDragStart}
                     onDragEnd={this.onDragEnd}
-
                 />
 
             </div>
@@ -165,5 +167,6 @@ export default class PageBuilder extends React.Component {
 // List const name (Image/Text/button...)
 /*
  Todo: ? use Redux ?
+
 
  */
