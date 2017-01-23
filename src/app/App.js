@@ -16,7 +16,7 @@ import ToolBarTabContent from './components/ToolBarTabContent'
 function ToolBarBlock(props) {
     const {onClickNavigation, activeTabContent, onDragStart, onDragEnd} = props;
     return (
-        <div className="pb-toolbar">
+        <div className="pb-toolbar col-md-4">
             {/* Nav tabs */}
             <ToolBarNav onClickNavigation={onClickNavigation}/>
 
@@ -53,8 +53,16 @@ export default class PageBuilder extends React.Component {
         this.handelDragEnter = this.handelDragEnter.bind(this);
         this.handleDragOver = this.handleDragOver.bind(this);
         this.handleDragLeave = this.handleDragLeave.bind(this);
+
+        this.createNewContentBlock = this.createNewContentBlock.bind(this);
     }
 
+
+    createNewContentBlock() {
+        let div = document.createElement('div');
+        div.className = "content-block";
+        document.getElementById('drop_zone').insertBefore(div, document.getElementById('drop_zone').firstChild);
+    }
 
     // add function start drag
     onDragStart(event) {
@@ -66,19 +74,15 @@ export default class PageBuilder extends React.Component {
 
     onDragEnd() {
 
-         document.querySelector('.new-content-block').classList.remove('drop-zone-active');
-         //document.getElementById('drop_zone');
-        if (this.state.activeDrop === true){
-         let div = document.createElement('div');
-         div.className = "alert alert-success";
-         div.innerHTML = "<strong>Ура!</strong> Вы прочитали это важное сообщение.";
-
-         document.getElementById('drop_zone').insertBefore(div, document.getElementById('drop_zone').firstChild);
-         console.log(25);
+        document.querySelector('.new-content-block').classList.remove('drop-zone-active');
+        //document.getElementById('drop_zone');
+        if (this.state.activeDrop === true) {
+            this.createNewContentBlock();
+            console.log(25);
             this.setState({
                 activeDrop: false
             });
-         }
+        }
     }
 
     handelDragEnter(event) {

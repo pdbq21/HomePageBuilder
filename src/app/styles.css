@@ -1,4 +1,5 @@
-.new-content-block{
+.new-content-block,
+.content-block{
     height: 10em;
     position: relative;
     border: 1px dashed black;
@@ -41,4 +42,8 @@
 .drop-zone-active #add-new-icon-plus,
 .drop-zone-active #add-new-icon-plus:after{
     background: #077323;
+}
+
+#drop_zone{
+    padding: 0;
 }

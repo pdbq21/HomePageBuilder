@@ -7,7 +7,7 @@ export default function PreviewBlock(props) {
 
     const {handelDragEnter, handleDrop, handleDragOver, handleDragLeave} = props;
     return (
-        <div className="pb-canvas" id="drop_zone" >
+        <div className="pb-canvas col-md-8" id="drop_zone" >
 
             <div className="new-content-block"
                  onDragEnter={handelDragEnter}

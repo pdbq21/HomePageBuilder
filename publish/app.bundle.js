@@ -21518,7 +21518,7 @@ webpackJsonp([0,1],[
 
 	    return _react2.default.createElement(
 	        'div',
-	        { className: 'pb-toolbar' },
+	        { className: 'pb-toolbar col-md-4' },
 	        _react2.default.createElement(_ToolBarNav2.default, { onClickNavigation: onClickNavigation }),
 	        _react2.default.createElement(_ToolBarTabContent2.default, {
 	            activeTabContent: activeTabContent,
@@ -21554,13 +21554,22 @@ webpackJsonp([0,1],[
 	        _this.handelDragEnter = _this.handelDragEnter.bind(_this);
 	        _this.handleDragOver = _this.handleDragOver.bind(_this);
 	        _this.handleDragLeave = _this.handleDragLeave.bind(_this);
+
+	        _this.createNewContentBlock = _this.createNewContentBlock.bind(_this);
 	        return _this;
 	    }
 
-	    // add function start drag
-
-
 	    _createClass(PageBuilder, [{
+	        key: 'createNewContentBlock',
+	        value: function createNewContentBlock() {
+	            var div = document.createElement('div');
+	            div.className = "content-block";
+	            document.getElementById('drop_zone').insertBefore(div, document.getElementById('drop_zone').firstChild);
+	        }
+
+	        // add function start drag
+
+	    }, {
 	        key: 'onDragStart',
 	        value: function onDragStart(event) {
 	            console.log('start');
@@ -21575,11 +21584,7 @@ webpackJsonp([0,1],[
 	            document.querySelector('.new-content-block').classList.remove('drop-zone-active');
 	            //document.getElementById('drop_zone');
 	            if (this.state.activeDrop === true) {
-	                var div = document.createElement('div');
-	                div.className = "alert alert-success";
-	                div.innerHTML = "<strong>Ура!</strong> Вы прочитали это важное сообщение.";
-
-	                document.getElementById('drop_zone').insertBefore(div, document.getElementById('drop_zone').firstChild);
+	                this.createNewContentBlock();
 	                console.log(25);
 	                this.setState({
 	                    activeDrop: false
@@ -21695,7 +21700,7 @@ webpackJsonp([0,1],[
 
 
 	// module
-	exports.push([module.id, ".new-content-block{\n    height: 10em;\n    position: relative;\n    border: 1px dashed black;\n    background-color: whitesmoke;\n}\n.drop-zone-active{\n    border: 3px dashed #409e7b;\n    background-color: #dff0d8;\n}\n.new-content-block .glyphicon-plus{\n    font-size: 4em;\n    color: gainsboro;\n    position: absolute;\n    left: 50%;\n    top: 25%;\n}\n\n\n{\n\n}\n#add-new-icon-plus {\n    left: 50%;\n    top: 25%;\n    background: rgb(157, 157, 157);;\n    height: 5em;\n    position: relative;\n    width: 1em;\n}\n#add-new-icon-plus:after {\n    background: rgb(157, 157, 157);;\n    content: \"\";\n    height: 1em;\n    left: -2.1em;\n    position: absolute;\n    top: 2.1em;\n    width: 5em;\n}\n\n.drop-zone-active #add-new-icon-plus,\n.drop-zone-active #add-new-icon-plus:after{\n    background: #077323;\n}", ""]);
+	exports.push([module.id, ".new-content-block,\n.content-block{\n    height: 10em;\n    position: relative;\n    border: 1px dashed black;\n    background-color: whitesmoke;\n}\n.drop-zone-active{\n    border: 3px dashed #409e7b;\n    background-color: #dff0d8;\n}\n.new-content-block .glyphicon-plus{\n    font-size: 4em;\n    color: gainsboro;\n    position: absolute;\n    left: 50%;\n    top: 25%;\n}\n\n\n{\n\n}\n#add-new-icon-plus {\n    left: 50%;\n    top: 25%;\n    background: rgb(157, 157, 157);;\n    height: 5em;\n    position: relative;\n    width: 1em;\n}\n#add-new-icon-plus:after {\n    background: rgb(157, 157, 157);;\n    content: \"\";\n    height: 1em;\n    left: -2.1em;\n    position: absolute;\n    top: 2.1em;\n    width: 5em;\n}\n\n.drop-zone-active #add-new-icon-plus,\n.drop-zone-active #add-new-icon-plus:after{\n    background: #077323;\n}\n\n#drop_zone{\n    padding: 0;\n}", ""]);
 
 	// exports
 
@@ -22033,7 +22038,7 @@ webpackJsonp([0,1],[
 
 	    return _react2.default.createElement(
 	        "div",
-	        { className: "pb-canvas", id: "drop_zone" },
+	        { className: "pb-canvas col-md-8", id: "drop_zone" },
 	        _react2.default.createElement(
 	            "div",
 	            { className: "new-content-block",

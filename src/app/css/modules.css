@@ -10,7 +10,7 @@
 
 /* Canvas */
 .pb-canvas {
-    width: 75%;
+    /*width: 75%;*/
     min-height: 90vh;
     height: 100%;
     border: 1px solid #BFBFBF;
@@ -18,7 +18,7 @@
 
 /* Toolbar */
 .pb-toolbar {
-    width: 25%;
+    /*width: 25%;*/
     padding-left: 20px;
     max-height: 90vh;
 }
