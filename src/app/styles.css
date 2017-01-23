@@ -26,7 +26,7 @@
     top: 25%;
     background: rgb(157, 157, 157);;
     height: 5em;
-    position: relative;
+    position: absolute;
     width: 1em;
 }
 #add-new-icon-plus:after {
