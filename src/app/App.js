@@ -41,34 +41,70 @@ export default class PageBuilder extends React.Component {
         super(props);
         this.state = {
             data: {},
-            activeNavigation: 'Content'// - default Content/Structure/Templates/Body
+            activeNavigation: 'Content',// - default Content/Structure/Templates/Body
+            activeDrop: false
         };
-        this.dragAndDrop = this.dragAndDrop.bind(this);
+
         this.onClickNavigation = this.onClickNavigation.bind(this);
         this.onDragStart = this.onDragStart.bind(this);
         this.onDragEnd = this.onDragEnd.bind(this);
-
+        // preview
+        this.handleDrop = this.handleDrop.bind(this);
+        this.handelDragEnter = this.handelDragEnter.bind(this);
+        this.handleDragOver = this.handleDragOver.bind(this);
+        this.handleDragLeave = this.handleDragLeave.bind(this);
     }
 
-
-    dragAndDrop(element) {
-
-//empty
-    }
 
     // add function start drag
-    onDragStart(element){
+    onDragStart(event) {
+        console.log('start');
         document.querySelector('.new-content-block').classList.add('drop-zone-active');
+        event.dataTransfer.dropEffect = "move";
+        //event.dataTransfer.setData("text", event.target.getAttribute('id') );
     }
-    onDragEnd(element){
-        document.querySelector('.new-content-block').classList.remove('drop-zone-active');
-        document.getElementById('drop_zone');
 
-        let div = document.createElement('div');
-        div.className = "alert alert-success";
-        div.innerHTML = "<strong>Ура!</strong> Вы прочитали это важное сообщение.";
+    onDragEnd() {
 
-        document.getElementById('drop_zone').insertBefore(div, document.getElementById('drop_zone').firstChild);
+         document.querySelector('.new-content-block').classList.remove('drop-zone-active');
+         //document.getElementById('drop_zone');
+        if (this.state.activeDrop === true){
+         let div = document.createElement('div');
+         div.className = "alert alert-success";
+         div.innerHTML = "<strong>Ура!</strong> Вы прочитали это важное сообщение.";
+
+         document.getElementById('drop_zone').insertBefore(div, document.getElementById('drop_zone').firstChild);
+         console.log(25);
+            this.setState({
+                activeDrop: false
+            });
+         }
+    }
+
+    handelDragEnter(event) {
+        event.preventDefault();
+        this.setState({
+            activeDrop: true
+        });
+    }
+
+    handleDrop(event) {
+        // Stop default browser behavior
+        event.preventDefault();
+    }
+
+    handleDragOver(event) {
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+    }
+
+    handleDragLeave(event) {
+        event.preventDefault();
+        console.log('leave');
+        this.setState({
+            activeDrop: false
+        });
     }
 
     onClickNavigation(element) {
@@ -87,7 +123,12 @@ export default class PageBuilder extends React.Component {
         return (
             <div id="app-page-builder">
 
-                <PreviewBlock />
+                <PreviewBlock
+                    handelDragEnter={this.handelDragEnter}
+                    handleDrop={this.handleDrop}
+                    handleDragOver={this.handleDragOver}
+                    handleDragLeave={this.handleDragLeave}
+                />
 
                 <ToolBarBlock
                     onClickNavigation={this.onClickNavigation}

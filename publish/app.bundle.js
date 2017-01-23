@@ -21542,41 +21542,79 @@ webpackJsonp([0,1],[
 
 	        _this.state = {
 	            data: {},
-	            activeNavigation: 'Content' // - default Content/Structure/Templates/Body
+	            activeNavigation: 'Content', // - default Content/Structure/Templates/Body
+	            activeDrop: false
 	        };
-	        _this.dragAndDrop = _this.dragAndDrop.bind(_this);
+
 	        _this.onClickNavigation = _this.onClickNavigation.bind(_this);
 	        _this.onDragStart = _this.onDragStart.bind(_this);
 	        _this.onDragEnd = _this.onDragEnd.bind(_this);
-
+	        // preview
+	        _this.handleDrop = _this.handleDrop.bind(_this);
+	        _this.handelDragEnter = _this.handelDragEnter.bind(_this);
+	        _this.handleDragOver = _this.handleDragOver.bind(_this);
+	        _this.handleDragLeave = _this.handleDragLeave.bind(_this);
 	        return _this;
 	    }
 
+	    // add function start drag
+
+
 	    _createClass(PageBuilder, [{
-	        key: 'dragAndDrop',
-	        value: function dragAndDrop(element) {}
-
-	        //empty
-
-
-	        // add function start drag
-
-	    }, {
 	        key: 'onDragStart',
-	        value: function onDragStart(element) {
+	        value: function onDragStart(event) {
+	            console.log('start');
 	            document.querySelector('.new-content-block').classList.add('drop-zone-active');
+	            event.dataTransfer.dropEffect = "move";
+	            //event.dataTransfer.setData("text", event.target.getAttribute('id') );
 	        }
 	    }, {
 	        key: 'onDragEnd',
-	        value: function onDragEnd(element) {
+	        value: function onDragEnd() {
+
 	            document.querySelector('.new-content-block').classList.remove('drop-zone-active');
-	            document.getElementById('drop_zone');
+	            //document.getElementById('drop_zone');
+	            if (this.state.activeDrop === true) {
+	                var div = document.createElement('div');
+	                div.className = "alert alert-success";
+	                div.innerHTML = "<strong>Ура!</strong> Вы прочитали это важное сообщение.";
 
-	            var div = document.createElement('div');
-	            div.className = "alert alert-success";
-	            div.innerHTML = "<strong>Ура!</strong> Вы прочитали это важное сообщение.";
-
-	            document.getElementById('drop_zone').insertBefore(div, document.getElementById('drop_zone').firstChild);
+	                document.getElementById('drop_zone').insertBefore(div, document.getElementById('drop_zone').firstChild);
+	                console.log(25);
+	                this.setState({
+	                    activeDrop: false
+	                });
+	            }
+	        }
+	    }, {
+	        key: 'handelDragEnter',
+	        value: function handelDragEnter(event) {
+	            event.preventDefault();
+	            this.setState({
+	                activeDrop: true
+	            });
+	        }
+	    }, {
+	        key: 'handleDrop',
+	        value: function handleDrop(event) {
+	            // Stop default browser behavior
+	            event.preventDefault();
+	        }
+	    }, {
+	        key: 'handleDragOver',
+	        value: function handleDragOver(event) {
+	            event.preventDefault();
+	            event.stopPropagation();
+	            return false;
+	        }
+	    }, {
+	        key: 'handleDragLeave',
+	        value: function handleDragLeave(event) {
+	            event.preventDefault();
+	            console.log('leave');
+	            this.setState({
+	                activeDrop: false
+	            });
 	        }
 	    }, {
 	        key: 'onClickNavigation',
@@ -21596,7 +21634,12 @@ webpackJsonp([0,1],[
 	            return _react2.default.createElement(
 	                'div',
 	                { id: 'app-page-builder' },
-	                _react2.default.createElement(_PreviewBlock2.default, null),
+	                _react2.default.createElement(_PreviewBlock2.default, {
+	                    handelDragEnter: this.handelDragEnter,
+	                    handleDrop: this.handleDrop,
+	                    handleDragOver: this.handleDragOver,
+	                    handleDragLeave: this.handleDragLeave
+	                }),
 	                _react2.default.createElement(ToolBarBlock, {
 	                    onClickNavigation: this.onClickNavigation,
 	                    activeTabContent: this.state.activeNavigation,
@@ -21982,13 +22025,23 @@ webpackJsonp([0,1],[
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function PreviewBlock() {
+	function PreviewBlock(props) {
+	    var handelDragEnter = props.handelDragEnter,
+	        handleDrop = props.handleDrop,
+	        handleDragOver = props.handleDragOver,
+	        handleDragLeave = props.handleDragLeave;
+
 	    return _react2.default.createElement(
 	        "div",
 	        { className: "pb-canvas", id: "drop_zone" },
 	        _react2.default.createElement(
 	            "div",
-	            { className: "new-content-block" },
+	            { className: "new-content-block",
+	                onDragEnter: handelDragEnter,
+	                onDrop: handleDrop,
+	                onDragOver: handleDragOver,
+	                onDragLeave: handleDragLeave
+	            },
 	            _react2.default.createElement("div", { className: "", id: "add-new-icon-plus" })
 	        )
 	    );
@@ -22014,7 +22067,7 @@ webpackJsonp([0,1],[
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function ToolBarNav(props) {
-	    console.log(props);
+
 	    return _react2.default.createElement(
 	        "ul",
 	        { className: "nav nav-tabs nav-justified", onClick: props.onClickNavigation },
@@ -22194,7 +22247,9 @@ webpackJsonp([0,1],[
 	        },
 	        _react2.default.createElement(
 	            "div",
-	            { className: "pb-element pb-structure-element", draggable: "true" },
+	            { className: "pb-element pb-structure-element",
+	                draggable: "true"
+	            },
 	            _react2.default.createElement("span", { className: "block block-12" })
 	        ),
 	        _react2.default.createElement(

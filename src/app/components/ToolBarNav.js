@@ -4,7 +4,7 @@
 import React from 'react'
 
 export default function ToolBarNav(props) {
-    console.log(props);
+
     return(
         <ul className="nav nav-tabs nav-justified" onClick={props.onClickNavigation}>
             <li role="presentation" className="navigation active">

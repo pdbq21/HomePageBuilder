@@ -63,7 +63,9 @@ function ContentTabStructure(props) {
                  onDragStart={props.onDragStart}
                  onDragEnd={props.onDragEnd}
     >
-        <div className="pb-element pb-structure-element" draggable="true">
+        <div className="pb-element pb-structure-element"
+             draggable="true"
+        >
             <span className="block block-12"></span>
         </div>
 

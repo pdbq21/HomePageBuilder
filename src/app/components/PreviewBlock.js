@@ -3,11 +3,18 @@
  */
 import React from 'react'
 
-export default function PreviewBlock() {
-    return (
-        <div className="pb-canvas" id="drop_zone">
+export default function PreviewBlock(props) {
 
-            <div className="new-content-block">
+    const {handelDragEnter, handleDrop, handleDragOver, handleDragLeave} = props;
+    return (
+        <div className="pb-canvas" id="drop_zone" >
+
+            <div className="new-content-block"
+                 onDragEnter={handelDragEnter}
+                 onDrop={handleDrop}
+                 onDragOver={handleDragOver}
+                 onDragLeave={handleDragLeave}
+            >
                 <div className="" id="add-new-icon-plus"></div>
             </div>
 
