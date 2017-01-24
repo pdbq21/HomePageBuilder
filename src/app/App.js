@@ -9,28 +9,9 @@ import './styles.css'
 import './flexbox.css'
 
 // import Components
-import PreviewBlock from './components/PreviewBlock'
-import ToolBarNav from './components/ToolBarNav'
-import ToolBarTabContent from './components/ToolBarTabContent'
-import PreviewElementRow from './components/PreviewElementRow'
-
-/* Tool Bar Block*/
-function ToolBarBlock(props) {
-    const {onClickNavigation, activeTabContent, onDragStart, onDragEnd} = props;
-    return (
-        <div className="pb-toolbar col-md-4">
-            {/* Nav tabs */}
-            <ToolBarNav onClickNavigation={onClickNavigation}/>
-
-            {/* Tab panes */}
-            <ToolBarTabContent
-                activeTabContent={activeTabContent}
-                onDragStart={onDragStart}
-                onDragEnd={onDragEnd}
-            />
-        </div>
-    );
-}
+import PreviewBlock from './components/Preview/PreviewBlock'
+import ToolBarBlock from './components/ToolBar/ToolBarBlock'
+import PreviewElementRow from './components/Preview/PreviewElementRow'
 
 
 /* Root App Component */
@@ -42,11 +23,39 @@ export default class PageBuilder extends React.Component {
             data: {
                 rows: []
             },
-            activeNavigation: 'Content',// - default Content/Structure/Templates/Body
+            activeNavigation: 'Structure',// - default Structure/Content/Templates/Body
             //activeDrop: false
+/*
 
+data: {
+    rows: [
+        {
+            row: 'name'
+            cols: [
+                {
+                    indexCol: '8',
+                    content: [
+                        {
+                            contentType: 'Image',
+                            ...
+
+                        },
+                        {
+                            contentType: 'Text'
+                        }
+                    ]
+                },
+                {
+                    indexCol: '4'
+                }
+            ]
+        }
+    ]
+}
+
+*/
         };
-
+// Toolbar
         this.onClickNavigation = this.onClickNavigation.bind(this);
         this.onDragStart = this.onDragStart.bind(this);
         this.onDragEnd = this.onDragEnd.bind(this);
@@ -57,17 +66,35 @@ export default class PageBuilder extends React.Component {
         this.handleDragLeave = this.handleDragLeave.bind(this);
 
         this.createNewContentBlock = this.createNewContentBlock.bind(this);
+        this.createNewRowBlock = this.createNewRowBlock.bind(this);
     }
 
+    // Todo: Need to combine this function createNewContentBlock + createNewRowBlock => createNewContentBlock
+    createNewContentBlock(id, indexCol, indexRow) {
 
-    createNewContentBlock(id) {
+// contentType = Text / Image / Button / Divider / Social
+        const newContentData = {
+            contentType: id.split('-').splice(1).join()
+        };
+
+        let stateCopy = Object.assign({}, this.state);
+        console.log(stateCopy.data.rows[indexRow].cols[indexCol].content.length);
+        if (stateCopy.data.rows[indexRow].cols[indexCol].content.length){
+            stateCopy.data.rows[indexRow].cols[indexCol].content.concat(newContentData);
+        }else{
+            stateCopy.data.rows[indexRow].cols[indexCol].content.push(newContentData);
+        }
+        this.setState(stateCopy);
+    }
+
+    createNewRowBlock(id) {
 
         // Перетворення строки в масив з видаленням нульового елементу
-        // 'element-4-4-4' => ["4", "4", "4"]
+        // 'elementStructure-4-4-4' => ["4", "4", "4"]
         const cols = id.split('-').splice(1);
         let newColData = [];
         cols.map(function (key) {
-            newColData.push({indexCol: key})
+            newColData.push({indexCol: key, content: []})
         });
 
         const newRowData = {
@@ -84,25 +111,62 @@ export default class PageBuilder extends React.Component {
 
     // add function start drag
     onDragStart(event) {
-        console.log('start');
-        document.querySelector('.new-content-block').classList.add('drop-zone-active');
-        event.dataTransfer.dropEffect = "move";
-        event.dataTransfer.setData("text", event.target.getAttribute('id'));
+        // first word in id element 'elementStructure' / 'elementContent'
+        if (event.target.getAttribute('id').split('-')[0] === 'elementContent') {
+            // add all element .content-block-item class drop-zone-active
+            document.querySelectorAll('.content-block-item').forEach(function (element) {
+                element.classList.add('drop-zone-active');
+            });
+
+            //
+            event.dataTransfer.dropEffect = "move";
+            event.dataTransfer.setData("text", event.target.getAttribute('id'));
+        }
+        else if (event.target.getAttribute('id').split('-')[0] === 'elementStructure') {
+            document.querySelector('.new-content-block').classList.add('drop-zone-active');
+            event.dataTransfer.dropEffect = "move";
+            event.dataTransfer.setData("text", event.target.getAttribute('id'));
+        } else {
+            console.error('Error: Other dragstart element');
+        }
     }
 
-    onDragEnd() {
-        document.querySelector('.new-content-block').classList.remove('drop-zone-active');
+    onDragEnd(event) {
+        if (event.target.getAttribute('id').split('-')[0] === 'elementContent') {
+            document.querySelectorAll('.content-block-item').forEach(function (element) {
+                element.classList.remove('drop-zone-active');
+            });
+        }
+        else if (event.target.getAttribute('id').split('-')[0] === 'elementStructure') {
+            document.querySelector('.new-content-block').classList.remove('drop-zone-active');
+        } else {
+            console.error('Error: Other dragend element');
+        }
+
     }
 
     handelDragEnter(event) {
         event.preventDefault();
     }
 
+
     handleDrop(event) {
         // Stop default browser behavior
         event.preventDefault();
-        this.createNewContentBlock(event.dataTransfer.getData("text"));
-        console.log(event.dataTransfer.getData("text"));
+        // class name element drop 'new-content-block' / 'content-block-item'
+        // Todo: need fix error drag element in other drop
+        if (event.target.classList[0] === 'content-block-item') {
+            // (contentType, indexCol, indexRow)
+           this.createNewContentBlock(event.dataTransfer.getData("text"),
+                event.target.getAttribute('data-index'),
+                event.target.parentNode.getAttribute('data-index')
+            );
+        }
+        else if (event.target.classList[0] === 'new-content-block') {
+            this.createNewRowBlock(event.dataTransfer.getData("text"));
+        } else {
+            console.error('Error: Other drop element');
+        }
     }
 
     handleDragOver(event) {
@@ -113,7 +177,6 @@ export default class PageBuilder extends React.Component {
 
     handleDragLeave(event) {
         event.preventDefault();
-        console.log('leave');
     }
 
     onClickNavigation(element) {
@@ -128,13 +191,20 @@ export default class PageBuilder extends React.Component {
     }
 
     render() {
-
+        const self = this;
         let testComponent = this.state.data.rows.map(function (key, index) {
+
             return (
                 <PreviewElementRow
                     key={`${key.row}-${index}`}
                     name={key.row}
                     cols={key.cols}
+                    index={index}
+
+                    handelDragEnter={self.handelDragEnter}
+                    handleDrop={self.handleDrop}
+                    handleDragOver={self.handleDragOver}
+                    handleDragLeave={self.handleDragLeave}
                 />
             );
         });
@@ -167,6 +237,8 @@ export default class PageBuilder extends React.Component {
 // List const name (Image/Text/button...)
 /*
  Todo: ? use Redux ?
+ Todo: hidden in ToolBarNav tab 'Body'. This tab show if hover PreviewElementRow
+ Todo: add button 'move' and 'delete' for PreviewElementRow
 
 
  */

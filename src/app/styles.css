@@ -1,6 +1,7 @@
 .new-content-block,
-.content-block{
-    height: 10em;
+.content-block,
+.content-block-item{
+    min-height: 10em;
     position: relative;
     border: 1px dashed black;
     background-color: whitesmoke;
@@ -17,10 +18,6 @@
     top: 25%;
 }
 
-
-{
-
-}
 #add-new-icon-plus {
     left: 50%;
     top: 25%;
@@ -44,6 +41,28 @@
     background: #077323;
 }
 
-#drop_zone{
+#drop_zone,
+.content-block-item{
     padding: 0;
+}
+
+.active-content-dnd{
+
+}
+
+.item-contentType-Image{
+    background-color: darkgray;
+    text-align: center;
+}
+.item-contentType-Image .glyphicon-picture{
+    font-size: 5em;
+    margin: 34px;
+}
+
+.item-contentType-Text input{
+    border: none;
+    background-color: transparent;
+    height: 3em;
+    width: 100%;
+    padding: 10px;
 }

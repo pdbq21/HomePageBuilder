@@ -21481,19 +21481,15 @@ webpackJsonp([0,1],[
 
 	__webpack_require__(183);
 
-	var _PreviewBlock = __webpack_require__(185);
+	var _PreviewBlock = __webpack_require__(189);
 
 	var _PreviewBlock2 = _interopRequireDefault(_PreviewBlock);
 
-	var _ToolBarNav = __webpack_require__(186);
+	var _ToolBarBlock = __webpack_require__(193);
 
-	var _ToolBarNav2 = _interopRequireDefault(_ToolBarNav);
+	var _ToolBarBlock2 = _interopRequireDefault(_ToolBarBlock);
 
-	var _ToolBarTabContent = __webpack_require__(187);
-
-	var _ToolBarTabContent2 = _interopRequireDefault(_ToolBarTabContent);
-
-	var _PreviewElementRow = __webpack_require__(188);
+	var _PreviewElementRow = __webpack_require__(192);
 
 	var _PreviewElementRow2 = _interopRequireDefault(_PreviewElementRow);
 
@@ -21515,27 +21511,7 @@ webpackJsonp([0,1],[
 	// import Components
 
 
-	/* Tool Bar Block*/
-	function ToolBarBlock(props) {
-	    var onClickNavigation = props.onClickNavigation,
-	        activeTabContent = props.activeTabContent,
-	        onDragStart = props.onDragStart,
-	        onDragEnd = props.onDragEnd;
-
-	    return _react2.default.createElement(
-	        'div',
-	        { className: 'pb-toolbar col-md-4' },
-	        _react2.default.createElement(_ToolBarNav2.default, { onClickNavigation: onClickNavigation }),
-	        _react2.default.createElement(_ToolBarTabContent2.default, {
-	            activeTabContent: activeTabContent,
-	            onDragStart: onDragStart,
-	            onDragEnd: onDragEnd
-	        })
-	    );
-	}
-
 	/* Root App Component */
-
 	var PageBuilder = function (_React$Component) {
 	    _inherits(PageBuilder, _React$Component);
 
@@ -21548,8 +21524,8 @@ webpackJsonp([0,1],[
 	            data: {
 	                rows: []
 	            },
-	            activeNavigation: 'Content' };
-
+	            activeNavigation: 'Structure' };
+	        // Toolbar
 	        _this.onClickNavigation = _this.onClickNavigation.bind(_this);
 	        _this.onDragStart = _this.onDragStart.bind(_this);
 	        _this.onDragEnd = _this.onDragEnd.bind(_this);
@@ -21560,19 +21536,41 @@ webpackJsonp([0,1],[
 	        _this.handleDragLeave = _this.handleDragLeave.bind(_this);
 
 	        _this.createNewContentBlock = _this.createNewContentBlock.bind(_this);
+	        _this.createNewRowBlock = _this.createNewRowBlock.bind(_this);
 	        return _this;
 	    }
 
+	    // Todo: Need to combine this function createNewContentBlock + createNewRowBlock => createNewContentBlock
+
+
 	    _createClass(PageBuilder, [{
 	        key: 'createNewContentBlock',
-	        value: function createNewContentBlock(id) {
+	        value: function createNewContentBlock(id, indexCol, indexRow) {
+
+	            // contentType = Text / Image / Button / Divider / Social
+	            var newContentData = {
+	                contentType: id.split('-').splice(1).join()
+	            };
+
+	            var stateCopy = Object.assign({}, this.state);
+	            console.log(stateCopy.data.rows[indexRow].cols[indexCol].content.length);
+	            if (stateCopy.data.rows[indexRow].cols[indexCol].content.length) {
+	                stateCopy.data.rows[indexRow].cols[indexCol].content.concat(newContentData);
+	            } else {
+	                stateCopy.data.rows[indexRow].cols[indexCol].content.push(newContentData);
+	            }
+	            this.setState(stateCopy);
+	        }
+	    }, {
+	        key: 'createNewRowBlock',
+	        value: function createNewRowBlock(id) {
 
 	            // Перетворення строки в масив з видаленням нульового елементу
-	            // 'element-4-4-4' => ["4", "4", "4"]
+	            // 'elementStructure-4-4-4' => ["4", "4", "4"]
 	            var cols = id.split('-').splice(1);
 	            var newColData = [];
 	            cols.map(function (key) {
-	                newColData.push({ indexCol: key });
+	                newColData.push({ indexCol: key, content: [] });
 	            });
 
 	            var newRowData = {
@@ -21594,15 +21592,36 @@ webpackJsonp([0,1],[
 	    }, {
 	        key: 'onDragStart',
 	        value: function onDragStart(event) {
-	            console.log('start');
-	            document.querySelector('.new-content-block').classList.add('drop-zone-active');
-	            event.dataTransfer.dropEffect = "move";
-	            event.dataTransfer.setData("text", event.target.getAttribute('id'));
+	            // first word in id element 'elementStructure' / 'elementContent'
+	            if (event.target.getAttribute('id').split('-')[0] === 'elementContent') {
+	                // add all element .content-block-item class drop-zone-active
+	                document.querySelectorAll('.content-block-item').forEach(function (element) {
+	                    element.classList.add('drop-zone-active');
+	                });
+
+	                //
+	                event.dataTransfer.dropEffect = "move";
+	                event.dataTransfer.setData("text", event.target.getAttribute('id'));
+	            } else if (event.target.getAttribute('id').split('-')[0] === 'elementStructure') {
+	                document.querySelector('.new-content-block').classList.add('drop-zone-active');
+	                event.dataTransfer.dropEffect = "move";
+	                event.dataTransfer.setData("text", event.target.getAttribute('id'));
+	            } else {
+	                console.error('Error: Other dragstart element');
+	            }
 	        }
 	    }, {
 	        key: 'onDragEnd',
-	        value: function onDragEnd() {
-	            document.querySelector('.new-content-block').classList.remove('drop-zone-active');
+	        value: function onDragEnd(event) {
+	            if (event.target.getAttribute('id').split('-')[0] === 'elementContent') {
+	                document.querySelectorAll('.content-block-item').forEach(function (element) {
+	                    element.classList.remove('drop-zone-active');
+	                });
+	            } else if (event.target.getAttribute('id').split('-')[0] === 'elementStructure') {
+	                document.querySelector('.new-content-block').classList.remove('drop-zone-active');
+	            } else {
+	                console.error('Error: Other dragend element');
+	            }
 	        }
 	    }, {
 	        key: 'handelDragEnter',
@@ -21614,8 +21633,16 @@ webpackJsonp([0,1],[
 	        value: function handleDrop(event) {
 	            // Stop default browser behavior
 	            event.preventDefault();
-	            this.createNewContentBlock(event.dataTransfer.getData("text"));
-	            console.log(event.dataTransfer.getData("text"));
+	            // class name element drop 'new-content-block' / 'content-block-item'
+	            // Todo: need fix error drag element in other drop
+	            if (event.target.classList[0] === 'content-block-item') {
+	                // (contentType, indexCol, indexRow)
+	                this.createNewContentBlock(event.dataTransfer.getData("text"), event.target.getAttribute('data-index'), event.target.parentNode.getAttribute('data-index'));
+	            } else if (event.target.classList[0] === 'new-content-block') {
+	                this.createNewRowBlock(event.dataTransfer.getData("text"));
+	            } else {
+	                console.error('Error: Other drop element');
+	            }
 	        }
 	    }, {
 	        key: 'handleDragOver',
@@ -21628,7 +21655,6 @@ webpackJsonp([0,1],[
 	        key: 'handleDragLeave',
 	        value: function handleDragLeave(event) {
 	            event.preventDefault();
-	            console.log('leave');
 	        }
 	    }, {
 	        key: 'onClickNavigation',
@@ -21645,12 +21671,19 @@ webpackJsonp([0,1],[
 	    }, {
 	        key: 'render',
 	        value: function render() {
-
+	            var self = this;
 	            var testComponent = this.state.data.rows.map(function (key, index) {
+
 	                return _react2.default.createElement(_PreviewElementRow2.default, {
 	                    key: key.row + '-' + index,
 	                    name: key.row,
-	                    cols: key.cols
+	                    cols: key.cols,
+	                    index: index,
+
+	                    handelDragEnter: self.handelDragEnter,
+	                    handleDrop: self.handleDrop,
+	                    handleDragOver: self.handleDragOver,
+	                    handleDragLeave: self.handleDragLeave
 	                });
 	            });
 
@@ -21665,7 +21698,7 @@ webpackJsonp([0,1],[
 
 	                    testComponent: testComponent
 	                }),
-	                _react2.default.createElement(ToolBarBlock, {
+	                _react2.default.createElement(_ToolBarBlock2.default, {
 	                    onClickNavigation: this.onClickNavigation,
 	                    activeTabContent: this.state.activeNavigation,
 
@@ -21682,6 +21715,8 @@ webpackJsonp([0,1],[
 	// List const name (Image/Text/button...)
 	/*
 	 Todo: ? use Redux ?
+	 Todo: hidden in ToolBarNav tab 'Body'. This tab show if hover PreviewElementRow
+	 Todo: add button 'move' and 'delete' for PreviewElementRow
 
 
 	 */
@@ -21724,7 +21759,7 @@ webpackJsonp([0,1],[
 
 
 	// module
-	exports.push([module.id, ".new-content-block,\n.content-block{\n    height: 10em;\n    position: relative;\n    border: 1px dashed black;\n    background-color: whitesmoke;\n}\n.drop-zone-active{\n    border: 3px dashed #409e7b;\n    background-color: #dff0d8;\n}\n.new-content-block .glyphicon-plus{\n    font-size: 4em;\n    color: gainsboro;\n    position: absolute;\n    left: 50%;\n    top: 25%;\n}\n\n\n{\n\n}\n#add-new-icon-plus {\n    left: 50%;\n    top: 25%;\n    background: rgb(157, 157, 157);;\n    height: 5em;\n    position: absolute;\n    width: 1em;\n}\n#add-new-icon-plus:after {\n    background: rgb(157, 157, 157);;\n    content: \"\";\n    height: 1em;\n    left: -2.1em;\n    position: absolute;\n    top: 2.1em;\n    width: 5em;\n}\n\n.drop-zone-active #add-new-icon-plus,\n.drop-zone-active #add-new-icon-plus:after{\n    background: #077323;\n}\n\n#drop_zone{\n    padding: 0;\n}", ""]);
+	exports.push([module.id, ".new-content-block,\n.content-block,\n.content-block-item{\n    min-height: 10em;\n    position: relative;\n    border: 1px dashed black;\n    background-color: whitesmoke;\n}\n.drop-zone-active{\n    border: 3px dashed #409e7b;\n    background-color: #dff0d8;\n}\n.new-content-block .glyphicon-plus{\n    font-size: 4em;\n    color: gainsboro;\n    position: absolute;\n    left: 50%;\n    top: 25%;\n}\n\n#add-new-icon-plus {\n    left: 50%;\n    top: 25%;\n    background: rgb(157, 157, 157);;\n    height: 5em;\n    position: absolute;\n    width: 1em;\n}\n#add-new-icon-plus:after {\n    background: rgb(157, 157, 157);;\n    content: \"\";\n    height: 1em;\n    left: -2.1em;\n    position: absolute;\n    top: 2.1em;\n    width: 5em;\n}\n\n.drop-zone-active #add-new-icon-plus,\n.drop-zone-active #add-new-icon-plus:after{\n    background: #077323;\n}\n\n#drop_zone,\n.content-block-item{\n    padding: 0;\n}\n\n.active-content-dnd{\n\n}\n\n.item-contentType-Image{\n    background-color: darkgray;\n    text-align: center;\n}\n.item-contentType-Image .glyphicon-picture{\n    font-size: 5em;\n    margin: 34px;\n}\n\n.item-contentType-Text input{\n    border: none;\n    background-color: transparent;\n    height: 3em;\n    width: 100%;\n    padding: 10px;\n}", ""]);
 
 	// exports
 
@@ -22078,7 +22113,11 @@ webpackJsonp([0,1],[
 
 
 /***/ },
-/* 185 */
+/* 185 */,
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -22121,7 +22160,7 @@ webpackJsonp([0,1],[
 	   */
 
 /***/ },
-/* 186 */
+/* 190 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -22148,7 +22187,7 @@ webpackJsonp([0,1],[
 	            _react2.default.createElement(
 	                "a",
 	                { href: "#" },
-	                "Content"
+	                "Structure"
 	            )
 	        ),
 	        _react2.default.createElement(
@@ -22157,7 +22196,7 @@ webpackJsonp([0,1],[
 	            _react2.default.createElement(
 	                "a",
 	                { href: "#" },
-	                "Structure"
+	                "Content"
 	            )
 	        ),
 	        _react2.default.createElement(
@@ -22184,7 +22223,7 @@ webpackJsonp([0,1],[
 	   */
 
 /***/ },
-/* 187 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -22200,13 +22239,88 @@ webpackJsonp([0,1],[
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function ContentTabContent() {
+	function ContentTabStructure(props) {
 	    return _react2.default.createElement(
 	        "div",
-	        { id: "pb-tab-content" },
+	        { id: "pb-tab-structure",
+	            onDragStart: props.onDragStart,
+	            onDragEnd: props.onDragEnd
+	        },
 	        _react2.default.createElement(
 	            "div",
-	            { className: "pb-element pb-content-element" },
+	            { className: "pb-element pb-structure-element",
+	                draggable: "true",
+	                id: "elementStructure-12"
+	            },
+	            _react2.default.createElement("span", { className: "block block-12" })
+	        ),
+	        _react2.default.createElement(
+	            "div",
+	            { className: "pb-element pb-structure-element",
+	                draggable: "true",
+	                id: "elementStructure-6-6"
+	            },
+	            _react2.default.createElement("span", { className: "block block-6" }),
+	            _react2.default.createElement("span", { className: "block block-6" })
+	        ),
+	        _react2.default.createElement(
+	            "div",
+	            { className: "pb-element pb-structure-element",
+	                draggable: "true",
+	                id: "elementStructure-4-8"
+	            },
+	            _react2.default.createElement("span", { className: "block block-4" }),
+	            _react2.default.createElement("span", { className: "block block-8" })
+	        ),
+	        _react2.default.createElement(
+	            "div",
+	            { className: "pb-element pb-structure-element",
+	                draggable: "true",
+	                id: "elementStructure-8-4"
+	            },
+	            _react2.default.createElement("span", { className: "block block-8" }),
+	            _react2.default.createElement("span", { className: "block block-4" })
+	        ),
+	        _react2.default.createElement(
+	            "div",
+	            { className: "pb-element pb-structure-element",
+	                draggable: "true",
+	                id: "elementStructure-4-4-4"
+	            },
+	            _react2.default.createElement("span", { className: "block block-4" }),
+	            _react2.default.createElement("span", { className: "block block-4" }),
+	            _react2.default.createElement("span", { className: "block block-4" })
+	        ),
+	        _react2.default.createElement(
+	            "div",
+	            { className: "pb-element pb-structure-element",
+	                draggable: "true",
+	                id: "elementStructure-3-3-3-3"
+	            },
+	            _react2.default.createElement("span", { className: "block block-3" }),
+	            _react2.default.createElement("span", { className: "block block-3" }),
+	            _react2.default.createElement("span", { className: "block block-3" }),
+	            _react2.default.createElement("span", { className: "block block-3" })
+	        )
+	    );
+	} /**
+	   * Created by ruslan on 20.01.17.
+	   */
+
+
+	function ContentTabContent(props) {
+	    return _react2.default.createElement(
+	        "div",
+	        { id: "pb-tab-content",
+	            onDragStart: props.onDragStart,
+	            onDragEnd: props.onDragEnd
+	        },
+	        _react2.default.createElement(
+	            "div",
+	            { className: "pb-element pb-content-element",
+	                draggable: "true",
+	                id: "elementContent-Text"
+	            },
 	            _react2.default.createElement(
 	                "div",
 	                { className: "pb-element-body" },
@@ -22220,7 +22334,10 @@ webpackJsonp([0,1],[
 	        ),
 	        _react2.default.createElement(
 	            "div",
-	            { className: "pb-element pb-content-element" },
+	            { className: "pb-element pb-content-element",
+	                draggable: "true",
+	                id: "elementContent-Image"
+	            },
 	            _react2.default.createElement(
 	                "div",
 	                { className: "pb-element-body" },
@@ -22234,7 +22351,10 @@ webpackJsonp([0,1],[
 	        ),
 	        _react2.default.createElement(
 	            "div",
-	            { className: "pb-element pb-content-element" },
+	            { className: "pb-element pb-content-element",
+	                draggable: "true",
+	                id: "elementContent-Button"
+	            },
 	            _react2.default.createElement(
 	                "div",
 	                { className: "pb-element-body" },
@@ -22248,7 +22368,10 @@ webpackJsonp([0,1],[
 	        ),
 	        _react2.default.createElement(
 	            "div",
-	            { className: "pb-element pb-content-element" },
+	            { className: "pb-element pb-content-element",
+	                draggable: "true",
+	                id: "elementContent-Divider"
+	            },
 	            _react2.default.createElement(
 	                "div",
 	                { className: "pb-element-body" },
@@ -22263,7 +22386,10 @@ webpackJsonp([0,1],[
 	        ),
 	        _react2.default.createElement(
 	            "div",
-	            { className: "pb-element pb-content-element" },
+	            { className: "pb-element pb-content-element",
+	                draggable: "true",
+	                id: "elementContent-Social"
+	            },
 	            _react2.default.createElement(
 	                "div",
 	                { className: "pb-element-body" },
@@ -22302,75 +22428,6 @@ webpackJsonp([0,1],[
 	                    "Heading"
 	                )
 	            )
-	        )
-	    );
-	} /**
-	   * Created by ruslan on 20.01.17.
-	   */
-
-
-	function ContentTabStructure(props) {
-	    return _react2.default.createElement(
-	        "div",
-	        { id: "pb-tab-structure",
-	            onDragStart: props.onDragStart,
-	            onDragEnd: props.onDragEnd
-	        },
-	        _react2.default.createElement(
-	            "div",
-	            { className: "pb-element pb-structure-element",
-	                draggable: "true",
-	                id: "element-12"
-	            },
-	            _react2.default.createElement("span", { className: "block block-12" })
-	        ),
-	        _react2.default.createElement(
-	            "div",
-	            { className: "pb-element pb-structure-element",
-	                draggable: "true",
-	                id: "element-6-6"
-	            },
-	            _react2.default.createElement("span", { className: "block block-6" }),
-	            _react2.default.createElement("span", { className: "block block-6" })
-	        ),
-	        _react2.default.createElement(
-	            "div",
-	            { className: "pb-element pb-structure-element",
-	                draggable: "true",
-	                id: "element-4-8"
-	            },
-	            _react2.default.createElement("span", { className: "block block-4" }),
-	            _react2.default.createElement("span", { className: "block block-8" })
-	        ),
-	        _react2.default.createElement(
-	            "div",
-	            { className: "pb-element pb-structure-element",
-	                draggable: "true",
-	                id: "element-8-4"
-	            },
-	            _react2.default.createElement("span", { className: "block block-8" }),
-	            _react2.default.createElement("span", { className: "block block-4" })
-	        ),
-	        _react2.default.createElement(
-	            "div",
-	            { className: "pb-element pb-structure-element",
-	                draggable: "true",
-	                id: "element-4-4-4"
-	            },
-	            _react2.default.createElement("span", { className: "block block-4" }),
-	            _react2.default.createElement("span", { className: "block block-4" }),
-	            _react2.default.createElement("span", { className: "block block-4" })
-	        ),
-	        _react2.default.createElement(
-	            "div",
-	            { className: "pb-element pb-structure-element",
-	                draggable: "true",
-	                id: "element-3-3-3-3"
-	            },
-	            _react2.default.createElement("span", { className: "block block-3" }),
-	            _react2.default.createElement("span", { className: "block block-3" }),
-	            _react2.default.createElement("span", { className: "block block-3" }),
-	            _react2.default.createElement("span", { className: "block block-3" })
 	        )
 	    );
 	}
@@ -22455,11 +22512,14 @@ webpackJsonp([0,1],[
 
 	    var tabContentItem = void 0;
 	    switch (activeTabContent) {
-	        case 'Content':
-	            tabContentItem = _react2.default.createElement(ContentTabContent, null);
-	            break;
 	        case 'Structure':
 	            tabContentItem = _react2.default.createElement(ContentTabStructure, {
+	                onDragStart: onDragStart,
+	                onDragEnd: onDragEnd
+	            });
+	            break;
+	        case 'Content':
+	            tabContentItem = _react2.default.createElement(ContentTabContent, {
 	                onDragStart: onDragStart,
 	                onDragEnd: onDragEnd
 	            });
@@ -22481,7 +22541,7 @@ webpackJsonp([0,1],[
 	}
 
 /***/ },
-/* 188 */
+/* 192 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -22496,34 +22556,133 @@ webpackJsonp([0,1],[
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function ElementCol(props) {
+	function ContentText(props) {
 	    return _react2.default.createElement(
 	        "div",
-	        { className: "content-block col-md-" + props.col },
-	        props.name
+	        { className: "item-contentType-Text" },
+	        _react2.default.createElement("input", { type: "text", placeholder: "enter text" })
 	    );
 	} /**
 	   * Created by ruslan on 23.01.17.
 	   */
 
+	function ContentImage(props) {
+	    return _react2.default.createElement(
+	        "div",
+	        { className: "item-contentType-Image" },
+	        _react2.default.createElement("span", { className: "glyphicon glyphicon-picture icon", "aria-hidden": "true" })
+	    );
+	}
+	function ContentButton(props) {
+	    return _react2.default.createElement("div", { className: "item-contentType" });
+	}
+
+	function ElementCol(props) {
+	    var col = props.col,
+	        index = props.index,
+	        content = props.content;
+
+	    var colContentItem = [];
+	    content.map(function (key) {
+	        switch (key.contentType) {
+	            case 'Text':
+	                colContentItem = _react2.default.createElement(ContentText, null);
+	                break;
+	            case 'Image':
+	                colContentItem = _react2.default.createElement(ContentImage, null);
+	                break;
+	            default:
+	                console.error(key.contentType, 'Error: not found this content type');
+	        }
+	    });
+	    return _react2.default.createElement(
+	        "div",
+	        { className: "content-block-item col-md-" + col,
+	            "data-index": index
+	        },
+	        colContentItem
+	    );
+	}
 
 	function PreviewElementRow(props) {
 	    var name = props.name,
-	        cols = props.cols;
+	        cols = props.cols,
+	        index = props.index;
+	    var handelDragEnter = props.handelDragEnter,
+	        handleDrop = props.handleDrop,
+	        handleDragOver = props.handleDragOver,
+	        handleDragLeave = props.handleDragLeave;
 
-
-	    var elementCols = cols.map(function (key) {
-	        return _react2.default.createElement(ElementCol, { name: name, col: key.indexCol });
+	    var elementCols = cols.map(function (key, index) {
+	        return _react2.default.createElement(ElementCol, {
+	            name: name,
+	            col: key.indexCol,
+	            key: "key-" + index,
+	            index: index,
+	            content: key.content
+	        });
 	    });
 
 	    return _react2.default.createElement(
 	        "div",
-	        { className: "content-block" },
+	        { className: "content-block",
+	            onDragEnter: handelDragEnter,
+	            onDrop: handleDrop,
+	            onDragOver: handleDragOver,
+	            onDragLeave: handleDragLeave,
+
+	            "data-index": index
+	        },
 	        elementCols
 	    );
 	}
 
 	exports.default = PreviewElementRow;
+
+/***/ },
+/* 193 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = ToolBarBlock;
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _ToolBarNav = __webpack_require__(190);
+
+	var _ToolBarNav2 = _interopRequireDefault(_ToolBarNav);
+
+	var _ToolBarTabContent = __webpack_require__(191);
+
+	var _ToolBarTabContent2 = _interopRequireDefault(_ToolBarTabContent);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function ToolBarBlock(props) {
+	    var onClickNavigation = props.onClickNavigation,
+	        activeTabContent = props.activeTabContent,
+	        onDragStart = props.onDragStart,
+	        onDragEnd = props.onDragEnd;
+
+	    return _react2.default.createElement(
+	        'div',
+	        { className: 'pb-toolbar col-md-4' },
+	        _react2.default.createElement(_ToolBarNav2.default, { onClickNavigation: onClickNavigation }),
+	        _react2.default.createElement(_ToolBarTabContent2.default, {
+	            activeTabContent: activeTabContent,
+	            onDragStart: onDragStart,
+	            onDragEnd: onDragEnd
+	        })
+	    );
+	} /**
+	   * Created by ruslan on 24.01.17.
+	   */
 
 /***/ }
 ]);
