@@ -21540,7 +21540,7 @@ webpackJsonp([0,1],[
 	        return _this;
 	    }
 
-	    // Todo: Need to combine this function createNewContentBlock + createNewRowBlock => createNewContentBlock
+	    // Todo: Need to combine this function createNewContentBlock + createNewRowBlock => createNewBlock
 
 
 	    _createClass(PageBuilder, [{
@@ -21628,9 +21628,9 @@ webpackJsonp([0,1],[
 	            event.preventDefault();
 	            // Todo: add a function that shows element "add new content" when you hover
 	            // checks whether a given class 'drop-zone-active-content'
-	            if (event.target.classList.contains('drop-zone-active-content')) {
+	            /*if (event.target.classList.contains('drop-zone-active-content')) {
 	                event.target.classList.add('add-new-content');
-	            }
+	            }*/
 	        }
 	    }, {
 	        key: 'handleDrop',
@@ -21768,7 +21768,7 @@ webpackJsonp([0,1],[
 
 
 	// module
-	exports.push([module.id, ".new-structure-block,\n.content-block,\n.content-block-item{\n    min-height: 10em;\n    position: relative;\n    border: 1px dashed black;\n    background-color: whitesmoke;\n}/*\n.drop-zone-active-content .content-block-item,\n.drop-zone-active-structure .new-content-block{\n    border: 3px dashed #409e7b;\n    background-color: #dff0d8;\n}*/\n/*\n.new-structure-block .glyphicon-plus{\n    font-size: 4em;\n    color: gainsboro;\n    position: absolute;\n    left: 50%;\n    top: 25%;\n}\n.add-new-icon-plus{\n    left: 50%;\n    top: 16%;\n    background: rgb(42, 158, 73);\n    height: 2em;\n    position: absolute;\n    width: .5em;\n}\n.add-new-icon-plus:after {\n    background: rgb(42, 158, 73);\n    content: \"\";\n    height: .5em;\n    left: -0.79em;\n    position: absolute;\n    top: 0.79em;\n    width: 2em;\n}\n#add-new-icon-plus {\n    left: 50%;\n    top: 25%;\n    background: rgb(157, 157, 157);;\n    height: 5em;\n    position: absolute;\n    width: 1em;\n}\n#add-new-icon-plus:after {\n    background: rgb(157, 157, 157);;\n    content: \"\";\n    height: 1em;\n    left: -2.1em;\n    position: absolute;\n    top: 2.1em;\n    width: 5em;\n}\n*/\n.drop-zone-active #add-new-icon-plus,\n.drop-zone-active #add-new-icon-plus:after{\n    background: #077323;\n}\n\n#drop_zone,\n.content-block-item{\n    padding: 0;\n}\n\n.active-content-dnd{\n\n}\n\n.item-contentType-Image{\n    background-color: darkgray;\n    text-align: center;\n}\n.item-contentType-Image .glyphicon-picture{\n    font-size: 5em;\n    margin: 34px;\n}\n\n.item-contentType-Text input{\n    border: none;\n    background-color: transparent;\n    height: 3em;\n    width: 100%;\n    padding: 10px;\n}\n\n.drop-zone-active-structure .new-structure-block{\n    background-color: rgba(84, 156, 100, 0.32);\n}\n\n.drop-zone-active-content .new-content-element{\n    background-color: rgba(84, 156, 100, 0.32);\n\n    height: 100%;\n    width: 100%;\n    bottom: 0;\n    position: absolute;\n}", ""]);
+	exports.push([module.id, ".new-structure-block,\n.content-block,\n.content-block-item{\n    min-height: 10em;\n    position: relative;\n    border: 1px dashed black;\n    background-color: whitesmoke;\n}/*\n.drop-zone-active-content .content-block-item,\n.drop-zone-active-structure .new-content-block{\n    border: 3px dashed #409e7b;\n    background-color: #dff0d8;\n}*/\n/*\n.new-structure-block .glyphicon-plus{\n    font-size: 4em;\n    color: gainsboro;\n    position: absolute;\n    left: 50%;\n    top: 25%;\n}\n.add-new-icon-plus{\n    left: 50%;\n    top: 16%;\n    background: rgb(42, 158, 73);\n    height: 2em;\n    position: absolute;\n    width: .5em;\n}\n.add-new-icon-plus:after {\n    background: rgb(42, 158, 73);\n    content: \"\";\n    height: .5em;\n    left: -0.79em;\n    position: absolute;\n    top: 0.79em;\n    width: 2em;\n}\n#add-new-icon-plus {\n    left: 50%;\n    top: 25%;\n    background: rgb(157, 157, 157);;\n    height: 5em;\n    position: absolute;\n    width: 1em;\n}\n#add-new-icon-plus:after {\n    background: rgb(157, 157, 157);;\n    content: \"\";\n    height: 1em;\n    left: -2.1em;\n    position: absolute;\n    top: 2.1em;\n    width: 5em;\n}\n*/\n.drop-zone-active #add-new-icon-plus,\n.drop-zone-active #add-new-icon-plus:after{\n    background: #077323;\n}\n\n#drop_zone,\n.content-block-item{\n    padding: 0;\n}\n\n.active-content-dnd{\n\n}\n\n.item-contentType-Image{\n    background-color: darkgray;\n    text-align: center;\n}\n.item-contentType-Image .glyphicon-picture{\n    font-size: 5em;\n    margin: 34px;\n}\n\n.item-contentType-Text input{\n    border: none;\n    background-color: transparent;\n    height: 3em;\n    width: 100%;\n    padding: 10px;\n}\n\n.drop-zone-active-structure .new-structure-block{\n    background-color: rgba(84, 156, 100, 0.32);\n}\n.drop-zone-active-content .new-content-element{\n    min-height: 3em;\n    height: 50%;\n    width: 100%;\n    bottom: 0;\n    position: absolute;\n    background-color: rgba(84, 156, 100, 0.32);\n}\n.drop-zone-active-content .new-content-element:only-child{\n    height: 100%;\n    width: 100%;\n    bottom: 0;\n    position: absolute;\n    background-color: rgba(84, 156, 100, 0.32);\n}\n\n", ""]);
 
 	// exports
 

@@ -88,12 +88,19 @@
 .drop-zone-active-structure .new-structure-block{
     background-color: rgba(84, 156, 100, 0.32);
 }
-
 .drop-zone-active-content .new-content-element{
+    min-height: 3em;
+    height: 50%;
+    width: 100%;
+    bottom: 0;
+    position: absolute;
     background-color: rgba(84, 156, 100, 0.32);
-
+}
+.drop-zone-active-content .new-content-element:only-child{
     height: 100%;
     width: 100%;
     bottom: 0;
     position: absolute;
+    background-color: rgba(84, 156, 100, 0.32);
 }
+

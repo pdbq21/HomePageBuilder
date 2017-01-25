@@ -68,7 +68,7 @@ export default class PageBuilder extends React.Component {
         this.createNewRowBlock = this.createNewRowBlock.bind(this);
     }
 
-    // Todo: Need to combine this function createNewContentBlock + createNewRowBlock => createNewContentBlock
+    // Todo: Need to combine this function createNewContentBlock + createNewRowBlock => createNewBlock
     createNewContentBlock(id, indexCol, indexRow) {
 
 // contentType = Text / Image / Button / Divider / Social
