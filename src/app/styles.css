@@ -6,7 +6,8 @@
     border: 1px dashed black;
     background-color: whitesmoke;
 }
-.drop-zone-active{
+.drop-zone-active-content .content-block-item,
+.drop-zone-active-structure .new-content-block{
     border: 3px dashed #409e7b;
     background-color: #dff0d8;
 }

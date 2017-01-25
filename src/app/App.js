@@ -113,17 +113,13 @@ data: {
     onDragStart(event) {
         // first word in id element 'elementStructure' / 'elementContent'
         if (event.target.getAttribute('id').split('-')[0] === 'elementContent') {
-            // add all element .content-block-item class drop-zone-active
-            document.querySelectorAll('.content-block-item').forEach(function (element) {
-                element.classList.add('drop-zone-active');
-            });
-
+            document.getElementById('drop_zone').classList.add('drop-zone-active-content');
             //
             event.dataTransfer.dropEffect = "move";
             event.dataTransfer.setData("text", event.target.getAttribute('id'));
         }
         else if (event.target.getAttribute('id').split('-')[0] === 'elementStructure') {
-            document.querySelector('.new-content-block').classList.add('drop-zone-active');
+            document.getElementById('drop_zone').classList.add('drop-zone-active-structure');
             event.dataTransfer.dropEffect = "move";
             event.dataTransfer.setData("text", event.target.getAttribute('id'));
         } else {
@@ -133,12 +129,10 @@ data: {
 
     onDragEnd(event) {
         if (event.target.getAttribute('id').split('-')[0] === 'elementContent') {
-            document.querySelectorAll('.content-block-item').forEach(function (element) {
-                element.classList.remove('drop-zone-active');
-            });
+            document.getElementById('drop_zone').classList.remove('drop-zone-active-content');
         }
         else if (event.target.getAttribute('id').split('-')[0] === 'elementStructure') {
-            document.querySelector('.new-content-block').classList.remove('drop-zone-active');
+            document.getElementById('drop_zone').classList.remove('drop-zone-active-structure');
         } else {
             console.error('Error: Other dragend element');
         }
@@ -154,18 +148,15 @@ data: {
         // Stop default browser behavior
         event.preventDefault();
         // class name element drop 'new-content-block' / 'content-block-item'
-        // Todo: need fix error drag element in other drop
-
         if (event.target.classList[0] === 'content-block-item' &&
             event.dataTransfer.getData("text").split('-')[0] === 'elementContent') {
-            console.log(event.dataTransfer.getData("text"));
             // (contentType, indexCol, indexRow)
-           this.createNewContentBlock(event.dataTransfer.getData("text"),
+           this.createNewContentBlock(
+                event.dataTransfer.getData("text"),
                 event.target.getAttribute('data-index'),
                 event.target.parentNode.getAttribute('data-index')
             );
-        }
-        else if (event.target.classList[0] === 'new-content-block' &&
+        } else if (event.target.classList[0] === 'new-content-block' &&
             event.dataTransfer.getData("text").split('-')[0] === 'elementStructure') {
             this.createNewRowBlock(event.dataTransfer.getData("text"));
         } else {
