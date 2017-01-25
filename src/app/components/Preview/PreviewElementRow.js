@@ -3,7 +3,7 @@
  */
 import React from 'react'
 
-
+// template element of content
 function ContentText(props) {
     return (
         <div className="item-contentType-Text">
@@ -23,6 +23,15 @@ function ContentButton(props) {
         <div className="item-contentType">
 
         </div>
+    );
+}
+
+// hover element add-new-content
+function AddNewContent(props) {
+    return (
+      <div className="new-content-element">
+          <div className="" id="add-new-icon-plus"></div>
+      </div>
     );
 }
 
@@ -48,6 +57,9 @@ function ElementCol(props) {
              data-index={index}
         >
             {colContentItem}
+            <div className="new-content-element">
+                <div className="add-new-icon-plus"></div>
+            </div>
         </div>
     )
 }

@@ -1,4 +1,4 @@
-.new-content-block,
+.new-structure-block,
 .content-block,
 .content-block-item{
     min-height: 10em;
@@ -11,14 +11,30 @@
     border: 3px dashed #409e7b;
     background-color: #dff0d8;
 }*/
-.new-content-block .glyphicon-plus{
+.new-structure-block .glyphicon-plus{
     font-size: 4em;
     color: gainsboro;
     position: absolute;
     left: 50%;
     top: 25%;
 }
-
+.add-new-icon-plus{
+    left: 50%;
+    top: 16%;
+    background: rgb(42, 158, 73);
+    height: 2em;
+    position: absolute;
+    width: .5em;
+}
+.add-new-icon-plus:after {
+    background: rgb(42, 158, 73);
+    content: "";
+    height: .5em;
+    left: -0.79em;
+    position: absolute;
+    top: 0.79em;
+    width: 2em;
+}
 #add-new-icon-plus {
     left: 50%;
     top: 25%;
@@ -66,4 +82,12 @@
     height: 3em;
     width: 100%;
     padding: 10px;
+}
+
+.new-content-element{
+    background-color: rgba(49, 112, 143, 0.32);
+    min-height: 3em;
+    width: 100%;
+    bottom: 0;
+    position: absolute;
 }

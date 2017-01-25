@@ -9,7 +9,7 @@ export default function PreviewBlock(props) {
     return (
         <div className="pb-canvas col-md-8" id="drop_zone" >
             {testComponent}
-            <div className="new-content-block"
+            <div className="new-structure-block"
                  onDragEnter={handelDragEnter}
                  onDrop={handleDrop}
                  onDragOver={handleDragOver}

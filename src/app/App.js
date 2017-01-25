@@ -159,7 +159,7 @@ export default class PageBuilder extends React.Component {
     handleDrop(event) {
         // Stop default browser behavior
         event.preventDefault();
-        // class name element drop 'new-content-block' / 'content-block-item'
+        // class name element drop 'new-structure-block' / 'content-block-item'
         if (event.target.classList[0] === 'content-block-item' &&
             event.dataTransfer.getData("text").split('-')[0] === 'elementContent') {
             // remove class for hover element
@@ -170,7 +170,7 @@ export default class PageBuilder extends React.Component {
                 event.target.getAttribute('data-index'),
                 event.target.parentNode.getAttribute('data-index')
             );
-        } else if (event.target.classList[0] === 'new-content-block' &&
+        } else if (event.target.classList[0] === 'new-structure-block' &&
             event.dataTransfer.getData("text").split('-')[0] === 'elementStructure') {
             this.createNewRowBlock(event.dataTransfer.getData("text"));
         } else {
