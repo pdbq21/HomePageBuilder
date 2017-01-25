@@ -15,7 +15,6 @@ export default function PreviewBlock(props) {
                  onDragOver={handleDragOver}
                  onDragLeave={handleDragLeave}
             >
-                <div className="" id="add-new-icon-plus"></div>
             </div>
 
         </div>

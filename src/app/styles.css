@@ -11,6 +11,7 @@
     border: 3px dashed #409e7b;
     background-color: #dff0d8;
 }*/
+/*
 .new-structure-block .glyphicon-plus{
     font-size: 4em;
     color: gainsboro;
@@ -52,7 +53,7 @@
     top: 2.1em;
     width: 5em;
 }
-
+*/
 .drop-zone-active #add-new-icon-plus,
 .drop-zone-active #add-new-icon-plus:after{
     background: #077323;
@@ -84,9 +85,14 @@
     padding: 10px;
 }
 
-.new-content-element{
-    background-color: rgba(49, 112, 143, 0.32);
-    min-height: 3em;
+.drop-zone-active-structure .new-structure-block{
+    background-color: rgba(84, 156, 100, 0.32);
+}
+
+.drop-zone-active-content .new-content-element{
+    background-color: rgba(84, 156, 100, 0.32);
+
+    height: 100%;
     width: 100%;
     bottom: 0;
     position: absolute;

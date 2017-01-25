@@ -30,7 +30,7 @@ function ContentButton(props) {
 function AddNewContent(props) {
     return (
       <div className="new-content-element">
-          <div className="" id="add-new-icon-plus"></div>
+          <div className="add-new-icon-plus" id=""></div>
       </div>
     );
 }
@@ -52,14 +52,13 @@ function ElementCol(props) {
                 console.error(key.contentType, 'Error: not found this content type');
         }
     });
+
     return (
         <div className={`content-block-item col-md-${col}`}
              data-index={index}
         >
             {colContentItem}
-            <div className="new-content-element">
-                <div className="add-new-icon-plus"></div>
-            </div>
+            <div className="new-content-element"></div>
         </div>
     )
 }

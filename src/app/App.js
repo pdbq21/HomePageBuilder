@@ -24,7 +24,6 @@ export default class PageBuilder extends React.Component {
                 rows: []
             },
             activeNavigation: 'Structure',// - default Structure/Content/Templates/Body
-            //activeDrop: false
             /*
 
              data: {
@@ -111,6 +110,7 @@ export default class PageBuilder extends React.Component {
 
     // add function start drag
     onDragStart(event) {
+
         // first word in id element 'elementStructure' / 'elementContent'
         if (event.target.getAttribute('id').split('-')[0] === 'elementContent') {
             // add all element .content-block-item class drop-zone-active
@@ -150,16 +150,13 @@ export default class PageBuilder extends React.Component {
         if (event.target.classList.contains('drop-zone-active-content')) {
             event.target.classList.add('add-new-content');
         }
-
-
-        console.log(event.target.classList);
     }
-
 
     handleDrop(event) {
         // Stop default browser behavior
         event.preventDefault();
         // class name element drop 'new-structure-block' / 'content-block-item'
+        console.log(event.target);
         if (event.target.classList[0] === 'content-block-item' &&
             event.dataTransfer.getData("text").split('-')[0] === 'elementContent') {
             // remove class for hover element
@@ -170,6 +167,7 @@ export default class PageBuilder extends React.Component {
                 event.target.getAttribute('data-index'),
                 event.target.parentNode.getAttribute('data-index')
             );
+
         } else if (event.target.classList[0] === 'new-structure-block' &&
             event.dataTransfer.getData("text").split('-')[0] === 'elementStructure') {
             this.createNewRowBlock(event.dataTransfer.getData("text"));
@@ -186,8 +184,10 @@ export default class PageBuilder extends React.Component {
 
     handleDragLeave(event) {
         event.preventDefault();
+
         if (event.target.classList.contains('add-new-content')) {
             event.target.classList.remove('add-new-content');
+
         }
     }
 

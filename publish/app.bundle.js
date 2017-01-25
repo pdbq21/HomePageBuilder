@@ -21592,6 +21592,7 @@ webpackJsonp([0,1],[
 	    }, {
 	        key: 'onDragStart',
 	        value: function onDragStart(event) {
+
 	            // first word in id element 'elementStructure' / 'elementContent'
 	            if (event.target.getAttribute('id').split('-')[0] === 'elementContent') {
 	                // add all element .content-block-item class drop-zone-active
@@ -21631,8 +21632,6 @@ webpackJsonp([0,1],[
 	            if (event.target.classList.contains('drop-zone-active-content')) {
 	                event.target.classList.add('add-new-content');
 	            }
-
-	            console.log(event.target.classList);
 	        }
 	    }, {
 	        key: 'handleDrop',
@@ -21640,6 +21639,7 @@ webpackJsonp([0,1],[
 	            // Stop default browser behavior
 	            event.preventDefault();
 	            // class name element drop 'new-structure-block' / 'content-block-item'
+	            console.log(event.target);
 	            if (event.target.classList[0] === 'content-block-item' && event.dataTransfer.getData("text").split('-')[0] === 'elementContent') {
 	                // remove class for hover element
 	                event.target.classList.remove('add-new-content');
@@ -21662,6 +21662,7 @@ webpackJsonp([0,1],[
 	        key: 'handleDragLeave',
 	        value: function handleDragLeave(event) {
 	            event.preventDefault();
+
 	            if (event.target.classList.contains('add-new-content')) {
 	                event.target.classList.remove('add-new-content');
 	            }
@@ -21769,7 +21770,7 @@ webpackJsonp([0,1],[
 
 
 	// module
-	exports.push([module.id, ".new-structure-block,\n.content-block,\n.content-block-item{\n    min-height: 10em;\n    position: relative;\n    border: 1px dashed black;\n    background-color: whitesmoke;\n}/*\n.drop-zone-active-content .content-block-item,\n.drop-zone-active-structure .new-content-block{\n    border: 3px dashed #409e7b;\n    background-color: #dff0d8;\n}*/\n.new-structure-block .glyphicon-plus{\n    font-size: 4em;\n    color: gainsboro;\n    position: absolute;\n    left: 50%;\n    top: 25%;\n}\n.add-new-icon-plus{\n    left: 50%;\n    top: 16%;\n    background: rgb(42, 158, 73);\n    height: 2em;\n    position: absolute;\n    width: .5em;\n}\n.add-new-icon-plus:after {\n    background: rgb(42, 158, 73);\n    content: \"\";\n    height: .5em;\n    left: -0.79em;\n    position: absolute;\n    top: 0.79em;\n    width: 2em;\n}\n#add-new-icon-plus {\n    left: 50%;\n    top: 25%;\n    background: rgb(157, 157, 157);;\n    height: 5em;\n    position: absolute;\n    width: 1em;\n}\n#add-new-icon-plus:after {\n    background: rgb(157, 157, 157);;\n    content: \"\";\n    height: 1em;\n    left: -2.1em;\n    position: absolute;\n    top: 2.1em;\n    width: 5em;\n}\n\n.drop-zone-active #add-new-icon-plus,\n.drop-zone-active #add-new-icon-plus:after{\n    background: #077323;\n}\n\n#drop_zone,\n.content-block-item{\n    padding: 0;\n}\n\n.active-content-dnd{\n\n}\n\n.item-contentType-Image{\n    background-color: darkgray;\n    text-align: center;\n}\n.item-contentType-Image .glyphicon-picture{\n    font-size: 5em;\n    margin: 34px;\n}\n\n.item-contentType-Text input{\n    border: none;\n    background-color: transparent;\n    height: 3em;\n    width: 100%;\n    padding: 10px;\n}\n\n.new-content-element{\n    background-color: rgba(49, 112, 143, 0.32);\n    min-height: 3em;\n    width: 100%;\n    bottom: 0;\n    position: absolute;\n}", ""]);
+	exports.push([module.id, ".new-structure-block,\n.content-block,\n.content-block-item{\n    min-height: 10em;\n    position: relative;\n    border: 1px dashed black;\n    background-color: whitesmoke;\n}/*\n.drop-zone-active-content .content-block-item,\n.drop-zone-active-structure .new-content-block{\n    border: 3px dashed #409e7b;\n    background-color: #dff0d8;\n}*/\n/*\n.new-structure-block .glyphicon-plus{\n    font-size: 4em;\n    color: gainsboro;\n    position: absolute;\n    left: 50%;\n    top: 25%;\n}\n.add-new-icon-plus{\n    left: 50%;\n    top: 16%;\n    background: rgb(42, 158, 73);\n    height: 2em;\n    position: absolute;\n    width: .5em;\n}\n.add-new-icon-plus:after {\n    background: rgb(42, 158, 73);\n    content: \"\";\n    height: .5em;\n    left: -0.79em;\n    position: absolute;\n    top: 0.79em;\n    width: 2em;\n}\n#add-new-icon-plus {\n    left: 50%;\n    top: 25%;\n    background: rgb(157, 157, 157);;\n    height: 5em;\n    position: absolute;\n    width: 1em;\n}\n#add-new-icon-plus:after {\n    background: rgb(157, 157, 157);;\n    content: \"\";\n    height: 1em;\n    left: -2.1em;\n    position: absolute;\n    top: 2.1em;\n    width: 5em;\n}\n*/\n.drop-zone-active #add-new-icon-plus,\n.drop-zone-active #add-new-icon-plus:after{\n    background: #077323;\n}\n\n#drop_zone,\n.content-block-item{\n    padding: 0;\n}\n\n.active-content-dnd{\n\n}\n\n.item-contentType-Image{\n    background-color: darkgray;\n    text-align: center;\n}\n.item-contentType-Image .glyphicon-picture{\n    font-size: 5em;\n    margin: 34px;\n}\n\n.item-contentType-Text input{\n    border: none;\n    background-color: transparent;\n    height: 3em;\n    width: 100%;\n    padding: 10px;\n}\n\n.drop-zone-active-structure .new-structure-block{\n    background-color: rgba(84, 156, 100, 0.32);\n}\n\n.drop-zone-active-content .new-content-element{\n    background-color: rgba(84, 156, 100, 0.32);\n\n    height: 100%;\n    width: 100%;\n    bottom: 0;\n    position: absolute;\n}", ""]);
 
 	// exports
 
@@ -22150,16 +22151,12 @@ webpackJsonp([0,1],[
 	        "div",
 	        { className: "pb-canvas col-md-8", id: "drop_zone" },
 	        testComponent,
-	        _react2.default.createElement(
-	            "div",
-	            { className: "new-structure-block",
-	                onDragEnter: handelDragEnter,
-	                onDrop: handleDrop,
-	                onDragOver: handleDragOver,
-	                onDragLeave: handleDragLeave
-	            },
-	            _react2.default.createElement("div", { className: "", id: "add-new-icon-plus" })
-	        )
+	        _react2.default.createElement("div", { className: "new-structure-block",
+	            onDragEnter: handelDragEnter,
+	            onDrop: handleDrop,
+	            onDragOver: handleDragOver,
+	            onDragLeave: handleDragLeave
+	        })
 	    );
 	} /**
 	   * Created by ruslan on 20.01.17.
@@ -22634,7 +22631,7 @@ webpackJsonp([0,1],[
 	    return _react2.default.createElement(
 	        "div",
 	        { className: "new-content-element" },
-	        _react2.default.createElement("div", { className: "", id: "add-new-icon-plus" })
+	        _react2.default.createElement("div", { className: "add-new-icon-plus", id: "" })
 	    );
 	}
 
@@ -22656,17 +22653,14 @@ webpackJsonp([0,1],[
 	                console.error(key.contentType, 'Error: not found this content type');
 	        }
 	    });
+
 	    return _react2.default.createElement(
 	        "div",
 	        { className: "content-block-item col-md-" + col,
 	            "data-index": index
 	        },
 	        colContentItem,
-	        _react2.default.createElement(
-	            "div",
-	            { className: "new-content-element" },
-	            _react2.default.createElement("div", { className: "add-new-icon-plus" })
-	        )
+	        _react2.default.createElement("div", { className: "new-content-element" })
 	    );
 	}
 
