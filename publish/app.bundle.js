@@ -21594,7 +21594,10 @@ webpackJsonp([0,1],[
 	        value: function onDragStart(event) {
 	            // first word in id element 'elementStructure' / 'elementContent'
 	            if (event.target.getAttribute('id').split('-')[0] === 'elementContent') {
-	                document.getElementById('drop_zone').classList.add('drop-zone-active-content');
+	                // add all element .content-block-item class drop-zone-active
+	                document.querySelectorAll('.content-block-item').forEach(function (element) {
+	                    element.classList.add('drop-zone-active-content');
+	                });
 	                //
 	                event.dataTransfer.dropEffect = "move";
 	                event.dataTransfer.setData("text", event.target.getAttribute('id'));
@@ -21610,7 +21613,9 @@ webpackJsonp([0,1],[
 	        key: 'onDragEnd',
 	        value: function onDragEnd(event) {
 	            if (event.target.getAttribute('id').split('-')[0] === 'elementContent') {
-	                document.getElementById('drop_zone').classList.remove('drop-zone-active-content');
+	                document.querySelectorAll('.content-block-item').forEach(function (element) {
+	                    element.classList.remove('drop-zone-active-content');
+	                });
 	            } else if (event.target.getAttribute('id').split('-')[0] === 'elementStructure') {
 	                document.getElementById('drop_zone').classList.remove('drop-zone-active-structure');
 	            } else {
@@ -21621,6 +21626,13 @@ webpackJsonp([0,1],[
 	        key: 'handelDragEnter',
 	        value: function handelDragEnter(event) {
 	            event.preventDefault();
+	            // Todo: add a function that shows element "add new content" when you hover
+	            // checks whether a given class 'drop-zone-active-content'
+	            if (event.target.classList.contains('drop-zone-active-content')) {
+	                event.target.classList.add('add-new-content');
+	            }
+
+	            console.log(event.target.classList);
 	        }
 	    }, {
 	        key: 'handleDrop',
@@ -21629,6 +21641,8 @@ webpackJsonp([0,1],[
 	            event.preventDefault();
 	            // class name element drop 'new-content-block' / 'content-block-item'
 	            if (event.target.classList[0] === 'content-block-item' && event.dataTransfer.getData("text").split('-')[0] === 'elementContent') {
+	                // remove class for hover element
+	                event.target.classList.remove('add-new-content');
 	                // (contentType, indexCol, indexRow)
 	                this.createNewContentBlock(event.dataTransfer.getData("text"), event.target.getAttribute('data-index'), event.target.parentNode.getAttribute('data-index'));
 	            } else if (event.target.classList[0] === 'new-content-block' && event.dataTransfer.getData("text").split('-')[0] === 'elementStructure') {
@@ -21648,6 +21662,9 @@ webpackJsonp([0,1],[
 	        key: 'handleDragLeave',
 	        value: function handleDragLeave(event) {
 	            event.preventDefault();
+	            if (event.target.classList.contains('add-new-content')) {
+	                event.target.classList.remove('add-new-content');
+	            }
 	        }
 	    }, {
 	        key: 'onClickNavigation',
@@ -21752,7 +21769,7 @@ webpackJsonp([0,1],[
 
 
 	// module
-	exports.push([module.id, ".new-content-block,\n.content-block,\n.content-block-item{\n    min-height: 10em;\n    position: relative;\n    border: 1px dashed black;\n    background-color: whitesmoke;\n}\n.drop-zone-active-content .content-block-item,\n.drop-zone-active-structure .new-content-block{\n    border: 3px dashed #409e7b;\n    background-color: #dff0d8;\n}\n.new-content-block .glyphicon-plus{\n    font-size: 4em;\n    color: gainsboro;\n    position: absolute;\n    left: 50%;\n    top: 25%;\n}\n\n#add-new-icon-plus {\n    left: 50%;\n    top: 25%;\n    background: rgb(157, 157, 157);;\n    height: 5em;\n    position: absolute;\n    width: 1em;\n}\n#add-new-icon-plus:after {\n    background: rgb(157, 157, 157);;\n    content: \"\";\n    height: 1em;\n    left: -2.1em;\n    position: absolute;\n    top: 2.1em;\n    width: 5em;\n}\n\n.drop-zone-active #add-new-icon-plus,\n.drop-zone-active #add-new-icon-plus:after{\n    background: #077323;\n}\n\n#drop_zone,\n.content-block-item{\n    padding: 0;\n}\n\n.active-content-dnd{\n\n}\n\n.item-contentType-Image{\n    background-color: darkgray;\n    text-align: center;\n}\n.item-contentType-Image .glyphicon-picture{\n    font-size: 5em;\n    margin: 34px;\n}\n\n.item-contentType-Text input{\n    border: none;\n    background-color: transparent;\n    height: 3em;\n    width: 100%;\n    padding: 10px;\n}", ""]);
+	exports.push([module.id, ".new-content-block,\n.content-block,\n.content-block-item{\n    min-height: 10em;\n    position: relative;\n    border: 1px dashed black;\n    background-color: whitesmoke;\n}/*\n.drop-zone-active-content .content-block-item,\n.drop-zone-active-structure .new-content-block{\n    border: 3px dashed #409e7b;\n    background-color: #dff0d8;\n}*/\n.new-content-block .glyphicon-plus{\n    font-size: 4em;\n    color: gainsboro;\n    position: absolute;\n    left: 50%;\n    top: 25%;\n}\n\n#add-new-icon-plus {\n    left: 50%;\n    top: 25%;\n    background: rgb(157, 157, 157);;\n    height: 5em;\n    position: absolute;\n    width: 1em;\n}\n#add-new-icon-plus:after {\n    background: rgb(157, 157, 157);;\n    content: \"\";\n    height: 1em;\n    left: -2.1em;\n    position: absolute;\n    top: 2.1em;\n    width: 5em;\n}\n\n.drop-zone-active #add-new-icon-plus,\n.drop-zone-active #add-new-icon-plus:after{\n    background: #077323;\n}\n\n#drop_zone,\n.content-block-item{\n    padding: 0;\n}\n\n.active-content-dnd{\n\n}\n\n.item-contentType-Image{\n    background-color: darkgray;\n    text-align: center;\n}\n.item-contentType-Image .glyphicon-picture{\n    font-size: 5em;\n    margin: 34px;\n}\n\n.item-contentType-Text input{\n    border: none;\n    background-color: transparent;\n    height: 3em;\n    width: 100%;\n    padding: 10px;\n}", ""]);
 
 	// exports
 

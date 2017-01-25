@@ -25,35 +25,35 @@ export default class PageBuilder extends React.Component {
             },
             activeNavigation: 'Structure',// - default Structure/Content/Templates/Body
             //activeDrop: false
-/*
+            /*
 
-data: {
-    rows: [
-        {
-            row: 'name'
-            cols: [
-                {
-                    indexCol: '8',
-                    content: [
-                        {
-                            contentType: 'Image',
-                            ...
+             data: {
+             rows: [
+             {
+             row: 'name'
+             cols: [
+             {
+             indexCol: '8',
+             content: [
+             {
+             contentType: 'Image',
+             ...
 
-                        },
-                        {
-                            contentType: 'Text'
-                        }
-                    ]
-                },
-                {
-                    indexCol: '4'
-                }
-            ]
-        }
-    ]
-}
+             },
+             {
+             contentType: 'Text'
+             }
+             ]
+             },
+             {
+             indexCol: '4'
+             }
+             ]
+             }
+             ]
+             }
 
-*/
+             */
         };
 // Toolbar
         this.onClickNavigation = this.onClickNavigation.bind(this);
@@ -79,9 +79,9 @@ data: {
 
         let stateCopy = Object.assign({}, this.state);
         console.log(stateCopy.data.rows[indexRow].cols[indexCol].content.length);
-        if (stateCopy.data.rows[indexRow].cols[indexCol].content.length){
+        if (stateCopy.data.rows[indexRow].cols[indexCol].content.length) {
             stateCopy.data.rows[indexRow].cols[indexCol].content.concat(newContentData);
-        }else{
+        } else {
             stateCopy.data.rows[indexRow].cols[indexCol].content.push(newContentData);
         }
         this.setState(stateCopy);
@@ -113,7 +113,10 @@ data: {
     onDragStart(event) {
         // first word in id element 'elementStructure' / 'elementContent'
         if (event.target.getAttribute('id').split('-')[0] === 'elementContent') {
-            document.getElementById('drop_zone').classList.add('drop-zone-active-content');
+            // add all element .content-block-item class drop-zone-active
+            document.querySelectorAll('.content-block-item').forEach(function (element) {
+                element.classList.add('drop-zone-active-content');
+            });
             //
             event.dataTransfer.dropEffect = "move";
             event.dataTransfer.setData("text", event.target.getAttribute('id'));
@@ -129,18 +132,27 @@ data: {
 
     onDragEnd(event) {
         if (event.target.getAttribute('id').split('-')[0] === 'elementContent') {
-            document.getElementById('drop_zone').classList.remove('drop-zone-active-content');
+            document.querySelectorAll('.content-block-item').forEach(function (element) {
+                element.classList.remove('drop-zone-active-content');
+            });
         }
         else if (event.target.getAttribute('id').split('-')[0] === 'elementStructure') {
             document.getElementById('drop_zone').classList.remove('drop-zone-active-structure');
         } else {
             console.error('Error: Other dragend element');
         }
-
     }
 
     handelDragEnter(event) {
         event.preventDefault();
+        // Todo: add a function that shows element "add new content" when you hover
+// checks whether a given class 'drop-zone-active-content'
+        if (event.target.classList.contains('drop-zone-active-content')) {
+            event.target.classList.add('add-new-content');
+        }
+
+
+        console.log(event.target.classList);
     }
 
 
@@ -150,8 +162,10 @@ data: {
         // class name element drop 'new-content-block' / 'content-block-item'
         if (event.target.classList[0] === 'content-block-item' &&
             event.dataTransfer.getData("text").split('-')[0] === 'elementContent') {
+            // remove class for hover element
+            event.target.classList.remove('add-new-content');
             // (contentType, indexCol, indexRow)
-           this.createNewContentBlock(
+            this.createNewContentBlock(
                 event.dataTransfer.getData("text"),
                 event.target.getAttribute('data-index'),
                 event.target.parentNode.getAttribute('data-index')
@@ -172,6 +186,9 @@ data: {
 
     handleDragLeave(event) {
         event.preventDefault();
+        if (event.target.classList.contains('add-new-content')) {
+            event.target.classList.remove('add-new-content');
+        }
     }
 
     onClickNavigation(element) {

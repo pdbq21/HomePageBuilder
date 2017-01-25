@@ -39,10 +39,10 @@
             document.getElementById('drop_zone').style.backgroundColor = 'blue';
             _('app_status').innerHTML = "You are dragging over the "+event.target.getAttribute('id');
         }
-        //function drag_leave(event) {
-        //    document.getElementById('drop_zone').style.backgroundColor = 'yellow';
-        //    _('app_status').innerHTML = "You left the "+event.target.getAttribute('id');
-        //}
+        function drag_leave(event) {
+            document.getElementById('drop_zone').style.backgroundColor = 'yellow';
+            _('app_status').innerHTML = "You left the "+event.target.getAttribute('id');
+        }
         function drag_drop(event) {
             console.log(event);
             event.preventDefault(); /* Prevent undesirable default behavior while dropping */
@@ -56,18 +56,18 @@
             droppedIn = true;
         }
         function drag_end(event) {
-            //if(droppedIn == false){
-           //     _('app_status').innerHTML = "You let the "+event.target.getAttribute('id')+" go.";
-           // }
-            //droppedIn = false;
+            if(droppedIn == false){
+                _('app_status').innerHTML = "You let the "+event.target.getAttribute('id')+" go.";
+            }
+            droppedIn = false;
         }
-        /*function readDropZone(){
+        function readDropZone(){
             console.log(_("drop_zone").children.length);
             for(var i=0; i < _("drop_zone").children.length; i++){
                 alert(_("drop_zone").children[i].id+" is in the drop zone");
             }
 
-        }*/
+        }
     </script>
 </head>
 <body>
