@@ -21635,10 +21635,12 @@ webpackJsonp([0,1],[
 	            event.preventDefault();
 	            // class name element drop 'new-content-block' / 'content-block-item'
 	            // Todo: need fix error drag element in other drop
-	            if (event.target.classList[0] === 'content-block-item') {
+
+	            if (event.target.classList[0] === 'content-block-item' && event.dataTransfer.getData("text").split('-')[0] === 'elementContent') {
+	                console.log(event.dataTransfer.getData("text"));
 	                // (contentType, indexCol, indexRow)
 	                this.createNewContentBlock(event.dataTransfer.getData("text"), event.target.getAttribute('data-index'), event.target.parentNode.getAttribute('data-index'));
-	            } else if (event.target.classList[0] === 'new-content-block') {
+	            } else if (event.target.classList[0] === 'new-content-block' && event.dataTransfer.getData("text").split('-')[0] === 'elementStructure') {
 	                this.createNewRowBlock(event.dataTransfer.getData("text"));
 	            } else {
 	                console.error('Error: Other drop element');
