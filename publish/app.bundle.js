@@ -21481,15 +21481,15 @@ webpackJsonp([0,1],[
 
 	__webpack_require__(183);
 
-	var _PreviewBlock = __webpack_require__(189);
+	var _PreviewBlock = __webpack_require__(185);
 
 	var _PreviewBlock2 = _interopRequireDefault(_PreviewBlock);
 
-	var _ToolBarBlock = __webpack_require__(193);
+	var _ToolBarBlock = __webpack_require__(186);
 
 	var _ToolBarBlock2 = _interopRequireDefault(_ToolBarBlock);
 
-	var _PreviewElementRow = __webpack_require__(192);
+	var _PreviewElementRow = __webpack_require__(189);
 
 	var _PreviewElementRow2 = _interopRequireDefault(_PreviewElementRow);
 
@@ -22113,11 +22113,7 @@ webpackJsonp([0,1],[
 
 
 /***/ },
-/* 185 */,
-/* 186 */,
-/* 187 */,
-/* 188 */,
-/* 189 */
+/* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -22160,7 +22156,52 @@ webpackJsonp([0,1],[
 	   */
 
 /***/ },
-/* 190 */
+/* 186 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = ToolBarBlock;
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _ToolBarNav = __webpack_require__(187);
+
+	var _ToolBarNav2 = _interopRequireDefault(_ToolBarNav);
+
+	var _ToolBarTabContent = __webpack_require__(188);
+
+	var _ToolBarTabContent2 = _interopRequireDefault(_ToolBarTabContent);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function ToolBarBlock(props) {
+	    var onClickNavigation = props.onClickNavigation,
+	        activeTabContent = props.activeTabContent,
+	        onDragStart = props.onDragStart,
+	        onDragEnd = props.onDragEnd;
+
+	    return _react2.default.createElement(
+	        'div',
+	        { className: 'pb-toolbar col-md-4' },
+	        _react2.default.createElement(_ToolBarNav2.default, { onClickNavigation: onClickNavigation }),
+	        _react2.default.createElement(_ToolBarTabContent2.default, {
+	            activeTabContent: activeTabContent,
+	            onDragStart: onDragStart,
+	            onDragEnd: onDragEnd
+	        })
+	    );
+	} /**
+	   * Created by ruslan on 24.01.17.
+	   */
+
+/***/ },
+/* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -22223,7 +22264,7 @@ webpackJsonp([0,1],[
 	   */
 
 /***/ },
-/* 191 */
+/* 188 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -22541,7 +22582,7 @@ webpackJsonp([0,1],[
 	}
 
 /***/ },
-/* 192 */
+/* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -22638,51 +22679,6 @@ webpackJsonp([0,1],[
 	}
 
 	exports.default = PreviewElementRow;
-
-/***/ },
-/* 193 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = ToolBarBlock;
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	var _ToolBarNav = __webpack_require__(190);
-
-	var _ToolBarNav2 = _interopRequireDefault(_ToolBarNav);
-
-	var _ToolBarTabContent = __webpack_require__(191);
-
-	var _ToolBarTabContent2 = _interopRequireDefault(_ToolBarTabContent);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function ToolBarBlock(props) {
-	    var onClickNavigation = props.onClickNavigation,
-	        activeTabContent = props.activeTabContent,
-	        onDragStart = props.onDragStart,
-	        onDragEnd = props.onDragEnd;
-
-	    return _react2.default.createElement(
-	        'div',
-	        { className: 'pb-toolbar col-md-4' },
-	        _react2.default.createElement(_ToolBarNav2.default, { onClickNavigation: onClickNavigation }),
-	        _react2.default.createElement(_ToolBarTabContent2.default, {
-	            activeTabContent: activeTabContent,
-	            onDragStart: onDragStart,
-	            onDragEnd: onDragEnd
-	        })
-	    );
-	} /**
-	   * Created by ruslan on 24.01.17.
-	   */
 
 /***/ }
 ]);
