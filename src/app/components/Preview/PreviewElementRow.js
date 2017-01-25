@@ -42,12 +42,10 @@ function ElementCol(props) {
     content.map(function (key) {
         switch (key.contentType) {
             case 'Text':
-                colContentItem = <ContentText
-                />;
+                colContentItem.push(<ContentText/>);
                 break;
             case 'Image':
-                colContentItem = <ContentImage
-                />;
+                colContentItem.push(<ContentImage/>);
                 break;
             default:
                 console.error(key.contentType, 'Error: not found this content type');
@@ -73,6 +71,7 @@ function PreviewElementRow(props) {
     const {name, cols, index} = props;
     const {handelDragEnter, handleDrop, handleDragOver, handleDragLeave} = props;
     let elementCols = cols.map(function (key, index) {
+
         return <ElementCol
             name={name}
             col={key.indexCol}

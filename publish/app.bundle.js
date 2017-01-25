@@ -21546,18 +21546,20 @@ webpackJsonp([0,1],[
 	    _createClass(PageBuilder, [{
 	        key: 'createNewContentBlock',
 	        value: function createNewContentBlock(id, indexCol, indexRow) {
-
+	            //console.log(id, indexCol, indexRow);
 	            // contentType = Text / Image / Button / Divider / Social
 	            var newContentData = {
 	                contentType: id.split('-').splice(1).join()
 	            };
 
 	            var stateCopy = Object.assign({}, this.state);
-	            if (stateCopy.data.rows[indexRow].cols[indexCol].content.length) {
-	                stateCopy.data.rows[indexRow].cols[indexCol].content.concat(newContentData);
-	            } else {
-	                stateCopy.data.rows[indexRow].cols[indexCol].content.push(newContentData);
-	            }
+	            /* if (stateCopy.data.rows[indexRow].cols[indexCol].content.length) {
+	                 stateCopy.data.rows[indexRow].cols[indexCol].content.concat(newContentData);
+	                 console.log('here');
+	             } else {
+	                 stateCopy.data.rows[indexRow].cols[indexCol].content.push(newContentData);
+	             }*/
+	            stateCopy.data.rows[indexRow].cols[indexCol].content.push(newContentData);
 	            this.setState(stateCopy);
 	        }
 	    }, {
@@ -21637,6 +21639,7 @@ webpackJsonp([0,1],[
 	        value: function handleDrop(event) {
 	            // Stop default browser behavior
 	            event.preventDefault();
+	            //console.log(event.target, event.dataTransfer.getData("text").split('-')[0]);
 	            // class name element drop 'new-structure-block' / 'new-content-element'
 	            if (event.target.classList[0] === 'new-content-element' && event.dataTransfer.getData("text").split('-')[0] === 'elementContent') {
 	                // remove class for hover element
@@ -22646,10 +22649,10 @@ webpackJsonp([0,1],[
 	    content.map(function (key) {
 	        switch (key.contentType) {
 	            case 'Text':
-	                colContentItem = _react2.default.createElement(ContentText, null);
+	                colContentItem.push(_react2.default.createElement(ContentText, null));
 	                break;
 	            case 'Image':
-	                colContentItem = _react2.default.createElement(ContentImage, null);
+	                colContentItem.push(_react2.default.createElement(ContentImage, null));
 	                break;
 	            default:
 	                console.error(key.contentType, 'Error: not found this content type');
@@ -22681,6 +22684,7 @@ webpackJsonp([0,1],[
 	        handleDragLeave = props.handleDragLeave;
 
 	    var elementCols = cols.map(function (key, index) {
+
 	        return _react2.default.createElement(ElementCol, {
 	            name: name,
 	            col: key.indexCol,

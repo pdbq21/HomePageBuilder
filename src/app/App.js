@@ -70,18 +70,20 @@ export default class PageBuilder extends React.Component {
 
     // Todo: Need to combine this function createNewContentBlock + createNewRowBlock => createNewBlock
     createNewContentBlock(id, indexCol, indexRow) {
-
+//console.log(id, indexCol, indexRow);
 // contentType = Text / Image / Button / Divider / Social
         const newContentData = {
             contentType: id.split('-').splice(1).join()
         };
 
         let stateCopy = Object.assign({}, this.state);
-        if (stateCopy.data.rows[indexRow].cols[indexCol].content.length) {
+       /* if (stateCopy.data.rows[indexRow].cols[indexCol].content.length) {
             stateCopy.data.rows[indexRow].cols[indexCol].content.concat(newContentData);
+            console.log('here');
         } else {
             stateCopy.data.rows[indexRow].cols[indexCol].content.push(newContentData);
-        }
+        }*/
+        stateCopy.data.rows[indexRow].cols[indexCol].content.push(newContentData);
         this.setState(stateCopy);
     }
 
@@ -154,6 +156,7 @@ export default class PageBuilder extends React.Component {
     handleDrop(event) {
         // Stop default browser behavior
         event.preventDefault();
+        //console.log(event.target, event.dataTransfer.getData("text").split('-')[0]);
         // class name element drop 'new-structure-block' / 'new-content-element'
         if (event.target.classList[0] === 'new-content-element' &&
             event.dataTransfer.getData("text").split('-')[0] === 'elementContent') {
