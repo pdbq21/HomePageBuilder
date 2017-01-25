@@ -37,6 +37,7 @@ function AddNewContent(props) {
 
 function ElementCol(props) {
     const {col, index, content} = props;
+    const {onDragEnter, onDrop, onDragOver, onDragLeave} = props;
     let colContentItem = [];
     content.map(function (key) {
         switch (key.contentType) {
@@ -58,7 +59,12 @@ function ElementCol(props) {
              data-index={index}
         >
             {colContentItem}
-            <div className="new-content-element"></div>
+            <div className="new-content-element"
+                 onDragEnter={onDragEnter}
+                 onDrop={onDrop}
+                 onDragOver={onDragOver}
+                 onDragLeave={onDragLeave}
+            ></div>
         </div>
     )
 }
@@ -73,16 +79,16 @@ function PreviewElementRow(props) {
             key={`key-${index}`}
             index={index}
             content={key.content}
+
+            onDragEnter={handelDragEnter}
+            onDrop={handleDrop}
+            onDragOver={handleDragOver}
+            onDragLeave={handleDragLeave}
         />
     });
 
     return (
         <div className="content-block"
-             onDragEnter={handelDragEnter}
-             onDrop={handleDrop}
-             onDragOver={handleDragOver}
-             onDragLeave={handleDragLeave}
-
              data-index={index}
         >
             {elementCols}

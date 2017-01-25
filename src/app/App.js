@@ -77,7 +77,6 @@ export default class PageBuilder extends React.Component {
         };
 
         let stateCopy = Object.assign({}, this.state);
-        console.log(stateCopy.data.rows[indexRow].cols[indexCol].content.length);
         if (stateCopy.data.rows[indexRow].cols[indexCol].content.length) {
             stateCopy.data.rows[indexRow].cols[indexCol].content.concat(newContentData);
         } else {
@@ -147,25 +146,24 @@ export default class PageBuilder extends React.Component {
         event.preventDefault();
         // Todo: add a function that shows element "add new content" when you hover
 // checks whether a given class 'drop-zone-active-content'
-        if (event.target.classList.contains('drop-zone-active-content')) {
+        /*if (event.target.classList.contains('drop-zone-active-content')) {
             event.target.classList.add('add-new-content');
-        }
+        }*/
     }
 
     handleDrop(event) {
         // Stop default browser behavior
         event.preventDefault();
-        // class name element drop 'new-structure-block' / 'content-block-item'
-        console.log(event.target);
-        if (event.target.classList[0] === 'content-block-item' &&
+        // class name element drop 'new-structure-block' / 'new-content-element'
+        if (event.target.classList[0] === 'new-content-element' &&
             event.dataTransfer.getData("text").split('-')[0] === 'elementContent') {
             // remove class for hover element
-            event.target.classList.remove('add-new-content');
+            //event.target.classList.remove('add-new-content');
             // (contentType, indexCol, indexRow)
             this.createNewContentBlock(
                 event.dataTransfer.getData("text"),
-                event.target.getAttribute('data-index'),
-                event.target.parentNode.getAttribute('data-index')
+                event.target.parentNode.getAttribute('data-index'),
+                event.target.parentNode.parentNode.getAttribute('data-index')
             );
 
         } else if (event.target.classList[0] === 'new-structure-block' &&
@@ -185,10 +183,10 @@ export default class PageBuilder extends React.Component {
     handleDragLeave(event) {
         event.preventDefault();
 
-        if (event.target.classList.contains('add-new-content')) {
+       /* if (event.target.classList.contains('add-new-content')) {
             event.target.classList.remove('add-new-content');
 
-        }
+        }*/
     }
 
     onClickNavigation(element) {

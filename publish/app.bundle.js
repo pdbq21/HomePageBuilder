@@ -21553,7 +21553,6 @@ webpackJsonp([0,1],[
 	            };
 
 	            var stateCopy = Object.assign({}, this.state);
-	            console.log(stateCopy.data.rows[indexRow].cols[indexCol].content.length);
 	            if (stateCopy.data.rows[indexRow].cols[indexCol].content.length) {
 	                stateCopy.data.rows[indexRow].cols[indexCol].content.concat(newContentData);
 	            } else {
@@ -21638,13 +21637,12 @@ webpackJsonp([0,1],[
 	        value: function handleDrop(event) {
 	            // Stop default browser behavior
 	            event.preventDefault();
-	            // class name element drop 'new-structure-block' / 'content-block-item'
-	            console.log(event.target);
-	            if (event.target.classList[0] === 'content-block-item' && event.dataTransfer.getData("text").split('-')[0] === 'elementContent') {
+	            // class name element drop 'new-structure-block' / 'new-content-element'
+	            if (event.target.classList[0] === 'new-content-element' && event.dataTransfer.getData("text").split('-')[0] === 'elementContent') {
 	                // remove class for hover element
-	                event.target.classList.remove('add-new-content');
+	                //event.target.classList.remove('add-new-content');
 	                // (contentType, indexCol, indexRow)
-	                this.createNewContentBlock(event.dataTransfer.getData("text"), event.target.getAttribute('data-index'), event.target.parentNode.getAttribute('data-index'));
+	                this.createNewContentBlock(event.dataTransfer.getData("text"), event.target.parentNode.getAttribute('data-index'), event.target.parentNode.parentNode.getAttribute('data-index'));
 	            } else if (event.target.classList[0] === 'new-structure-block' && event.dataTransfer.getData("text").split('-')[0] === 'elementStructure') {
 	                this.createNewRowBlock(event.dataTransfer.getData("text"));
 	            } else {
@@ -21663,9 +21661,9 @@ webpackJsonp([0,1],[
 	        value: function handleDragLeave(event) {
 	            event.preventDefault();
 
-	            if (event.target.classList.contains('add-new-content')) {
-	                event.target.classList.remove('add-new-content');
-	            }
+	            /* if (event.target.classList.contains('add-new-content')) {
+	                 event.target.classList.remove('add-new-content');
+	              }*/
 	        }
 	    }, {
 	        key: 'onClickNavigation',
@@ -22639,6 +22637,10 @@ webpackJsonp([0,1],[
 	    var col = props.col,
 	        index = props.index,
 	        content = props.content;
+	    var onDragEnter = props.onDragEnter,
+	        onDrop = props.onDrop,
+	        onDragOver = props.onDragOver,
+	        onDragLeave = props.onDragLeave;
 
 	    var colContentItem = [];
 	    content.map(function (key) {
@@ -22660,7 +22662,12 @@ webpackJsonp([0,1],[
 	            "data-index": index
 	        },
 	        colContentItem,
-	        _react2.default.createElement("div", { className: "new-content-element" })
+	        _react2.default.createElement("div", { className: "new-content-element",
+	            onDragEnter: onDragEnter,
+	            onDrop: onDrop,
+	            onDragOver: onDragOver,
+	            onDragLeave: onDragLeave
+	        })
 	    );
 	}
 
@@ -22679,18 +22686,18 @@ webpackJsonp([0,1],[
 	            col: key.indexCol,
 	            key: "key-" + index,
 	            index: index,
-	            content: key.content
+	            content: key.content,
+
+	            onDragEnter: handelDragEnter,
+	            onDrop: handleDrop,
+	            onDragOver: handleDragOver,
+	            onDragLeave: handleDragLeave
 	        });
 	    });
 
 	    return _react2.default.createElement(
 	        "div",
 	        { className: "content-block",
-	            onDragEnter: handelDragEnter,
-	            onDrop: handleDrop,
-	            onDragOver: handleDragOver,
-	            onDragLeave: handleDragLeave,
-
 	            "data-index": index
 	        },
 	        elementCols
