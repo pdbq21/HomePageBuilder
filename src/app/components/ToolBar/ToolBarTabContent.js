@@ -146,7 +146,7 @@ function ContentTabTemplates() {
     </div>)
 }
 
-function ContentTabBody() {
+/*function ContentTabBody() {
     return (<div id="pb-tab-body">
         <div className="pb-section-name">
             <h4 className="headline">General options</h4>
@@ -156,7 +156,7 @@ function ContentTabBody() {
             </div>
         </div>
     </div>)
-}
+}*/
 
 export default function ToolBarTabContent(props) {
     const {activeTabContent, onDragStart, onDragEnd} = props;
@@ -178,9 +178,6 @@ export default function ToolBarTabContent(props) {
             break;
         case 'Templates':
             tabContentItem = <ContentTabTemplates />;
-            break;
-        case 'Body':
-            tabContentItem = <ContentTabBody />;
             break;
         default:
             console.error(activeTabContent, 'Error');

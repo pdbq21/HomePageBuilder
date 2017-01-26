@@ -17,9 +17,6 @@ export default function ToolBarNav(props) {
             <li role="presentation" className="navigation ">
                 <a href="#">Templates</a>
             </li>
-            <li role="presentation" className="navigation">
-                <a href="#">Body</a>
-            </li>
         </ul>
     )
 }

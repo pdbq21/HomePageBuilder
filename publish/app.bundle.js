@@ -21524,7 +21524,7 @@ webpackJsonp([0,1],[
 	            data: {
 	                rows: []
 	            },
-	            activeNavigation: 'Structure', // - default Structure/Content/Templates/Body
+	            activeNavigation: 'Structure', // - default Structure/Content/Templates/
 	            activeToolBarBody: false
 	            /*
 	              data: {
@@ -22296,15 +22296,6 @@ webpackJsonp([0,1],[
 	                { href: "#" },
 	                "Templates"
 	            )
-	        ),
-	        _react2.default.createElement(
-	            "li",
-	            { role: "presentation", className: "navigation" },
-	            _react2.default.createElement(
-	                "a",
-	                { href: "#" },
-	                "Body"
-	            )
 	        )
 	    );
 	} /**
@@ -22572,31 +22563,17 @@ webpackJsonp([0,1],[
 	    );
 	}
 
-	function ContentTabBody() {
-	    return _react2.default.createElement(
-	        'div',
-	        { id: 'pb-tab-body' },
-	        _react2.default.createElement(
-	            'div',
-	            { className: 'pb-section-name' },
-	            _react2.default.createElement(
-	                'h4',
-	                { className: 'headline' },
-	                'General options'
-	            ),
-	            _react2.default.createElement(
-	                'div',
-	                { className: 'pb-section-item' },
-	                _react2.default.createElement(
-	                    'span',
-	                    { className: 'name' },
-	                    'Adjust to width'
-	                ),
-	                _react2.default.createElement('div', { className: 'value' })
-	            )
-	        )
-	    );
-	}
+	/*function ContentTabBody() {
+	    return (<div id="pb-tab-body">
+	        <div className="pb-section-name">
+	            <h4 className="headline">General options</h4>
+	            <div className="pb-section-item">
+	                <span className="name">Adjust to width</span>
+	                <div className="value"></div>
+	            </div>
+	        </div>
+	    </div>)
+	}*/
 
 	function ToolBarTabContent(props) {
 	    var activeTabContent = props.activeTabContent,
@@ -22622,9 +22599,6 @@ webpackJsonp([0,1],[
 	            break;
 	        case 'Templates':
 	            tabContentItem = _react2.default.createElement(ContentTabTemplates, null);
-	            break;
-	        case 'Body':
-	            tabContentItem = _react2.default.createElement(ContentTabBody, null);
 	            break;
 	        default:
 	            console.error(activeTabContent, 'Error');

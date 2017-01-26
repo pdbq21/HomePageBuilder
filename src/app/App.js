@@ -23,7 +23,7 @@ export default class PageBuilder extends React.Component {
             data: {
                 rows: []
             },
-            activeNavigation: 'Structure',// - default Structure/Content/Templates/Body
+            activeNavigation: 'Structure',// - default Structure/Content/Templates/
             activeToolBarBody: false
             /*
 
