@@ -160,7 +160,7 @@ function ContentTabBody() {
 
 export default function ToolBarTabContent(props) {
     const {activeTabContent, onDragStart, onDragEnd} = props;
-    const {activeToolBarBody} = props;
+    const {activeToolBarBody, handleToolBarBodyClose} = props;
     let tabContentItem;
     let ToolBarBodyBlock;
     switch (activeTabContent) {
@@ -187,7 +187,9 @@ export default function ToolBarTabContent(props) {
     }
     console.log(activeToolBarBody);
     if (activeToolBarBody){
-        ToolBarBodyBlock = <ToolBarBody />
+        ToolBarBodyBlock = <ToolBarBody
+            handleToolBarBodyClose={handleToolBarBodyClose}
+        />
     }
     return (
         <div className="tab-content">

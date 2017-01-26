@@ -69,6 +69,7 @@ export default class PageBuilder extends React.Component {
         this.createNewRowBlock = this.createNewRowBlock.bind(this);
 
         this.handelEntireRow = this.handelEntireRow.bind(this);
+        this.handleToolBarBodyClose = this.handleToolBarBodyClose.bind(this);
     }
 
     // Todo: Need to combine this function createNewContentBlock + createNewRowBlock => createNewBlock
@@ -184,6 +185,12 @@ export default class PageBuilder extends React.Component {
         });
     }
 
+    handleToolBarBodyClose(){
+        this.setState({
+            activeToolBarBody: false
+        });
+    }
+
     onClickNavigation(element) {
         if (element.target.parentNode.className !== 'navigation active') {
             document.querySelectorAll(".navigation.active")[0].className = 'navigation';
@@ -236,6 +243,7 @@ export default class PageBuilder extends React.Component {
                     onDragEnd={this.onDragEnd}
 
                     activeToolBarBody={this.state.activeToolBarBody}
+                    handleToolBarBodyClose={this.handleToolBarBodyClose}
                 />
 
             </div>

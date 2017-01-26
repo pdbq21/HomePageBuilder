@@ -21567,6 +21567,7 @@ webpackJsonp([0,1],[
 	        _this.createNewRowBlock = _this.createNewRowBlock.bind(_this);
 
 	        _this.handelEntireRow = _this.handelEntireRow.bind(_this);
+	        _this.handleToolBarBodyClose = _this.handleToolBarBodyClose.bind(_this);
 	        return _this;
 	    }
 
@@ -21690,6 +21691,13 @@ webpackJsonp([0,1],[
 	            });
 	        }
 	    }, {
+	        key: 'handleToolBarBodyClose',
+	        value: function handleToolBarBodyClose() {
+	            this.setState({
+	                activeToolBarBody: false
+	            });
+	        }
+	    }, {
 	        key: 'onClickNavigation',
 	        value: function onClickNavigation(element) {
 	            if (element.target.parentNode.className !== 'navigation active') {
@@ -21740,7 +21748,8 @@ webpackJsonp([0,1],[
 	                    onDragStart: this.onDragStart,
 	                    onDragEnd: this.onDragEnd,
 
-	                    activeToolBarBody: this.state.activeToolBarBody
+	                    activeToolBarBody: this.state.activeToolBarBody,
+	                    handleToolBarBodyClose: this.handleToolBarBodyClose
 	                })
 	            );
 	        }
@@ -21797,7 +21806,7 @@ webpackJsonp([0,1],[
 
 
 	// module
-	exports.push([module.id, ".new-structure-block{\n    min-height: 10em;\n    position: relative;\n    border: 1px dashed black;\n    background-color: whitesmoke;\n}\n.content-block,\n.content-block-item{\n    position: relative;\n    border: 1px dashed black;\n    background-color: whitesmoke;\n}\n\n.rowEmpty{\n    min-height: 10em;\n}\n/* test style */\n.entire-block-select{\n    display: none;\n}\n.content-block:hover .entire-block-select{\n    background-color: #32802d;\n    display: block;\n    position: absolute;\n    height: 2em;\n    width: 4em;\n    z-index: 1;\n    color: white;\n    font-weight: 800;\n    padding: 3px 8px;\n}\n/*\n.drop-zone-active-content .content-block-item,\n.drop-zone-active-structure .new-content-block{\n    border: 3px dashed #409e7b;\n    background-color: #dff0d8;\n}*/\n/*\n.new-structure-block .glyphicon-plus{\n    font-size: 4em;\n    color: gainsboro;\n    position: absolute;\n    left: 50%;\n    top: 25%;\n}\n.add-new-icon-plus{\n    left: 50%;\n    top: 16%;\n    background: rgb(42, 158, 73);\n    height: 2em;\n    position: absolute;\n    width: .5em;\n}\n.add-new-icon-plus:after {\n    background: rgb(42, 158, 73);\n    content: \"\";\n    height: .5em;\n    left: -0.79em;\n    position: absolute;\n    top: 0.79em;\n    width: 2em;\n}\n#add-new-icon-plus {\n    left: 50%;\n    top: 25%;\n    background: rgb(157, 157, 157);;\n    height: 5em;\n    position: absolute;\n    width: 1em;\n}\n#add-new-icon-plus:after {\n    background: rgb(157, 157, 157);;\n    content: \"\";\n    height: 1em;\n    left: -2.1em;\n    position: absolute;\n    top: 2.1em;\n    width: 5em;\n}\n*/\n.drop-zone-active #add-new-icon-plus,\n.drop-zone-active #add-new-icon-plus:after{\n    background: #077323;\n}\n\n#drop_zone,\n.content-block-item{\n    padding: 0;\n}\n\n.active-content-dnd{\n\n}\n\n.item-contentType-Image{\n    background-color: darkgray;\n    text-align: center;\n}\n.item-contentType-Image .glyphicon-picture{\n    font-size: 5em;\n    margin: 34px;\n}\n\n.item-contentType-Text input{\n    border: none;\n    background-color: transparent;\n    height: 3em;\n    width: 100%;\n    padding: 10px;\n}\n\n.drop-zone-active-structure .new-structure-block{\n    background-color: rgba(84, 156, 100, 0.32);\n}\n.drop-zone-active-content .new-content-element{\n    min-height: 3em;\n    /*height: 4em;*/\n    width: 100%;\n    bottom: 0;\n    position: absolute;\n    background-color: rgba(84, 156, 100, 0.32);\n}\n.drop-zone-active-content .new-content-element:only-child{\n    height: 100%;\n    width: 100%;\n    bottom: 0;\n    position: absolute;\n    background-color: rgba(84, 156, 100, 0.32);\n}\n.tab-content{\nposition: relative;\n}\n.tab-toolbar-body{\n    display: block;\n    position: absolute;\n    width: 100%;\n    background-color: #ababab;\n    top: 0;\n    height: 100%;\n}\n.tab-toolbar-body h3{\n    color: white;\n    margin: 0;\n    padding: 5px 10px;\n}\n.tab-toolbar-body hr{\n    margin: 0;\n}", ""]);
+	exports.push([module.id, ".new-structure-block{\n    min-height: 10em;\n    position: relative;\n    border: 1px dashed black;\n    background-color: whitesmoke;\n}\n.content-block,\n.content-block-item{\n    position: relative;\n    border: 1px dashed black;\n    background-color: whitesmoke;\n}\n\n.rowEmpty{\n    min-height: 10em;\n}\n/* test style */\n.entire-block-select{\n    display: none;\n}\n.content-block:hover .entire-block-select{\n    background-color: #32802d;\n    display: block;\n    position: absolute;\n    height: 2em;\n    width: 4em;\n    z-index: 1;\n    color: white;\n    font-weight: 800;\n    padding: 3px 8px;\n}\n/*\n.drop-zone-active-content .content-block-item,\n.drop-zone-active-structure .new-content-block{\n    border: 3px dashed #409e7b;\n    background-color: #dff0d8;\n}*/\n/*\n.new-structure-block .glyphicon-plus{\n    font-size: 4em;\n    color: gainsboro;\n    position: absolute;\n    left: 50%;\n    top: 25%;\n}\n.add-new-icon-plus{\n    left: 50%;\n    top: 16%;\n    background: rgb(42, 158, 73);\n    height: 2em;\n    position: absolute;\n    width: .5em;\n}\n.add-new-icon-plus:after {\n    background: rgb(42, 158, 73);\n    content: \"\";\n    height: .5em;\n    left: -0.79em;\n    position: absolute;\n    top: 0.79em;\n    width: 2em;\n}\n#add-new-icon-plus {\n    left: 50%;\n    top: 25%;\n    background: rgb(157, 157, 157);;\n    height: 5em;\n    position: absolute;\n    width: 1em;\n}\n#add-new-icon-plus:after {\n    background: rgb(157, 157, 157);;\n    content: \"\";\n    height: 1em;\n    left: -2.1em;\n    position: absolute;\n    top: 2.1em;\n    width: 5em;\n}\n*/\n.drop-zone-active #add-new-icon-plus,\n.drop-zone-active #add-new-icon-plus:after{\n    background: #077323;\n}\n\n#drop_zone,\n.content-block-item{\n    padding: 0;\n}\n\n.active-content-dnd{\n\n}\n\n.item-contentType-Image{\n    background-color: darkgray;\n    text-align: center;\n}\n.item-contentType-Image .glyphicon-picture{\n    font-size: 5em;\n    margin: 34px;\n}\n\n.item-contentType-Text input{\n    border: none;\n    background-color: transparent;\n    height: 3em;\n    width: 100%;\n    padding: 10px;\n}\n\n.drop-zone-active-structure .new-structure-block{\n    background-color: rgba(84, 156, 100, 0.32);\n}\n.drop-zone-active-content .new-content-element{\n    min-height: 3em;\n    /*height: 4em;*/\n    width: 100%;\n    bottom: 0;\n    position: absolute;\n    background-color: rgba(84, 156, 100, 0.32);\n}\n.drop-zone-active-content .new-content-element:only-child{\n    height: 100%;\n    width: 100%;\n    bottom: 0;\n    position: absolute;\n    background-color: rgba(84, 156, 100, 0.32);\n}\n.tab-content{\nposition: relative;\n}\n.tab-toolbar-body{\n    display: block;\n    position: absolute;\n    width: 100%;\n    background-color: #ababab;\n    top: 0;\n    height: 100%;\n    min-height: 20em;\n}\n.tab-toolbar-body h3{\n    color: white;\n    margin: 0;\n    padding: 5px 10px;\n    display: inline-block;\n}\n.tab-toolbar-body .toolbar-body-close{\n    display: inline-block;\n    float: right;\n    padding: 7px 10px;\n\n}\n.tab-toolbar-body hr{\n    margin: 0;\n}\n", ""]);
 
 	// exports
 
@@ -22219,7 +22228,8 @@ webpackJsonp([0,1],[
 	        activeTabContent = props.activeTabContent,
 	        onDragStart = props.onDragStart,
 	        onDragEnd = props.onDragEnd;
-	    var activeToolBarBody = props.activeToolBarBody;
+	    var activeToolBarBody = props.activeToolBarBody,
+	        handleToolBarBodyClose = props.handleToolBarBodyClose;
 
 	    return _react2.default.createElement(
 	        'div',
@@ -22230,7 +22240,8 @@ webpackJsonp([0,1],[
 	            onDragStart: onDragStart,
 	            onDragEnd: onDragEnd,
 
-	            activeToolBarBody: activeToolBarBody
+	            activeToolBarBody: activeToolBarBody,
+	            handleToolBarBodyClose: handleToolBarBodyClose
 	        })
 	    );
 	} /**
@@ -22591,7 +22602,8 @@ webpackJsonp([0,1],[
 	    var activeTabContent = props.activeTabContent,
 	        onDragStart = props.onDragStart,
 	        onDragEnd = props.onDragEnd;
-	    var activeToolBarBody = props.activeToolBarBody;
+	    var activeToolBarBody = props.activeToolBarBody,
+	        handleToolBarBodyClose = props.handleToolBarBodyClose;
 
 	    var tabContentItem = void 0;
 	    var ToolBarBodyBlock = void 0;
@@ -22619,7 +22631,9 @@ webpackJsonp([0,1],[
 	    }
 	    console.log(activeToolBarBody);
 	    if (activeToolBarBody) {
-	        ToolBarBodyBlock = _react2.default.createElement(_ToolBarBody2.default, null);
+	        ToolBarBodyBlock = _react2.default.createElement(_ToolBarBody2.default, {
+	            handleToolBarBodyClose: handleToolBarBodyClose
+	        });
 	    }
 	    return _react2.default.createElement(
 	        'div',
@@ -22798,6 +22812,13 @@ webpackJsonp([0,1],[
 	            "h3",
 	            null,
 	            "Body"
+	        ),
+	        _react2.default.createElement(
+	            "button",
+	            { className: "toolbar-body-close",
+	                onClick: props.handleToolBarBodyClose
+	            },
+	            "Close"
 	        ),
 	        _react2.default.createElement("hr", null),
 	        _react2.default.createElement(

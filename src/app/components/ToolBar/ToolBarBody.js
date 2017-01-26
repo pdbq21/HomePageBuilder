@@ -7,6 +7,11 @@ export default function ToolBarBody(props) {
     return(
         <div className="tab-toolbar-body">
             <h3>Body</h3>
+            <button className="toolbar-body-close"
+                    onClick={props.handleToolBarBodyClose}
+            >
+                Close
+            </button>
             <hr/>
             <div className="">
                 tools list
