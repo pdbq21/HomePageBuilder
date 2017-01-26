@@ -21524,7 +21524,35 @@ webpackJsonp([0,1],[
 	            data: {
 	                rows: []
 	            },
-	            activeNavigation: 'Structure' };
+	            activeNavigation: 'Structure', // - default Structure/Content/Templates/Body
+	            activeToolBarBody: false
+	            /*
+	              data: {
+	             rows: [
+	             {
+	             row: 'name'
+	             cols: [
+	             {
+	             indexCol: '8',
+	             content: [
+	             {
+	             contentType: 'Image',
+	             ...
+	              },
+	             {
+	             contentType: 'Text'
+	             }
+	             ]
+	             },
+	             {
+	             indexCol: '4'
+	             }
+	             ]
+	             }
+	             ]
+	             }
+	              */
+	        };
 	        // Toolbar
 	        _this.onClickNavigation = _this.onClickNavigation.bind(_this);
 	        _this.onDragStart = _this.onDragStart.bind(_this);
@@ -21537,6 +21565,8 @@ webpackJsonp([0,1],[
 
 	        _this.createNewContentBlock = _this.createNewContentBlock.bind(_this);
 	        _this.createNewRowBlock = _this.createNewRowBlock.bind(_this);
+
+	        _this.handelEntireRow = _this.handelEntireRow.bind(_this);
 	        return _this;
 	    }
 
@@ -21651,6 +21681,15 @@ webpackJsonp([0,1],[
 	            event.preventDefault();
 	        }
 	    }, {
+	        key: 'handelEntireRow',
+	        value: function handelEntireRow(event) {
+	            console.log('click entire');
+
+	            this.setState({
+	                activeToolBarBody: true
+	            });
+	        }
+	    }, {
 	        key: 'onClickNavigation',
 	        value: function onClickNavigation(element) {
 	            if (element.target.parentNode.className !== 'navigation active') {
@@ -21677,7 +21716,9 @@ webpackJsonp([0,1],[
 	                    handelDragEnter: self.handelDragEnter,
 	                    handleDrop: self.handleDrop,
 	                    handleDragOver: self.handleDragOver,
-	                    handleDragLeave: self.handleDragLeave
+	                    handleDragLeave: self.handleDragLeave,
+
+	                    handelEntireRow: self.handelEntireRow
 	                });
 	            });
 
@@ -21697,7 +21738,9 @@ webpackJsonp([0,1],[
 	                    activeTabContent: this.state.activeNavigation,
 
 	                    onDragStart: this.onDragStart,
-	                    onDragEnd: this.onDragEnd
+	                    onDragEnd: this.onDragEnd,
+
+	                    activeToolBarBody: this.state.activeToolBarBody
 	                })
 	            );
 	        }
@@ -21754,7 +21797,7 @@ webpackJsonp([0,1],[
 
 
 	// module
-	exports.push([module.id, ".new-structure-block{\n    min-height: 10em;\n    position: relative;\n    border: 1px dashed black;\n    background-color: whitesmoke;\n}\n.content-block,\n.content-block-item{\n    position: relative;\n    border: 1px dashed black;\n    background-color: whitesmoke;\n}\n\n.rowEmpty{\n    min-height: 10em;\n}\n\n/*\n.drop-zone-active-content .content-block-item,\n.drop-zone-active-structure .new-content-block{\n    border: 3px dashed #409e7b;\n    background-color: #dff0d8;\n}*/\n/*\n.new-structure-block .glyphicon-plus{\n    font-size: 4em;\n    color: gainsboro;\n    position: absolute;\n    left: 50%;\n    top: 25%;\n}\n.add-new-icon-plus{\n    left: 50%;\n    top: 16%;\n    background: rgb(42, 158, 73);\n    height: 2em;\n    position: absolute;\n    width: .5em;\n}\n.add-new-icon-plus:after {\n    background: rgb(42, 158, 73);\n    content: \"\";\n    height: .5em;\n    left: -0.79em;\n    position: absolute;\n    top: 0.79em;\n    width: 2em;\n}\n#add-new-icon-plus {\n    left: 50%;\n    top: 25%;\n    background: rgb(157, 157, 157);;\n    height: 5em;\n    position: absolute;\n    width: 1em;\n}\n#add-new-icon-plus:after {\n    background: rgb(157, 157, 157);;\n    content: \"\";\n    height: 1em;\n    left: -2.1em;\n    position: absolute;\n    top: 2.1em;\n    width: 5em;\n}\n*/\n.drop-zone-active #add-new-icon-plus,\n.drop-zone-active #add-new-icon-plus:after{\n    background: #077323;\n}\n\n#drop_zone,\n.content-block-item{\n    padding: 0;\n}\n\n.active-content-dnd{\n\n}\n\n.item-contentType-Image{\n    background-color: darkgray;\n    text-align: center;\n}\n.item-contentType-Image .glyphicon-picture{\n    font-size: 5em;\n    margin: 34px;\n}\n\n.item-contentType-Text input{\n    border: none;\n    background-color: transparent;\n    height: 3em;\n    width: 100%;\n    padding: 10px;\n}\n\n.drop-zone-active-structure .new-structure-block{\n    background-color: rgba(84, 156, 100, 0.32);\n}\n.drop-zone-active-content .new-content-element{\n    min-height: 3em;\n    /*height: 4em;*/\n    width: 100%;\n    bottom: 0;\n    position: absolute;\n    background-color: rgba(84, 156, 100, 0.32);\n}\n.drop-zone-active-content .new-content-element:only-child{\n    height: 100%;\n    width: 100%;\n    bottom: 0;\n    position: absolute;\n    background-color: rgba(84, 156, 100, 0.32);\n}\n\n", ""]);
+	exports.push([module.id, ".new-structure-block{\n    min-height: 10em;\n    position: relative;\n    border: 1px dashed black;\n    background-color: whitesmoke;\n}\n.content-block,\n.content-block-item{\n    position: relative;\n    border: 1px dashed black;\n    background-color: whitesmoke;\n}\n\n.rowEmpty{\n    min-height: 10em;\n}\n/* test style */\n.entire-block-select{\n    display: none;\n}\n.content-block:hover .entire-block-select{\n    background-color: #32802d;\n    display: block;\n    position: absolute;\n    height: 2em;\n    width: 4em;\n    z-index: 1;\n    color: white;\n    font-weight: 800;\n    padding: 3px 8px;\n}\n/*\n.drop-zone-active-content .content-block-item,\n.drop-zone-active-structure .new-content-block{\n    border: 3px dashed #409e7b;\n    background-color: #dff0d8;\n}*/\n/*\n.new-structure-block .glyphicon-plus{\n    font-size: 4em;\n    color: gainsboro;\n    position: absolute;\n    left: 50%;\n    top: 25%;\n}\n.add-new-icon-plus{\n    left: 50%;\n    top: 16%;\n    background: rgb(42, 158, 73);\n    height: 2em;\n    position: absolute;\n    width: .5em;\n}\n.add-new-icon-plus:after {\n    background: rgb(42, 158, 73);\n    content: \"\";\n    height: .5em;\n    left: -0.79em;\n    position: absolute;\n    top: 0.79em;\n    width: 2em;\n}\n#add-new-icon-plus {\n    left: 50%;\n    top: 25%;\n    background: rgb(157, 157, 157);;\n    height: 5em;\n    position: absolute;\n    width: 1em;\n}\n#add-new-icon-plus:after {\n    background: rgb(157, 157, 157);;\n    content: \"\";\n    height: 1em;\n    left: -2.1em;\n    position: absolute;\n    top: 2.1em;\n    width: 5em;\n}\n*/\n.drop-zone-active #add-new-icon-plus,\n.drop-zone-active #add-new-icon-plus:after{\n    background: #077323;\n}\n\n#drop_zone,\n.content-block-item{\n    padding: 0;\n}\n\n.active-content-dnd{\n\n}\n\n.item-contentType-Image{\n    background-color: darkgray;\n    text-align: center;\n}\n.item-contentType-Image .glyphicon-picture{\n    font-size: 5em;\n    margin: 34px;\n}\n\n.item-contentType-Text input{\n    border: none;\n    background-color: transparent;\n    height: 3em;\n    width: 100%;\n    padding: 10px;\n}\n\n.drop-zone-active-structure .new-structure-block{\n    background-color: rgba(84, 156, 100, 0.32);\n}\n.drop-zone-active-content .new-content-element{\n    min-height: 3em;\n    /*height: 4em;*/\n    width: 100%;\n    bottom: 0;\n    position: absolute;\n    background-color: rgba(84, 156, 100, 0.32);\n}\n.drop-zone-active-content .new-content-element:only-child{\n    height: 100%;\n    width: 100%;\n    bottom: 0;\n    position: absolute;\n    background-color: rgba(84, 156, 100, 0.32);\n}\n.tab-content{\nposition: relative;\n}\n.tab-toolbar-body{\n    display: block;\n    position: absolute;\n    width: 100%;\n    background-color: #ababab;\n    top: 0;\n    height: 100%;\n}\n.tab-toolbar-body h3{\n    color: white;\n    margin: 0;\n    padding: 5px 10px;\n}\n.tab-toolbar-body hr{\n    margin: 0;\n}", ""]);
 
 	// exports
 
@@ -22176,6 +22219,7 @@ webpackJsonp([0,1],[
 	        activeTabContent = props.activeTabContent,
 	        onDragStart = props.onDragStart,
 	        onDragEnd = props.onDragEnd;
+	    var activeToolBarBody = props.activeToolBarBody;
 
 	    return _react2.default.createElement(
 	        'div',
@@ -22184,7 +22228,9 @@ webpackJsonp([0,1],[
 	        _react2.default.createElement(_ToolBarTabContent2.default, {
 	            activeTabContent: activeTabContent,
 	            onDragStart: onDragStart,
-	            onDragEnd: onDragEnd
+	            onDragEnd: onDragEnd,
+
+	            activeToolBarBody: activeToolBarBody
 	        })
 	    );
 	} /**
@@ -22258,7 +22304,7 @@ webpackJsonp([0,1],[
 /* 188 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
@@ -22269,195 +22315,199 @@ webpackJsonp([0,1],[
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _ToolBarBody = __webpack_require__(190);
+
+	var _ToolBarBody2 = _interopRequireDefault(_ToolBarBody);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	/**
+	 * Created by ruslan on 20.01.17.
+	 */
 	function ContentTabStructure(props) {
 	    return _react2.default.createElement(
-	        "div",
-	        { id: "pb-tab-structure",
+	        'div',
+	        { id: 'pb-tab-structure',
 	            onDragStart: props.onDragStart,
 	            onDragEnd: props.onDragEnd
 	        },
 	        _react2.default.createElement(
-	            "div",
-	            { className: "pb-element pb-structure-element",
-	                draggable: "true",
-	                id: "elementStructure-12"
+	            'div',
+	            { className: 'pb-element pb-structure-element',
+	                draggable: 'true',
+	                id: 'elementStructure-12'
 	            },
-	            _react2.default.createElement("span", { className: "block block-12" })
+	            _react2.default.createElement('span', { className: 'block block-12' })
 	        ),
 	        _react2.default.createElement(
-	            "div",
-	            { className: "pb-element pb-structure-element",
-	                draggable: "true",
-	                id: "elementStructure-6-6"
+	            'div',
+	            { className: 'pb-element pb-structure-element',
+	                draggable: 'true',
+	                id: 'elementStructure-6-6'
 	            },
-	            _react2.default.createElement("span", { className: "block block-6" }),
-	            _react2.default.createElement("span", { className: "block block-6" })
+	            _react2.default.createElement('span', { className: 'block block-6' }),
+	            _react2.default.createElement('span', { className: 'block block-6' })
 	        ),
 	        _react2.default.createElement(
-	            "div",
-	            { className: "pb-element pb-structure-element",
-	                draggable: "true",
-	                id: "elementStructure-4-8"
+	            'div',
+	            { className: 'pb-element pb-structure-element',
+	                draggable: 'true',
+	                id: 'elementStructure-4-8'
 	            },
-	            _react2.default.createElement("span", { className: "block block-4" }),
-	            _react2.default.createElement("span", { className: "block block-8" })
+	            _react2.default.createElement('span', { className: 'block block-4' }),
+	            _react2.default.createElement('span', { className: 'block block-8' })
 	        ),
 	        _react2.default.createElement(
-	            "div",
-	            { className: "pb-element pb-structure-element",
-	                draggable: "true",
-	                id: "elementStructure-8-4"
+	            'div',
+	            { className: 'pb-element pb-structure-element',
+	                draggable: 'true',
+	                id: 'elementStructure-8-4'
 	            },
-	            _react2.default.createElement("span", { className: "block block-8" }),
-	            _react2.default.createElement("span", { className: "block block-4" })
+	            _react2.default.createElement('span', { className: 'block block-8' }),
+	            _react2.default.createElement('span', { className: 'block block-4' })
 	        ),
 	        _react2.default.createElement(
-	            "div",
-	            { className: "pb-element pb-structure-element",
-	                draggable: "true",
-	                id: "elementStructure-4-4-4"
+	            'div',
+	            { className: 'pb-element pb-structure-element',
+	                draggable: 'true',
+	                id: 'elementStructure-4-4-4'
 	            },
-	            _react2.default.createElement("span", { className: "block block-4" }),
-	            _react2.default.createElement("span", { className: "block block-4" }),
-	            _react2.default.createElement("span", { className: "block block-4" })
+	            _react2.default.createElement('span', { className: 'block block-4' }),
+	            _react2.default.createElement('span', { className: 'block block-4' }),
+	            _react2.default.createElement('span', { className: 'block block-4' })
 	        ),
 	        _react2.default.createElement(
-	            "div",
-	            { className: "pb-element pb-structure-element",
-	                draggable: "true",
-	                id: "elementStructure-3-3-3-3"
+	            'div',
+	            { className: 'pb-element pb-structure-element',
+	                draggable: 'true',
+	                id: 'elementStructure-3-3-3-3'
 	            },
-	            _react2.default.createElement("span", { className: "block block-3" }),
-	            _react2.default.createElement("span", { className: "block block-3" }),
-	            _react2.default.createElement("span", { className: "block block-3" }),
-	            _react2.default.createElement("span", { className: "block block-3" })
+	            _react2.default.createElement('span', { className: 'block block-3' }),
+	            _react2.default.createElement('span', { className: 'block block-3' }),
+	            _react2.default.createElement('span', { className: 'block block-3' }),
+	            _react2.default.createElement('span', { className: 'block block-3' })
 	        )
 	    );
-	} /**
-	   * Created by ruslan on 20.01.17.
-	   */
-
+	}
 
 	function ContentTabContent(props) {
 	    return _react2.default.createElement(
-	        "div",
-	        { id: "pb-tab-content",
+	        'div',
+	        { id: 'pb-tab-content',
 	            onDragStart: props.onDragStart,
 	            onDragEnd: props.onDragEnd
 	        },
 	        _react2.default.createElement(
-	            "div",
-	            { className: "pb-element pb-content-element",
-	                draggable: "true",
-	                id: "elementContent-Text"
+	            'div',
+	            { className: 'pb-element pb-content-element',
+	                draggable: 'true',
+	                id: 'elementContent-Text'
 	            },
 	            _react2.default.createElement(
-	                "div",
-	                { className: "pb-element-body" },
-	                _react2.default.createElement("span", { className: "glyphicon glyphicon-font icon", "aria-hidden": "true" }),
+	                'div',
+	                { className: 'pb-element-body' },
+	                _react2.default.createElement('span', { className: 'glyphicon glyphicon-font icon', 'aria-hidden': 'true' }),
 	                _react2.default.createElement(
-	                    "span",
-	                    { className: "text" },
-	                    "Text"
+	                    'span',
+	                    { className: 'text' },
+	                    'Text'
 	                )
 	            )
 	        ),
 	        _react2.default.createElement(
-	            "div",
-	            { className: "pb-element pb-content-element",
-	                draggable: "true",
-	                id: "elementContent-Image"
+	            'div',
+	            { className: 'pb-element pb-content-element',
+	                draggable: 'true',
+	                id: 'elementContent-Image'
 	            },
 	            _react2.default.createElement(
-	                "div",
-	                { className: "pb-element-body" },
-	                _react2.default.createElement("span", { className: "glyphicon glyphicon-picture icon", "aria-hidden": "true" }),
+	                'div',
+	                { className: 'pb-element-body' },
+	                _react2.default.createElement('span', { className: 'glyphicon glyphicon-picture icon', 'aria-hidden': 'true' }),
 	                _react2.default.createElement(
-	                    "span",
-	                    { className: "text" },
-	                    "Image"
+	                    'span',
+	                    { className: 'text' },
+	                    'Image'
 	                )
 	            )
 	        ),
 	        _react2.default.createElement(
-	            "div",
-	            { className: "pb-element pb-content-element",
-	                draggable: "true",
-	                id: "elementContent-Button"
+	            'div',
+	            { className: 'pb-element pb-content-element',
+	                draggable: 'true',
+	                id: 'elementContent-Button'
 	            },
 	            _react2.default.createElement(
-	                "div",
-	                { className: "pb-element-body" },
-	                _react2.default.createElement("span", { className: "glyphicon glyphicon-modal-window icon", "aria-hidden": "true" }),
+	                'div',
+	                { className: 'pb-element-body' },
+	                _react2.default.createElement('span', { className: 'glyphicon glyphicon-modal-window icon', 'aria-hidden': 'true' }),
 	                _react2.default.createElement(
-	                    "span",
-	                    { className: "text" },
-	                    "Button"
+	                    'span',
+	                    { className: 'text' },
+	                    'Button'
 	                )
 	            )
 	        ),
 	        _react2.default.createElement(
-	            "div",
-	            { className: "pb-element pb-content-element",
-	                draggable: "true",
-	                id: "elementContent-Divider"
+	            'div',
+	            { className: 'pb-element pb-content-element',
+	                draggable: 'true',
+	                id: 'elementContent-Divider'
 	            },
 	            _react2.default.createElement(
-	                "div",
-	                { className: "pb-element-body" },
-	                _react2.default.createElement("span", { className: "glyphicon glyphicon-resize-horizontal icon",
-	                    "aria-hidden": "true" }),
+	                'div',
+	                { className: 'pb-element-body' },
+	                _react2.default.createElement('span', { className: 'glyphicon glyphicon-resize-horizontal icon',
+	                    'aria-hidden': 'true' }),
 	                _react2.default.createElement(
-	                    "span",
-	                    { className: "text" },
-	                    "Divider"
+	                    'span',
+	                    { className: 'text' },
+	                    'Divider'
 	                )
 	            )
 	        ),
 	        _react2.default.createElement(
-	            "div",
-	            { className: "pb-element pb-content-element",
-	                draggable: "true",
-	                id: "elementContent-Social"
+	            'div',
+	            { className: 'pb-element pb-content-element',
+	                draggable: 'true',
+	                id: 'elementContent-Social'
 	            },
 	            _react2.default.createElement(
-	                "div",
-	                { className: "pb-element-body" },
-	                _react2.default.createElement("span", { className: "glyphicon glyphicon-bullhorn icon", "aria-hidden": "true" }),
+	                'div',
+	                { className: 'pb-element-body' },
+	                _react2.default.createElement('span', { className: 'glyphicon glyphicon-bullhorn icon', 'aria-hidden': 'true' }),
 	                _react2.default.createElement(
-	                    "span",
-	                    { className: "text" },
-	                    "Social"
+	                    'span',
+	                    { className: 'text' },
+	                    'Social'
 	                )
 	            )
 	        ),
 	        _react2.default.createElement(
-	            "div",
-	            { className: "pb-element pb-content-element" },
+	            'div',
+	            { className: 'pb-element pb-content-element' },
 	            _react2.default.createElement(
-	                "div",
-	                { className: "pb-element-body" },
-	                _react2.default.createElement("span", { className: "glyphicon glyphicon-file icon", "aria-hidden": "true" }),
+	                'div',
+	                { className: 'pb-element-body' },
+	                _react2.default.createElement('span', { className: 'glyphicon glyphicon-file icon', 'aria-hidden': 'true' }),
 	                _react2.default.createElement(
-	                    "span",
-	                    { className: "text" },
-	                    "Html"
+	                    'span',
+	                    { className: 'text' },
+	                    'Html'
 	                )
 	            )
 	        ),
 	        _react2.default.createElement(
-	            "div",
-	            { className: "pb-element pb-content-element" },
+	            'div',
+	            { className: 'pb-element pb-content-element' },
 	            _react2.default.createElement(
-	                "div",
-	                { className: "pb-element-body" },
-	                _react2.default.createElement("span", { className: "glyphicon glyphicon-header icon", "aria-hidden": "true" }),
+	                'div',
+	                { className: 'pb-element-body' },
+	                _react2.default.createElement('span', { className: 'glyphicon glyphicon-header icon', 'aria-hidden': 'true' }),
 	                _react2.default.createElement(
-	                    "span",
-	                    { className: "text" },
-	                    "Heading"
+	                    'span',
+	                    { className: 'text' },
+	                    'Heading'
 	                )
 	            )
 	        )
@@ -22466,45 +22516,45 @@ webpackJsonp([0,1],[
 
 	function ContentTabTemplates() {
 	    return _react2.default.createElement(
-	        "div",
-	        { id: "pb-tab-templates" },
+	        'div',
+	        { id: 'pb-tab-templates' },
 	        _react2.default.createElement(
-	            "ol",
-	            { className: "pb-list-element" },
+	            'ol',
+	            { className: 'pb-list-element' },
 	            _react2.default.createElement(
-	                "li",
+	                'li',
 	                null,
 	                _react2.default.createElement(
-	                    "a",
-	                    { className: "btn btn-link", href: "#" },
-	                    "Template One"
+	                    'a',
+	                    { className: 'btn btn-link', href: '#' },
+	                    'Template One'
 	                )
 	            ),
 	            _react2.default.createElement(
-	                "li",
+	                'li',
 	                null,
 	                _react2.default.createElement(
-	                    "a",
-	                    { className: "btn btn-link", href: "#" },
-	                    "Template Two"
+	                    'a',
+	                    { className: 'btn btn-link', href: '#' },
+	                    'Template Two'
 	                )
 	            ),
 	            _react2.default.createElement(
-	                "li",
+	                'li',
 	                null,
 	                _react2.default.createElement(
-	                    "a",
-	                    { className: "btn btn-link", href: "#" },
-	                    "Template Three"
+	                    'a',
+	                    { className: 'btn btn-link', href: '#' },
+	                    'Template Three'
 	                )
 	            ),
 	            _react2.default.createElement(
-	                "li",
+	                'li',
 	                null,
 	                _react2.default.createElement(
-	                    "a",
-	                    { className: "btn btn-link", href: "#" },
-	                    "Template Four"
+	                    'a',
+	                    { className: 'btn btn-link', href: '#' },
+	                    'Template Four'
 	                )
 	            )
 	        )
@@ -22513,25 +22563,25 @@ webpackJsonp([0,1],[
 
 	function ContentTabBody() {
 	    return _react2.default.createElement(
-	        "div",
-	        { id: "pb-tab-body" },
+	        'div',
+	        { id: 'pb-tab-body' },
 	        _react2.default.createElement(
-	            "div",
-	            { className: "pb-section-name" },
+	            'div',
+	            { className: 'pb-section-name' },
 	            _react2.default.createElement(
-	                "h4",
-	                { className: "headline" },
-	                "General options"
+	                'h4',
+	                { className: 'headline' },
+	                'General options'
 	            ),
 	            _react2.default.createElement(
-	                "div",
-	                { className: "pb-section-item" },
+	                'div',
+	                { className: 'pb-section-item' },
 	                _react2.default.createElement(
-	                    "span",
-	                    { className: "name" },
-	                    "Adjust to width"
+	                    'span',
+	                    { className: 'name' },
+	                    'Adjust to width'
 	                ),
-	                _react2.default.createElement("div", { className: "value" })
+	                _react2.default.createElement('div', { className: 'value' })
 	            )
 	        )
 	    );
@@ -22541,8 +22591,10 @@ webpackJsonp([0,1],[
 	    var activeTabContent = props.activeTabContent,
 	        onDragStart = props.onDragStart,
 	        onDragEnd = props.onDragEnd;
+	    var activeToolBarBody = props.activeToolBarBody;
 
 	    var tabContentItem = void 0;
+	    var ToolBarBodyBlock = void 0;
 	    switch (activeTabContent) {
 	        case 'Structure':
 	            tabContentItem = _react2.default.createElement(ContentTabStructure, {
@@ -22565,10 +22617,15 @@ webpackJsonp([0,1],[
 	        default:
 	            console.error(activeTabContent, 'Error');
 	    }
+	    console.log(activeToolBarBody);
+	    if (activeToolBarBody) {
+	        ToolBarBodyBlock = _react2.default.createElement(_ToolBarBody2.default, null);
+	    }
 	    return _react2.default.createElement(
-	        "div",
-	        { className: "tab-content" },
-	        tabContentItem
+	        'div',
+	        { className: 'tab-content' },
+	        tabContentItem,
+	        ToolBarBodyBlock
 	    );
 	}
 
@@ -22677,6 +22734,7 @@ webpackJsonp([0,1],[
 	        handleDrop = props.handleDrop,
 	        handleDragOver = props.handleDragOver,
 	        handleDragLeave = props.handleDragLeave;
+	    var handelEntireRow = props.handelEntireRow;
 
 	    var classEmpty = 'rowEmpty';
 	    var elementCols = cols.map(function (key, index) {
@@ -22702,11 +22760,55 @@ webpackJsonp([0,1],[
 	        { className: "content-block " + classEmpty,
 	            "data-index": index
 	        },
+	        _react2.default.createElement(
+	            "button",
+	            { className: "entire-block-select",
+	                onClick: handelEntireRow
+	            },
+	            "Entire"
+	        ),
 	        elementCols
 	    );
 	}
 
 	exports.default = PreviewElementRow;
+
+/***/ },
+/* 190 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	exports.default = ToolBarBody;
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function ToolBarBody(props) {
+	    return _react2.default.createElement(
+	        "div",
+	        { className: "tab-toolbar-body" },
+	        _react2.default.createElement(
+	            "h3",
+	            null,
+	            "Body"
+	        ),
+	        _react2.default.createElement("hr", null),
+	        _react2.default.createElement(
+	            "div",
+	            { className: "" },
+	            "tools list"
+	        )
+	    );
+	} /**
+	   * Created by ruslan on 26.01.17.
+	   */
 
 /***/ }
 ]);

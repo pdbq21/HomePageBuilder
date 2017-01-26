@@ -8,6 +8,7 @@ import ToolBarTabContent from './ToolBarTabContent'
 
 export default function ToolBarBlock(props) {
     const {onClickNavigation, activeTabContent, onDragStart, onDragEnd} = props;
+    const {activeToolBarBody} = props;
     return (
         <div className="pb-toolbar col-md-4">
             {/* Nav tabs */}
@@ -18,6 +19,8 @@ export default function ToolBarBlock(props) {
                 activeTabContent={activeTabContent}
                 onDragStart={onDragStart}
                 onDragEnd={onDragEnd}
+
+                activeToolBarBody={activeToolBarBody}
             />
         </div>
     );

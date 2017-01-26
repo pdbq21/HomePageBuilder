@@ -14,7 +14,21 @@
 .rowEmpty{
     min-height: 10em;
 }
-
+/* test style */
+.entire-block-select{
+    display: none;
+}
+.content-block:hover .entire-block-select{
+    background-color: #32802d;
+    display: block;
+    position: absolute;
+    height: 2em;
+    width: 4em;
+    z-index: 1;
+    color: white;
+    font-weight: 800;
+    padding: 3px 8px;
+}
 /*
 .drop-zone-active-content .content-block-item,
 .drop-zone-active-structure .new-content-block{
@@ -113,4 +127,22 @@
     position: absolute;
     background-color: rgba(84, 156, 100, 0.32);
 }
-
+.tab-content{
+position: relative;
+}
+.tab-toolbar-body{
+    display: block;
+    position: absolute;
+    width: 100%;
+    background-color: #ababab;
+    top: 0;
+    height: 100%;
+}
+.tab-toolbar-body h3{
+    color: white;
+    margin: 0;
+    padding: 5px 10px;
+}
+.tab-toolbar-body hr{
+    margin: 0;
+}

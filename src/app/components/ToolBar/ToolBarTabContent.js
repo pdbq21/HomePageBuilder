@@ -3,6 +3,8 @@
  */
 import React from 'react'
 
+import ToolBarBody from './ToolBarBody'
+
 function ContentTabStructure(props) {
     return (<div id="pb-tab-structure"
                  onDragStart={props.onDragStart}
@@ -158,7 +160,9 @@ function ContentTabBody() {
 
 export default function ToolBarTabContent(props) {
     const {activeTabContent, onDragStart, onDragEnd} = props;
+    const {activeToolBarBody} = props;
     let tabContentItem;
+    let ToolBarBodyBlock;
     switch (activeTabContent) {
         case 'Structure':
             tabContentItem = <ContentTabStructure
@@ -181,9 +185,14 @@ export default function ToolBarTabContent(props) {
         default:
             console.error(activeTabContent, 'Error');
     }
+    console.log(activeToolBarBody);
+    if (activeToolBarBody){
+        ToolBarBodyBlock = <ToolBarBody />
+    }
     return (
         <div className="tab-content">
             {tabContentItem}
+            {ToolBarBodyBlock}
         </div>
     );
 }

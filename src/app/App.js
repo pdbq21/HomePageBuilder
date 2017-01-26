@@ -24,6 +24,7 @@ export default class PageBuilder extends React.Component {
                 rows: []
             },
             activeNavigation: 'Structure',// - default Structure/Content/Templates/Body
+            activeToolBarBody: false
             /*
 
              data: {
@@ -66,6 +67,8 @@ export default class PageBuilder extends React.Component {
 
         this.createNewContentBlock = this.createNewContentBlock.bind(this);
         this.createNewRowBlock = this.createNewRowBlock.bind(this);
+
+        this.handelEntireRow = this.handelEntireRow.bind(this);
     }
 
     // Todo: Need to combine this function createNewContentBlock + createNewRowBlock => createNewBlock
@@ -173,6 +176,14 @@ export default class PageBuilder extends React.Component {
         event.preventDefault();
     }
 
+    handelEntireRow(event){
+        console.log('click entire');
+
+        this.setState({
+            activeToolBarBody: true
+        });
+    }
+
     onClickNavigation(element) {
         if (element.target.parentNode.className !== 'navigation active') {
             document.querySelectorAll(".navigation.active")[0].className = 'navigation';
@@ -199,6 +210,8 @@ export default class PageBuilder extends React.Component {
                     handleDrop={self.handleDrop}
                     handleDragOver={self.handleDragOver}
                     handleDragLeave={self.handleDragLeave}
+
+                    handelEntireRow={self.handelEntireRow}
                 />
             );
         });
@@ -221,6 +234,8 @@ export default class PageBuilder extends React.Component {
 
                     onDragStart={this.onDragStart}
                     onDragEnd={this.onDragEnd}
+
+                    activeToolBarBody={this.state.activeToolBarBody}
                 />
 
             </div>

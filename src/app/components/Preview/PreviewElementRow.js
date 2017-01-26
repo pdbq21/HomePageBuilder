@@ -74,6 +74,7 @@ function ElementCol(props) {
 function PreviewElementRow(props) {
     const {name, cols, index} = props;
     const {handelDragEnter, handleDrop, handleDragOver, handleDragLeave} = props;
+    const {handelEntireRow} = props;
     let classEmpty = 'rowEmpty';
     let elementCols = cols.map(function (key, index) {
             if (key.content.length){
@@ -97,6 +98,11 @@ function PreviewElementRow(props) {
         <div className={`content-block ${classEmpty}`}
              data-index={index}
         >
+            <button className="entire-block-select"
+                    onClick={handelEntireRow}
+            >
+                Entire
+            </button>
             {elementCols}
         </div>
     );
