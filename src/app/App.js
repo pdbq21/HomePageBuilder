@@ -253,5 +253,6 @@ export default class PageBuilder extends React.Component {
  Todo: hidden in ToolBarNav tab 'Body'. This tab show if hover PreviewElementRow
  Todo: add button 'move' and 'delete' for PreviewElementRow
 
+Todo: add flexbox style
 
  */

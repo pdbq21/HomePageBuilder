@@ -1,1 +1,8 @@
 /* description of the structure */
+
+
+/* Todo: need new class name for flexbox styles */
+/* Row - flex */
+.content-block{
+    display: flex;
+}
