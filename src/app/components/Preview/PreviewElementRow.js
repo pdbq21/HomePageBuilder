@@ -39,6 +39,7 @@ function ElementCol(props) {
     const {col, index, content} = props;
     const {onDragEnter, onDrop, onDragOver, onDragLeave} = props;
     let colContentItem = [];
+
     content.map(function (key) {
         switch (key.contentType) {
             case 'Text':
@@ -70,8 +71,11 @@ function ElementCol(props) {
 function PreviewElementRow(props) {
     const {name, cols, index} = props;
     const {handelDragEnter, handleDrop, handleDragOver, handleDragLeave} = props;
+    let classEmpty = 'rowEmpty';
     let elementCols = cols.map(function (key, index) {
-
+            if (key.content.length){
+                classEmpty = '';
+            }
         return <ElementCol
             name={name}
             col={key.indexCol}
@@ -87,7 +91,7 @@ function PreviewElementRow(props) {
     });
 
     return (
-        <div className="content-block"
+        <div className={`content-block ${classEmpty}`}
              data-index={index}
         >
             {elementCols}

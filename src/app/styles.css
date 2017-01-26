@@ -1,11 +1,21 @@
-.new-structure-block,
-.content-block,
-.content-block-item{
+.new-structure-block{
     min-height: 10em;
     position: relative;
     border: 1px dashed black;
     background-color: whitesmoke;
-}/*
+}
+.content-block,
+.content-block-item{
+    position: relative;
+    border: 1px dashed black;
+    background-color: whitesmoke;
+}
+
+.rowEmpty{
+    min-height: 10em;
+}
+
+/*
 .drop-zone-active-content .content-block-item,
 .drop-zone-active-structure .new-content-block{
     border: 3px dashed #409e7b;

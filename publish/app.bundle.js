@@ -21553,12 +21553,6 @@ webpackJsonp([0,1],[
 	            };
 
 	            var stateCopy = Object.assign({}, this.state);
-	            /* if (stateCopy.data.rows[indexRow].cols[indexCol].content.length) {
-	                 stateCopy.data.rows[indexRow].cols[indexCol].content.concat(newContentData);
-	                 console.log('here');
-	             } else {
-	                 stateCopy.data.rows[indexRow].cols[indexCol].content.push(newContentData);
-	             }*/
 	            stateCopy.data.rows[indexRow].cols[indexCol].content.push(newContentData);
 	            this.setState(stateCopy);
 	        }
@@ -21628,11 +21622,6 @@ webpackJsonp([0,1],[
 	        key: 'handelDragEnter',
 	        value: function handelDragEnter(event) {
 	            event.preventDefault();
-	            // Todo: add a function that shows element "add new content" when you hover
-	            // checks whether a given class 'drop-zone-active-content'
-	            /*if (event.target.classList.contains('drop-zone-active-content')) {
-	                event.target.classList.add('add-new-content');
-	            }*/
 	        }
 	    }, {
 	        key: 'handleDrop',
@@ -21642,9 +21631,6 @@ webpackJsonp([0,1],[
 	            //console.log(event.target, event.dataTransfer.getData("text").split('-')[0]);
 	            // class name element drop 'new-structure-block' / 'new-content-element'
 	            if (event.target.classList[0] === 'new-content-element' && event.dataTransfer.getData("text").split('-')[0] === 'elementContent') {
-	                // remove class for hover element
-	                //event.target.classList.remove('add-new-content');
-	                // (contentType, indexCol, indexRow)
 	                this.createNewContentBlock(event.dataTransfer.getData("text"), event.target.parentNode.getAttribute('data-index'), event.target.parentNode.parentNode.getAttribute('data-index'));
 	            } else if (event.target.classList[0] === 'new-structure-block' && event.dataTransfer.getData("text").split('-')[0] === 'elementStructure') {
 	                this.createNewRowBlock(event.dataTransfer.getData("text"));
@@ -21663,10 +21649,6 @@ webpackJsonp([0,1],[
 	        key: 'handleDragLeave',
 	        value: function handleDragLeave(event) {
 	            event.preventDefault();
-
-	            /* if (event.target.classList.contains('add-new-content')) {
-	                 event.target.classList.remove('add-new-content');
-	              }*/
 	        }
 	    }, {
 	        key: 'onClickNavigation',
@@ -21772,7 +21754,7 @@ webpackJsonp([0,1],[
 
 
 	// module
-	exports.push([module.id, ".new-structure-block,\n.content-block,\n.content-block-item{\n    min-height: 10em;\n    position: relative;\n    border: 1px dashed black;\n    background-color: whitesmoke;\n}/*\n.drop-zone-active-content .content-block-item,\n.drop-zone-active-structure .new-content-block{\n    border: 3px dashed #409e7b;\n    background-color: #dff0d8;\n}*/\n/*\n.new-structure-block .glyphicon-plus{\n    font-size: 4em;\n    color: gainsboro;\n    position: absolute;\n    left: 50%;\n    top: 25%;\n}\n.add-new-icon-plus{\n    left: 50%;\n    top: 16%;\n    background: rgb(42, 158, 73);\n    height: 2em;\n    position: absolute;\n    width: .5em;\n}\n.add-new-icon-plus:after {\n    background: rgb(42, 158, 73);\n    content: \"\";\n    height: .5em;\n    left: -0.79em;\n    position: absolute;\n    top: 0.79em;\n    width: 2em;\n}\n#add-new-icon-plus {\n    left: 50%;\n    top: 25%;\n    background: rgb(157, 157, 157);;\n    height: 5em;\n    position: absolute;\n    width: 1em;\n}\n#add-new-icon-plus:after {\n    background: rgb(157, 157, 157);;\n    content: \"\";\n    height: 1em;\n    left: -2.1em;\n    position: absolute;\n    top: 2.1em;\n    width: 5em;\n}\n*/\n.drop-zone-active #add-new-icon-plus,\n.drop-zone-active #add-new-icon-plus:after{\n    background: #077323;\n}\n\n#drop_zone,\n.content-block-item{\n    padding: 0;\n}\n\n.active-content-dnd{\n\n}\n\n.item-contentType-Image{\n    background-color: darkgray;\n    text-align: center;\n}\n.item-contentType-Image .glyphicon-picture{\n    font-size: 5em;\n    margin: 34px;\n}\n\n.item-contentType-Text input{\n    border: none;\n    background-color: transparent;\n    height: 3em;\n    width: 100%;\n    padding: 10px;\n}\n\n.drop-zone-active-structure .new-structure-block{\n    background-color: rgba(84, 156, 100, 0.32);\n}\n.drop-zone-active-content .new-content-element{\n    min-height: 3em;\n    /*height: 4em;*/\n    width: 100%;\n    bottom: 0;\n    position: absolute;\n    background-color: rgba(84, 156, 100, 0.32);\n}\n.drop-zone-active-content .new-content-element:only-child{\n    height: 100%;\n    width: 100%;\n    bottom: 0;\n    position: absolute;\n    background-color: rgba(84, 156, 100, 0.32);\n}\n\n", ""]);
+	exports.push([module.id, ".new-structure-block{\n    min-height: 10em;\n    position: relative;\n    border: 1px dashed black;\n    background-color: whitesmoke;\n}\n.content-block,\n.content-block-item{\n    position: relative;\n    border: 1px dashed black;\n    background-color: whitesmoke;\n}\n\n.rowEmpty{\n    min-height: 10em;\n}\n\n/*\n.drop-zone-active-content .content-block-item,\n.drop-zone-active-structure .new-content-block{\n    border: 3px dashed #409e7b;\n    background-color: #dff0d8;\n}*/\n/*\n.new-structure-block .glyphicon-plus{\n    font-size: 4em;\n    color: gainsboro;\n    position: absolute;\n    left: 50%;\n    top: 25%;\n}\n.add-new-icon-plus{\n    left: 50%;\n    top: 16%;\n    background: rgb(42, 158, 73);\n    height: 2em;\n    position: absolute;\n    width: .5em;\n}\n.add-new-icon-plus:after {\n    background: rgb(42, 158, 73);\n    content: \"\";\n    height: .5em;\n    left: -0.79em;\n    position: absolute;\n    top: 0.79em;\n    width: 2em;\n}\n#add-new-icon-plus {\n    left: 50%;\n    top: 25%;\n    background: rgb(157, 157, 157);;\n    height: 5em;\n    position: absolute;\n    width: 1em;\n}\n#add-new-icon-plus:after {\n    background: rgb(157, 157, 157);;\n    content: \"\";\n    height: 1em;\n    left: -2.1em;\n    position: absolute;\n    top: 2.1em;\n    width: 5em;\n}\n*/\n.drop-zone-active #add-new-icon-plus,\n.drop-zone-active #add-new-icon-plus:after{\n    background: #077323;\n}\n\n#drop_zone,\n.content-block-item{\n    padding: 0;\n}\n\n.active-content-dnd{\n\n}\n\n.item-contentType-Image{\n    background-color: darkgray;\n    text-align: center;\n}\n.item-contentType-Image .glyphicon-picture{\n    font-size: 5em;\n    margin: 34px;\n}\n\n.item-contentType-Text input{\n    border: none;\n    background-color: transparent;\n    height: 3em;\n    width: 100%;\n    padding: 10px;\n}\n\n.drop-zone-active-structure .new-structure-block{\n    background-color: rgba(84, 156, 100, 0.32);\n}\n.drop-zone-active-content .new-content-element{\n    min-height: 3em;\n    /*height: 4em;*/\n    width: 100%;\n    bottom: 0;\n    position: absolute;\n    background-color: rgba(84, 156, 100, 0.32);\n}\n.drop-zone-active-content .new-content-element:only-child{\n    height: 100%;\n    width: 100%;\n    bottom: 0;\n    position: absolute;\n    background-color: rgba(84, 156, 100, 0.32);\n}\n\n", ""]);
 
 	// exports
 
@@ -22647,6 +22629,7 @@ webpackJsonp([0,1],[
 	        onDragLeave = props.onDragLeave;
 
 	    var colContentItem = [];
+
 	    content.map(function (key) {
 	        switch (key.contentType) {
 	            case 'Text':
@@ -22684,8 +22667,11 @@ webpackJsonp([0,1],[
 	        handleDragOver = props.handleDragOver,
 	        handleDragLeave = props.handleDragLeave;
 
+	    var classEmpty = 'rowEmpty';
 	    var elementCols = cols.map(function (key, index) {
-
+	        if (key.content.length) {
+	            classEmpty = '';
+	        }
 	        return _react2.default.createElement(ElementCol, {
 	            name: name,
 	            col: key.indexCol,
@@ -22702,7 +22688,7 @@ webpackJsonp([0,1],[
 
 	    return _react2.default.createElement(
 	        "div",
-	        { className: "content-block",
+	        { className: "content-block " + classEmpty,
 	            "data-index": index
 	        },
 	        elementCols

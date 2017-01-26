@@ -77,12 +77,6 @@ export default class PageBuilder extends React.Component {
         };
 
         let stateCopy = Object.assign({}, this.state);
-       /* if (stateCopy.data.rows[indexRow].cols[indexCol].content.length) {
-            stateCopy.data.rows[indexRow].cols[indexCol].content.concat(newContentData);
-            console.log('here');
-        } else {
-            stateCopy.data.rows[indexRow].cols[indexCol].content.push(newContentData);
-        }*/
         stateCopy.data.rows[indexRow].cols[indexCol].content.push(newContentData);
         this.setState(stateCopy);
     }
@@ -146,11 +140,6 @@ export default class PageBuilder extends React.Component {
 
     handelDragEnter(event) {
         event.preventDefault();
-        // Todo: add a function that shows element "add new content" when you hover
-// checks whether a given class 'drop-zone-active-content'
-        /*if (event.target.classList.contains('drop-zone-active-content')) {
-            event.target.classList.add('add-new-content');
-        }*/
     }
 
     handleDrop(event) {
@@ -160,9 +149,6 @@ export default class PageBuilder extends React.Component {
         // class name element drop 'new-structure-block' / 'new-content-element'
         if (event.target.classList[0] === 'new-content-element' &&
             event.dataTransfer.getData("text").split('-')[0] === 'elementContent') {
-            // remove class for hover element
-            //event.target.classList.remove('add-new-content');
-            // (contentType, indexCol, indexRow)
             this.createNewContentBlock(
                 event.dataTransfer.getData("text"),
                 event.target.parentNode.getAttribute('data-index'),
@@ -185,11 +171,6 @@ export default class PageBuilder extends React.Component {
 
     handleDragLeave(event) {
         event.preventDefault();
-
-       /* if (event.target.classList.contains('add-new-content')) {
-            event.target.classList.remove('add-new-content');
-
-        }*/
     }
 
     onClickNavigation(element) {
