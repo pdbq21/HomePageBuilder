@@ -21,19 +21,19 @@ function ContentImage(props) {
 function ContentButton(props) {
     return (
         <div className="item-contentType">
-
+<button className="item-contentType-Button" type="button">Button</button>
         </div>
     );
 }
 
 // hover element add-new-content
-function AddNewContent(props) {
+/*function AddNewContent(props) {
     return (
       <div className="new-content-element">
           <div className="add-new-icon-plus" id=""></div>
       </div>
     );
-}
+}*/
 
 function ElementCol(props) {
     const {col, index, content} = props;
@@ -47,6 +47,9 @@ function ElementCol(props) {
                 break;
             case 'Image':
                 colContentItem.push(<ContentImage/>);
+                break;
+            case 'Button':
+                colContentItem.push(<ContentButton/>);
                 break;
             default:
                 console.error(key.contentType, 'Error: not found this content type');

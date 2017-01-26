@@ -22607,17 +22607,25 @@ webpackJsonp([0,1],[
 	    );
 	}
 	function ContentButton(props) {
-	    return _react2.default.createElement("div", { className: "item-contentType" });
+	    return _react2.default.createElement(
+	        "div",
+	        { className: "item-contentType" },
+	        _react2.default.createElement(
+	            "button",
+	            { className: "item-contentType-Button", type: "button" },
+	            "Button"
+	        )
+	    );
 	}
 
 	// hover element add-new-content
-	function AddNewContent(props) {
-	    return _react2.default.createElement(
-	        "div",
-	        { className: "new-content-element" },
-	        _react2.default.createElement("div", { className: "add-new-icon-plus", id: "" })
+	/*function AddNewContent(props) {
+	    return (
+	      <div className="new-content-element">
+	          <div className="add-new-icon-plus" id=""></div>
+	      </div>
 	    );
-	}
+	}*/
 
 	function ElementCol(props) {
 	    var col = props.col,
@@ -22637,6 +22645,9 @@ webpackJsonp([0,1],[
 	                break;
 	            case 'Image':
 	                colContentItem.push(_react2.default.createElement(ContentImage, null));
+	                break;
+	            case 'Button':
+	                colContentItem.push(_react2.default.createElement(ContentButton, null));
 	                break;
 	            default:
 	                console.error(key.contentType, 'Error: not found this content type');
