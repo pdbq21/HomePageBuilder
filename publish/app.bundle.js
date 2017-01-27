@@ -21489,7 +21489,7 @@ webpackJsonp([0,1],[
 
 	var _ToolBarBlock2 = _interopRequireDefault(_ToolBarBlock);
 
-	var _PreviewElementRow = __webpack_require__(189);
+	var _PreviewElementRow = __webpack_require__(190);
 
 	var _PreviewElementRow2 = _interopRequireDefault(_PreviewElementRow);
 
@@ -22317,7 +22317,7 @@ webpackJsonp([0,1],[
 
 	var _react2 = _interopRequireDefault(_react);
 
-	var _ToolBarBody = __webpack_require__(190);
+	var _ToolBarBody = __webpack_require__(189);
 
 	var _ToolBarBody2 = _interopRequireDefault(_ToolBarBody);
 
@@ -22626,6 +22626,50 @@ webpackJsonp([0,1],[
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
+	exports.default = ToolBarBody;
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function ToolBarBody(props) {
+	    return _react2.default.createElement(
+	        "div",
+	        { className: "tab-toolbar-body" },
+	        _react2.default.createElement(
+	            "h3",
+	            null,
+	            "Body"
+	        ),
+	        _react2.default.createElement(
+	            "button",
+	            { className: "toolbar-body-close",
+	                onClick: props.handleToolBarBodyClose
+	            },
+	            "Close"
+	        ),
+	        _react2.default.createElement("hr", null),
+	        _react2.default.createElement(
+	            "div",
+	            { className: "" },
+	            "tools list"
+	        )
+	    );
+	} /**
+	   * Created by ruslan on 26.01.17.
+	   */
+
+/***/ },
+/* 190 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
 
 	var _react = __webpack_require__(1);
 
@@ -22760,50 +22804,6 @@ webpackJsonp([0,1],[
 	}
 
 	exports.default = PreviewElementRow;
-
-/***/ },
-/* 190 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports.default = ToolBarBody;
-
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	function ToolBarBody(props) {
-	    return _react2.default.createElement(
-	        "div",
-	        { className: "tab-toolbar-body" },
-	        _react2.default.createElement(
-	            "h3",
-	            null,
-	            "Body"
-	        ),
-	        _react2.default.createElement(
-	            "button",
-	            { className: "toolbar-body-close",
-	                onClick: props.handleToolBarBodyClose
-	            },
-	            "Close"
-	        ),
-	        _react2.default.createElement("hr", null),
-	        _react2.default.createElement(
-	            "div",
-	            { className: "" },
-	            "tools list"
-	        )
-	    );
-	} /**
-	   * Created by ruslan on 26.01.17.
-	   */
 
 /***/ }
 ]);
