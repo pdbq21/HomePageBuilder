@@ -6,8 +6,12 @@ import { combineReducers } from 'redux';
 
 // Reducers
 import test from './test';
+import Preview from './Preview';
+import ToolBar from './ToolBar';
 
 // Combine Reducers
 export default combineReducers({
-    test: test
+    test,
+    Preview,
+    ToolBar
 })

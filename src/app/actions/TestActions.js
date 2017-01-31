@@ -2,18 +2,25 @@
  * Created by ruslan on 27.01.17.
  */
 import {
-    NAME_ACTION_CONSTANT_TYPE
+    NAME_ACTION_CONSTANT_TYPE, ON_CLICK
 } from '../constants/TestConstants'
 
-export function testActions() {
+export function testActions(payload) {
+return{
+    type: NAME_ACTION_CONSTANT_TYPE,
+    payload
+}
 
-    return function (dispatch) {
 
-        dispatch({
-            type: NAME_ACTION_CONSTANT_TYPE,
-            payload: 'default name'
-        });
-    }
+}
+
+export function ActionsOnClick(name) {
+console.log('action', name);
+        return{
+            type: ON_CLICK,
+            name,
+        };
+
 }
 
 /*export function testActions(searchType, title) {

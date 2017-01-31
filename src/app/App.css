@@ -1,4 +1,4 @@
-.App {
+/*.App {
   text-align: center;
 }
 
@@ -22,3 +22,57 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+*/
+
+/* View Constructor Block*/
+.view-constructor-block {
+
+}
+
+/* - Add-New-Structure-Block */
+
+/* - Section-Block */
+.section-block {
+
+}
+
+/* - Control-Panel */
+.control-panel {
+
+}
+
+/* -- Control-Panel-item*/
+.control-panel__drag {
+
+}
+
+.control-panel__copy {
+
+}
+
+.control-panel__delete {
+
+}
+/* -- Row-Block*/
+.row-block{
+
+}
+/* --- Col-Block */
+.col-block{
+
+}
+/* end View Constructor Block*/
+/* ToolBar */
+.toolbar-block {
+
+}
+
+/* - Navigation Block */
+.toolbar-block__nav{
+
+}
+/* - Tab Panel Block*/
+.toolbar-block__tab-panel{
+
+}
+/* end ToolBar*/

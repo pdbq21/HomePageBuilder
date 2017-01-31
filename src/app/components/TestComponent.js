@@ -5,9 +5,14 @@ import React, { PropTypes, Component } from 'react';
 
 export default class TestComponent extends Component {
 
+    handleTest(){
+        this.props.actionTest('sdfds')
+    }
+
     render() {
+        console.log('component');
+        console.log(this.props);
         const { name } = this.props;
-        const { actionTest } = this.props;
         let template;
         if (name){
             template = `${name} !`;
@@ -17,7 +22,7 @@ export default class TestComponent extends Component {
         return <div className='test-component'>
             <p>
                 { template }
-               <button className='btn' onClick={actionTest}>enter</button>
+               <button className='btn' onClick={this.handleTest.bind(this)}>enter</button>
             </p>
         </div>
     }

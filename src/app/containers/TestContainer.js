@@ -9,24 +9,26 @@ import * as testActions from '../actions/TestActions'
 
 class TestContainer extends Component {
     render() {
-        const { test } = this.props;
-        const { actionTest } = this.props.testActions;
+        console.log('container');
+        const { testMapState } = this.props;
+        console.log(this.props);
+        const { ActionsOnClick } = this.props.testActionsDispactch;
 
         return <div className='row'>
-            <TestComponent name={test.name} actionTest={actionTest} />
+            <TestComponent name={testMapState.name} actionTest={ActionsOnClick} />
         </div>
     }
 }
 
 function mapStateToProps(state) {
     return {
-        test: state.test
+        testMapState: state.test
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        testActions: bindActionCreators(testActions, dispatch)
+        testActionsDispactch: bindActionCreators(testActions, dispatch)
     }
 }
 
