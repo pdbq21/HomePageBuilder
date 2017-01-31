@@ -17,44 +17,52 @@ class App extends Component {
                             <em className="control-panel__copy"></em>
                             <em className="control-panel__delete"></em>
                         </div>
-                        <div className="row-block"
-                             data-address=".0.0"
-                        >
-                            <div className="control-panel">
-                                <em className="control-panel__drag"></em>
-                                <em className="control-panel__col-structure"></em>
-                                <em className="control-panel__copy"></em>
-                                <em className="control-panel__delete"></em>
-                            </div>
+                        <div className="section-block-rows">
+                            <div className="row-block"
+                                 data-address=".0.0"
+                            >
+                                <div className="control-panel">
+                                    <em className="control-panel__drag"></em>
+                                    <em className="control-panel__col-structure"></em>
+                                    <em className="control-panel__copy"></em>
+                                    <em className="control-panel__delete"></em>
+                                </div>
+<div className="row-block-cols">
+    <div className="col-block"
+         data-address=".0.0.0"
+    >
 
-                            <div className="col-block"
-                                 data-address=".0.0.0"
+    </div>
+    <div className="col-block"
+         data-address=".0.0.0"
+    >
+
+    </div>
+</div>
+
+                                <button className="add-new-structure-block">Add new col.</button>
+                            </div>
+                            <div className="row-block"
+                                 data-address=".0.1"
                             >
 
-                            </div>
-                            <div className="col-block"
-                                 data-address=".0.0.0"
-                            >
+                                <div className="control-panel">
+                                    <em className="control-panel__drag"></em>
+                                    <em className="control-panel__copy"></em>
+                                    <em className="control-panel__delete"></em>
+                                </div>
+                                <div className="row-block-cols">
+                                    <div className="col-block"
+                                         data-address=".0.1.0"
+                                    >
 
+                                    </div>
+                                </div>
+
+                                <button className="add-new-structure-block">Add new col.</button>
                             </div>
-                            <button className="add-new-structure-block">Add new col.</button>
                         </div>
-                        <div className="row-block"
-                             data-address=".0.1"
-                        >
-                            <div className="control-panel">
-                                <em className="control-panel__drag"></em>
-                                <em className="control-panel__copy"></em>
-                                <em className="control-panel__delete"></em>
-                            </div>
 
-                            <div className="col-block"
-                                 data-address=".0.1.0"
-                            >
-
-                            </div>
-                            <button className="add-new-structure-block">Add new col.</button>
-                        </div>
                         <button className="add-new-structure-block">Add new row.</button>
                     </div>
                     <div className="section-block"
@@ -65,21 +73,27 @@ class App extends Component {
                             <em className="control-panel__copy"></em>
                             <em className="control-panel__delete"></em>
                         </div>
-                        <div className="row-block"
-                             data-address=".1.0"
-                        >
-                            <div className="control-panel">
-                                <em className="control-panel__drag"></em>
-                                <em className="control-panel__copy"></em>
-                                <em className="control-panel__delete"></em>
-                            </div>
-                            <div className="col-block"
-                                 data-address=".1.0.0"
+                        <div className="section-block-rows">
+                            <div className="row-block"
+                                 data-address=".1.0"
                             >
+                                <div className="control-panel">
+                                    <em className="control-panel__drag"></em>
+                                    <em className="control-panel__copy"></em>
+                                    <em className="control-panel__delete"></em>
+                                </div>
+                                <div className="row-block-cols">
+                                    <div className="col-block"
+                                         data-address=".1.0.0"
+                                    >
 
+                                    </div>
+                                </div>
+
+                                <button className="add-new-structure-block">Add new col.</button>
                             </div>
-                            <button className="add-new-structure-block">Add new col.</button>
                         </div>
+
                         <button className="add-new-structure-block">Add new row.</button>
                     </div>
                     <button className="add-new-structure-block">Add new section.</button>

@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 //import App from './app/App';
-import App from './app/App'
-//import App from './app/containers/TestContainer';
+//import App from './app/App'
+import App from './app/containers/TestContainer';
 import configureStore from './app/store/configureStore';
 
 

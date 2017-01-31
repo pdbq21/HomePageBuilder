@@ -21,8 +21,9 @@ class TestContainer extends Component {
 }
 
 function mapStateToProps(state) {
+    console.log('state',state);
     return {
-        testMapState: state.test
+        testMapState: state.testReducer
     }
 }
 
