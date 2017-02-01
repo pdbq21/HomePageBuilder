@@ -3,21 +3,21 @@
  */
 // lib
 import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
+//import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 // components
-//import TestComponent from '../components/TestComponent'
+import BuilderBlock from '../components/BuilderBlockComponent'
 // actions
 //import * as testActions from '../actions/TestActions'
 
 // Application
-class HomePageBuilder extends Component {
+class Builder extends Component {
     render() {
 
-        return (<div className='row'>
-            {/* add component */}
-        </div>);
+        return (
+            <BuilderBlock />
+    );
     }
 }
 
@@ -33,4 +33,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomePageBuilder)
+export default connect(mapStateToProps, mapDispatchToProps)(Builder)

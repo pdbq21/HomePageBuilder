@@ -1,0 +1,56 @@
+.builder-block{
+width: 100%;
+    min-height: 5em;
+    background-color: rgba(0, 255, 255, 0.1);
+    display: flex;
+    flex-direction: row;
+}
+
+.constructor-view{
+background-color: darkgoldenrod;
+    width: 100%;
+    padding: 1em;
+    margin: 1em;
+
+    flex-shrink: 2;
+}
+.new-section-block{
+    background-color: darkolivegreen;
+    padding: 1em;
+}
+
+.toolbar-block{
+    background-color: brown;
+    width: 100%;
+    min-height: 10em;
+    padding: 1em;
+    margin: 1em;
+    flex-shrink: 4;
+}
+.toolbar-block__nav{
+    background-color: blueviolet;
+    min-height: 2em;
+    padding: 1em 1em 0em 1em;
+    margin-bottom: 1em;
+}
+.toolbar-block__tab-panel{
+    background-color: cadetblue;
+    min-height: 6em;
+    padding: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.name-block{
+    width: 100%;
+    flex-shrink: 0;
+    padding-top: 1em;
+}
+.content-items{
+background-color: springgreen;
+    /*margin: 1em;*/
+    padding: 1em;
+    width: auto;
+}.content-items:not(:last-child){
+    margin-right: 1em;
+}
