@@ -7,16 +7,23 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 // components
-import BuilderBlock from '../components/BuilderBlockComponent'
+import BuilderBlockComponent from '../components/BuilderBlockComponent'
+//containers
+import ConstructorViewBlockContainer from './ConstructorViewBlockContainer'
+import ToolbarBlockContainer from './ToolbarBlockContainer'
+
 // actions
 //import * as testActions from '../actions/TestActions'
 
 // Application
-class Builder extends Component {
+class BuilderContainer extends Component {
     render() {
 
         return (
-            <BuilderBlock />
+            <BuilderBlockComponent>
+                <ConstructorViewBlockContainer />
+                <ToolbarBlockContainer />
+            </BuilderBlockComponent>
     );
     }
 }
@@ -33,4 +40,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Builder)
+export default connect(mapStateToProps, mapDispatchToProps)(BuilderContainer)
