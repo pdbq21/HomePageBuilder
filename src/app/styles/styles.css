@@ -18,7 +18,9 @@ background-color: darkgoldenrod;
     background-color: darkolivegreen;
     padding: 1em;
 }
-
+.active-new-section-block{
+    background-color: deeppink;
+}
 .toolbar-block{
     background-color: brown;
     width: 100%;

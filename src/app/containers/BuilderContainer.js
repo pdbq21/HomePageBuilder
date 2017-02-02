@@ -9,7 +9,7 @@ import { connect } from 'react-redux'
 // components
 import BuilderBlockComponent from '../components/BuilderBlockComponent'
 //containers
-import ConstructorViewBlockContainer from './ConstructorViewBlockContainer'
+import ConstructorViewBlockContainer from './ConstructorViewContainer'
 import ToolbarBlockContainer from './ToolbarBlockContainer'
 
 // actions

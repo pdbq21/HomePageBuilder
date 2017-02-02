@@ -13,20 +13,22 @@ import ConstructorViewBlockComponent from '../components/ConstructorView/Constru
 //import * as testActions from '../actions/TestActions'
 
 // Application
-class ConstructorViewBlockContainer extends Component {
+class ConstructorViewContainer extends Component {
     render() {
-
+        const { activeDragStructure } = this.props.mapStateToolbar;
+        console.log(activeDragStructure);
         return (
-            <ConstructorViewBlockComponent>
-
-            </ConstructorViewBlockComponent>
+            <ConstructorViewBlockComponent
+            classNameAddNewSection={(activeDragStructure)? 'active-new-section-block' : ''}
+            />
         );
     }
 }
 
 function mapStateToProps(state) {
+    console.log('state ConstructorViewContainer', state);
     return {
-
+        mapStateToolbar: state.ToolbarReducer
     }
 }
 
@@ -36,4 +38,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ConstructorViewBlockContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(ConstructorViewContainer)

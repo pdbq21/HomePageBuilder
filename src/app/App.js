@@ -5,8 +5,8 @@ import './App.css';
 class App extends Component {
 
     render() {
-        const timeStart = 1485963664605;
-        const date = new Date;
+        //const timeStart = 1485963664605;
+        //const date = new Date;
         return (
             <div className="timer">
 <h3>{Date.now()}</h3>
