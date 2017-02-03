@@ -20,15 +20,16 @@ class BuilderContainer extends Component {
     render() {
 
         return (
-            <BuilderBlockComponent>
-                <ConstructorViewBlockContainer />
+            <BuilderBlockComponent >
+                <ConstructorViewBlockContainer id="data" />
                 <ToolbarBlockContainer />
             </BuilderBlockComponent>
     );
     }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, other) {
+    //console.log('state BuilderContainer', state, other);
     return {
 
     }

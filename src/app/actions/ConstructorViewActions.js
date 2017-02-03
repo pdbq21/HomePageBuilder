@@ -5,11 +5,11 @@ import {
     ON_DRAG_ENTER, ON_DROP_SECTION, ON_DRAG_OVER, ON_DRAG_LEAVE, CREATE_ID, ADD_NEW_SECTION
 } from '../constants/ConstructorViewConstants'
 
-export function ActionOnDrop(event) {
-    console.log('action onDrop', event);
+export function ActionOnDropSection(id, name) {
     return{
         type: ON_DROP_SECTION,
-        payload: event,
+        id,
+        name
     };
 }
 export function ActionOnDragEnter() {
@@ -31,20 +31,20 @@ export function ActionOnDragLeave() {
     };
 }
 
-// generate id for sections/rows/cols/elements
-let nextId = 0;
+//generate id for sections/rows/cols/elements
+// Todo: this function will create array ids sections
 export function ActionCreateId() {
     return{
         type: CREATE_ID,
-        id: `id_${nextId++}`
+        nodeId: Date.now()
     };
 }
 
-export function ActionAddNewSection(id) {
+export function ActionAddNewSection(id, rowIds) {
     return{
         type: ADD_NEW_SECTION,
-        id
+        id,
+        rowIds
     };
 }
-
 
