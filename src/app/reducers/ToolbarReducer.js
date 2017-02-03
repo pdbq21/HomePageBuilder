@@ -5,10 +5,10 @@
 import { ON_DRAG_START, ON_DRAG_END } from '../constants/ToolbarConstants'
 // default data state
 const initialState = {
-activeDragStructure: false
+    activeDragStructure: false
 };
 
-export default function toolbar(state = initialState, action) {
+export default function ToolbarReducer(state = initialState, action) {
 
     switch (action.type) {
         // constant name

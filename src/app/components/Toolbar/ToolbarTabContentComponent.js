@@ -12,16 +12,16 @@ export default class ToolbarTabContentComponent extends Component{
     }
 
     handelDragStart(event){
-        console.log('drag start');
-        console.log('drag start props', this.props);
-this.props.OnDragStart(event.target);
+        //console.log('drag start');
+        //console.log('drag start props', this.props);
+        this.props.onDragStart(event.target);
         event.dataTransfer.dropEffect = "move";
         event.dataTransfer.setData("text", event.target.getAttribute('id'));
     }
 
     handelDragEnd(event){
-        console.log('drag end');
-        this.props.OnDragEnd(event.target);
+        //console.log('drag end');
+        this.props.onDragEnd(event.target);
     }
 
     render(){

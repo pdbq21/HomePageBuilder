@@ -6,14 +6,14 @@ import {
 } from '../constants/ToolbarConstants'
 
 export function ActionOnDragStart(event) {
-    console.log('action onDragStart', event);
+    //console.log('action onDragStart', event);
     return{
         type: ON_DRAG_START,
         payload: event,
     };
 }
 export function ActionOnDragEnd(event) {
-    console.log('action onDragEnd', event);
+    //console.log('action onDragEnd', event);
     return{
         type: ON_DRAG_END,
         payload: event,

@@ -18,16 +18,15 @@ class ToolbarBlockContainer extends Component {
 
 
     render() {
-
-        //const { ActionsOnClick } = this.props.testActionsDispactch;
-        console.log('ToolbarBlockContainer props: ', this.props);
+        //console.log('ToolbarBlockContainer props: ', this.props);
         const { ActionOnDragStart, ActionOnDragEnd } = this.props.mapDispactchToolbar;
+
         return (
             <ToolbarBlockComponent>
                 <ToolbarNavigationComponent />
                 <ToolbarTabContentComponent
-                    OnDragStart={ActionOnDragStart}
-                    OnDragEnd={ActionOnDragEnd}
+                    onDragStart={ActionOnDragStart}
+                    onDragEnd={ActionOnDragEnd}
                 />
             </ToolbarBlockComponent>
         );
@@ -35,7 +34,6 @@ class ToolbarBlockContainer extends Component {
 }
 
 function mapStateToProps(state) {
-
     return {
     }
 }

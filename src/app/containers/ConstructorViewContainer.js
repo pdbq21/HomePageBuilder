@@ -2,31 +2,39 @@
  * Created by ruslan on 01.02.17.
  */
 // lib
-import React, { Component } from 'react'
-//import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import React, {Component} from 'react'
+import { bindActionCreators } from 'redux'
+import {connect} from 'react-redux'
 
 // components
 import ConstructorViewBlockComponent from '../components/ConstructorView/ConstructorViewBlockComponent';
+import SectionComponent from '../components/ConstructorView/SectionComponent';
 
 // actions
-//import * as testActions from '../actions/TestActions'
+import * as actionsConstructorView from '../actions/ConstructorViewActions'
 
 // Application
 class ConstructorViewContainer extends Component {
     render() {
-        const { activeDragStructure } = this.props.mapStateToolbar;
-        console.log(activeDragStructure);
+        //console.log('ConstructorViewContainer props: ', this.props);
+        const {activeDragStructure} = this.props.mapStateToolbar;
+        const { ActionOnDrop, ActionCreateId, ActionAddNewSection } = this.props.mapDispactchConstructorView;
+
         return (
             <ConstructorViewBlockComponent
-            classNameAddNewSection={(activeDragStructure)? 'active-new-section-block' : ''}
-            />
+                classNameAddNewSection={(activeDragStructure) ? 'active-new-section-block' : ''}
+                onDropAction={ActionOnDrop}
+                createIdAction={ActionCreateId}
+                addNewSectionAction={ActionAddNewSection}
+            >
+                {<SectionComponent />}
+            </ConstructorViewBlockComponent>
         );
     }
 }
 
 function mapStateToProps(state) {
-    console.log('state ConstructorViewContainer', state);
+    //console.log('state ConstructorViewContainer', state);
     return {
         mapStateToolbar: state.ToolbarReducer
     }
@@ -34,7 +42,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-
+        mapDispactchConstructorView: bindActionCreators(actionsConstructorView, dispatch)
     }
 }
 

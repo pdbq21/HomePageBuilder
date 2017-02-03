@@ -21,6 +21,14 @@ background-color: darkgoldenrod;
 .active-new-section-block{
     background-color: deeppink;
 }
+
+.section-block{
+    min-height: 1em;
+    background-color: orangered;
+    padding: 1em;
+    margin-bottom: 1em;
+}
+
 .toolbar-block{
     background-color: brown;
     width: 100%;

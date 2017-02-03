@@ -5,13 +5,12 @@
 import { combineReducers } from 'redux';
 
 // Reducers
-import testReducer from './testReducer';
+//import testReducer from './testReducer';
 import ConstructorViewReducer from './ConstructorViewReducer';
 import ToolbarReducer from './ToolbarReducer';
 
 // Combine Reducers
 export default combineReducers({
-    testReducer,
     ConstructorViewReducer,
     ToolbarReducer
 })
