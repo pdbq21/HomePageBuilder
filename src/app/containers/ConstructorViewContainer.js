@@ -19,15 +19,16 @@ class ConstructorViewContainer extends Component {
         //console.log('ConstructorViewContainer props: ', this.props);
         const {activeDragStructure} = this.props.mapStateToolbar;
         //const {activeDragStructure} = this.props.mapStateConstructorViewReducer;
-        //console.log(this.props);
-        const { /*ActionOnDropSection, ActionCreateId,*/ ActionAddNewSection } = this.props.mapDispactchConstructorView;
+        //console.log('***********', this.props);
+        const { /*ActionOnDropSection, */ActionCreateId, ActionAddNewSection } = this.props.mapDispactchConstructorView;
 
         return (
             <ConstructorViewBlockComponent
                 classNameAddNewSection={(activeDragStructure) ? 'active-new-section-block' : ''}
-                /*onDropSectionAction={ActionOnDropSection}
-                createIdAction={ActionCreateId}*/
+                /*onDropSectionAction={ActionOnDropSection}*/
+                createIdAction={ActionCreateId}
                 addNewSectionAction={ActionAddNewSection}
+                id={this.props.id}
             >
                 {<SectionComponent />}
             </ConstructorViewBlockComponent>
@@ -39,7 +40,7 @@ function mapStateToProps(state, ownProps) {
     //console.log('state ConstructorViewContainer', state, ownProps);
     return {
         mapStateToolbar: state.ToolbarReducer,
-        mapStateConstructorViewReducer: state.ConstructorViewReducer
+        mapStateConstructorViewReducer: state.ConstructorViewReducer[ownProps.id]
     }
 }
 

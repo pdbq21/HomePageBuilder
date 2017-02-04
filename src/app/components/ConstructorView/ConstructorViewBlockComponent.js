@@ -13,14 +13,15 @@ export default class ConstructorViewBlockComponent extends Component {
     }
 
     handelDrop(event) {
-        console.log('drop');
+       // console.log('drop');
         // Stop default browser behavior
         event.preventDefault();
         //const {createIdAction, addNewSectionAction, onDropAction} = this.props;
-        const {/*createIdAction,*/ addNewSectionAction} = this.props;
-        const sectionId = Date.now();//createIdAction().id;
-        const rowId = Date.now();
-        addNewSectionAction(sectionId, rowId);
+        const {createIdAction, addNewSectionAction, id} = this.props;
+        //const childId = createNode().nodeId
+        //addChild(id, childId)
+        const sectionId = createIdAction().nodeId;
+        addNewSectionAction(id, sectionId);
         //id, name
         //this.props.onDropSectionAction();
     }
