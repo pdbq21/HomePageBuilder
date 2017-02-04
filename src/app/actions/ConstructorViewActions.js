@@ -41,10 +41,10 @@ export function ActionCreateId() {
     };
 }
 
-export function ActionAddNewSection(id, rowId) {
+export function ActionAddNewSection(nodeId, rowId) {
     return{
         type: ADD_NEW_SECTION,
-        id,
+        nodeId,
         rowId
     };
 }

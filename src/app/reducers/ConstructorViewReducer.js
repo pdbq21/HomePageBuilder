@@ -68,7 +68,6 @@ export default function (state = initialState, action) {
     const { nodeId } = action;
 
     if (typeof nodeId === 'undefined') {
-        console.log(25);
         return state;
     }
 

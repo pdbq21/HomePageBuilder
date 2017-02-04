@@ -19,7 +19,7 @@ class ConstructorViewContainer extends Component {
         //console.log('ConstructorViewContainer props: ', this.props);
         const {activeDragStructure} = this.props.mapStateToolbar;
         //const {activeDragStructure} = this.props.mapStateConstructorViewReducer;
-        //console.log('***********', this.props);
+        console.log('***********', this.props);
         const { /*ActionOnDropSection, */ActionCreateId, ActionAddNewSection } = this.props.mapDispactchConstructorView;
 
         return (
