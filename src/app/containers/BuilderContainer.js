@@ -21,7 +21,7 @@ class BuilderContainer extends Component {
 
         return (
             <BuilderBlockComponent >
-                <ConstructorViewBlockContainer id="data" />
+                <ConstructorViewBlockContainer id={0} />
                 <ToolbarBlockContainer />
             </BuilderBlockComponent>
     );
