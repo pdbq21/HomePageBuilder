@@ -10,7 +10,7 @@ export default function BuilderBlock(props) {
     const children = props.children;
     //console.log(children);
     return (
-        <div className='builder-block'>
+        <div className="mdl-grid">
             {children}
         </div>
     );

@@ -44,10 +44,11 @@ module.exports = {
     // We ship a few polyfills by default:
     require.resolve('./polyfills'),
     // Finally, this is your app's code:
-    paths.appIndexJs
+    paths.appIndexJs,
     // We include the app code last so that if there is a runtime error during
     // initialization, it doesn't blow up the WebpackDevServer client, and
     // changing JS code would still trigger a refresh.
+      require.resolve('./material.js'),
   ],
   output: {
     // Next line is not used in dev but WebpackDevServer crashes without it:

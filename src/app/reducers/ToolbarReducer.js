@@ -2,22 +2,50 @@
  * Created by ruslan on 30.01.17.
  */
 // import constants from '../constants'
-import { ON_DRAG_START, ON_DRAG_END } from '../constants/ToolbarConstants'
+import {ON_DRAG_START, ON_DRAG_END, ON_CLICK_NAVIGATION} from '../constants/ToolbarConstants'
 // default data state
 const initialState = {
     activeDragStructure: false
 };
 
-export default function ToolbarReducer(state = initialState, action) {
+export function ToolbarReducer(state = initialState, action) {
 
     switch (action.type) {
         // constant name
         case ON_DRAG_START:
-            return { ...state, activeDragStructure: true};
+            return {...state, activeDragStructure: true};
         case ON_DRAG_END:
-            return { ...state, activeDragStructure: false};
+            return {...state, activeDragStructure: false};
         default:
             return state;
     }
-
 }
+const initialStateNavigation = {
+    activeTab: 'Rows', // default
+    tabs: [
+        {
+            name: 'Rows',
+        },
+        {
+            name: 'Elements',
+        },
+        {
+            name: 'Templates',
+        },
+        {
+            name: 'Edit',
+        }
+    ]
+};
+
+export function ToolbarNavigationReducer(state = initialStateNavigation, action) {
+
+    switch (action.type) {
+        // navigation
+        case ON_CLICK_NAVIGATION:
+            return {...state, activeTab: action.name};
+        default:
+            return state;
+    }
+}
+

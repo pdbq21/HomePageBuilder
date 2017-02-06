@@ -6,10 +6,12 @@ import Builder from './app/containers/BuilderContainer';
 import configureStore from './app/store/configureStore';
 // import styles
 import './index.css';
-import './app/styles/styles.css'
+//import './app/styles/styles.css'
+// styles web kit
+import './webStarterKit/styles/pb.css'
+import './webStarterKit/styles/main.css'
 
 const store = configureStore();
-console.log('app');
 
 ReactDOM.render(
     <Provider store={store}>
