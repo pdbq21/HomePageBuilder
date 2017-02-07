@@ -17,7 +17,7 @@ ReactDOM.render(
     <Provider store={store}>
             <Builder />
     </Provider>,
-  document.getElementById('root')
+  document.getElementById('root-app-pb')
 );
 /*
 ReactDOM.render(

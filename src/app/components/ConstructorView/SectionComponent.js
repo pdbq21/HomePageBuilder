@@ -4,11 +4,13 @@
 import React from 'react'
 
 export default function SectionComponent(props) {
-    const { id, classNameActiveAddSection, handelDrop, handleDragOver, children } = props;
+    const { id, classNameActiveAddSection, handelDrop, handleDragOver, children, key } = props;
     //console.log('SectionComponent',props);
 // todo: add drop-down menu with opening menu up or down
     return (
-        <div className="mdl-card pb-card pb-card--section  mdl-shadow--2dp">{/*pb-card--active*/}
+        <div className="mdl-card pb-card pb-card--section  mdl-shadow--2dp"
+             key={`key-${key}`}
+        >{/*pb-card--active*/}
             <div className="pb-bar pb-bar--horizontal">
                 <button className="mdl-button mdl-button--icon">
                     <i className="material-icons">swap_vert</i>
@@ -31,8 +33,10 @@ export default function SectionComponent(props) {
                 </div>
             </div>
 
-            {children}
+
             <div className="pb-background">
+                {/*<!-- Row block -->*/}
+                {children}
                 {/* <!-- Drop area for the row -->*/}
                 <div
                     className={`pb-area pb-area--drop ${classNameActiveAddSection}`}

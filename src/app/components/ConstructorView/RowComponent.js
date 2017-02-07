@@ -27,7 +27,7 @@ export default function RowComponent(props) {
                         <i className="material-icons">more_vert</i>
                     </button>
 
-                    <ul className="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="row-menu-1">
+                    <ul className="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" htmlFor="row-menu-1">
                         <li className="mdl-menu__item">Copy</li>
                         <li className="mdl-menu__item">Paste</li>
                         <li className="mdl-menu__item" disabled>Paste as linked</li>
@@ -57,7 +57,7 @@ export default function RowComponent(props) {
                                     <i className="material-icons">more_vert</i>
                                 </button>
 
-                                <ul className="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="col-menu-1">
+                                <ul className="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" htmlFor="col-menu-1">
                                     <li className="mdl-menu__item">Copy</li>
                                     <li className="mdl-menu__item">Paste</li>
                                     <li className="mdl-menu__item" disabled>Paste as linked</li>
@@ -93,7 +93,7 @@ export default function RowComponent(props) {
                                     <i className="material-icons">more_vert</i>
                                 </button>
 
-                                <ul className="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="col-menu-2">
+                                <ul className="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" htmlFor="col-menu-2">
                                     <li className="mdl-menu__item">Copy</li>
                                     <li className="mdl-menu__item">Paste</li>
                                     <li className="mdl-menu__item" disabled>Paste as linked</li>
