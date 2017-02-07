@@ -2,12 +2,12 @@
  * Created by ruslan on 30.01.17.
  */
 // import constants from '../constants'
-import {ADD_NEW_SECTION, CREATE_ID, ADD_SECTION} from '../constants/ConstructorViewConstants'
+import {ADD_NODE, CREATE_ID} from '../constants/ConstructorViewConstants'
 // default data state
 const initialState = {
     0: {
         id: 0,
-        rowIds: []
+        childrenIds: []
     }
 
 };
@@ -37,32 +37,26 @@ const initialState = {
  return state
  }
  }*/
-function createRowIds(state, action) {
+function createChildrenIds(state, action) {
     switch (action.type) {
-        case ADD_NEW_SECTION:
-            return [...state, action.rowId];
-        case ADD_SECTION:
-            return [...state, action.rowId];
+        case ADD_NODE:
+            return [...state, action.childrenId];
         default:
             return state
     }
 }
 
-const nodeSection = (state, action) => {
-    //console.log(action);
+const node = (state, action) => {
+
     switch (action.type) {
         case CREATE_ID:
             return {
                 id: action.nodeId,
-                rowIds: []
+                childrenIds: []
             };
-        case ADD_NEW_SECTION:
+        case ADD_NODE:
             return Object.assign({}, state, {
-                rowIds: createRowIds(state.rowIds, action)
-            });
-        case ADD_SECTION:
-            return Object.assign({}, state, {
-                rowIds: createRowIds(state.rowIds, action)
+                childrenIds: createChildrenIds(state.childrenIds, action)
             });
         default:
             return state
@@ -76,7 +70,6 @@ export default function (state = initialState, action) {
     if (typeof nodeId === 'undefined') {
         return state;
     }
-
     /* switch (action.type) {
      // constant name
      case ADD_NEW_SECTION:
@@ -91,7 +84,7 @@ export default function (state = initialState, action) {
      return state;
      }*/
     return Object.assign({}, state, {
-        [nodeId]: nodeSection(state[nodeId], action)
+        [nodeId]: node(state[nodeId], action)
     })
 }
 

@@ -3,13 +3,15 @@
  */
 // lib
 import React, {Component} from 'react'
-import { bindActionCreators } from 'redux'
+import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 
 // components
 import ConstructorViewBlockComponent from '../components/ConstructorView/ConstructorViewBlockComponent';
 import SectionComponent from '../components/ConstructorView/SectionComponent';
-
+import RowComponent from '../components/ConstructorView/RowComponent';
+// containers
+//import RowContainer from './RowContainer';
 // actions
 import * as actionsConstructorView from '../actions/ConstructorViewActions'
 
@@ -18,28 +20,37 @@ class ConstructorViewContainer extends Component {
     constructor(props) {
         super(props);
 
-        this.handelDrop = this.handelDrop.bind(this);
+        this.handelDropRow = this.handelDropRow.bind(this);
         this.handleDragLeave = this.handleDragLeave.bind(this);
-        this.handleDragOver = this.handleDragOver.bind(this);
+        this.handleDragOverRow = this.handleDragOverRow.bind(this);
 
         this.handleClickAddSection = this.handleClickAddSection.bind(this);
+        this.renderSections = this.renderSections.bind(this);
+        this.renderRows = this.renderRows.bind(this);
     }
 
-    handelDrop(event) {
-        // console.log('drop');
+    handelDropRow(event, id) {
         // Stop default browser behavior
+        //console.log(event, id);
         event.preventDefault();
+
+        const {ActionCreateId, ActionAddNode} = this.props.mapDispactchConstructorView;
+        //const {id} = this.props;
+        //const {rowIds} = this.props.mapStateConstructorViewReducer;
+
+        const childrenId = ActionCreateId().nodeId;
+        ActionAddNode(id, childrenId);
         //const {createIdAction, addNewSectionAction, onDropAction} = this.props;
-        const {createIdAction, addNewSectionAction, id} = this.props;
+        //const {createIdAction, ActionAddRow, id} = this.props;
         //const childId = createNode().nodeId
         //addChild(id, childId)
-        const sectionId = createIdAction().nodeId;
-        addNewSectionAction(id, sectionId);
+        //const sectionId = createIdAction().nodeId;
+        //addNewSectionAction(id, sectionId);
         //id, name
         //this.props.onDropSectionAction();
     }
 
-    handleDragOver(event) {
+    handleDragOverRow(event) {
         // Stop default browser behavior
         event.preventDefault();
         event.stopPropagation();
@@ -53,51 +64,85 @@ class ConstructorViewContainer extends Component {
 
     handleClickAddSection() {
         console.log('click Add Section');
-        //const {createIdAction, addNewSectionAction, id} = this.props;
-        const { ActionCreateId, ActionAddSection } = this.props.mapDispactchConstructorView;
-        const { id } = this.props;
-        //const {rowIds} = this.props.mapStateConstructorViewReducer;
+        const {id} = this.props;
+        const {ActionCreateId, ActionAddNode} = this.props.mapDispactchConstructorView;
+        const childrenId = ActionCreateId().nodeId;
+        //console.log(id, childrenId);
+        ActionAddNode(id, childrenId);
+    }
 
-        const sectionId = ActionCreateId().nodeId;
-        ActionAddSection(id, sectionId);
+    renderRows(){
+
+        return (
+            <RowComponent
+                id="25"
+            >
+
+            </RowComponent>
+        )
+    }
+
+    renderSections(childrenId) {
+        console.log(this.props);
+console.log(childrenId);
+        const {id} = this.props;
+        const {activeDragStructure} = this.props.mapStateToolbar;
+        //const {}
+        return (
+            <div key={childrenId}>
+                <SectionComponent
+                    id={childrenId}
+                    parentId={id}
+                    classNameActiveAddSection={(activeDragStructure) ? 'pb-area--green' : ''}
+                    handelDrop={this.handelDropRow}
+                    handleDragOver={this.handleDragOverRow}
+                >
+                    {(this.renderRows)}
+                </SectionComponent>
+            </div>
+        );
     }
 
     render() {
-        //console.log('ConstructorViewContainer props: ', this.props);
-        const { id } = this.props;
-        const {activeDragStructure} = this.props.mapStateToolbar;
-       const {rowIds} = this.props.mapStateConstructorViewReducer;
+        console.log('ConstructorViewContainer props: ', this.props);
+       // console.log(this.props.mapStateCVR[this.props.id], this.props.mapStateConstructorViewReducer);
+        //const {childrenIds} = this.props.mapStateConstructorViewReducer;
+        const {childrenIds} = this.props.mapStateConstructorViewReducer[this.props.id];
+
         //console.log('***********', rowIds);
         //const { /*ActionOnDropSection, */ActionCreateId, ActionAddNewSection } = this.props.mapDispactchConstructorView;
+        /*let SectionComponentHtml = childrenIds.map((childrenId) => (<div key={childrenId}>
+                <SectionComponent
+                    id={childrenId}
+                    parentId={id}
+                    classNameActiveAddSection={(activeDragStructure) ? 'pb-area--green' : ''}
+                    handelDrop={this.handelDropRow}
+                    handleDragOver={this.handleDragOverRow}
+                />
+            </div>)
+        );*/
 
-
-        let SectionComponentHtml = rowIds.map(function (rowId) {
-            return (<div key={rowId}>
-                <SectionComponent id={rowId} parentId={id}/>
-            </div>);
-        });
 
         return (
             <ConstructorViewBlockComponent
-                classNameAddNewSection={(activeDragStructure) ? 'active-new-section-block' : ''}
                 /*onDropSectionAction={ActionOnDropSection}*/
                 /*createIdAction={ActionCreateId}
-                addNewSectionAction={ActionAddNewSection}
-                id={id}
-                rowIds={rowIds}*/
+                 addNewSectionAction={ActionAddNewSection}
+                 id={id}
+                 rowIds={rowIds}*/
                 handleClickAddSection={this.handleClickAddSection}
             >
-                {SectionComponentHtml}
+                {childrenIds.map(this.renderSections)}
             </ConstructorViewBlockComponent>
         );
     }
 }
 
-function mapStateToProps(state, ownProps) {
-    //console.log('state ConstructorViewContainer', state, ownProps);
+function mapStateToProps(state) {
+    //console.log('state ConstructorViewContainer', state);
     return {
         mapStateToolbar: state.ToolbarReducer,
-        mapStateConstructorViewReducer: state.ConstructorViewReducer[ownProps.id]
+        mapStateConstructorViewReducer: state.ConstructorViewReducer
     }
 }
 

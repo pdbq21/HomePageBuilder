@@ -5,9 +5,10 @@ import React from 'react'
 
 export default function ConstructorViewBlockComponent(props) {
     const {handleClickAddSection, children} = props;
+    console.log(props);
     return (
         <div className="pb-workspace mdl-cell mdl-cell--8-col">
-            <div className="mdl-card pb-card pb-card--section pb-card--active mdl-shadow--2dp">
+            {/*<div className="mdl-card pb-card pb-card--section pb-card--active mdl-shadow--2dp">
                 <div className="pb-bar pb-bar--horizontal">
                     <button className="mdl-button mdl-button--icon">
                         <i className="material-icons">swap_vert</i>
@@ -31,12 +32,12 @@ export default function ConstructorViewBlockComponent(props) {
                 </div>
 
                 <div className="pb-background">
-                    {/* <!-- Drop area for the row -->*/}
+                    /!* <!-- Drop area for the row -->*!/
                     <div className="pb-area pb-area--drop pb-area--green">
                         <span className="pb-area__caption">Drop the row here!</span>
                     </div>
                 </div>
-            </div>
+            </div>*/}
             {children}
             <div className='pb-area pb-area--add'
             >
