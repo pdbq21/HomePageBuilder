@@ -6,6 +6,7 @@ import React, {PropTypes} from 'react';
 //import ConstructorView from './ConstructorView/ConstructorViewBlockComponent';
 //import ToolbarBlock from './Toolbar/ToolbarBlockComponent';
 
+
 export default function BuilderBlock(props) {
     const children = props.children;
     //console.log(children);

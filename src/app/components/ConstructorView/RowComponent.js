@@ -103,9 +103,12 @@ export default function RowComponent(props) {
                             </div>
                         </div>
 
-
                         <div className="pb-background mdl-shadow--2dp">
-                            <img src="images/noimage.png" className="pb-image" alt="" />
+                            <img
+                                src="../src/webStarterKit/images/icon-image-128.png"
+                                className="pb-image"
+                                alt=""
+                            />
                         </div>
                     </div>
                 </div>
