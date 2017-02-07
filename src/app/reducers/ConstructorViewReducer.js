@@ -2,7 +2,7 @@
  * Created by ruslan on 30.01.17.
  */
 // import constants from '../constants'
-import {ADD_NEW_SECTION, CREATE_ID} from '../constants/ConstructorViewConstants'
+import {ADD_NEW_SECTION, CREATE_ID, ADD_SECTION} from '../constants/ConstructorViewConstants'
 // default data state
 const initialState = {
     0: {
@@ -41,6 +41,8 @@ function createRowIds(state, action) {
     switch (action.type) {
         case ADD_NEW_SECTION:
             return [...state, action.rowId];
+        case ADD_SECTION:
+            return [...state, action.rowId];
         default:
             return state
     }
@@ -55,6 +57,10 @@ const nodeSection = (state, action) => {
                 rowIds: []
             };
         case ADD_NEW_SECTION:
+            return Object.assign({}, state, {
+                rowIds: createRowIds(state.rowIds, action)
+            });
+        case ADD_SECTION:
             return Object.assign({}, state, {
                 rowIds: createRowIds(state.rowIds, action)
             });

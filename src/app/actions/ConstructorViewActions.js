@@ -2,7 +2,7 @@
  * Created by ruslan on 31.01.17.
  */
 import {
-    ON_DRAG_ENTER, ON_DROP_SECTION, ON_DRAG_OVER, ON_DRAG_LEAVE, CREATE_ID, ADD_NEW_SECTION
+    ON_DRAG_ENTER, ON_DROP_SECTION, ON_DRAG_OVER, ON_DRAG_LEAVE, CREATE_ID, ADD_NEW_SECTION, ADD_SECTION
 } from '../constants/ConstructorViewConstants'
 
 export function ActionOnDropSection(id, name) {
@@ -44,6 +44,13 @@ export function ActionCreateId() {
 export function ActionAddNewSection(nodeId, rowId) {
     return{
         type: ADD_NEW_SECTION,
+        nodeId,
+        rowId
+    };
+}
+export function ActionAddSection(nodeId, rowId) {
+    return{
+        type: ADD_SECTION,
         nodeId,
         rowId
     };

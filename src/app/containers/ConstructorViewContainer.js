@@ -15,13 +15,60 @@ import * as actionsConstructorView from '../actions/ConstructorViewActions'
 
 // Application
 class ConstructorViewContainer extends Component {
+    constructor(props) {
+        super(props);
+
+        this.handelDrop = this.handelDrop.bind(this);
+        this.handleDragLeave = this.handleDragLeave.bind(this);
+        this.handleDragOver = this.handleDragOver.bind(this);
+
+        this.handleClickAddSection = this.handleClickAddSection.bind(this);
+    }
+
+    handelDrop(event) {
+        // console.log('drop');
+        // Stop default browser behavior
+        event.preventDefault();
+        //const {createIdAction, addNewSectionAction, onDropAction} = this.props;
+        const {createIdAction, addNewSectionAction, id} = this.props;
+        //const childId = createNode().nodeId
+        //addChild(id, childId)
+        const sectionId = createIdAction().nodeId;
+        addNewSectionAction(id, sectionId);
+        //id, name
+        //this.props.onDropSectionAction();
+    }
+
+    handleDragOver(event) {
+        // Stop default browser behavior
+        event.preventDefault();
+        event.stopPropagation();
+        return false;
+    }
+
+    handleDragLeave(event) {
+        // Stop default browser behavior
+        event.preventDefault();
+    }
+
+    handleClickAddSection() {
+        console.log('click Add Section');
+        //const {createIdAction, addNewSectionAction, id} = this.props;
+        const { ActionCreateId, ActionAddSection } = this.props.mapDispactchConstructorView;
+        const { id } = this.props;
+        //const {rowIds} = this.props.mapStateConstructorViewReducer;
+
+        const sectionId = ActionCreateId().nodeId;
+        ActionAddSection(id, sectionId);
+    }
+
     render() {
         //console.log('ConstructorViewContainer props: ', this.props);
         const { id } = this.props;
         const {activeDragStructure} = this.props.mapStateToolbar;
-        const {rowIds} = this.props.mapStateConstructorViewReducer;
-        console.log('***********', rowIds);
-        const { /*ActionOnDropSection, */ActionCreateId, ActionAddNewSection } = this.props.mapDispactchConstructorView;
+       const {rowIds} = this.props.mapStateConstructorViewReducer;
+        //console.log('***********', rowIds);
+        //const { /*ActionOnDropSection, */ActionCreateId, ActionAddNewSection } = this.props.mapDispactchConstructorView;
 
 
         let SectionComponentHtml = rowIds.map(function (rowId) {
@@ -34,10 +81,11 @@ class ConstructorViewContainer extends Component {
             <ConstructorViewBlockComponent
                 classNameAddNewSection={(activeDragStructure) ? 'active-new-section-block' : ''}
                 /*onDropSectionAction={ActionOnDropSection}*/
-                createIdAction={ActionCreateId}
+                /*createIdAction={ActionCreateId}
                 addNewSectionAction={ActionAddNewSection}
                 id={id}
-                rowIds={rowIds}
+                rowIds={rowIds}*/
+                handleClickAddSection={this.handleClickAddSection}
             >
                 {SectionComponentHtml}
             </ConstructorViewBlockComponent>
