@@ -9,6 +9,7 @@ function StructurePanel() {
         <ul className="mdl-list pb-list--panel pb-list--no-spacing">
             <li className="mdl-card pb-card pb-card--grab mdl-shadow--2dp"
                 draggable='true'
+                data-col="12"
             >
                 <div className="mdl-grid pb-grid--sketch">
                     <div className="mdl-cell mdl-cell--12-col">12</div>
@@ -16,6 +17,7 @@ function StructurePanel() {
             </li>
             <li className="mdl-card pb-card pb-card--grab mdl-shadow--2dp"
                 draggable='true'
+                data-col="6-6"
             >
                 <div className="mdl-grid pb-grid--sketch">
                     <div className="mdl-cell mdl-cell--6-col">6</div>
@@ -24,6 +26,7 @@ function StructurePanel() {
             </li>
             <li className="mdl-card pb-card pb-card--grab mdl-shadow--2dp"
                 draggable='true'
+                data-col="4-4-4"
             >
                 <div className="mdl-grid pb-grid--sketch">
                     <div className="mdl-cell mdl-cell--4-col">4</div>
@@ -33,6 +36,7 @@ function StructurePanel() {
             </li>
             <li className="mdl-card pb-card pb-card--grab mdl-shadow--2dp"
                 draggable='true'
+                data-col="3-6-3"
             >
                 <div className="mdl-grid pb-grid--sketch">
                     <div className="mdl-cell mdl-cell--3-col">3</div>
@@ -42,6 +46,7 @@ function StructurePanel() {
             </li>
             <li className="mdl-card pb-card pb-card--grab mdl-shadow--2dp"
                 draggable='true'
+                data-col="3-3-3-3"
             >
                 <div className="mdl-grid pb-grid--sketch">
                     <div className="mdl-cell mdl-cell--3-col">3</div>
@@ -132,25 +137,10 @@ function EditPanel() {
 export default class ToolbarTabContentComponent extends Component {
     constructor(props) {
         super(props);
-
-        this.handelDragStart = this.handelDragStart.bind(this);
-        this.handelDragEnd = this.handelDragEnd.bind(this);
         this.activeTabPanel = this.activeTabPanel.bind(this);
     }
 
-    handelDragStart(event) {
-        //console.log('drag start props', this.props);
-        this.props.onDragStart(event.target);
-        event.dataTransfer.dropEffect = "move";
-        event.dataTransfer.setData("text", event.target.getAttribute('id'));
-    }
-
-    handelDragEnd(event) {
-        //console.log('drag end');
-        this.props.onDragEnd(event.target);
-    }
-
-    activeTabPanel(){
+    activeTabPanel() {
         const {activeTab} = this.props;
         switch (activeTab) {
             case 'Rows':
@@ -167,32 +157,14 @@ export default class ToolbarTabContentComponent extends Component {
     }
 
     render() {
+        const {OnDragStart, OnDragEnd} = this.props;
         return (<div className="toolbar-block__tab-panel"
-                     onDragStart={this.handelDragStart}
-                     onDragEnd={this.handelDragEnd}
+                     onDragStart={OnDragStart}
+                     onDragEnd={OnDragEnd}
         >
-            {/*<h4 className="name-block">list tabs content</h4>
-             <div className="content-items type-image"
-             draggable='true'
-             >
-             Image
-             </div>
-             <div className="content-items type-text"
-             draggable='true'
-             >
-             Text
-             </div>
-             <div className="content-items type-button"
-             draggable='true'
-             >
-             Button
-             </div>*/}
-
             <div className="mdl-tabs__panel is-active">
                 {this.activeTabPanel()}
             </div>
-
-
         </div>);
 
     }

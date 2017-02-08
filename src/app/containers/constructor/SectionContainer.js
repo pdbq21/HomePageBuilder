@@ -7,13 +7,12 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 // components
-import SectionComponent from '../components/ConstructorView/SectionComponent';
-import RowComponent from '../components/ConstructorView/RowComponent';
+import SectionComponent from '../../components/ConstructorView/SectionComponent';
 //containers
-
+import RowContainer from './RowContainer'
 // actions
 //import * as testActions from '../actions/TestActions'
-import * as actionsConstructorView from '../actions/ConstructorViewActions'
+import * as actionsConstructorView from '../../actions/ConstructorViewActions'
 
 // Application
 class SectionContainer extends Component {
@@ -71,7 +70,7 @@ class SectionContainer extends Component {
                 id={id}
             >
                 {childrenIds.map((childrenId) => (
-                    <RowComponent
+                    <RowContainer
                         id={childrenId}
                         parentId={id}
                         key={`key-${childrenId}`}
@@ -87,6 +86,8 @@ function mapStateToProps(state, ownProps) {
     //console.log(state.ConstructorViewReducer[ownProps.id]);
     return {
         mapStateToolbar: state.ToolbarReducer,
+        // data only this current Section
+        // id={childrenId} => ownProps.id
 mapStateSection: state.ConstructorViewReducer[ownProps.id]
     }
 }

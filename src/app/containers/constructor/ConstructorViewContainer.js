@@ -7,13 +7,13 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 
 // components
-import ConstructorViewBlockComponent from '../components/ConstructorView/ConstructorViewBlockComponent';
+import ConstructorViewBlockComponent from '../../components/ConstructorView/ConstructorViewBlockComponent';
 //import SectionComponent from '../components/ConstructorView/SectionComponent';
 
 // containers
 import SectionContainer from './SectionContainer';
 // actions
-import * as actionsConstructorView from '../actions/ConstructorViewActions'
+import * as actionsConstructorView from '../../actions/ConstructorViewActions'
 
 // Application
 class ConstructorViewContainer extends Component {

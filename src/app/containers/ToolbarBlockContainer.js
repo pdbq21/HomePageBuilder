@@ -9,7 +9,8 @@ import {connect} from 'react-redux'
 // components
 import ToolbarBlockComponent from '../components/Toolbar/ToolbarBlockComponent'
 import ToolbarNavigationComponent from '../components/Toolbar/ToolbarNavigationComponent'
-import ToolbarTabContentComponent from '../components/Toolbar/ToolbarTabContentComponent'
+// container
+import ToolbarTabContentContainer from './ToolbarTabContentContainer'
 // actions
 import * as actionsToolbar from '../actions/ToolbarActions'
 
@@ -22,7 +23,6 @@ class ToolbarBlockContainer extends Component {
     }
 
     handelNavigation(event) {
-
         const {ActionSelectNavigation} = this.props.mapDispactchToolbar;
         //console.log(event.target.parentNode.textContent);
         // Rows / Elements / Templates / Edit
@@ -31,7 +31,6 @@ class ToolbarBlockContainer extends Component {
 
     render() {
         //console.log('ToolbarBlockContainer props: ', this.props);
-        const {ActionOnDragStart, ActionOnDragEnd, /*ActionSelectNavigation*/} = this.props.mapDispactchToolbar;
         const {activeTab, tabs} = this.props.mapStateToolbarNavigation;
 
         return (
@@ -41,13 +40,7 @@ class ToolbarBlockContainer extends Component {
                     navigationTabs={tabs}
                     activeTab={activeTab}
                 />
-                <ToolbarTabContentComponent
-                    onDragStart={ActionOnDragStart}
-                    onDragEnd={ActionOnDragEnd}
-                    activeTab={activeTab}
-                >
-
-                </ToolbarTabContentComponent>
+                <ToolbarTabContentContainer />
             </ToolbarBlockComponent>
         );
     }
