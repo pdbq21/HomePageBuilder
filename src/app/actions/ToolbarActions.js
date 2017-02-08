@@ -7,11 +7,11 @@ import {
 
 
 // Drag and Drop Actions
-export function ActionOnDragStart(event) {
+export function ActionOnDragStart(cols) {
     //console.log('action onDragStart', event);
     return{
         type: ON_DRAG_START,
-        payload: event,
+        cols
     };
 }
 export function ActionOnDragEnd(event) {

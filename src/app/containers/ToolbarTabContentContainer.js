@@ -24,12 +24,19 @@ class ToolbarTabContentContainer extends Component {
     handelDragStart(event) {
         console.log('drag start');
         // 12 / 6-6 / 4-4-4 ...
-        console.log(event.target.getAttribute('data-col'));
+        //console.log(event.target.getAttribute('data-col'));
+        const cols = event.target.getAttribute('data-col').split('-');
+
+        /*let newColData = [];
+        cols.map(function (key) {
+            newColData.push({indexCol: key, content: []})
+        });*/
+
         const {ActionOnDragStart} = this.props.mapDispactchToolbar;
 
-         ActionOnDragStart();
-        event.dataTransfer.dropEffect = "move";
-        event.dataTransfer.setData("text", event.target.getAttribute('id'));
+         ActionOnDragStart(cols);
+        /*event.dataTransfer.dropEffect = "move";
+        event.dataTransfer.setData("text", event.target.getAttribute('id'));*/
     }
 
     handelDragEnd(event) {

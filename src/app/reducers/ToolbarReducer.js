@@ -5,7 +5,8 @@
 import {ON_DRAG_START, ON_DRAG_END, ON_CLICK_NAVIGATION} from '../constants/ToolbarConstants'
 // default data state
 const initialState = {
-    activeDragStructure: false
+    activeDragStructure: false,
+    columns: []
 };
 
 export function ToolbarReducer(state = initialState, action) {
@@ -13,9 +14,9 @@ export function ToolbarReducer(state = initialState, action) {
     switch (action.type) {
         // constant name
         case ON_DRAG_START:
-            return {...state, activeDragStructure: true};
+            return {...state, activeDragStructure: true, columns: action.cols};
         case ON_DRAG_END:
-            return {...state, activeDragStructure: false};
+            return {...state, activeDragStructure: false, columns: []};
         default:
             return state;
     }
