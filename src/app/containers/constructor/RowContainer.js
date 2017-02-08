@@ -8,9 +8,8 @@ import { connect } from 'react-redux'
 
 // components
 import RowComponent from '../../components/ConstructorView/RowComponent';
-import ColComponent from '../../components/ConstructorView/ColComponent';
 //containers
-
+import ColContainer from './ColContainer';
 // actions
 //import * as testActions from '../actions/TestActions'
 import * as actionsConstructorView from '../../actions/ConstructorViewActions'
@@ -20,23 +19,22 @@ class RowContainer extends Component {
     constructor(props) {
         super(props);
 
+
     }
 
 
 
     render() {
-        // todo: const {id, parentId} = this.props; for delete function
-       // const {id, parentId} = this.props;
-        // id array the current Section for generating Rows
-        //const {childrenIds} = this.props.mapStateRow;
         const {columnsIndex} = this.props.mapStateRow;
-        const {isActiveDragElement} = this.props.mapStateToolbar;
-
+        const {id, parentId} = this.props;
+        // id array the current Section for generating Rows
+        const {childrenIds} = this.props.mapStateSection;
         return (
-            <RowComponent>
+            <RowComponent
+                id={id}
+            >
                 {columnsIndex.map((col, index) => (
-                    <ColComponent
-                        classNameActiveAddElement={(isActiveDragElement) ? 'pb-area--green' : 'pb-area--gray'}
+                    <ColContainer
                         col={col}
                         key={`key-${col}-${index}`}
                     />
@@ -49,7 +47,6 @@ class RowContainer extends Component {
 function mapStateToProps(state, ownProps) {
     return {
         mapStateRow: state.ConstructorViewReducer[ownProps.id],
-        mapStateToolbar: state.ToolbarReducer,
     }
 }
 

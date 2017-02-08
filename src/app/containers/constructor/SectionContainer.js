@@ -29,7 +29,7 @@ class SectionContainer extends Component {
         event.preventDefault();
         const {ActionCreateId, ActionAddNode, ActionAddColumnsData} = this.props.mapDispactchSection;
         const {columns} = this.props.mapStateToolbar;
-
+        //columns.map(())
         const childrenId = ActionCreateId().nodeId;
         ActionAddNode(id, childrenId);
         ActionAddColumnsData(childrenId, columns);
@@ -75,7 +75,6 @@ class SectionContainer extends Component {
 
 function mapStateToProps(state, ownProps) {
     //console.log('state SectionContainer:', state, 'ownProps SectionContainer:', ownProps);
-    //console.log(state.ConstructorViewReducer[ownProps.id]);
     return {
         mapStateToolbar: state.ToolbarReducer,
         // data only this current Section
