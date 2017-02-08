@@ -42,6 +42,8 @@ class ToolbarTabContentContainer extends Component {
     handelDragEnd(event) {
         console.log('drag end');
         console.log(event.target);
+        const {ActionOnDragEnd} = this.props.mapDispactchToolbar;
+        ActionOnDragEnd();
     }
 
     render() {

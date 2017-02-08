@@ -10,13 +10,12 @@ const initialState = {
 };
 
 export function ToolbarReducer(state = initialState, action) {
-
     switch (action.type) {
         // constant name
         case ON_DRAG_START:
             return {...state, activeDragStructure: true, columns: action.cols};
         case ON_DRAG_END:
-            return {...state, activeDragStructure: false, columns: []};
+            return {...state, activeDragStructure: false, columns: action.cols};
         default:
             return state;
     }

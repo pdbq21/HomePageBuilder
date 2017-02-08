@@ -25,7 +25,7 @@ class SectionContainer extends Component {
 
     handelDropRow(event, id) {
         // Stop default browser behavior
-        //console.log(event, id);
+       // console.log('drop');
         event.preventDefault();
         const {ActionCreateId, ActionAddNode} = this.props.mapDispactchSection;
         //const {id} = this.props;

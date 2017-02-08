@@ -14,11 +14,11 @@ export function ActionOnDragStart(cols) {
         cols
     };
 }
-export function ActionOnDragEnd(event) {
+export function ActionOnDragEnd() {
     //console.log('action onDragEnd', event);
     return{
         type: ON_DRAG_END,
-        payload: event,
+        cols: [],
     };
 }
 export function ActionOnDropRows(event) {
