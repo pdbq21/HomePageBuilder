@@ -8,4 +8,5 @@ export const ON_DRAG_OVER = 'ON_DRAG_OVER';
 export const ON_DRAG_LEAVE = 'ON_DRAG_LEAVE';
 export const CREATE_ID = 'CREATE_ID';
 export const ADD_NODE = 'ADD_NODE';
+export const ADD_COLUMNS_DATA = 'ADD_COLUMNS_DATA';
 

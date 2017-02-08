@@ -2,12 +2,12 @@
  * Created by ruslan on 30.01.17.
  */
 // import constants from '../constants'
-import {ADD_NODE, CREATE_ID} from '../constants/ConstructorViewConstants'
+import {ADD_NODE, CREATE_ID, ADD_COLUMNS_DATA} from '../constants/ConstructorViewConstants'
 // default data state
 const initialState = {
     0: {
         id: 0,
-        childrenIds: []
+        childrenIds: [],
     }
 
 };
@@ -47,7 +47,6 @@ function createChildrenIds(state, action) {
 }
 
 const node = (state, action) => {
-
     switch (action.type) {
         case CREATE_ID:
             return {
@@ -58,6 +57,11 @@ const node = (state, action) => {
             return Object.assign({}, state, {
                 childrenIds: createChildrenIds(state.childrenIds, action)
             });
+        case ADD_COLUMNS_DATA:
+            return Object.assign({}, state, {
+                columnsIndex: action.columns
+            });
+
         default:
             return state
     }

@@ -5,7 +5,7 @@ import React from 'react'
 
 export default function ColComponent(props) {
     return (
-    <div className="mdl-cell mdl-cell--4-col">
+    <div className={`mdl-cell--${props.col}-col`}>
         {/** mdl-cell--4-col => `mdl-cell--${this.props.colIndex}-col` */}
 
         {/* this.props.children Elements*/}

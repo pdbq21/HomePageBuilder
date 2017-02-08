@@ -22,7 +22,7 @@ class ToolbarTabContentContainer extends Component {
     }
 
     handelDragStart(event) {
-        console.log('drag start');
+        //console.log('drag start');
         // 12 / 6-6 / 4-4-4 ...
         //console.log(event.target.getAttribute('data-col'));
         const cols = event.target.getAttribute('data-col').split('-');
@@ -40,8 +40,8 @@ class ToolbarTabContentContainer extends Component {
     }
 
     handelDragEnd(event) {
-        console.log('drag end');
-        console.log(event.target);
+        //console.log('drag end');
+       // console.log(event.target);
         const {ActionOnDragEnd} = this.props.mapDispactchToolbar;
         ActionOnDragEnd();
     }

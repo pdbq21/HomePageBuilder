@@ -19,21 +19,24 @@ import * as actionsConstructorView from '../../actions/ConstructorViewActions'
 class RowContainer extends Component {
     constructor(props) {
         super(props);
+
     }
+
+
 
     render() {
        // const {id, parentId} = this.props;
         // id array the current Section for generating Rows
         //const {childrenIds} = this.props.mapStateRow;
+        const {columnsIndex} = this.props.mapStateRow;
         return (
             <RowComponent>
-                {/*{childrenIds.map((childrenId) => (
+                {columnsIndex.map((col, index) => (
                     <ColComponent
-                        id={childrenId}
-                        parentId={id}
-                        key={`key-${childrenId}`}
+                        col={col}
+                        key={`key-${col}-${index}`}
                     />
-                ))}*/}
+                ))}
             </RowComponent>
         );
     }
@@ -41,7 +44,8 @@ class RowContainer extends Component {
 
 function mapStateToProps(state, ownProps) {
     return {
-        mapStateRow: state.ConstructorViewReducer[ownProps.id]
+        mapStateRow: state.ConstructorViewReducer[ownProps.id],
+        mapStateToolbar: state.ToolbarReducer,
     }
 }
 

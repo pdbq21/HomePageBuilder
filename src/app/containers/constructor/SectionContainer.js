@@ -27,20 +27,12 @@ class SectionContainer extends Component {
         // Stop default browser behavior
        // console.log('drop');
         event.preventDefault();
-        const {ActionCreateId, ActionAddNode} = this.props.mapDispactchSection;
-        //const {id} = this.props;
-        //const {rowIds} = this.props.mapStateConstructorViewReducer;
+        const {ActionCreateId, ActionAddNode, ActionAddColumnsData} = this.props.mapDispactchSection;
+        const {columns} = this.props.mapStateToolbar;
 
         const childrenId = ActionCreateId().nodeId;
         ActionAddNode(id, childrenId);
-        //const {createIdAction, addNewSectionAction, onDropAction} = this.props;
-        //const {createIdAction, ActionAddRow, id} = this.props;
-        //const childId = createNode().nodeId
-        //addChild(id, childId)
-        //const sectionId = createIdAction().nodeId;
-        //addNewSectionAction(id, sectionId);
-        //id, name
-        //this.props.onDropSectionAction();
+        ActionAddColumnsData(childrenId, columns);
     }
 
     handleDragOverRow(event) {

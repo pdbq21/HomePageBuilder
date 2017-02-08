@@ -1,8 +1,9 @@
 /**
  * Created by ruslan on 31.01.17.
  */
+//CONSTANTS
 import {
-    ON_DRAG_ENTER, ON_DROP_SECTION, ON_DRAG_OVER, ON_DRAG_LEAVE, CREATE_ID, ADD_NODE
+    ON_DRAG_ENTER, ON_DROP_SECTION, ON_DRAG_OVER, ON_DRAG_LEAVE, CREATE_ID, ADD_NODE, ADD_COLUMNS_DATA
 } from '../constants/ConstructorViewConstants'
 
 export function ActionOnDropSection(id, name) {
@@ -46,6 +47,14 @@ export function ActionAddNode(nodeId, childrenId) {
         type: ADD_NODE,
         nodeId,
         childrenId
+    };
+}
+
+export function ActionAddColumnsData(nodeId, columns) {
+    return{
+        type: ADD_COLUMNS_DATA,
+        nodeId,
+        columns
     };
 }
 
