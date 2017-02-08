@@ -5,22 +5,11 @@
 import {ON_DRAG_START, ON_DRAG_END, ON_CLICK_NAVIGATION} from '../constants/ToolbarConstants'
 // default data state
 const initialState = {
-    activeDragStructure: false,
-    columns: []
-};
-
-export function ToolbarReducer(state = initialState, action) {
-    switch (action.type) {
-        // constant name
-        case ON_DRAG_START:
-            return {...state, activeDragStructure: true, columns: action.cols};
-        case ON_DRAG_END:
-            return {...state, activeDragStructure: false, columns: action.cols};
-        default:
-            return state;
-    }
-}
-const initialStateNavigation = {
+    isActiveDragStructure: false,
+    isActiveDragElement: false,
+    columns: [],
+    elementType: '',
+    //navigation
     activeTab: 'Rows', // default
     tabs: [
         {
@@ -38,14 +27,22 @@ const initialStateNavigation = {
     ]
 };
 
-export function ToolbarNavigationReducer(state = initialStateNavigation, action) {
-
+export default function ToolbarReducer(state = initialState, action) {
     switch (action.type) {
-        // navigation
+        // constant name
+        case ON_DRAG_START:
+            // for tabs Rows / Elements
+            return (action.name === 'data-col')?
+                {...state, isActiveDragStructure: true, columns: action.dataAttr} :
+                {...state, isActiveDragElement: true, elementType: []};
+        case ON_DRAG_END:
+            // for tabs Rows / Elements
+            return (action.name === 'data-col')?
+                {...state, isActiveDragStructure: false, columns: action.dataAttr} :
+                {...state, isActiveDragElement: false, elementType: ''};
         case ON_CLICK_NAVIGATION:
             return {...state, activeTab: action.name};
         default:
             return state;
     }
 }
-

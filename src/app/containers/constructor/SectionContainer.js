@@ -48,7 +48,7 @@ class SectionContainer extends Component {
     }
 
     render() {
-        const {activeDragStructure} = this.props.mapStateToolbar;
+        const {isActiveDragStructure} = this.props.mapStateToolbar;
         //Todo: use this parentId for delete function
         const {id, parentId} = this.props;
         // id array the current Section for generating Rows
@@ -56,7 +56,7 @@ class SectionContainer extends Component {
         //console.log(` id = ${id} / parentId = ${parentId} / state:`,childrenIds );
         return (
             <SectionComponent
-                classNameActiveAddSection={(activeDragStructure) ? 'pb-area--green' : ''}
+                classNameActiveAddSection={(isActiveDragStructure) ? 'pb-area--green' : 'pb-area--gray'}
                 handelDrop={this.handelDropRow}
                 handleDragOver={this.handleDragOverRow}
                 id={id}

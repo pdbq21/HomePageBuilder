@@ -25,14 +25,18 @@ class RowContainer extends Component {
 
 
     render() {
+        // todo: const {id, parentId} = this.props; for delete function
        // const {id, parentId} = this.props;
         // id array the current Section for generating Rows
         //const {childrenIds} = this.props.mapStateRow;
         const {columnsIndex} = this.props.mapStateRow;
+        const {isActiveDragElement} = this.props.mapStateToolbar;
+
         return (
             <RowComponent>
                 {columnsIndex.map((col, index) => (
                     <ColComponent
+                        classNameActiveAddElement={(isActiveDragElement) ? 'pb-area--green' : 'pb-area--gray'}
                         col={col}
                         key={`key-${col}-${index}`}
                     />

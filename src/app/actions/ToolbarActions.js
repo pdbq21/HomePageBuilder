@@ -7,22 +7,23 @@ import {
 
 
 // Drag and Drop Actions
-export function ActionOnDragStart(cols) {
-    //console.log('action onDragStart', event);
+export function ActionOnDragStart(dataAttr, name) {
+    // dataAttr => data-col='['6', '6']'... OR data-elementType='Image'...
+    // name => data-col / OR data-elementType
     return{
         type: ON_DRAG_START,
-        cols
+        dataAttr,
+        name
     };
 }
-export function ActionOnDragEnd() {
-    //console.log('action onDragEnd', event);
+export function ActionOnDragEnd(name) {
+    // name => data-col / OR data-elementType
     return{
         type: ON_DRAG_END,
-        cols: [],
+        name
     };
 }
 export function ActionOnDropRows(event) {
-    //console.log('action onDragEnd', event);
     return{
         type: ON_DROP_ROWS,
         payload: event,

@@ -31,7 +31,7 @@ class ToolbarBlockContainer extends Component {
 
     render() {
         //console.log('ToolbarBlockContainer props: ', this.props);
-        const {activeTab, tabs} = this.props.mapStateToolbarNavigation;
+        const {activeTab, tabs} = this.props.mapStateToolbarReducer;
 
         return (
             <ToolbarBlockComponent>
@@ -48,7 +48,7 @@ class ToolbarBlockContainer extends Component {
 
 function mapStateToProps(state) {
     return {
-        mapStateToolbarNavigation: state.ToolbarNavigationReducer
+        mapStateToolbarReducer: state.ToolbarReducer
     }
 }
 

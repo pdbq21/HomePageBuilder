@@ -8,6 +8,7 @@ import {connect} from 'react-redux'
 
 // components
 import ToolbarTabContentComponent from '../components/Toolbar/ToolbarTabContentComponent'
+import {StructurePanel, ContentPanel, TemplatesPanel, EditPanel} from '../components/Toolbar/TabContentComponents.js'
 //containers
 
 // actions
@@ -17,44 +18,71 @@ import * as actionsToolbar from '../actions/ToolbarActions'
 class ToolbarTabContentContainer extends Component {
     constructor(props) {
         super(props);
-        this.handelDragStart = this.handelDragStart.bind(this);
-        this.handelDragEnd = this.handelDragEnd.bind(this);
+        this.handelDragStartRow = this.handelDragStartRow.bind(this);
+        this.handelDragEndRow = this.handelDragEndRow.bind(this);
+        this.handelDragStartContent = this.handelDragStartContent.bind(this);
+        this.handelDragEndContent = this.handelDragEndContent.bind(this);
+
+        this.renderTabContent = this.renderTabContent.bind(this);
     }
 
-    handelDragStart(event) {
+    handelDragStartRow(event) {
         //console.log('drag start');
         // 12 / 6-6 / 4-4-4 ...
         //console.log(event.target.getAttribute('data-col'));
-        const cols = event.target.getAttribute('data-col').split('-');
-
-        /*let newColData = [];
-        cols.map(function (key) {
-            newColData.push({indexCol: key, content: []})
-        });*/
-
+        const dataAttr = event.target.getAttribute('data-col').split('-');
         const {ActionOnDragStart} = this.props.mapDispactchToolbar;
-
-         ActionOnDragStart(cols);
+         ActionOnDragStart(dataAttr, 'data-col');
         /*event.dataTransfer.dropEffect = "move";
         event.dataTransfer.setData("text", event.target.getAttribute('id'));*/
     }
 
-    handelDragEnd(event) {
+    handelDragEndRow() {
         //console.log('drag end');
        // console.log(event.target);
         const {ActionOnDragEnd} = this.props.mapDispactchToolbar;
-        ActionOnDragEnd();
+        ActionOnDragEnd('data-col');
+    }
+
+    handelDragStartContent(event) {
+        // Text / Image / Button ...
+        console.log(event.target.getAttribute('data-elementType'));
+        const dataAttr = event.target.getAttribute('data-elementType');
+        const {ActionOnDragStart} = this.props.mapDispactchToolbar;
+        ActionOnDragStart(dataAttr, 'data-elementType');
+    }
+
+    handelDragEndContent() {
+        const {ActionOnDragEnd} = this.props.mapDispactchToolbar;
+        ActionOnDragEnd('data-elementType');
+    }
+
+    renderTabContent(){
+        const {activeTab} = this.props.mapStateToolbarReducer;
+        switch (activeTab) {
+            case 'Rows':
+                return <StructurePanel
+                    OnDragStart={this.handelDragStartRow}
+                    OnDragEnd={this.handelDragEndRow}
+                />;
+            case 'Elements':
+                return <ContentPanel
+                    OnDragStart={this.handelDragStartContent}
+                    OnDragEnd={this.handelDragEndContent}
+                />;
+            case 'Templates':
+                return <TemplatesPanel />;
+            case 'Edit':
+                return <EditPanel />;
+            default:
+                console.error('Error: other tab name', activeTab);
+        }
     }
 
     render() {
-        const {activeTab} = this.props.mapStateToolbarNavigation;
         return (
-            <ToolbarTabContentComponent
-                OnDragStart={this.handelDragStart}
-                OnDragEnd={this.handelDragEnd}
-                activeTab={activeTab}
-            >
-
+            <ToolbarTabContentComponent >
+                {this.renderTabContent()}
             </ToolbarTabContentComponent>
         );
     }
@@ -62,7 +90,7 @@ class ToolbarTabContentContainer extends Component {
 
 function mapStateToProps(state, ownProps) {
     return {
-        mapStateToolbarNavigation: state.ToolbarNavigationReducer
+        mapStateToolbarReducer: state.ToolbarReducer
     }
 }
 
