@@ -4,12 +4,12 @@
 import React from 'react'
 
 export default function SectionComponent(props) {
-    const { id, classNameActiveAddSection, handelDrop, handleDragOver, children, key } = props;
+    const { id, classNameActiveAddSection, handelDrop, handleDragOver, children } = props;
     //console.log('SectionComponent',props);
 // todo: add drop-down menu with opening menu up or down
     return (
         <div className="mdl-card pb-card pb-card--section  mdl-shadow--2dp"
-             key={`key-${key}`}
+
         >{/*pb-card--active*/}
             <div className="pb-bar pb-bar--horizontal">
                 <button className="mdl-button mdl-button--icon">

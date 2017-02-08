@@ -3,7 +3,7 @@
  */
 // lib
 import React, { Component } from 'react'
-//import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 // components
@@ -13,6 +13,7 @@ import RowComponent from '../components/ConstructorView/RowComponent';
 
 // actions
 //import * as testActions from '../actions/TestActions'
+import * as actionsConstructorView from '../actions/ConstructorViewActions'
 
 // Application
 class SectionContainer extends Component {
@@ -21,15 +22,13 @@ class SectionContainer extends Component {
         this.handelDropRow = this.handelDropRow.bind(this);
         this.handleDragLeave = this.handleDragLeave.bind(this);
         this.handleDragOverRow = this.handleDragOverRow.bind(this);
-
-        this.handleClickAddSection = this.handleClickAddSection.bind(this);
     }
+
     handelDropRow(event, id) {
         // Stop default browser behavior
         //console.log(event, id);
         event.preventDefault();
-
-        const {ActionCreateId, ActionAddNode} = this.props.mapDispactchConstructorView;
+        const {ActionCreateId, ActionAddNode} = this.props.mapDispactchSection;
         //const {id} = this.props;
         //const {rowIds} = this.props.mapStateConstructorViewReducer;
 
@@ -57,22 +56,27 @@ class SectionContainer extends Component {
         event.preventDefault();
     }
 
-    handleClickAddSection() {
-        //console.log('click Add Section');
-        const {id} = this.props;
-        const {ActionCreateId, ActionAddNode} = this.props.mapDispactchConstructorView;
-        const childrenId = ActionCreateId().nodeId;
-        //console.log(id, childrenId);
-        ActionAddNode(id, childrenId);
-    }
-
     render() {
-
+        const {activeDragStructure} = this.props.mapStateToolbar;
+        //Todo: use this parentId for delete function
+        const {id, parentId} = this.props;
+        // id array the current Section for generating Rows
+        const {childrenIds} = this.props.mapStateSection;
+        //console.log(` id = ${id} / parentId = ${parentId} / state:`,childrenIds );
         return (
-            <SectionComponent >
-                <RowComponent>
-
-                </RowComponent>
+            <SectionComponent
+                classNameActiveAddSection={(activeDragStructure) ? 'pb-area--green' : ''}
+                handelDrop={this.handelDropRow}
+                handleDragOver={this.handleDragOverRow}
+                id={id}
+            >
+                {childrenIds.map((childrenId) => (
+                    <RowComponent
+                        id={childrenId}
+                        parentId={id}
+                        key={`key-${childrenId}`}
+                    />
+                ))}
             </SectionComponent>
         );
     }
@@ -82,13 +86,14 @@ function mapStateToProps(state, ownProps) {
     //console.log('state SectionContainer:', state, 'ownProps SectionContainer:', ownProps);
     //console.log(state.ConstructorViewReducer[ownProps.id]);
     return {
+        mapStateToolbar: state.ToolbarReducer,
 mapStateSection: state.ConstructorViewReducer[ownProps.id]
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-
+        mapDispactchSection: bindActionCreators(actionsConstructorView, dispatch)
     }
 }
 
