@@ -2,9 +2,9 @@
  * Created by ruslan on 07.02.17.
  */
 // lib
-import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import React, {Component} from 'react'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
 
 // components
 import SectionComponent from '../../components/ConstructorView/SectionComponent';
@@ -25,14 +25,21 @@ class SectionContainer extends Component {
 
     handelDropRow(event, id) {
         // Stop default browser behavior
-       // console.log('drop');
+        // console.log('drop');
         event.preventDefault();
         const {ActionCreateId, ActionAddNode, ActionAddColumnsData} = this.props.mapDispactchSection;
+        // [6, 6] / [4, 4, 4] ...
         const {columns} = this.props.mapStateToolbar;
-        //columns.map(())
+
+        /*columns.map((colIndex) => {
+            const childrenId = ActionCreateId().nodeId;
+            ActionAddNode(id, childrenId);
+            ActionAddColumnsData(childrenId, colIndex);
+        });*/
         const childrenId = ActionCreateId().nodeId;
         ActionAddNode(id, childrenId);
         ActionAddColumnsData(childrenId, columns);
+
     }
 
     handleDragOverRow(event) {
@@ -53,6 +60,7 @@ class SectionContainer extends Component {
         const {id, parentId} = this.props;
         // id array the current Section for generating Rows
         const {childrenIds} = this.props.mapStateSection;
+        console.log(this.props.mapStateSection);
         //console.log(` id = ${id} / parentId = ${parentId} / state:`,childrenIds );
         return (
             <SectionComponent
@@ -79,7 +87,7 @@ function mapStateToProps(state, ownProps) {
         mapStateToolbar: state.ToolbarReducer,
         // data only this current Section
         // id={childrenId} => ownProps.id
-mapStateSection: state.ConstructorViewReducer[ownProps.id]
+        mapStateSection: state.ConstructorViewReducer[ownProps.id]
     }
 }
 

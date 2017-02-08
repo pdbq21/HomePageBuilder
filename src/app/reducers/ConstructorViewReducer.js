@@ -59,7 +59,7 @@ const node = (state, action) => {
             });
         case ADD_COLUMNS_DATA:
             return Object.assign({}, state, {
-                columnsIndex: action.columns
+                columnsIndex: action.colIndex
             });
 
         default:

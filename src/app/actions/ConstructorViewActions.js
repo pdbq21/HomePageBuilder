@@ -50,11 +50,11 @@ export function ActionAddNode(nodeId, childrenId) {
     };
 }
 
-export function ActionAddColumnsData(nodeId, columns) {
+export function ActionAddColumnsData(nodeId, colIndex) {
     return{
         type: ADD_COLUMNS_DATA,
         nodeId,
-        columns
+        colIndex
     };
 }
 
