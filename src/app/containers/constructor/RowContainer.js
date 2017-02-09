@@ -29,32 +29,30 @@ class RowContainer extends Component {
         const {ActionCreateNode, ActionAddNode, ActionAddColumnsData} = this.props.mapDispactchSection;
         const {columnsIndex} = this.props.mapStateRow;
         const {id} = this.props;
+
         columnsIndex.map((col) => {
             const childrenId = ActionCreateNode(id).nodeId;
             ActionAddNode(id, childrenId);
             ActionAddColumnsData(childrenId, col);
         });
-
-        /*return (<ColContainer
-            id={childrenId}
-            col={col}
-            key={`key-${col}-${index}`}
-        />);*/
     }
 
     render() {
-        const {id, parentId} = this.props;
-        console.log(this.props);
-
+        const {id} = this.props;
+        //console.log(this.props);
         // id array the current Section for generating Rows
-
-       // const {columnsIndex} = this.props.mapStateRow;
-
+        const {childrenIds} = this.props.mapStateRow;
         return (
             <RowComponent
                 id={id}
             >
-
+                {childrenIds.map((childrenId) => (
+                    <ColContainer
+                        id={childrenId}
+                        parentId={id}
+                        key={`key-${childrenId}`}
+                    />
+                ))}
             </RowComponent>
         );
     }

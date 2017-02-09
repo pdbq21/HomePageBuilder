@@ -2,7 +2,7 @@
  * Created by ruslan on 31.01.17.
  */
 import {
-    ON_DRAG_START, ON_DRAG_END, ON_CLICK_NAVIGATION, ON_DROP_ROWS
+    ON_DRAG_START, ON_DRAG_END, ON_CLICK_NAVIGATION
 } from '../constants/ToolbarConstants'
 
 
@@ -21,12 +21,6 @@ export function ActionOnDragEnd(name) {
     return{
         type: ON_DRAG_END,
         name
-    };
-}
-export function ActionOnDropRows(event) {
-    return{
-        type: ON_DROP_ROWS,
-        payload: event,
     };
 }
 

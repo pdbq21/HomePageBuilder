@@ -13,7 +13,6 @@ import ConstructorViewBlockContainer from './constructor/ConstructorViewContaine
 import ToolbarBlockContainer from './ToolbarBlockContainer'
 
 // actions
-//import * as testActions from '../actions/TestActions'
 
 // Application
 class BuilderContainer extends Component {

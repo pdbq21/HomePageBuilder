@@ -8,6 +8,7 @@ import {connect} from 'react-redux'
 
 // components
 import ColComponent from '../../components/ConstructorView/ColComponent';
+import ElementComponent from '../../components/ConstructorView/ElementComponent';
 //containers
 
 // actions
@@ -26,13 +27,12 @@ class ColContainer extends Component {
     handelDropElement(event, id) {
         // Stop default browser behavior
         event.preventDefault();
-
-        const {ActionCreateNode, ActionAddNode} = this.props.mapDispactchSection;
-        //const {columns} = this.props.mapStateToolbar;
-//parentId = this id;
+console.log('drop');
+        const {ActionCreateNode, ActionAddNode, ActionAddElementType} = this.props.mapDispactchSection;
+        const {elementType} = this.props.mapStateToolbar;
         const childrenId = ActionCreateNode(id).nodeId;
         ActionAddNode(id, childrenId);
-        //ActionAddColumnsData(childrenId, columns);
+        ActionAddElementType(childrenId, elementType);
     }
 
     handleDragOverElement(event) {
@@ -46,26 +46,34 @@ class ColContainer extends Component {
     render() {
         // todo: const {id, parentId} = this.props; for delete function
         const {id} = this.props;
-        // id array the current Section for generating Rows
-        //const {childrenIds} = this.props.mapStateRow;
-        //const {columnsIndex} = this.props.mapStateRow;
+        const {columnsIndex, childrenIds} = this.props.mapStateCol;
         const {isActiveDragElement} = this.props.mapStateToolbar;
-
+        //console.log(this.props.mapStateCol);
         return (
             <ColComponent
                 classNameActiveAddElement={(isActiveDragElement) ? 'pb-area--green' : 'pb-area--gray'}
-                col={this.props.col}
+                col={columnsIndex}
                 handelDrop={this.handelDropElement}
                 handleDragOver={this.handleDragOverElement}
                 id={id}
-            />
+            >
+                {childrenIds.map((childrenId) => (
+                    <ElementComponent
+                        id={childrenId}
+                        parentId={id}
+                        key={`key-${childrenId}`}
+                        type={this.props.mapState[childrenId].elementType}
+                    />
+                ))}
+            </ColComponent>
         );
     }
 }
 
 function mapStateToProps(state, ownProps) {
     return {
-        mapStateRow: state.ConstructorViewReducer[ownProps.id],
+        mapState: state.ConstructorViewReducer,
+        mapStateCol: state.ConstructorViewReducer[ownProps.id],
         mapStateToolbar: state.ToolbarReducer,
     }
 }

@@ -9,4 +9,5 @@ export const ON_DRAG_LEAVE = 'ON_DRAG_LEAVE';
 export const CREATE_ID = 'CREATE_ID';
 export const ADD_NODE = 'ADD_NODE';
 export const ADD_COLUMNS_DATA = 'ADD_COLUMNS_DATA';
+export const ADD_ELEMENT_TYPE = 'ADD_ELEMENT_TYPE';
 

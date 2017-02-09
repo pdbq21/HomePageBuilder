@@ -3,7 +3,7 @@
  */
 //CONSTANTS
 import {
-    ON_DRAG_ENTER, ON_DROP_SECTION, ON_DRAG_OVER, ON_DRAG_LEAVE, CREATE_ID, ADD_NODE, ADD_COLUMNS_DATA
+    ON_DRAG_ENTER, ON_DROP_SECTION, ON_DRAG_OVER, ON_DRAG_LEAVE, CREATE_ID, ADD_NODE, ADD_COLUMNS_DATA, ADD_ELEMENT_TYPE
 } from '../constants/ConstructorViewConstants'
 
 export function ActionOnDropSection(id, name) {
@@ -56,6 +56,13 @@ export function ActionAddColumnsData(nodeId, colIndex) {
         type: ADD_COLUMNS_DATA,
         nodeId,
         colIndex
+    };
+}
+export function ActionAddElementType(nodeId, elementType) {
+    return{
+        type: ADD_ELEMENT_TYPE,
+        nodeId,
+        elementType
     };
 }
 

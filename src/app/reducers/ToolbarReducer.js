@@ -34,11 +34,11 @@ export default function ToolbarReducer(state = initialState, action) {
             // for tabs Rows / Elements
             return (action.name === 'data-col')?
                 {...state, isActiveDragStructure: true, columns: action.dataAttr} :
-                {...state, isActiveDragElement: true, elementType: []};
+                {...state, isActiveDragElement: true, elementType: action.dataAttr};
         case ON_DRAG_END:
             // for tabs Rows / Elements
             return (action.name === 'data-col')?
-                {...state, isActiveDragStructure: false, columns: action.dataAttr} :
+                {...state, isActiveDragStructure: false, columns: []} :
                 {...state, isActiveDragElement: false, elementType: ''};
         case ON_CLICK_NAVIGATION:
             return {...state, activeTab: action.name};
