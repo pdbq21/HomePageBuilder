@@ -30,9 +30,13 @@ class ColContainer extends Component {
 console.log('drop');
         const {ActionCreateNode, ActionAddNode, ActionAddElementType} = this.props.mapDispactchSection;
         const {elementType} = this.props.mapStateToolbar;
-        const childrenId = ActionCreateNode(id).nodeId;
-        ActionAddNode(id, childrenId);
-        ActionAddElementType(childrenId, elementType);
+
+        if (elementType !== ''){
+            const childrenId = ActionCreateNode(id).nodeId;
+            ActionAddNode(id, childrenId);
+            ActionAddElementType(childrenId, elementType);
+        }
+
     }
 
     handleDragOverElement(event) {
