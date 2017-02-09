@@ -37,7 +37,7 @@ let element;
                     </button>
                 </div>
 
-                <div className="pb-bar__caption"><span>Text</span></div>
+                <div className="pb-bar__caption"><span>{props.type}</span></div>
 
                 <div className="pb-bar__menu">
                     <button id="col-menu-1" className="mdl-button mdl-js-button mdl-button--icon">
