@@ -31,14 +31,16 @@ class SectionContainer extends Component {
         // [6, 6] / [4, 4, 4] ...
         const {columns} = this.props.mapStateToolbar;
 
-        /*columns.map((colIndex) => {
-            const childrenId = ActionCreateId().nodeId;
-            ActionAddNode(id, childrenId);
-            ActionAddColumnsData(childrenId, colIndex);
-        });*/
+
         const childrenId = ActionCreateId().nodeId;
         ActionAddNode(id, childrenId);
         ActionAddColumnsData(childrenId, columns);
+
+        /**columns.map((colIndex) => {
+         const childrenId = ActionCreateId().nodeId;
+         ActionAddNode(id, childrenId);
+         ActionAddColumnsData(childrenId, colIndex);
+         });**/
 
     }
 
@@ -60,8 +62,7 @@ class SectionContainer extends Component {
         const {id, parentId} = this.props;
         // id array the current Section for generating Rows
         const {childrenIds} = this.props.mapStateSection;
-        console.log(this.props.mapStateSection);
-        //console.log(` id = ${id} / parentId = ${parentId} / state:`,childrenIds );
+       // console.log(this.props.mapStateSection);
         return (
             <SectionComponent
                 classNameActiveAddSection={(isActiveDragStructure) ? 'pb-area--green' : 'pb-area--gray'}

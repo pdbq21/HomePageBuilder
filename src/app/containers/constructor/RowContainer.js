@@ -2,9 +2,9 @@
  * Created by ruslan on 08.02.17.
  */
 // lib
-import React, { Component } from 'react'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import React, {Component} from 'react'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
 
 // components
 import RowComponent from '../../components/ConstructorView/RowComponent';
@@ -18,46 +18,41 @@ import * as actionsConstructorView from '../../actions/ConstructorViewActions'
 class RowContainer extends Component {
     constructor(props) {
         super(props);
-        this.renderColContainer = this.renderColContainer.bind(this)
+        this.createColumnsChildren = this.createColumnsChildren.bind(this)
     }
 
+    componentWillMount() {
+        this.createColumnsChildren();
+    }
 
-    renderColContainer(id){
-
+    createColumnsChildren() {
         const {ActionCreateId, ActionAddNode, ActionAddColumnsData} = this.props.mapDispactchSection;
-        // [6, 6] / [4, 4, 4] ...
-        //const {columns} = this.props.mapStateToolbar;
-
-        /*columns.map((colIndex) => {
-         const childrenId = ActionCreateId().nodeId;
-         ActionAddNode(id, childrenId);
-         ActionAddColumnsData(childrenId, colIndex);
-         });*/
-        const childrenId = ActionCreateId().nodeId;
-        ActionAddNode(id, childrenId);
-        //ActionAddColumnsData(childrenId, columns);
-
-        console.log(this.props.mapStateRow);
         const {columnsIndex} = this.props.mapStateRow;
+        const {id} = this.props;
+        columnsIndex.map((col) => {
+            const childrenId = ActionCreateId().nodeId;
+            ActionAddNode(id, childrenId);
+            ActionAddColumnsData(childrenId, col);
+        });
 
-
-        columnsIndex.map((col, index) => (
-            <ColContainer
-                col={col}
-                key={`key-${col}-${index}`}
-            />
-        ))
+        /*return (<ColContainer
+            id={childrenId}
+            col={col}
+            key={`key-${col}-${index}`}
+        />);*/
     }
 
     render() {
         const {id, parentId} = this.props;
+        //console.log(id);
         // id array the current Section for generating Rows
-        //const {childrenIds} = this.props.mapStateSection;
+
+       // const {columnsIndex} = this.props.mapStateRow;
+
         return (
             <RowComponent
                 id={id}
             >
-                {this.renderColContainer(this.props.id)}
             </RowComponent>
         );
     }
