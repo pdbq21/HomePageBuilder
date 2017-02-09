@@ -51,6 +51,7 @@ const node = (state, action) => {
         case CREATE_ID:
             return {
                 id: action.nodeId,
+                parentId: action.parentId,
                 childrenIds: []
             };
         case ADD_NODE:

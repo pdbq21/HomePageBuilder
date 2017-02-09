@@ -27,21 +27,12 @@ class SectionContainer extends Component {
         // Stop default browser behavior
         // console.log('drop');
         event.preventDefault();
-        const {ActionCreateId, ActionAddNode, ActionAddColumnsData} = this.props.mapDispactchSection;
+        const {ActionCreateNode, ActionAddNode, ActionAddColumnsData} = this.props.mapDispactchSection;
         // [6, 6] / [4, 4, 4] ...
         const {columns} = this.props.mapStateToolbar;
-
-
-        const childrenId = ActionCreateId().nodeId;
+        const childrenId = ActionCreateNode(id).nodeId;
         ActionAddNode(id, childrenId);
         ActionAddColumnsData(childrenId, columns);
-
-        /**columns.map((colIndex) => {
-         const childrenId = ActionCreateId().nodeId;
-         ActionAddNode(id, childrenId);
-         ActionAddColumnsData(childrenId, colIndex);
-         });**/
-
     }
 
     handleDragOverRow(event) {

@@ -26,11 +26,11 @@ class RowContainer extends Component {
     }
 
     createColumnsChildren() {
-        const {ActionCreateId, ActionAddNode, ActionAddColumnsData} = this.props.mapDispactchSection;
+        const {ActionCreateNode, ActionAddNode, ActionAddColumnsData} = this.props.mapDispactchSection;
         const {columnsIndex} = this.props.mapStateRow;
         const {id} = this.props;
         columnsIndex.map((col) => {
-            const childrenId = ActionCreateId().nodeId;
+            const childrenId = ActionCreateNode(id).nodeId;
             ActionAddNode(id, childrenId);
             ActionAddColumnsData(childrenId, col);
         });

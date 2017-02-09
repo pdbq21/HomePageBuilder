@@ -35,9 +35,10 @@ export function ActionOnDragLeave() {
 //generate id for sections/rows/cols/elements
 // Todo: this function will create array ids sections
 let nextId = 0;
-export function ActionCreateId() {
+export function ActionCreateNode(parentId) {
     return{
         type: CREATE_ID,
+        parentId,
         nodeId: `id_${nextId++}`
     };
 }

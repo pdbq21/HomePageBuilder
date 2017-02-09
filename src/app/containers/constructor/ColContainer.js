@@ -27,10 +27,10 @@ class ColContainer extends Component {
         // Stop default browser behavior
         event.preventDefault();
 
-        const {ActionCreateId, ActionAddNode, ActionAddColumnsData} = this.props.mapDispactchSection;
+        const {ActionCreateNode, ActionAddNode} = this.props.mapDispactchSection;
         //const {columns} = this.props.mapStateToolbar;
-
-        const childrenId = ActionCreateId().nodeId;
+//parentId = this id;
+        const childrenId = ActionCreateNode(id).nodeId;
         ActionAddNode(id, childrenId);
         //ActionAddColumnsData(childrenId, columns);
     }
