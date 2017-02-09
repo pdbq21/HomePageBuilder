@@ -44,7 +44,8 @@ class RowContainer extends Component {
 
     render() {
         const {id, parentId} = this.props;
-        //console.log(id);
+        console.log(this.props);
+
         // id array the current Section for generating Rows
 
        // const {columnsIndex} = this.props.mapStateRow;
@@ -53,6 +54,7 @@ class RowContainer extends Component {
             <RowComponent
                 id={id}
             >
+
             </RowComponent>
         );
     }
