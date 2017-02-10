@@ -77,7 +77,7 @@ const deleteMany = (state, ids) => {
 //export default function ConstructorViewReducer(state = {}, action) {
 export default function (state = initialState, action) {
     const {nodeId} = action;
-console.log(state);
+//console.log(state);
     if (typeof nodeId === 'undefined') {
         return state;
     }

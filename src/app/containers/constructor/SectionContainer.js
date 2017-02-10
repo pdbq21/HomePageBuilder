@@ -70,7 +70,7 @@ class SectionContainer extends Component {
     }
 
     handelClickRemove(id) {
-        console.log('id', this.props.parentId, id);
+        //console.log('id', this.props.parentId, id);
         const {ActionRemoveChild, ActionDeleteNode} = this.props.mapDispactchSection;
         ActionRemoveChild(this.props.parentId, id);
         ActionDeleteNode(id);
