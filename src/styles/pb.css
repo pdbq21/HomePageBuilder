@@ -83,21 +83,22 @@
 }
 
 .pb-bar--horizontal {
-    width: 64px;
-    min-height: 100px;
-}
-.pb-bar--horizontal .pb-bar__menu {
-    bottom: 16px;
-}
-
-.pb-bar--vertical {
     width: 100%;
     line-height: 36px;
     padding: 8px 16px;
+
 }
-.pb-bar--vertical .pb-bar__menu {
+.pb-bar--horizontal .pb-bar__menu {
     right: 16px;
     top: 8px;
+}
+
+.pb-bar--vertical {
+    width: 64px;
+    min-height: 100px;
+}
+.pb-bar--vertical .pb-bar__menu {
+    bottom: 16px;
 }
 
 .pb-bar--text {
@@ -171,4 +172,10 @@
     padding: 16px 8px;
     margin-top: 0;
     margin-bottom: 0;
+}
+
+/* Ruslan Styles */
+/* navigation tab active*/
+.mdl-tabs__tab.is-active{
+    background-color: aquamarine;
 }

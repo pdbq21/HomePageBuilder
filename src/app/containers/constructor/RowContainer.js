@@ -8,6 +8,7 @@ import {connect} from 'react-redux'
 
 // components
 import RowComponent from '../../components/ConstructorView/RowComponent';
+import HorizontalBar from '../../components/HorizontalBar';
 //containers
 import ColContainer from './ColContainer';
 // actions
@@ -46,6 +47,11 @@ class RowContainer extends Component {
             <RowComponent
                 id={id}
             >
+                <HorizontalBar
+                    id={id}
+                    name='Row'
+                    type='row'
+                />
                 {childrenIds.map((childrenId) => (
                     <ColContainer
                         id={childrenId}

@@ -8,8 +8,10 @@ import configureStore from './app/store/configureStore';
 import './index.css';
 //import './app/styles/styles.css'
 // styles web kit
-import './webStarterKit/styles/pb.css'
-import './webStarterKit/styles/main.css'
+
+import './styles/material.css'
+import './styles/pb.css'
+import './styles/main.css'
 
 const store = configureStore();
 

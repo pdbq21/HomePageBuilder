@@ -59,6 +59,7 @@ class ToolbarTabContentContainer extends Component {
 
     renderTabContent(){
         const {activeTab} = this.props.mapStateToolbarReducer;
+
         switch (activeTab) {
             case 'Rows':
                 return <StructurePanel

@@ -16,13 +16,13 @@
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Web Starter Kit">
-    <link rel="icon" sizes="192x192" href="../src/webStarterKit/images/touch/chrome-touch-icon-192x192.png">
+    <link rel="icon" sizes="192x192" href="../src/static/images/touch/chrome-touch-icon-192x192.png">
 
     <!-- Add to homescreen for Safari on iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Web Starter Kit">
-    <link rel="apple-touch-icon" href="../src/webStarterKit/images/touch/apple-touch-icon.png">
+    <link rel="apple-touch-icon" href="../src/static/images/touch/apple-touch-icon.png">
 
     <!-- Tile icon for Win8 (144x144 + tile color) -->
     <meta name="msapplication-TileImage" content="../src/webStarterKit/images/touch/ms-touch-icon-144x144-precomposed.png">
@@ -41,33 +41,31 @@
     material.blue-orange.min.css
     material.purple-indigo.min.css
     -->
-    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
+    <!--<link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">-->
 
-    <!-- Your styles
-    <link rel="stylesheet" type="text/css" href="../src/webStarterKit/styles/main.css">
-    <link rel="stylesheet" type="text/css" href="../src/webStarterKit/styles/pb.css">
-    -->
+     <!--Your styles-->
+
     <title>Home Page Builder</title>
   </head>
   <body>
 
   <!-- Add your site or app content here -->
-  <div id="root-app" class="mdl-grid">
+  <!--<div id="root-app" class="mdl-grid">
 
-    <div class="pb-workspace mdl-cell mdl-cell--8-col">
-      <!-- Section block -->
-      <div class="mdl-card pb-card pb-card--section pb-card--active mdl-shadow--2dp">
-        <div class="pb-bar pb-bar--horizontal">
-          <button class="mdl-button mdl-button--icon">
+    <div class="pb-workspace mdl-cell mdl-cell&#45;&#45;8-col">
+      &lt;!&ndash; Section block &ndash;&gt;
+      <div class="mdl-card pb-card pb-card&#45;&#45;section pb-card&#45;&#45;active mdl-shadow&#45;&#45;2dp">
+        <div class="pb-bar pb-bar&#45;&#45;horizontal">
+          <button class="mdl-button mdl-button&#45;&#45;icon">
             <i class="material-icons">swap_vert</i>
           </button>
 
           <div class="pb-bar__menu">
-            <button id="section-menu-1" class="mdl-button mdl-js-button mdl-button--icon">
+            <button id="section-menu-1" class="mdl-button mdl-js-button mdl-button&#45;&#45;icon">
               <i class="material-icons">more_vert</i>
             </button>
 
-            <ul class="mdl-menu mdl-menu--top-left mdl-js-menu mdl-js-ripple-effect" for="section-menu-1">
+            <ul class="mdl-menu mdl-menu&#45;&#45;top-left mdl-js-menu mdl-js-ripple-effect" for="section-menu-1">
               <li class="mdl-menu__item">Copy</li>
               <li class="mdl-menu__item">Paste</li>
               <li class="mdl-menu__item" disabled>Paste as linked</li>
@@ -78,12 +76,12 @@
         </div>
 
         <div class="pb-background">
-          <!-- Row block -->
-          <div class="mdl-card pb-card pb-card--row mdl-shadow--2dp">
-            <!-- .. bar -->
-            <div class="pb-bar pb-bar--vertical">
+          &lt;!&ndash; Row block &ndash;&gt;
+          <div class="mdl-card pb-card pb-card&#45;&#45;row mdl-shadow&#45;&#45;2dp">
+            &lt;!&ndash; .. bar &ndash;&gt;
+            <div class="pb-bar pb-bar&#45;&#45;vertical">
               <div class="pb-bar__button">
-                <button class="mdl-button mdl-button--icon">
+                <button class="mdl-button mdl-button&#45;&#45;icon">
                   <i class="material-icons">swap_vert</i>
                 </button>
               </div>
@@ -91,11 +89,11 @@
               <div class="pb-bar__caption"><span>Row</span></div>
 
               <div class="pb-bar__menu">
-                <button id="row-menu-1" class="mdl-button mdl-js-button mdl-button--icon">
+                <button id="row-menu-1" class="mdl-button mdl-js-button mdl-button&#45;&#45;icon">
                   <i class="material-icons">more_vert</i>
                 </button>
 
-                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="row-menu-1">
+                <ul class="mdl-menu mdl-menu&#45;&#45;bottom-right mdl-js-menu mdl-js-ripple-effect" for="row-menu-1">
                   <li class="mdl-menu__item">Copy</li>
                   <li class="mdl-menu__item">Paste</li>
                   <li class="mdl-menu__item" disabled>Paste as linked</li>
@@ -105,15 +103,15 @@
               </div>
             </div>
 
-            <!-- .. block background -->
+            &lt;!&ndash; .. block background &ndash;&gt;
             <div class="pb-background mdl-grid">
-              <div class="mdl-cell mdl-cell--4-col">
-                <!-- Image block -->
-                <div class="mdl-card pb-card pb-card--col mdl-shadow--2dp">
-                  <!-- .. block bar -->
-                  <div class="pb-bar pb-bar--text pb-bar--vertical">
+              <div class="mdl-cell mdl-cell&#45;&#45;4-col">
+                &lt;!&ndash; Image block &ndash;&gt;
+                <div class="mdl-card pb-card pb-card&#45;&#45;col mdl-shadow&#45;&#45;2dp">
+                  &lt;!&ndash; .. block bar &ndash;&gt;
+                  <div class="pb-bar pb-bar&#45;&#45;text pb-bar&#45;&#45;vertical">
                     <div class="pb-bar__button">
-                      <button class="mdl-button mdl-button--icon">
+                      <button class="mdl-button mdl-button&#45;&#45;icon">
                         <i class="material-icons">swap_vert</i>
                       </button>
                     </div>
@@ -121,11 +119,11 @@
                     <div class="pb-bar__caption"><span>Text</span></div>
 
                     <div class="pb-bar__menu">
-                      <button id="col-menu-1" class="mdl-button mdl-js-button mdl-button--icon">
+                      <button id="col-menu-1" class="mdl-button mdl-js-button mdl-button&#45;&#45;icon">
                         <i class="material-icons">more_vert</i>
                       </button>
 
-                      <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="col-menu-1">
+                      <ul class="mdl-menu mdl-menu&#45;&#45;bottom-right mdl-js-menu mdl-js-ripple-effect" for="col-menu-1">
                         <li class="mdl-menu__item">Copy</li>
                         <li class="mdl-menu__item">Paste</li>
                         <li class="mdl-menu__item" disabled>Paste as linked</li>
@@ -135,20 +133,20 @@
                     </div>
                   </div>
 
-                  <!-- .. block background -->
-                  <div class="pb-background mdl-shadow--2dp">
+                  &lt;!&ndash; .. block background &ndash;&gt;
+                  <div class="pb-background mdl-shadow&#45;&#45;2dp">
                     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
                   </div>
                 </div>
               </div>
 
-              <div class="mdl-cell mdl-cell--4-col">
-                <!-- Image block -->
-                <div class="mdl-card pb-card mdl-shadow--2dp">
-                  <!-- .. block bar -->
-                  <div class="pb-bar pb-bar--image pb-bar--vertical">
+              <div class="mdl-cell mdl-cell&#45;&#45;4-col">
+                &lt;!&ndash; Image block &ndash;&gt;
+                <div class="mdl-card pb-card mdl-shadow&#45;&#45;2dp">
+                  &lt;!&ndash; .. block bar &ndash;&gt;
+                  <div class="pb-bar pb-bar&#45;&#45;image pb-bar&#45;&#45;vertical">
                     <div class="pb-bar__button">
-                      <button class="mdl-button mdl-button--icon">
+                      <button class="mdl-button mdl-button&#45;&#45;icon">
                         <i class="material-icons">swap_vert</i>
                       </button>
                     </div>
@@ -156,11 +154,11 @@
                     <div class="pb-bar__caption"><span>Image</span></div>
 
                     <div class="pb-bar__menu">
-                      <button id="col-menu-2" class="mdl-button mdl-js-button mdl-button--icon">
+                      <button id="col-menu-2" class="mdl-button mdl-js-button mdl-button&#45;&#45;icon">
                         <i class="material-icons">more_vert</i>
                       </button>
 
-                      <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="col-menu-2">
+                      <ul class="mdl-menu mdl-menu&#45;&#45;bottom-right mdl-js-menu mdl-js-ripple-effect" for="col-menu-2">
                         <li class="mdl-menu__item">Copy</li>
                         <li class="mdl-menu__item">Paste</li>
                         <li class="mdl-menu__item" disabled>Paste as linked</li>
@@ -170,38 +168,38 @@
                     </div>
                   </div>
 
-                  <!-- .. block background -->
-                  <div class="pb-background mdl-shadow--2dp">
+                  &lt;!&ndash; .. block background &ndash;&gt;
+                  <div class="pb-background mdl-shadow&#45;&#45;2dp">
                     <img src="../src/webStarterKit/images/icon-image-128.png" class="pb-image" alt="">
                   </div>
                 </div>
               </div>
 
-              <div class="mdl-cell mdl-cell--4-col">
-                <!--<div class="pb-area pb-area--drop pb-area--green">-->
-                <!--<span class="pb-area__caption">Drop the element here!</span>-->
-                <!--</div>-->
+              <div class="mdl-cell mdl-cell&#45;&#45;4-col">
+                &lt;!&ndash;<div class="pb-area pb-area&#45;&#45;drop pb-area&#45;&#45;green">&ndash;&gt;
+                &lt;!&ndash;<span class="pb-area__caption">Drop the element here!</span>&ndash;&gt;
+                &lt;!&ndash;</div>&ndash;&gt;
               </div>
             </div>
           </div>
 
-          <!-- Drop area for the row -->
-          <div class="pb-area pb-area--drop pb-area--green">
+          &lt;!&ndash; Drop area for the row &ndash;&gt;
+          <div class="pb-area pb-area&#45;&#45;drop pb-area&#45;&#45;green">
             <span class="pb-area__caption">Drop the row here!</span>
           </div>
         </div>
       </div>
 
-      <div class="pb-area pb-area--add">
-        <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+      <div class="pb-area pb-area&#45;&#45;add">
+        <button class="mdl-button mdl-button&#45;&#45;colored mdl-js-button mdl-js-ripple-effect">
           + Add section
         </button>
       </div>
     </div>
 
 
-    <!-- toolbar -->
-    <div class="pb-toolbox mdl-cell mdl-cell--4-col">
+    &lt;!&ndash; toolbar &ndash;&gt;
+    <div class="pb-toolbox mdl-cell mdl-cell&#45;&#45;4-col">
       <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
         <div class="mdl-tabs__tab-bar">
           <a href="#content-panel" class="mdl-tabs__tab is-active">Elements</a>
@@ -212,9 +210,9 @@
 
         <div class="mdl-tabs__panel is-active" id="content-panel">
           <div class="mdl-grid">
-            <div class="mdl-cell mdl-cell--6-col">
-              <div class="mdl-card pb-card pb-card--grab mdl-shadow--2dp">
-                <div class="mdl-card__title mdl-card--expand">
+            <div class="mdl-cell mdl-cell&#45;&#45;6-col">
+              <div class="mdl-card pb-card pb-card&#45;&#45;grab mdl-shadow&#45;&#45;2dp">
+                <div class="mdl-card__title mdl-card&#45;&#45;expand">
                   <h2 class="mdl-card__title-text">Text</h2>
                   <div class="mdl-layout-spacer"></div>
                   <i class="material-icons">title</i>
@@ -222,9 +220,9 @@
               </div>
             </div>
 
-            <div class="mdl-cell mdl-cell--6-col">
-              <div class="mdl-card pb-card pb-card--grab mdl-shadow--2dp">
-                <div class="mdl-card__title mdl-card--expand">
+            <div class="mdl-cell mdl-cell&#45;&#45;6-col">
+              <div class="mdl-card pb-card pb-card&#45;&#45;grab mdl-shadow&#45;&#45;2dp">
+                <div class="mdl-card__title mdl-card&#45;&#45;expand">
                   <h2 class="mdl-card__title-text">Image</h2>
                   <div class="mdl-layout-spacer"></div>
                   <i class="material-icons">image</i>
@@ -232,9 +230,9 @@
               </div>
             </div>
 
-            <div class="mdl-cell mdl-cell--6-col">
-              <div class="mdl-card pb-card pb-card--grab mdl-shadow--2dp">
-                <div class="mdl-card__title mdl-card--expand">
+            <div class="mdl-cell mdl-cell&#45;&#45;6-col">
+              <div class="mdl-card pb-card pb-card&#45;&#45;grab mdl-shadow&#45;&#45;2dp">
+                <div class="mdl-card__title mdl-card&#45;&#45;expand">
                   <h2 class="mdl-card__title-text">Button</h2>
                   <div class="mdl-layout-spacer"></div>
                   <i class="material-icons">add_circle</i>
@@ -242,9 +240,9 @@
               </div>
             </div>
 
-            <div class="mdl-cell mdl-cell--6-col">
-              <div class="mdl-card pb-card pb-card--grab mdl-shadow--2dp">
-                <div class="mdl-card__title mdl-card--expand">
+            <div class="mdl-cell mdl-cell&#45;&#45;6-col">
+              <div class="mdl-card pb-card pb-card&#45;&#45;grab mdl-shadow&#45;&#45;2dp">
+                <div class="mdl-card__title mdl-card&#45;&#45;expand">
                   <h2 class="mdl-card__title-text">Divider</h2>
                   <div class="mdl-layout-spacer"></div>
                   <i class="material-icons">settings_ethernet</i>
@@ -252,9 +250,9 @@
               </div>
             </div>
 
-            <div class="mdl-cell mdl-cell--6-col">
-              <div class="mdl-card pb-card pb-card--grab mdl-shadow--2dp">
-                <div class="mdl-card__title mdl-card--expand">
+            <div class="mdl-cell mdl-cell&#45;&#45;6-col">
+              <div class="mdl-card pb-card pb-card&#45;&#45;grab mdl-shadow&#45;&#45;2dp">
+                <div class="mdl-card__title mdl-card&#45;&#45;expand">
                   <h2 class="mdl-card__title-text">Title</h2>
                   <div class="mdl-layout-spacer"></div>
                   <i class="material-icons">font_download</i>
@@ -265,38 +263,38 @@
         </div>
 
         <div class="mdl-tabs__panel" id="structure-panel">
-          <ul class="mdl-list pb-list--panel pb-list--no-spacing">
-            <li class="mdl-card pb-card pb-card--grab mdl-shadow--2dp">
-              <div class="mdl-grid pb-grid--sketch">
-                <div class="mdl-cell mdl-cell--12-col">12</div>
+          <ul class="mdl-list pb-list&#45;&#45;panel pb-list&#45;&#45;no-spacing">
+            <li class="mdl-card pb-card pb-card&#45;&#45;grab mdl-shadow&#45;&#45;2dp">
+              <div class="mdl-grid pb-grid&#45;&#45;sketch">
+                <div class="mdl-cell mdl-cell&#45;&#45;12-col">12</div>
               </div>
             </li>
-            <li class="mdl-card pb-card pb-card--grab mdl-shadow--2dp">
-              <div class="mdl-grid pb-grid--sketch">
-                <div class="mdl-cell mdl-cell--6-col">6</div>
-                <div class="mdl-cell mdl-cell--6-col">6</div>
+            <li class="mdl-card pb-card pb-card&#45;&#45;grab mdl-shadow&#45;&#45;2dp">
+              <div class="mdl-grid pb-grid&#45;&#45;sketch">
+                <div class="mdl-cell mdl-cell&#45;&#45;6-col">6</div>
+                <div class="mdl-cell mdl-cell&#45;&#45;6-col">6</div>
               </div>
             </li>
-            <li class="mdl-card pb-card pb-card--grab mdl-shadow--2dp">
-              <div class="mdl-grid pb-grid--sketch">
-                <div class="mdl-cell mdl-cell--4-col">4</div>
-                <div class="mdl-cell mdl-cell--4-col">4</div>
-                <div class="mdl-cell mdl-cell--4-col">4</div>
+            <li class="mdl-card pb-card pb-card&#45;&#45;grab mdl-shadow&#45;&#45;2dp">
+              <div class="mdl-grid pb-grid&#45;&#45;sketch">
+                <div class="mdl-cell mdl-cell&#45;&#45;4-col">4</div>
+                <div class="mdl-cell mdl-cell&#45;&#45;4-col">4</div>
+                <div class="mdl-cell mdl-cell&#45;&#45;4-col">4</div>
               </div>
             </li>
-            <li class="mdl-card pb-card pb-card--grab mdl-shadow--2dp">
-              <div class="mdl-grid pb-grid--sketch">
-                <div class="mdl-cell mdl-cell--3-col">3</div>
-                <div class="mdl-cell mdl-cell--6-col">6</div>
-                <div class="mdl-cell mdl-cell--3-col">3</div>
+            <li class="mdl-card pb-card pb-card&#45;&#45;grab mdl-shadow&#45;&#45;2dp">
+              <div class="mdl-grid pb-grid&#45;&#45;sketch">
+                <div class="mdl-cell mdl-cell&#45;&#45;3-col">3</div>
+                <div class="mdl-cell mdl-cell&#45;&#45;6-col">6</div>
+                <div class="mdl-cell mdl-cell&#45;&#45;3-col">3</div>
               </div>
             </li>
-            <li class="mdl-card pb-card pb-card--grab mdl-shadow--2dp">
-              <div class="mdl-grid pb-grid--sketch">
-                <div class="mdl-cell mdl-cell--3-col">3</div>
-                <div class="mdl-cell mdl-cell--3-col">3</div>
-                <div class="mdl-cell mdl-cell--3-col">3</div>
-                <div class="mdl-cell mdl-cell--3-col">3</div>
+            <li class="mdl-card pb-card pb-card&#45;&#45;grab mdl-shadow&#45;&#45;2dp">
+              <div class="mdl-grid pb-grid&#45;&#45;sketch">
+                <div class="mdl-cell mdl-cell&#45;&#45;3-col">3</div>
+                <div class="mdl-cell mdl-cell&#45;&#45;3-col">3</div>
+                <div class="mdl-cell mdl-cell&#45;&#45;3-col">3</div>
+                <div class="mdl-cell mdl-cell&#45;&#45;3-col">3</div>
               </div>
             </li>
           </ul>
@@ -310,14 +308,14 @@
         </div>
 
         <div class="mdl-tabs__panel" id="edit-panel">
-                <span class="mdl-chip mdl-chip--contact">
-                    <span class="mdl-chip__contact mdl-color--red mdl-color-text--white">!</span>
+                <span class="mdl-chip mdl-chip&#45;&#45;contact">
+                    <span class="mdl-chip__contact mdl-color&#45;&#45;red mdl-color-text&#45;&#45;white">!</span>
                     <span class="mdl-chip__text"><strong>Note: </strong>Select component to be able to edit it's properties.</span>
                 </span>
         </div>
       </div>
     </div>
-  </div>
+  </div>-->
 
   <div id="root-app-pb"></div><!--
   <script src="https://code.getmdl.io/1.2.1/material.min.js"></script>-->

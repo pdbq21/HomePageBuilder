@@ -9,6 +9,7 @@ import {connect} from 'react-redux'
 // components
 import ColComponent from '../../components/ConstructorView/ColComponent';
 import ElementComponent from '../../components/ConstructorView/ElementComponent';
+import HorizontalBar from '../../components/HorizontalBar';
 //containers
 
 // actions
@@ -67,7 +68,13 @@ console.log('drop');
                         parentId={id}
                         key={`key-${childrenId}`}
                         type={this.props.mapState[childrenId].elementType}
-                    />
+                    >
+                        <HorizontalBar
+                            id={childrenId}
+                            name={this.props.mapState[childrenId].elementType}
+                            type="col"
+                        />
+                    </ElementComponent>
                 ))}
             </ColComponent>
         );

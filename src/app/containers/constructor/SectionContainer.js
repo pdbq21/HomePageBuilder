@@ -8,6 +8,7 @@ import {connect} from 'react-redux'
 
 // components
 import SectionComponent from '../../components/ConstructorView/SectionComponent';
+import VerticalBar from '../../components/VerticalBar';
 //containers
 import RowContainer from './RowContainer'
 // actions
@@ -30,9 +31,13 @@ class SectionContainer extends Component {
         const {ActionCreateNode, ActionAddNode, ActionAddColumnsData} = this.props.mapDispactchSection;
         // [6, 6] / [4, 4, 4] ...
         const {columns} = this.props.mapStateToolbar;
-        const childrenId = ActionCreateNode(id).nodeId;
-        ActionAddNode(id, childrenId);
-        ActionAddColumnsData(childrenId, columns);
+        // if drop Element columns.length = 0;
+        if (columns.length){
+            const childrenId = ActionCreateNode(id).nodeId;
+            ActionAddNode(id, childrenId);
+            ActionAddColumnsData(childrenId, columns);
+        }
+
     }
 
     handleDragOverRow(event) {
@@ -61,6 +66,10 @@ class SectionContainer extends Component {
                 handleDragOver={this.handleDragOverRow}
                 id={id}
             >
+                <VerticalBar
+                    id={id}
+                    type='section'
+                />
                 {childrenIds.map((childrenId) => (
                     <RowContainer
                         id={childrenId}

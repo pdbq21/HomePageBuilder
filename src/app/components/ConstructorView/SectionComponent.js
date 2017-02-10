@@ -5,38 +5,16 @@ import React from 'react'
 
 export default function SectionComponent(props) {
     const { id, classNameActiveAddSection, handelDrop, handleDragOver, children } = props;
-    //console.log('SectionComponent',props);
+    console.log('SectionComponent',children[0]);
 // todo: add drop-down menu with opening menu up or down
     return (
-        <div className="mdl-card pb-card pb-card--section  mdl-shadow--2dp"
-
-        >{/*pb-card--active*/}
-            <div className="pb-bar pb-bar--horizontal">
-                <button className="mdl-button mdl-button--icon">
-                    <i className="material-icons">swap_vert</i>
-                </button>
-
-                <div className="pb-bar__menu">
-                    <button id={`section-menu-${id}`} className="mdl-button mdl-js-button mdl-button--icon">
-                        <i className="material-icons">more_vert</i>
-                    </button>
-
-                    <ul className="mdl-menu mdl-menu--top-left mdl-js-menu mdl-js-ripple-effect"
-                        htmlFor={`section-menu-${id}`}
-                    >
-                        <li className="mdl-menu__item">Copy</li>
-                        <li className="mdl-menu__item">Paste</li>
-                        <li className="mdl-menu__item" disabled>Paste as linked</li>
-                        <li className="mdl-menu__item">Cut</li>
-                        <li className="mdl-menu__item">Remove</li>
-                    </ul>
-                </div>
-            </div>
-
+        <div className="mdl-card pb-card pb-card--section  mdl-shadow--2dp">
+            {/* vertical bar*/}
+            {children[0]}
 
             <div className="pb-background">
                 {/*<!-- Row block -->*/}
-                {children}
+                {children[1]}
                 {/* <!-- Drop area for the row -->*/}
                 <div
                     className={`pb-area pb-area--drop ${classNameActiveAddSection}`}

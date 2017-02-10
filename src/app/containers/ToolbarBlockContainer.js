@@ -26,7 +26,7 @@ class ToolbarBlockContainer extends Component {
         const {ActionSelectNavigation} = this.props.mapDispactchToolbar;
         //console.log(event.target.parentNode.textContent);
         // Rows / Elements / Templates / Edit
-        ActionSelectNavigation(event.target.parentNode.textContent);
+        ActionSelectNavigation(event.target.textContent);
     }
 
     render() {
