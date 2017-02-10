@@ -46,7 +46,7 @@ class ToolbarTabContentContainer extends Component {
 
     handelDragStartContent(event) {
         // Text / Image / Button ...
-        console.log(event.target.getAttribute('data-elementType'));
+        //console.log(event.target.getAttribute('data-elementType'));
         const dataAttr = event.target.getAttribute('data-elementType');
         const {ActionOnDragStart} = this.props.mapDispactchToolbar;
         ActionOnDragStart(dataAttr, 'data-elementType');

@@ -181,3 +181,21 @@
 .mdl-tabs__tab.is-active{
     background-color: aquamarine;
 }
+.pb-bar--vertical-menu{
+    margin-left: 2em;
+    position: absolute;
+    /* margin-bottom: -2em; */
+    visibility: hidden;
+    bottom: 0;
+}
+.pb-bar--vertical-menu ul{
+    background-color: black;
+    list-style-type: none;
+    padding: 0 1em;
+}
+.pb-bar--vertical-menu ul li{
+    cursor: pointer;
+}
+.pb-bar--vertical-menu.is-active{
+    visibility: visible;
+}

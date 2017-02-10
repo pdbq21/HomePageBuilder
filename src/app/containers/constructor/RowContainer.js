@@ -31,7 +31,7 @@ class RowContainer extends Component {
         const {columnsIndex} = this.props.mapStateRow;
         const {id} = this.props;
 
-        columnsIndex.map((col) => {
+        columnsIndex.forEach((col) => {
             const childrenId = ActionCreateNode(id).nodeId;
             ActionAddNode(id, childrenId);
             ActionAddColumnsData(childrenId, col);

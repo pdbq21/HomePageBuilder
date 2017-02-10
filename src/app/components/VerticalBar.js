@@ -4,26 +4,35 @@
 import React from 'react'
 
 export default function VerticalBar(props) {
-    const {id, type} = props;
+    const {id, type, handelClickBarMenu, classActiveMenu, handelClickRemove, handelBlurBarMenu} = props;
     return(<div className="pb-bar pb-bar--vertical">
         <button className="mdl-button mdl-button--icon">
             <i className="material-icons">swap_vert</i>
         </button>
 
         <div className="pb-bar__menu">
-            <button id={`${type}-menu-${id}`} className="mdl-button mdl-js-button mdl-button--icon">
+            <button
+                id={`${type}-menu-${id}`}
+                className="mdl-button mdl-js-button mdl-button--icon"
+                onClick={() => handelClickBarMenu(id)}
+                onBlur={() => handelBlurBarMenu(id)}
+            >
                 <i className="material-icons">more_vert</i>
             </button>
+<div className={`pb-bar--vertical-menu ${classActiveMenu}`}>
+    <ul className=""
 
-            <ul className="mdl-menu mdl-menu--top-left mdl-js-menu mdl-js-ripple-effect"
-                htmlFor={`section-menu-${id}`}
-            >
-                <li className="mdl-menu__item">Copy</li>
-                <li className="mdl-menu__item">Paste</li>
-                <li className="mdl-menu__item" disabled>Paste as linked</li>
-                <li className="mdl-menu__item">Cut</li>
-                <li className="mdl-menu__item">Remove</li>
-            </ul>
+    >
+        <li
+            className=""
+            onClick={() => handelClickRemove(id)}
+
+        >
+            Remove
+        </li>
+    </ul>
+</div>
+
         </div>
     </div>);
 }

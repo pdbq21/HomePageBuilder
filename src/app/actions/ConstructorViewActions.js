@@ -3,7 +3,8 @@
  */
 //CONSTANTS
 import {
-    ON_DRAG_ENTER, ON_DROP_SECTION, ON_DRAG_OVER, ON_DRAG_LEAVE, CREATE_ID, ADD_NODE, ADD_COLUMNS_DATA, ADD_ELEMENT_TYPE
+    ON_DRAG_ENTER, ON_DROP_SECTION, ON_DRAG_OVER, ON_DRAG_LEAVE, CREATE_ID, ADD_NODE, ADD_COLUMNS_DATA, ADD_ELEMENT_TYPE,
+    TOGGLE_VERTICAL_BAR_MENU, REMOVE_CHILD, DELETE_NODE, TOGGLE_VERTICAL_BAR_MENU_BLUR
 } from '../constants/ConstructorViewConstants'
 
 export function ActionOnDropSection(id, name) {
@@ -63,6 +64,32 @@ export function ActionAddElementType(nodeId, elementType) {
         type: ADD_ELEMENT_TYPE,
         nodeId,
         elementType
+    };
+}
+
+export function ActionToggleVerticalBarMenu(nodeId) {
+    return{
+        type: TOGGLE_VERTICAL_BAR_MENU,
+        nodeId
+    };
+}
+export function ActionToggleVerticalBarMenuBlur(nodeId) {
+    return{
+        type: TOGGLE_VERTICAL_BAR_MENU_BLUR,
+        nodeId
+    };
+}
+export function ActionRemoveChild(nodeId, childId) {
+    return{
+        type: REMOVE_CHILD,
+        nodeId,
+        childId
+    };
+}
+export function ActionDeleteNode(nodeId) {
+    return{
+        type: DELETE_NODE,
+        nodeId
     };
 }
 

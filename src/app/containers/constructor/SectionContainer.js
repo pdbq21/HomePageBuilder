@@ -22,6 +22,10 @@ class SectionContainer extends Component {
         this.handelDropRow = this.handelDropRow.bind(this);
         this.handleDragLeave = this.handleDragLeave.bind(this);
         this.handleDragOverRow = this.handleDragOverRow.bind(this);
+
+        this.handelClickBarMenu = this.handelClickBarMenu.bind(this);
+        this.handelBlurBarMenu = this.handelBlurBarMenu.bind(this);
+        this.handelClickRemove = this.handelClickRemove.bind(this);
     }
 
     handelDropRow(event, id) {
@@ -32,7 +36,7 @@ class SectionContainer extends Component {
         // [6, 6] / [4, 4, 4] ...
         const {columns} = this.props.mapStateToolbar;
         // if drop Element columns.length = 0;
-        if (columns.length){
+        if (columns.length) {
             const childrenId = ActionCreateNode(id).nodeId;
             ActionAddNode(id, childrenId);
             ActionAddColumnsData(childrenId, columns);
@@ -52,13 +56,33 @@ class SectionContainer extends Component {
         event.preventDefault();
     }
 
+    handelBlurBarMenu(id) {
+        const {ActionToggleVerticalBarMenuBlur} = this.props.mapDispactchSection;
+        //Todo: need change this logic
+        setTimeout(function () {
+            ActionToggleVerticalBarMenuBlur(id);
+        }, 200);
+    }
+
+    handelClickBarMenu(id) {
+        const {ActionToggleVerticalBarMenu} = this.props.mapDispactchSection;
+        ActionToggleVerticalBarMenu(id);
+    }
+
+    handelClickRemove(id) {
+        console.log('id', this.props.parentId, id);
+        const {ActionRemoveChild, ActionDeleteNode} = this.props.mapDispactchSection;
+        ActionRemoveChild(this.props.parentId, id);
+        ActionDeleteNode(id);
+    }
+
     render() {
         const {isActiveDragStructure} = this.props.mapStateToolbar;
         //Todo: use this parentId for delete function
-        const {id, parentId} = this.props;
+        const {id} = this.props;
         // id array the current Section for generating Rows
-        const {childrenIds} = this.props.mapStateSection;
-       // console.log(this.props.mapStateSection);
+        const {childrenIds, isActiveMenu} = this.props.mapStateSection;
+        // console.log(this.props.mapStateSection);
         return (
             <SectionComponent
                 classNameActiveAddSection={(isActiveDragStructure) ? 'pb-area--green' : 'pb-area--gray'}
@@ -69,6 +93,10 @@ class SectionContainer extends Component {
                 <VerticalBar
                     id={id}
                     type='section'
+                    handelClickBarMenu={this.handelClickBarMenu}
+                    handelBlurBarMenu={this.handelBlurBarMenu}
+                    handelClickRemove={this.handelClickRemove}
+                    classActiveMenu={(isActiveMenu) ? 'is-active' : ''}
                 />
                 {childrenIds.map((childrenId) => (
                     <RowContainer
