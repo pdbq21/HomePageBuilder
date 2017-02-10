@@ -6,6 +6,8 @@
 .pb-toolbox {
     background-color: #F5F5F5;
     height: 95vh;
+    position: fixed;
+    right: 0;
 }
 
 /* List */

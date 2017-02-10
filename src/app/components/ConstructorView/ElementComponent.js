@@ -2,7 +2,7 @@
  * Created by ruslan on 09.02.17.
  */
 import React from 'react'
-
+import img from '../../../static/images/icon-image-128.png'; // Tell Webpack this JS file uses this image
 
 export default function ElementComponent(props) {
 
@@ -16,7 +16,7 @@ export default function ElementComponent(props) {
                     industry's standard dummy text ever since the 1500s</p>;
             break;
         case 'Image':
-            element = <img src="images/noimage.png" className="pb-image" alt=""/>;
+            element = <img src={img} className="pb-image" alt=""/>;
             break;
         case 'Button':
             element = <button className="mdl-button mdl-js-button mdl-button--raised">
