@@ -74,22 +74,14 @@ const node = (state, action) => {
                 isActiveMove: false
             });
         case ON_DRAG_ENTER_DROP_AREA:
-            if (state.isActiveMove) {
                 return Object.assign({}, state, {
                     isActiveDropArea: true
                 });
-            } else {
-                return state;
-            }
 
         case ON_DRAG_LEAVE_DROP_AREA:
-            if (state.isActiveMove) {
                 return Object.assign({}, state, {
                     isActiveDropArea: false
                 });
-            } else {
-                return state;
-            }
 
         default:
             return state
