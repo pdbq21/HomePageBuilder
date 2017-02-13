@@ -47,7 +47,6 @@ class ConstructorViewContainer extends Component {
 
     handleDragEnd(event, id){
         event.preventDefault();
-        console.log('drag end', id);
         const {ActionMoveEnd} = this.props.mapDispactchConstructorView;
         ActionMoveEnd(id);
     }
@@ -56,9 +55,8 @@ class ConstructorViewContainer extends Component {
         // Stop default browser behavior
 
         event.preventDefault();
-console.log('drop', id);
-        /*const {ActionMoveEnd} = this.props.mapDispactchConstructorView;
-        ActionMoveEnd(id);*/
+        const {ActionDragLeaveDropArea} = this.props.mapDispactchConstructorView;
+         ActionDragLeaveDropArea(id);
 
     }
 
@@ -72,7 +70,6 @@ console.log('drop', id);
     handleDragLeave(event, id) {
         // Stop default browser behavior
         event.preventDefault();
-        console.log('leave');
         const {ActionDragLeaveDropArea} = this.props.mapDispactchConstructorView;
         --this.enterCounter;
         if (this.enterCounter === 0) {
@@ -82,7 +79,6 @@ console.log('drop', id);
     handleDragEnter(event, id) {
         // Stop default browser behavior
         event.preventDefault();
-        console.log('enter', this.enterCounter);
         //++
         ++this.enterCounter;
         const {ActionDragEnterDropArea} = this.props.mapDispactchConstructorView;

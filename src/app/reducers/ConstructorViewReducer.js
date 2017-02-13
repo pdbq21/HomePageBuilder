@@ -37,7 +37,7 @@ const node = (state, action) => {
                 childrenIds: [],
                 isActiveMenu: false,
                 isActiveMove: false,
-                isActiveDropArea: false
+                isActiveDropArea: false,
             };
         case ADD_NODE:
         case REMOVE_CHILD:
@@ -74,14 +74,22 @@ const node = (state, action) => {
                 isActiveMove: false
             });
         case ON_DRAG_ENTER_DROP_AREA:
-            return Object.assign({}, state, {
-                isActiveDropArea: true
-            });
-        case ON_DRAG_LEAVE_DROP_AREA:
-            return Object.assign({}, state, {
-                isActiveDropArea: false
-            });
+            if (state.isActiveMove) {
+                return Object.assign({}, state, {
+                    isActiveDropArea: true
+                });
+            } else {
+                return state;
+            }
 
+        case ON_DRAG_LEAVE_DROP_AREA:
+            if (state.isActiveMove) {
+                return Object.assign({}, state, {
+                    isActiveDropArea: false
+                });
+            } else {
+                return state;
+            }
 
         default:
             return state
@@ -111,6 +119,7 @@ export default function (state = initialState, action) {
         const descendantIds = getAllDescendantIds(state, nodeId);
         return deleteMany(state, [nodeId, ...descendantIds])
     }
+
     return Object.assign({}, state, {
         [nodeId]: node(state[nodeId], action)
     })

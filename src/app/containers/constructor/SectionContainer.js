@@ -55,7 +55,7 @@ class SectionContainer extends Component {
 
     render() {
         const {isActiveDragStructure} = this.props.mapStateToolbar;
-        //Todo: use this parentId for delete function
+
         const {id, parentId} = this.props;
         // id array the current Section for generating Rows
         const {childrenIds, isActiveMove} = this.props.mapStateSection;
