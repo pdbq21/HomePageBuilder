@@ -57,7 +57,7 @@ class SectionContainer extends Component {
         //Todo: use this parentId for delete function
         const {id, parentId} = this.props;
         // id array the current Section for generating Rows
-        const {childrenIds, isActiveMenu} = this.props.mapStateSection;
+        const {childrenIds} = this.props.mapStateSection;
         // console.log(this.props.mapStateSection);
         return (
             <SectionComponent
@@ -69,7 +69,6 @@ class SectionContainer extends Component {
                 <BarMenuContainer
                     id={id}
                     type='section'
-                    classActiveMenu={(isActiveMenu) ? 'is-active' : ''}
                     positionMenu={false}
                     parentId={parentId}
                 />

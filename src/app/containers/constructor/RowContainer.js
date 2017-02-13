@@ -42,13 +42,13 @@ class RowContainer extends Component {
         const {id, parentId} = this.props;
         //console.log(this.props);
         // id array the current Section for generating Rows
-        const {childrenIds, isActiveMenu} = this.props.mapStateRow;
+        const {childrenIds} = this.props.mapStateRow;
+        //console.log(isActiveMenu);
         return (
             <RowComponent
                 id={id}
             >
                 <BarMenuContainer
-                    classActiveMenu={(isActiveMenu) ? 'is-active' : ''}
                     positionMenu={true}
                     id={id}
                     name='Row'

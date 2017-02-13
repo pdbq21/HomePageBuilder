@@ -44,13 +44,14 @@ class BarMenuContainer extends Component {
     }
 
     render() {
-        const {id, classActiveMenu, positionMenu, name, type} = this.props;
+        const {id, positionMenu, name, type} = this.props;
+        const {isActiveMenu} = this.props.mapStateBarMenu;
         return (
             <BarMenuComponent
                 handelClickBarMenu={this.handelClickBarMenu}
                 handelBlurBarMenu={this.handelBlurBarMenu}
                 handelClickRemove={this.handelClickRemove}
-                classActiveMenu={classActiveMenu}
+                classActiveMenu={(isActiveMenu) ? 'is-active' : ''}
                 positionMenu={positionMenu}
                 id={id}
                 name={name}
@@ -62,7 +63,9 @@ class BarMenuContainer extends Component {
 
 function mapStateToProps(state, ownProps) {
     //console.log('state SectionContainer:', state, 'ownProps SectionContainer:', ownProps);
-    return state;
+    return {
+        mapStateBarMenu: state.ConstructorViewReducer[ownProps.id]
+    };
 }
 
 function mapDispatchToProps(dispatch) {

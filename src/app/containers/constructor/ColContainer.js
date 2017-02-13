@@ -50,10 +50,10 @@ class ColContainer extends Component {
 
     render() {
         // todo: const {id, parentId} = this.props; for delete function
-        const {id, parentId} = this.props;
-        const {columnsIndex, childrenIds, isActiveMenu} = this.props.mapStateCol;
+        const {id} = this.props;
+        const {columnsIndex, childrenIds} = this.props.mapStateCol;
         const {isActiveDragElement} = this.props.mapStateToolbar;
-        //console.log(this.props.mapStateCol);
+
         return (
             <ColComponent
                 classNameActiveAddElement={(isActiveDragElement) ? 'pb-area--green' : 'pb-area--gray'}
@@ -70,12 +70,11 @@ class ColContainer extends Component {
                         type={this.props.mapState[childrenId].elementType}
                     >
                         <BarMenuContainer
-                            classActiveMenu={(isActiveMenu) ? 'is-active' : ''}
                             positionMenu={true}
                             id={childrenId}
                             name={this.props.mapState[childrenId].elementType}
                             type="col"
-                            parentId={parentId}
+                            parentId={id}
                         />
                     </ElementComponent>
                 ))}

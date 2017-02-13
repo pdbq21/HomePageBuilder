@@ -3,7 +3,7 @@
  */
 import React from 'react'
 
-export default function VerticalBar(props) {
+export default function BarMenuComponent(props) {
     const {id, type, handelClickBarMenu, classActiveMenu, handelClickRemove,
         handelBlurBarMenu, positionMenu} = props;
     return (<div className={`pb-bar pb-bar--${(positionMenu)? 'horizontal' : 'vertical'}`}>
@@ -25,7 +25,11 @@ export default function VerticalBar(props) {
             >
                 <i className="material-icons">more_vert</i>
             </button>
-            <div className={`pb-bar--vertical-menu ${classActiveMenu}`}>
+            <div
+                className={`pb-bar--vertical-menu ${classActiveMenu}`}
+                /*Todo: fix this style */
+                style={(positionMenu)? {'marginLeft': '-5em'} : {}}
+            >
                 <ul className=""
 
                 >
