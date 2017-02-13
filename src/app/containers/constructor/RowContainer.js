@@ -8,11 +8,10 @@ import {connect} from 'react-redux'
 
 // components
 import RowComponent from '../../components/ConstructorView/RowComponent';
-import BarMenu from '../../components/BarMenu';
 //containers
 import ColContainer from './ColContainer';
+import BarMenuContainer from '../BarMenuContainer';
 // actions
-//import * as testActions from '../actions/TestActions'
 import * as actionsConstructorView from '../../actions/ConstructorViewActions'
 
 // Application
@@ -20,9 +19,6 @@ class RowContainer extends Component {
     constructor(props) {
         super(props);
         this.createColumnsChildren = this.createColumnsChildren.bind(this);
-        this.handelBlurBarMenu = this.handelBlurBarMenu.bind(this);
-        this.handelClickBarMenu = this.handelClickBarMenu.bind(this);
-        this.handelClickRemove = this.handelClickRemove.bind(this);
     }
 
     componentWillMount() {
@@ -41,28 +37,9 @@ class RowContainer extends Component {
         });
     }
 
-    handelBlurBarMenu(id) {
-        const {ActionToggleVerticalBarMenuBlur} = this.props.mapDispactchSection;
-        //Todo: need change this logic
-        setTimeout(function () {
-            ActionToggleVerticalBarMenuBlur(id);
-        }, 200);
-    }
-
-    handelClickBarMenu(id) {
-        const {ActionToggleVerticalBarMenu} = this.props.mapDispactchSection;
-        ActionToggleVerticalBarMenu(id);
-    }
-
-    handelClickRemove(id) {
-        //console.log('id', this.props.parentId, id);
-        const {ActionRemoveChild, ActionDeleteNode} = this.props.mapDispactchSection;
-        ActionRemoveChild(this.props.parentId, id);
-        ActionDeleteNode(id);
-    }
 
     render() {
-        const {id} = this.props;
+        const {id, parentId} = this.props;
         //console.log(this.props);
         // id array the current Section for generating Rows
         const {childrenIds, isActiveMenu} = this.props.mapStateRow;
@@ -70,15 +47,13 @@ class RowContainer extends Component {
             <RowComponent
                 id={id}
             >
-                <BarMenu
-                    handelClickBarMenu={this.handelClickBarMenu}
-                    handelBlurBarMenu={this.handelBlurBarMenu}
-                    handelClickRemove={this.handelClickRemove}
+                <BarMenuContainer
                     classActiveMenu={(isActiveMenu) ? 'is-active' : ''}
                     positionMenu={true}
                     id={id}
                     name='Row'
                     type='row'
+                    parentId={parentId}
                 />
                 {childrenIds.map((childrenId) => (
                     <ColContainer

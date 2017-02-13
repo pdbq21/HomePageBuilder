@@ -3,8 +3,8 @@
  */
 // import constants from '../constants'
 import {
-    ADD_NODE, CREATE_ID, ADD_COLUMNS_DATA, ADD_ELEMENT_TYPE, TOGGLE_VERTICAL_BAR_MENU, REMOVE_CHILD,
-    TOGGLE_VERTICAL_BAR_MENU_BLUR, DELETE_NODE
+    ADD_NODE, CREATE_ID, ADD_COLUMNS_DATA, ADD_ELEMENT_TYPE, TOGGLE_BAR_MENU, REMOVE_CHILD,
+    TOGGLE_BAR_MENU_BLUR, DELETE_NODE
 } from '../constants/ConstructorViewConstants'
 // default data state
 const initialState = {
@@ -49,11 +49,11 @@ const node = (state, action) => {
             return Object.assign({}, state, {
                 elementType: action.elementType
             });
-        case TOGGLE_VERTICAL_BAR_MENU:
+        case TOGGLE_BAR_MENU:
             return Object.assign({}, state, {
                 isActiveMenu: !state.isActiveMenu
             });
-        case TOGGLE_VERTICAL_BAR_MENU_BLUR:
+        case TOGGLE_BAR_MENU_BLUR:
             if (typeof state === 'undefined') {
                 return state;
             } else{

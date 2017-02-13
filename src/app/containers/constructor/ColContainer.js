@@ -9,8 +9,8 @@ import {connect} from 'react-redux'
 // components
 import ColComponent from '../../components/ConstructorView/ColComponent';
 import ElementComponent from '../../components/ConstructorView/ElementComponent';
-import BarMenu from '../../components/BarMenu';
 //containers
+import BarMenuContainer from '../BarMenuContainer';
 
 // actions
 //import * as testActions from '../actions/TestActions'
@@ -28,11 +28,11 @@ class ColContainer extends Component {
     handelDropElement(event, id) {
         // Stop default browser behavior
         event.preventDefault();
-console.log('drop');
-        const {ActionCreateNode, ActionAddNode, ActionAddElementType} = this.props.mapDispactchSection;
+        console.log('drop');
+        const {ActionCreateNode, ActionAddNode, ActionAddElementType} = this.props.mapDispactchCol;
         const {elementType} = this.props.mapStateToolbar;
 
-        if (elementType !== ''){
+        if (elementType !== '') {
             const childrenId = ActionCreateNode(id).nodeId;
             ActionAddNode(id, childrenId);
             ActionAddElementType(childrenId, elementType);
@@ -50,7 +50,7 @@ console.log('drop');
 
     render() {
         // todo: const {id, parentId} = this.props; for delete function
-        const {id} = this.props;
+        const {id, parentId} = this.props;
         const {columnsIndex, childrenIds, isActiveMenu} = this.props.mapStateCol;
         const {isActiveDragElement} = this.props.mapStateToolbar;
         //console.log(this.props.mapStateCol);
@@ -69,15 +69,13 @@ console.log('drop');
                         key={`key-${childrenId}`}
                         type={this.props.mapState[childrenId].elementType}
                     >
-                        <BarMenu
-                            handelClickBarMenu={this.handelClickBarMenu}
-                            handelBlurBarMenu={this.handelBlurBarMenu}
-                            handelClickRemove={this.handelClickRemove}
+                        <BarMenuContainer
                             classActiveMenu={(isActiveMenu) ? 'is-active' : ''}
-                            positionMenu={false}
+                            positionMenu={true}
                             id={childrenId}
                             name={this.props.mapState[childrenId].elementType}
                             type="col"
+                            parentId={parentId}
                         />
                     </ElementComponent>
                 ))}
@@ -96,7 +94,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        mapDispactchSection: bindActionCreators(actionsConstructorView, dispatch)
+        mapDispactchCol: bindActionCreators(actionsConstructorView, dispatch)
     }
 }
 

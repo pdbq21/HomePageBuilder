@@ -8,7 +8,7 @@ import {connect} from 'react-redux'
 
 // components
 import SectionComponent from '../../components/ConstructorView/SectionComponent';
-import BarMenu from '../../components/BarMenu';
+import BarMenuContainer from '../BarMenuContainer';
 //containers
 import RowContainer from './RowContainer'
 // actions
@@ -22,10 +22,6 @@ class SectionContainer extends Component {
         this.handelDropRow = this.handelDropRow.bind(this);
         this.handleDragLeave = this.handleDragLeave.bind(this);
         this.handleDragOverRow = this.handleDragOverRow.bind(this);
-
-        this.handelClickBarMenu = this.handelClickBarMenu.bind(this);
-        this.handelBlurBarMenu = this.handelBlurBarMenu.bind(this);
-        this.handelClickRemove = this.handelClickRemove.bind(this);
     }
 
     handelDropRow(event, id) {
@@ -56,30 +52,10 @@ class SectionContainer extends Component {
         event.preventDefault();
     }
 
-    handelBlurBarMenu(id) {
-        const {ActionToggleVerticalBarMenuBlur} = this.props.mapDispactchSection;
-        //Todo: need change this logic
-        setTimeout(function () {
-            ActionToggleVerticalBarMenuBlur(id);
-        }, 200);
-    }
-
-    handelClickBarMenu(id) {
-        const {ActionToggleVerticalBarMenu} = this.props.mapDispactchSection;
-        ActionToggleVerticalBarMenu(id);
-    }
-
-    handelClickRemove(id) {
-        //console.log('id', this.props.parentId, id);
-        const {ActionRemoveChild, ActionDeleteNode} = this.props.mapDispactchSection;
-        ActionRemoveChild(this.props.parentId, id);
-        ActionDeleteNode(id);
-    }
-
     render() {
         const {isActiveDragStructure} = this.props.mapStateToolbar;
         //Todo: use this parentId for delete function
-        const {id} = this.props;
+        const {id, parentId} = this.props;
         // id array the current Section for generating Rows
         const {childrenIds, isActiveMenu} = this.props.mapStateSection;
         // console.log(this.props.mapStateSection);
@@ -90,14 +66,12 @@ class SectionContainer extends Component {
                 handleDragOver={this.handleDragOverRow}
                 id={id}
             >
-                <BarMenu
+                <BarMenuContainer
                     id={id}
                     type='section'
-                    handelClickBarMenu={this.handelClickBarMenu}
-                    handelBlurBarMenu={this.handelBlurBarMenu}
-                    handelClickRemove={this.handelClickRemove}
                     classActiveMenu={(isActiveMenu) ? 'is-active' : ''}
                     positionMenu={false}
+                    parentId={parentId}
                 />
                 {childrenIds.map((childrenId) => (
                     <RowContainer

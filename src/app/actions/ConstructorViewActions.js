@@ -4,7 +4,7 @@
 //CONSTANTS
 import {
     ON_DRAG_ENTER, ON_DROP_SECTION, ON_DRAG_OVER, ON_DRAG_LEAVE, CREATE_ID, ADD_NODE, ADD_COLUMNS_DATA, ADD_ELEMENT_TYPE,
-    TOGGLE_VERTICAL_BAR_MENU, REMOVE_CHILD, DELETE_NODE, TOGGLE_VERTICAL_BAR_MENU_BLUR
+    TOGGLE_BAR_MENU, REMOVE_CHILD, DELETE_NODE, TOGGLE_BAR_MENU_BLUR
 } from '../constants/ConstructorViewConstants'
 
 export function ActionOnDropSection(id, name) {
@@ -67,15 +67,15 @@ export function ActionAddElementType(nodeId, elementType) {
     };
 }
 
-export function ActionToggleVerticalBarMenu(nodeId) {
+export function ActionToggleBarMenu(nodeId) {
     return{
-        type: TOGGLE_VERTICAL_BAR_MENU,
+        type: TOGGLE_BAR_MENU,
         nodeId
     };
 }
-export function ActionToggleVerticalBarMenuBlur(nodeId) {
+export function ActionToggleBarMenuBlur(nodeId) {
     return{
-        type: TOGGLE_VERTICAL_BAR_MENU_BLUR,
+        type: TOGGLE_BAR_MENU_BLUR,
         nodeId
     };
 }

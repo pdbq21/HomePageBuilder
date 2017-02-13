@@ -32,7 +32,7 @@ export default function ElementComponent(props) {
     return (
         <div className="mdl-card pb-card pb-card--col mdl-shadow--2dp">
 
-            {/* horizontal bar component*/}
+            {/* bar menu component*/}
             {children}
 
             <div className="pb-background mdl-shadow--2dp">
