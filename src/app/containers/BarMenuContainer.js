@@ -56,7 +56,7 @@ class BarMenuContainer extends Component {
     }
 
     render() {
-        const {id, positionMenu, name, type} = this.props;
+        const {id, positionMenu, name, type, handleDragStart} = this.props;
         const {isActiveMenu} = this.props.mapStateBarMenu;
         return (
             <BarMenuComponent
@@ -71,6 +71,7 @@ class BarMenuContainer extends Component {
                 type={type}
                 handleMove={this.handleMove}
                 handleMoveEnd={this.handleMoveEnd}
+                handleDragStart={handleDragStart}
             />
         );
     }

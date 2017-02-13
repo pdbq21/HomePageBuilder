@@ -12,7 +12,8 @@ const initialState = {
     0: {
         id: 0,
         childrenIds: [],
-    }
+    },
+    activeMoveId: ''
 
 };
 
@@ -87,6 +88,7 @@ const node = (state, action) => {
             return state
     }
 };
+
 
 // Todo: refactoring functions getAllDescendantIds and deleteMany
 const getAllDescendantIds = (state, nodeId) => (

@@ -41,8 +41,8 @@ class ConstructorViewContainer extends Component {
         ActionAddNode(id, childrenId);
     }
 
-    handleDragStart(){
-        console.log('drag start');
+    handleDragStart(id){
+        console.log('drag start', id);
     }
 
     handleDragEnd(event, id){
@@ -53,7 +53,7 @@ class ConstructorViewContainer extends Component {
 
     handelDrop(event, id) {
         // Stop default browser behavior
-
+        console.log('drop', id);
         event.preventDefault();
         const {ActionDragLeaveDropArea} = this.props.mapDispactchConstructorView;
          ActionDragLeaveDropArea(id);
@@ -92,9 +92,6 @@ class ConstructorViewContainer extends Component {
         return (
             <ConstructorViewBlockComponent
                 handleClickAddSection={this.handleClickAddSection}
-                handleDragStart={this.handleDragStart}
-                handleDragEnd={this.handleDragEnd}
-
             >
                 {childrenIds.map((childrenId) => (
                     <SectionContainer
@@ -104,6 +101,7 @@ class ConstructorViewContainer extends Component {
 
                         handelDrop={this.handelDrop}
                         handleDragEnd={this.handleDragEnd}
+                        handleDragStart={this.handleDragStart}
                         handleDragOver={this.handleDragOver}
                         handleDragEnter={this.handleDragEnter}
                         handleDragLeave={this.handleDragLeave}
