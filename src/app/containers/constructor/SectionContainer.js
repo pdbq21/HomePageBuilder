@@ -8,7 +8,7 @@ import {connect} from 'react-redux'
 
 // components
 import SectionComponent from '../../components/ConstructorView/SectionComponent';
-import VerticalBar from '../../components/VerticalBar';
+import BarMenu from '../../components/BarMenu';
 //containers
 import RowContainer from './RowContainer'
 // actions
@@ -90,13 +90,14 @@ class SectionContainer extends Component {
                 handleDragOver={this.handleDragOverRow}
                 id={id}
             >
-                <VerticalBar
+                <BarMenu
                     id={id}
                     type='section'
                     handelClickBarMenu={this.handelClickBarMenu}
                     handelBlurBarMenu={this.handelBlurBarMenu}
                     handelClickRemove={this.handelClickRemove}
                     classActiveMenu={(isActiveMenu) ? 'is-active' : ''}
+                    positionMenu={false}
                 />
                 {childrenIds.map((childrenId) => (
                     <RowContainer

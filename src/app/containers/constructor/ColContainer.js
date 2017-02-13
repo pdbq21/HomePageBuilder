@@ -9,7 +9,7 @@ import {connect} from 'react-redux'
 // components
 import ColComponent from '../../components/ConstructorView/ColComponent';
 import ElementComponent from '../../components/ConstructorView/ElementComponent';
-import HorizontalBar from '../../components/HorizontalBar';
+import BarMenu from '../../components/BarMenu';
 //containers
 
 // actions
@@ -51,7 +51,7 @@ console.log('drop');
     render() {
         // todo: const {id, parentId} = this.props; for delete function
         const {id} = this.props;
-        const {columnsIndex, childrenIds} = this.props.mapStateCol;
+        const {columnsIndex, childrenIds, isActiveMenu} = this.props.mapStateCol;
         const {isActiveDragElement} = this.props.mapStateToolbar;
         //console.log(this.props.mapStateCol);
         return (
@@ -69,7 +69,12 @@ console.log('drop');
                         key={`key-${childrenId}`}
                         type={this.props.mapState[childrenId].elementType}
                     >
-                        <HorizontalBar
+                        <BarMenu
+                            handelClickBarMenu={this.handelClickBarMenu}
+                            handelBlurBarMenu={this.handelBlurBarMenu}
+                            handelClickRemove={this.handelClickRemove}
+                            classActiveMenu={(isActiveMenu) ? 'is-active' : ''}
+                            positionMenu={false}
                             id={childrenId}
                             name={this.props.mapState[childrenId].elementType}
                             type="col"

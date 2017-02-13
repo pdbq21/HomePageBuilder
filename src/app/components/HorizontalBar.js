@@ -5,7 +5,7 @@ import React from 'react'
 
 export default function HorizontalBar(props) {
     const {id, name, type} = props;
-    return(<div className="pb-bar pb-bar--horizontal">
+    return (<div className="pb-bar pb-bar--horizontal">
         <div className="pb-bar__button">
             <button className="mdl-button mdl-button--icon">
                 <i className="material-icons">swap_vert</i>
