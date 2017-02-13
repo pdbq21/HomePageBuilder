@@ -21,6 +21,7 @@ class ConstructorViewContainer extends Component {
         super(props);
 
         this.handleClickAddSection = this.handleClickAddSection.bind(this);
+        this.handleDragStart = this.handleDragStart.bind(this);
     }
 
     handleClickAddSection() {
@@ -31,6 +32,9 @@ class ConstructorViewContainer extends Component {
         ActionAddNode(id, childrenId);
     }
 
+    handleDragStart(){
+        console.log('drag start');
+    }
 
     render() {
         const {id} = this.props;

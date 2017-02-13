@@ -22,6 +22,7 @@ class BarMenuContainer extends Component {
         this.handelBlurBarMenu = this.handelBlurBarMenu.bind(this);
         this.handelClickBarMenu = this.handelClickBarMenu.bind(this);
         this.handelClickRemove = this.handelClickRemove.bind(this);
+
     }
 
     handelBlurBarMenu(id) {

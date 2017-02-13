@@ -7,7 +7,9 @@ export default function BarMenuComponent(props) {
     const {id, type, handelClickBarMenu, classActiveMenu, handelClickRemove,
         handelBlurBarMenu, positionMenu} = props;
     return (<div className={`pb-bar pb-bar--${(positionMenu)? 'horizontal' : 'vertical'}`}>
-        <div className="pb-bar__button">
+        <div className="pb-bar__button"
+
+        >
             <button className="mdl-button mdl-button--icon">
                 <i className="material-icons">swap_vert</i>
             </button>
