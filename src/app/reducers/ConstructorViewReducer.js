@@ -54,9 +54,13 @@ const node = (state, action) => {
                 isActiveMenu: !state.isActiveMenu
             });
         case TOGGLE_VERTICAL_BAR_MENU_BLUR:
-            return Object.assign({}, state, {
-                isActiveMenu: false
-            });
+            if (typeof state === 'undefined') {
+                return state;
+            } else{
+                return Object.assign({}, state, {
+                    isActiveMenu: false
+                });
+            }
 
         default:
             return state
