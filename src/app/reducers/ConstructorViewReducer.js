@@ -4,7 +4,8 @@
 // import constants from '../constants'
 import {
     ADD_NODE, CREATE_ID, ADD_COLUMNS_DATA, ADD_ELEMENT_TYPE, TOGGLE_BAR_MENU, REMOVE_CHILD,
-    TOGGLE_BAR_MENU_BLUR, DELETE_NODE
+    TOGGLE_BAR_MENU_BLUR, DELETE_NODE, CLICK_MOVE, ON_DRAG_ENTER_DROP_AREA, ON_DRAG_LEAVE_DROP_AREA,
+    CLICK_MOVE_END
 } from '../constants/ConstructorViewConstants'
 // default data state
 const initialState = {
@@ -34,7 +35,9 @@ const node = (state, action) => {
                 id: action.nodeId,
                 parentId: action.parentId,
                 childrenIds: [],
-                isActiveMenu: false
+                isActiveMenu: false,
+                isActiveMove: false,
+                isActiveDropArea: false
             };
         case ADD_NODE:
         case REMOVE_CHILD:
@@ -56,11 +59,29 @@ const node = (state, action) => {
         case TOGGLE_BAR_MENU_BLUR:
             if (typeof state === 'undefined') {
                 return state;
-            } else{
+            } else {
                 return Object.assign({}, state, {
                     isActiveMenu: false
                 });
             }
+
+        case CLICK_MOVE:
+            return Object.assign({}, state, {
+                isActiveMove: true
+            });
+        case CLICK_MOVE_END:
+            return Object.assign({}, state, {
+                isActiveMove: false
+            });
+        case ON_DRAG_ENTER_DROP_AREA:
+            return Object.assign({}, state, {
+                isActiveDropArea: true
+            });
+        case ON_DRAG_LEAVE_DROP_AREA:
+            return Object.assign({}, state, {
+                isActiveDropArea: false
+            });
+
 
         default:
             return state

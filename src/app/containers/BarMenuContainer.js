@@ -23,6 +23,9 @@ class BarMenuContainer extends Component {
         this.handelClickBarMenu = this.handelClickBarMenu.bind(this);
         this.handelClickRemove = this.handelClickRemove.bind(this);
 
+        this.handleMove = this.handleMove.bind(this);
+        this.handleMoveEnd = this.handleMoveEnd.bind(this);
+
     }
 
     handelBlurBarMenu(id) {
@@ -43,6 +46,14 @@ class BarMenuContainer extends Component {
         ActionRemoveChild(this.props.parentId, id);
         ActionDeleteNode(id);
     }
+    handleMove(id){
+        const {ActionMove} = this.props.mapDispactchBarMenu;
+        ActionMove(id);
+    }
+    handleMoveEnd(id){
+        const {ActionMoveEnd} = this.props.mapDispactchBarMenu;
+        ActionMoveEnd(id);
+    }
 
     render() {
         const {id, positionMenu, name, type} = this.props;
@@ -52,11 +63,14 @@ class BarMenuContainer extends Component {
                 handelClickBarMenu={this.handelClickBarMenu}
                 handelBlurBarMenu={this.handelBlurBarMenu}
                 handelClickRemove={this.handelClickRemove}
+
                 classActiveMenu={(isActiveMenu) ? 'is-active' : ''}
                 positionMenu={positionMenu}
                 id={id}
                 name={name}
                 type={type}
+                handleMove={this.handleMove}
+                handleMoveEnd={this.handleMoveEnd}
             />
         );
     }

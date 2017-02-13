@@ -4,10 +4,15 @@
 import React from 'react'
 
 export default function ConstructorViewBlockComponent(props) {
-    const {handleClickAddSection, children} = props;
+    const {
+        handleClickAddSection, children, handleDragStart
+    } = props;
 
     return (
-        <div className="pb-workspace mdl-cell mdl-cell--8-col">
+        <div className="pb-workspace mdl-cell mdl-cell--8-col"
+             onDragStart={handleDragStart}
+            /* onDragEnd={handleDragEnd}*/
+        >
             {children}
             <div className='pb-area pb-area--add'
             >

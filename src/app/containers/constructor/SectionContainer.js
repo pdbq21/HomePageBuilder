@@ -9,6 +9,7 @@ import {connect} from 'react-redux'
 // components
 import SectionComponent from '../../components/ConstructorView/SectionComponent';
 import BarMenuContainer from '../BarMenuContainer';
+import DropAreaComponent from '../../components/DropAreaComponent';
 //containers
 import RowContainer from './RowContainer'
 // actions
@@ -57,14 +58,26 @@ class SectionContainer extends Component {
         //Todo: use this parentId for delete function
         const {id, parentId} = this.props;
         // id array the current Section for generating Rows
-        const {childrenIds} = this.props.mapStateSection;
-        // console.log(this.props.mapStateSection);
+        const {childrenIds, isActiveMove} = this.props.mapStateSection;
+        //console.log(this.props.mapStateSection);
+        const {isActiveDropArea} = this.props.mapStateSection;
+        const {
+            handelDrop, handleDragEnd, handleDragOver, handleDragEnter, handleDragLeave
+        } = this.props;
         return (
-            <SectionComponent
+            <div
+                style={{'marginBottom': '1em'}}
+                onDragEnter={(event) => handleDragEnter(event, id)}
+                onDragLeave={(event) => handleDragLeave(event, id)}
+            >
+                <SectionComponent
                 classNameActiveAddSection={(isActiveDragStructure) ? 'pb-area--green' : 'pb-area--gray'}
                 handelDrop={this.handelDropRow}
                 handleDragOver={this.handleDragOverRow}
                 id={id}
+                draggable={isActiveMove}
+
+                handleDragEnd={handleDragEnd}
             >
                 <BarMenuContainer
                     id={id}
@@ -80,6 +93,15 @@ class SectionContainer extends Component {
                     />
                 ))}
             </SectionComponent>
+
+                <DropAreaComponent
+                    id={id}
+                    handleDragOver={handleDragOver}
+                    classActiveDropArea={isActiveDropArea}
+                    handelDrop={handelDrop}
+                />
+            </div>
+
         );
     }
 }

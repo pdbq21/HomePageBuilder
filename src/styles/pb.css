@@ -199,3 +199,10 @@
 .pb-bar--vertical-menu.is-active{
     visibility: visible;
 }
+.pb-area--drop-section{
+    display: none;
+}
+.is-active-area{
+background-color: #00c853;
+    display: block;
+}
