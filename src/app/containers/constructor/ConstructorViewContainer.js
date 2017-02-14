@@ -65,6 +65,7 @@ class ConstructorViewContainer extends Component {
         // parentId: childrenIds: [ data.id, id] => [id, data.id]
         ActionExchangeNode(data.parentId, data.id, id);
         //console.log(data);
+        this.dragEnterCounter = 0;
     }
 
     handleDragOver(event) {
