@@ -78,10 +78,10 @@ class ConstructorViewContainer extends Component {
     handleDragLeave(event, id) {
         // Stop default browser behavior
         event.preventDefault();
-        const {isActiveDragStructure} = this.props.mapStateToolbarReducer;
+        const {isActiveDragStructure, isActiveDragElement} = this.props.mapStateToolbarReducer;
 // if isActiveDragStructure === true => drag element in Toolbar
         // else === false => drag element in ConstructorView
-        if (isActiveDragStructure === false) {
+        if (isActiveDragStructure === false && isActiveDragElement === false) {
             const {ActionDragLeaveDropArea} = this.props.mapDispactchConstructorView;
             --this.dragEnterCounter;
             if (this.dragEnterCounter === 0) {
@@ -94,10 +94,10 @@ class ConstructorViewContainer extends Component {
     handleDragEnter(event, id) {
         // Stop default browser behavior
         event.preventDefault();
-        const {isActiveDragStructure} = this.props.mapStateToolbarReducer;
+        const {isActiveDragStructure, isActiveDragElement} = this.props.mapStateToolbarReducer;
 // if isActiveDragStructure === true => drag element in Toolbar
         // else === false => drag element in ConstructorView
-        if (isActiveDragStructure === false) {
+        if (isActiveDragStructure === false && isActiveDragElement === false) {
             //++
             ++this.dragEnterCounter;
             const {ActionDragEnterDropArea} = this.props.mapDispactchConstructorView;
