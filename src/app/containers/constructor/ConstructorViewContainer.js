@@ -29,8 +29,9 @@ class ConstructorViewContainer extends Component {
         this.handleDragLeave = this.handleDragLeave.bind(this);
         this.handleDragEnter = this.handleDragEnter.bind(this);
     }
+
     componentDidMount() {
-        this.enterCounter = 0;
+        this.dragEnterCounter = 0;
     }
 
     handleClickAddSection() {
@@ -41,13 +42,13 @@ class ConstructorViewContainer extends Component {
         ActionAddNode(id, childrenId);
     }
 
-    handleDragStart(event, parentId, id){
+    handleDragStart(event, parentId, id) {
         //console.log('drag start', parentId, id);
         let data = JSON.stringify({parentId: parentId, id: id});
         event.dataTransfer.setData("data", data);
     }
 
-    handleDragEnd(event, id){
+    handleDragEnd(event, id) {
         event.preventDefault();
         const {ActionMoveEnd} = this.props.mapDispactchConstructorView;
         ActionMoveEnd(id);
@@ -56,15 +57,14 @@ class ConstructorViewContainer extends Component {
 
     handelDrop(event, id) {
         // Stop default browser behavior
-        console.log('drop', id);
+        //console.log('drop', id);
         event.preventDefault();
         const {ActionDragLeaveDropArea, ActionExchangeNode} = this.props.mapDispactchConstructorView;
-         ActionDragLeaveDropArea(id);
+        ActionDragLeaveDropArea(id);
         let data = JSON.parse(event.dataTransfer.getData("data"));
-        /*const {ActionExchangeNode} = this.props.mapDispactchConstructorView;*/
         // parentId: childrenIds: [ data.id, id] => [id, data.id]
-         ActionExchangeNode(data.parentId, data.id, id);
-        console.log(data);
+        ActionExchangeNode(data.parentId, data.id, id);
+        //console.log(data);
     }
 
     handleDragOver(event) {
@@ -77,19 +77,32 @@ class ConstructorViewContainer extends Component {
     handleDragLeave(event, id) {
         // Stop default browser behavior
         event.preventDefault();
-        const {ActionDragLeaveDropArea} = this.props.mapDispactchConstructorView;
-        --this.enterCounter;
-        if (this.enterCounter === 0) {
-            ActionDragLeaveDropArea(id);
+        const {isActiveDragStructure} = this.props.mapStateToolbarReducer;
+// if isActiveDragStructure === true => drag element in Toolbar
+        // else === false => drag element in ConstructorView
+        if (isActiveDragStructure === false) {
+            const {ActionDragLeaveDropArea} = this.props.mapDispactchConstructorView;
+            --this.dragEnterCounter;
+            if (this.dragEnterCounter === 0) {
+                ActionDragLeaveDropArea(id);
+            }
         }
+
     }
+
     handleDragEnter(event, id) {
         // Stop default browser behavior
         event.preventDefault();
-        //++
-        ++this.enterCounter;
-        const {ActionDragEnterDropArea} = this.props.mapDispactchConstructorView;
-        ActionDragEnterDropArea(id);
+        const {isActiveDragStructure} = this.props.mapStateToolbarReducer;
+// if isActiveDragStructure === true => drag element in Toolbar
+        // else === false => drag element in ConstructorView
+        if (isActiveDragStructure === false) {
+            //++
+            ++this.dragEnterCounter;
+            const {ActionDragEnterDropArea} = this.props.mapDispactchConstructorView;
+            ActionDragEnterDropArea(id);
+        }
+
     }
 
     render() {
@@ -123,7 +136,8 @@ class ConstructorViewContainer extends Component {
 function mapStateToProps(state) {
     //console.log('state ConstructorViewContainer', state);
     return {
-        mapStateConstructorViewReducer: state.ConstructorViewReducer
+        mapStateConstructorViewReducer: state.ConstructorViewReducer,
+        mapStateToolbarReducer: state.ToolbarReducer
     }
 }
 
