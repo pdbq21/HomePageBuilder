@@ -120,12 +120,13 @@ export function ActionDragLeaveDropArea(nodeId) {
     };
 }
 
-export function ActionExchangeNode(nodeId, dragId, dropId) {
+export function ActionExchangeNode(nodeId, dragId, dropId, first) {
     return{
         type: EXCHANGE_NODE,
         nodeId,
         dragId,
-        dropId
+        dropId,
+        first
     };
 }
 

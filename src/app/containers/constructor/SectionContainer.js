@@ -76,6 +76,7 @@ class SectionContainer extends Component {
                     handleDragOver={handleDragOver}
                     classActiveDropArea={isActiveDropArea}
                     handelDrop={handelDrop}
+                    first={true}
                     />) : null
                 }
 
@@ -110,6 +111,7 @@ class SectionContainer extends Component {
                     handleDragOver={handleDragOver}
                     classActiveDropArea={isActiveDropArea}
                     handelDrop={handelDrop}
+                    first={false}
                 />
             </div>
 

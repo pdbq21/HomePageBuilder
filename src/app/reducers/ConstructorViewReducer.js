@@ -29,7 +29,7 @@ function createChildrenIds(state, action) {
     }
 }
 const exchangeNode = (state, action) => {
-    const {type, dragId, dropId} = action;
+    const {type, dragId, dropId, first} = action;
     //console.log(state, dragId, dropId);
     switch (type) {
         case EXCHANGE_NODE:
@@ -39,9 +39,12 @@ const exchangeNode = (state, action) => {
                 //state.splice(index, 1);
                 if (id !== dragId && id !== dropId) {
                     newArray.push(id);
-                } else if (id === dropId) {
+                } else if (id === dropId && first === false) {
                     newArray.push(id);
                     newArray.push(dragId);
+                }else if (id === dropId && first === true) {
+                    newArray.push(dragId);
+                    newArray.push(id);
                 }
             });
             //console.log(newArray);
