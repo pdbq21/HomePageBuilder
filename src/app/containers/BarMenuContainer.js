@@ -46,13 +46,19 @@ class BarMenuContainer extends Component {
         ActionRemoveChild(this.props.parentId, id);
         ActionDeleteNode(id);
     }
-    handleMove(id){
-        const {ActionMove} = this.props.mapDispactchBarMenu;
+
+    handleMove(id) {
+        const {type} = this.props;
+        const {ActionMove, ActionIsActiveExchangeStructure} = this.props.mapDispactchBarMenu;
         ActionMove(id);
+        ActionIsActiveExchangeStructure(true, type);
     }
-    handleMoveEnd(id){
-        const {ActionMoveEnd} = this.props.mapDispactchBarMenu;
+
+    handleMoveEnd(id) {
+        const {type} = this.props;
+        const {ActionMoveEnd, ActionIsActiveExchangeStructure} = this.props.mapDispactchBarMenu;
         ActionMoveEnd(id);
+        ActionIsActiveExchangeStructure(false, type);
     }
 
 

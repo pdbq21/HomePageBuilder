@@ -5,7 +5,7 @@
 import {
     ON_DRAG_ENTER, ON_DROP_SECTION, ON_DRAG_OVER, ON_DRAG_LEAVE, CREATE_ID, ADD_NODE, ADD_COLUMNS_DATA, ADD_ELEMENT_TYPE,
     TOGGLE_BAR_MENU, REMOVE_CHILD, DELETE_NODE, TOGGLE_BAR_MENU_BLUR, CLICK_MOVE, ON_DRAG_ENTER_DROP_AREA,
-    ON_DRAG_LEAVE_DROP_AREA, CLICK_MOVE_END, EXCHANGE_NODE
+    ON_DRAG_LEAVE_DROP_AREA, CLICK_MOVE_END, EXCHANGE_NODE, EXCHANGE_STRUCTURE_ACTIVE
 } from '../constants/ConstructorViewConstants'
 
 export function ActionOnDropSection(id, name) {
@@ -93,10 +93,19 @@ export function ActionDeleteNode(nodeId) {
         nodeId
     };
 }
-export function ActionMove(nodeId) {
+export function ActionMove(nodeId, structureType) {
     return{
         type: CLICK_MOVE,
-        nodeId
+        nodeId,
+        structureType
+    };
+}
+export function ActionIsActiveExchangeStructure(isActive, structureType) {
+    return{
+        type: EXCHANGE_STRUCTURE_ACTIVE,
+        nodeId: 'data',
+        isActive,
+        structureType
     };
 }
 export function ActionMoveEnd(nodeId) {

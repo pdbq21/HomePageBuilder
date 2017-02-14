@@ -5,7 +5,7 @@
 import {
     ADD_NODE, CREATE_ID, ADD_COLUMNS_DATA, ADD_ELEMENT_TYPE, TOGGLE_BAR_MENU, REMOVE_CHILD,
     TOGGLE_BAR_MENU_BLUR, DELETE_NODE, CLICK_MOVE, ON_DRAG_ENTER_DROP_AREA, ON_DRAG_LEAVE_DROP_AREA,
-    CLICK_MOVE_END, EXCHANGE_NODE
+    CLICK_MOVE_END, EXCHANGE_NODE, EXCHANGE_STRUCTURE_ACTIVE
 } from '../constants/ConstructorViewConstants'
 // default data state
 const initialState = {
@@ -13,8 +13,9 @@ const initialState = {
         id: 0,
         childrenIds: [],
     },
-    activeMoveId: ''
-
+    isActiveExchangeSection: false,
+    isActiveExchangeRow: false,
+    isActiveExchangeCol: false
 };
 
 function createChildrenIds(state, action) {
@@ -28,6 +29,33 @@ function createChildrenIds(state, action) {
             return state
     }
 }
+
+const isActiveExchangeStructure = (state, action) => {
+    const {isActive, structureType} = action;
+    if (isActive) {
+        if (structureType === 'section') {
+            return {...state, isActiveExchangeSection: true}
+        } else if (structureType === 'row') {
+            return {...state, isActiveExchangeRow: true};
+        } else if (structureType === 'col') {
+            return {...state, isActiveExchangeCol: true};
+        }
+    } else {
+        if (structureType === 'section') {
+            return {...state, isActiveExchangeSection: false}
+        } else if (structureType === 'row') {
+            return {...state, isActiveExchangeRow: false};
+        } else if (structureType === 'col') {
+            return {...state, isActiveExchangeCol: false};
+        }
+    }
+    if (action.structureType === 'data-col') {
+        return {...state, isActiveDragStructure: true, columns: action.dataAttr}
+    } else if (action.name === 'data-elementType') {
+        return {...state, isActiveDragElement: true, elementType: action.dataAttr};
+    }
+};
+
 const exchangeNode = (state, action) => {
     const {type, dragId, dropId, isFirst} = action;
     //console.log(state, dragId, dropId);
@@ -35,14 +63,14 @@ const exchangeNode = (state, action) => {
         case EXCHANGE_NODE:
             //action.dragId, action.dropId
             let newArray = [];
-                state.forEach((id) => {
+            state.forEach((id) => {
                 //state.splice(index, 1);
                 if (id !== dragId && id !== dropId) {
                     newArray.push(id);
                 } else if (id === dropId && isFirst === false) {
                     newArray.push(id);
                     newArray.push(dragId);
-                }else if (id === dropId && isFirst === true) {
+                } else if (id === dropId && isFirst === true) {
                     newArray.push(dragId);
                     newArray.push(id);
                 }
@@ -142,6 +170,9 @@ export default function (state = initialState, action) {
     if (action.type === DELETE_NODE) {
         const descendantIds = getAllDescendantIds(state, nodeId);
         return deleteMany(state, [nodeId, ...descendantIds])
+    }
+    if (action.type === EXCHANGE_STRUCTURE_ACTIVE) {
+        return isActiveExchangeStructure(state, action);
     }
 
     return Object.assign({}, state, {

@@ -28,6 +28,11 @@ class ConstructorViewContainer extends Component {
         this.handleDragOver = this.handleDragOver.bind(this);
         this.handleDragLeave = this.handleDragLeave.bind(this);
         this.handleDragEnter = this.handleDragEnter.bind(this);
+
+        this.handleDragEnterRow = this.handleDragEnterRow.bind(this);
+        this.handleDragLeaveRow = this.handleDragLeaveRow.bind(this);
+        this.handelDropExchangeRow = this.handelDropExchangeRow.bind(this);
+        this.handleDragStartExchangeRow = this.handleDragStartExchangeRow.bind(this);
     }
 
     componentDidMount() {
@@ -59,10 +64,22 @@ class ConstructorViewContainer extends Component {
         // Stop default browser behavior
         //console.log('drop', id);
         event.preventDefault();
-        const {ActionDragLeaveDropArea, ActionExchangeNode} = this.props.mapDispactchConstructorView;
+        const {ActionDragLeaveDropArea, ActionExchangeNode, ActionIsActiveExchangeStructure} = this.props.mapDispactchConstructorView;
         ActionDragLeaveDropArea(id);
+
+        const {isActiveExchangeSection, isActiveExchangeRow, isActiveExchangeCol} = this.props.mapStateConstructorViewReducer;
+        let type;
+        if (isActiveExchangeSection) {
+            type = 'section'
+        } else if (isActiveExchangeRow) {
+            type = 'row'
+        } else if (isActiveExchangeCol) {
+            type = 'col'
+        }
+        ActionIsActiveExchangeStructure(false, type);
+
         let data = JSON.parse(event.dataTransfer.getData("data"));
-        if (id !== data.id){
+        if (id !== data.id) {
             // parentId: childrenIds: [ data.id, id] => [id, data.id]
             ActionExchangeNode(data.parentId, data.id, id, isFirst);
         }
@@ -80,6 +97,7 @@ class ConstructorViewContainer extends Component {
     handleDragLeave(event, id) {
         // Stop default browser behavior
         event.preventDefault();
+        console.log('leave');
         const {isActiveDragStructure, isActiveDragElement} = this.props.mapStateToolbarReducer;
 // if isActiveDragStructure === true => drag element in Toolbar
         // else === false => drag element in ConstructorView
@@ -96,6 +114,7 @@ class ConstructorViewContainer extends Component {
     handleDragEnter(event, id) {
         // Stop default browser behavior
         event.preventDefault();
+        //const {isActiveExchangeSection, isActiveExchangeRow, isActiveExchangeCol} = this.props.mapStateConstructorViewReducer;
         const {isActiveDragStructure, isActiveDragElement} = this.props.mapStateToolbarReducer;
 // if isActiveDragStructure === true => drag element in Toolbar
         // else === false => drag element in ConstructorView
@@ -105,6 +124,55 @@ class ConstructorViewContainer extends Component {
             const {ActionDragEnterDropArea} = this.props.mapDispactchConstructorView;
             ActionDragEnterDropArea(id);
         }
+
+    }
+
+    handleDragEnterRow(event, id) {
+        // Stop default browser behavior
+        event.preventDefault();
+        //const {isActiveExchangeSection, isActiveExchangeRow, isActiveExchangeCol} = this.props.mapStateConstructorViewReducer;
+        console.log('enter row', id);
+        const {isActiveDragStructure, isActiveDragElement} = this.props.mapStateToolbarReducer;
+// if isActiveDragStructure === true => drag element in Toolbar
+        // else === false => drag element in ConstructorView
+        if (isActiveDragStructure === false && isActiveDragElement === false) {
+            //++
+            ++this.dragEnterCounter;
+            const {ActionDragEnterDropArea} = this.props.mapDispactchConstructorView;
+            ActionDragEnterDropArea(id);
+        }
+
+    }
+    handleDragLeaveRow(event, id) {
+        // Stop default browser behavior
+        event.preventDefault();
+        console.log('leave row', id);
+        const {isActiveDragStructure, isActiveDragElement} = this.props.mapStateToolbarReducer;
+// if isActiveDragStructure === true => drag element in Toolbar
+        // else === false => drag element in ConstructorView
+        if (isActiveDragStructure === false && isActiveDragElement === false) {
+            const {ActionDragLeaveDropArea} = this.props.mapDispactchConstructorView;
+            --this.dragEnterCounter;
+            if (this.dragEnterCounter === 0) {
+                ActionDragLeaveDropArea(id);
+            }
+        }
+    }
+
+    handleDragStartExchangeRow(event, parentId, id) {
+        let dataRow = JSON.stringify({parentId: parentId, id: id});
+        event.dataTransfer.setData("dataRow", dataRow);
+    }
+
+    handelDropExchangeRow(event, id, isFirst, parentId){
+        event.preventDefault();
+        console.log('handelDropExchangeRow', 'id '+id, 'parentId '+parentId);
+        //Todo: need dragParentId, dragId, dropParentId, dropId; remove and push functions
+        let dataRow = JSON.parse(event.dataTransfer.getData("dataRow"));
+        console.log(dataRow);
+        const {ActionDragLeaveDropArea, ActionExchangeNode, ActionIsActiveExchangeStructure} = this.props.mapDispactchConstructorView;
+        ActionIsActiveExchangeStructure(false, 'row');
+
     }
 
     render() {
@@ -128,6 +196,11 @@ class ConstructorViewContainer extends Component {
                         handleDragOver={this.handleDragOver}
                         handleDragEnter={this.handleDragEnter}
                         handleDragLeave={this.handleDragLeave}
+
+                        handleDragEnterRow={this.handleDragEnterRow}
+                        handleDragLeaveRow={this.handleDragLeaveRow}
+                        handelDropExchangeRow={this.handelDropExchangeRow}
+                        handleDragStartExchangeRow={this.handleDragStartExchangeRow}
                     />
                 ))}
 

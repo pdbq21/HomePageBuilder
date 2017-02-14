@@ -8,6 +8,7 @@ import {connect} from 'react-redux'
 
 // components
 import RowComponent from '../../components/ConstructorView/RowComponent';
+import DropAreaComponent from '../../components/DropAreaComponent';
 //containers
 import ColContainer from './ColContainer';
 import BarMenuContainer from '../BarMenuContainer';
@@ -39,31 +40,58 @@ class RowContainer extends Component {
 
 
     render() {
-        const {id, parentId} = this.props;
+        const {
+            id, parentId, handleDragStart, handleDragEnd, handelDropExchangeRow, handleDragOver, handleDragEnterRow,
+            handleDragLeaveRow, handleDragStartExchangeRow
+        } = this.props;
         //console.log(this.props);
+        const {isActiveExchangeRow} = this.props.mapStateConstructorViewReducer;
         // id array the current Section for generating Rows
-        const {childrenIds} = this.props.mapStateRow;
-        //console.log(isActiveMenu);
-        return (
-            <RowComponent
-                id={id}
-            >
-                <BarMenuContainer
-                    positionMenu={true}
-                    id={id}
-                    name='Row'
-                    type='row'
-                    parentId={parentId}
-                />
-                {childrenIds.map((childrenId) => (
-                    <ColContainer
-                        id={childrenId}
-                        parentId={id}
-                        key={`key-${childrenId}`}
-                    />
-                ))}
+        const {childrenIds, isActiveMove, isActiveDropArea} = this.props.mapStateRow;
 
-            </RowComponent>
+        return (
+            <div
+                style={{'marginBottom': '1em'}}
+                onDragEnter={(isActiveExchangeRow)? (event) => handleDragEnterRow(event, id) : null}
+                onDragLeave={(isActiveExchangeRow)? (event) => handleDragLeaveRow(event, id) : null}
+            >
+                <RowComponent
+                    id={id}
+                    parentId={parentId}
+
+                    draggable={isActiveMove}
+                    handleDragEnd={handleDragEnd}
+                    handleDragStart={handleDragStartExchangeRow}
+                >
+                    <BarMenuContainer
+                        positionMenu={true}
+                        id={id}
+                        name='Row'
+                        type='row'
+                        parentId={parentId}
+                    />
+                    {childrenIds.map((childrenId) => (
+                        <ColContainer
+                            id={childrenId}
+                            parentId={id}
+                            key={`key-${childrenId}`}
+
+                            handleDragEnd={handleDragEnd}
+                            handleDragStart={handleDragStart}
+                        />
+                    ))}
+
+                </RowComponent>
+                <DropAreaComponent
+                    id={id}
+                    handleDragOver={handleDragOver}
+                    handelDrop={handelDropExchangeRow}
+                    classActiveDropArea={(isActiveDropArea && isActiveExchangeRow) ? 'is-active-area' : 'is-not-active-area'}
+                    isFirst={false}
+                    name='this'
+                parentId={parentId}
+                />
+            </div>
         );
     }
 }
@@ -71,6 +99,7 @@ class RowContainer extends Component {
 function mapStateToProps(state, ownProps) {
     return {
         mapStateRow: state.ConstructorViewReducer[ownProps.id],
+        mapStateConstructorViewReducer: state.ConstructorViewReducer
     }
 }
 

@@ -5,12 +5,12 @@ import React from 'react'
 
 export default function DropAreaComponent(props) {
 const {
-    id, handelDrop, handleDragOver, classActiveDropArea, isFirst, name
+    id, handelDrop, handleDragOver, classActiveDropArea, isFirst, name, parentId
 } = props;
 
     return (<div
         className={`pb-area pb-area--drop pb-area--drop-section ${classActiveDropArea}`}
-        onDrop={(event) => handelDrop(event, id, isFirst)}
+        onDrop={(event) => handelDrop(event, id, isFirst, parentId)}
         onDragOver={handleDragOver}
     >
         <span className="pb-area__caption">Drop the {name} here!</span>

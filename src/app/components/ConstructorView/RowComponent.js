@@ -6,12 +6,16 @@ import React from 'react'
 
 export default function RowComponent(props) {
     //todo: add id
-    const { children } = props;
+    const { children, draggable, handleDragEnd, handleDragStart, parentId, id} = props;
     //console.log('RowComponent',props);
 // todo: add drop-down menu with opening menu up or down
     return (
         /*<!-- Row block -->*/
-        <div className="mdl-card pb-card pb-card--row mdl-shadow--2dp">
+        <div className="mdl-card pb-card pb-card--row mdl-shadow--2dp"
+             draggable={draggable}
+             onDragEnd={(event) => handleDragEnd(event, id)}
+             onDragStart={(event) => handleDragStart(event, parentId, id)}
+        >
           {/*  <!-- .. bar -->*/}
             {/* horizontal bar component*/}
             {children[0]}

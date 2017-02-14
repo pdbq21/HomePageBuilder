@@ -51,7 +51,7 @@ class ColContainer extends Component {
 
     render() {
         // todo: const {id, parentId} = this.props; for delete function
-        const {id} = this.props;
+        const {id, handleDragEnd, handleDragStart} = this.props;
         const {columnsIndex, childrenIds} = this.props.mapStateCol;
         const {isActiveDragElement} = this.props.mapStateToolbar;
 
@@ -66,6 +66,10 @@ class ColContainer extends Component {
                         parentId={id}
                         key={`key-${childrenId}`}
                         type={this.props.mapState[childrenId].elementType}
+
+                        draggable={this.props.mapState[childrenId].isActiveMove}
+                        handleDragEnd={handleDragEnd}
+                        handleDragStart={handleDragStart}
                     >
                         <BarMenuContainer
                             positionMenu={true}
