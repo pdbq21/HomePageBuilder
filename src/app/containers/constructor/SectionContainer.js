@@ -23,8 +23,6 @@ class SectionContainer extends Component {
         this.handelDropRow = this.handelDropRow.bind(this);
         this.handleDragLeave = this.handleDragLeave.bind(this);
         this.handleDragOverRow = this.handleDragOverRow.bind(this);
-
-        this.test = this.test.bind(this);
     }
 
     handelDropRow(event, id) {
@@ -55,10 +53,6 @@ class SectionContainer extends Component {
         event.preventDefault();
     }
 
-    test(id) {
-console.log(id, 'test');
-    }
-
     render() {
         const {isActiveDragStructure} = this.props.mapStateToolbar;
 
@@ -81,16 +75,17 @@ console.log(id, 'test');
                 handelDrop={this.handelDropRow}
                 handleDragOver={this.handleDragOverRow}
                 id={id}
+                parentId={parentId}
                 draggable={isActiveMove}
 
                 handleDragEnd={handleDragEnd}
+                handleDragStart={handleDragStart}
             >
                 <BarMenuContainer
                     id={id}
                     type='section'
                     positionMenu={false}
                     parentId={parentId}
-                    handleDragStart={this.test}
                 />
                 {childrenIds.map((childrenId) => (
                     <RowContainer

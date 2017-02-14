@@ -5,7 +5,7 @@
 import {
     ADD_NODE, CREATE_ID, ADD_COLUMNS_DATA, ADD_ELEMENT_TYPE, TOGGLE_BAR_MENU, REMOVE_CHILD,
     TOGGLE_BAR_MENU_BLUR, DELETE_NODE, CLICK_MOVE, ON_DRAG_ENTER_DROP_AREA, ON_DRAG_LEAVE_DROP_AREA,
-    CLICK_MOVE_END
+    CLICK_MOVE_END, EXCHANGE_NODE
 } from '../constants/ConstructorViewConstants'
 // default data state
 const initialState = {
@@ -18,7 +18,7 @@ const initialState = {
 };
 
 function createChildrenIds(state, action) {
-    console.log(action);
+    //console.log(action);
     switch (action.type) {
         case ADD_NODE:
             return [...state, action.childrenId];
@@ -28,6 +28,29 @@ function createChildrenIds(state, action) {
             return state
     }
 }
+const exchangeNode = (state, action) => {
+    const {type, dragId, dropId} = action;
+    //console.log(state, dragId, dropId);
+    switch (type) {
+        case EXCHANGE_NODE:
+            //action.dragId, action.dropId
+            let newArray = [];
+                state.forEach((id) => {
+                //state.splice(index, 1);
+                if (id !== dragId && id !== dropId) {
+                    newArray.push(id);
+                } else if (id === dropId) {
+                    newArray.push(id);
+                    newArray.push(dragId);
+                }
+            });
+            //console.log(newArray);
+            return newArray;
+
+        default:
+            return state
+    }
+};
 
 const node = (state, action) => {
     switch (action.type) {
@@ -75,14 +98,18 @@ const node = (state, action) => {
                 isActiveMove: false
             });
         case ON_DRAG_ENTER_DROP_AREA:
-                return Object.assign({}, state, {
-                    isActiveDropArea: true
-                });
+            return Object.assign({}, state, {
+                isActiveDropArea: true
+            });
 
         case ON_DRAG_LEAVE_DROP_AREA:
-                return Object.assign({}, state, {
-                    isActiveDropArea: false
-                });
+            return Object.assign({}, state, {
+                isActiveDropArea: false
+            });
+        case EXCHANGE_NODE:
+            return Object.assign({}, state, {
+                childrenIds: exchangeNode(state.childrenIds, action)
+            });
 
         default:
             return state

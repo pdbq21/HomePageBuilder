@@ -41,23 +41,30 @@ class ConstructorViewContainer extends Component {
         ActionAddNode(id, childrenId);
     }
 
-    handleDragStart(id){
-        console.log('drag start', id);
+    handleDragStart(event, parentId, id){
+        //console.log('drag start', parentId, id);
+        let data = JSON.stringify({parentId: parentId, id: id});
+        event.dataTransfer.setData("data", data);
     }
 
     handleDragEnd(event, id){
         event.preventDefault();
         const {ActionMoveEnd} = this.props.mapDispactchConstructorView;
         ActionMoveEnd(id);
+        //console.log(id);
     }
 
     handelDrop(event, id) {
         // Stop default browser behavior
         console.log('drop', id);
         event.preventDefault();
-        const {ActionDragLeaveDropArea} = this.props.mapDispactchConstructorView;
+        const {ActionDragLeaveDropArea, ActionExchangeNode} = this.props.mapDispactchConstructorView;
          ActionDragLeaveDropArea(id);
-
+        let data = JSON.parse(event.dataTransfer.getData("data"));
+        /*const {ActionExchangeNode} = this.props.mapDispactchConstructorView;*/
+        // parentId: childrenIds: [ data.id, id] => [id, data.id]
+         ActionExchangeNode(data.parentId, data.id, id);
+        console.log(data);
     }
 
     handleDragOver(event) {
