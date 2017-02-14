@@ -55,7 +55,7 @@ class ConstructorViewContainer extends Component {
         //console.log(id);
     }
 
-    handelDrop(event, id, first) {
+    handelDrop(event, id, isFirst) {
         // Stop default browser behavior
         //console.log('drop', id);
         event.preventDefault();
@@ -64,7 +64,7 @@ class ConstructorViewContainer extends Component {
         let data = JSON.parse(event.dataTransfer.getData("data"));
         if (id !== data.id){
             // parentId: childrenIds: [ data.id, id] => [id, data.id]
-            ActionExchangeNode(data.parentId, data.id, id, first);
+            ActionExchangeNode(data.parentId, data.id, id, isFirst);
         }
         //console.log(data);
         this.dragEnterCounter = 0;

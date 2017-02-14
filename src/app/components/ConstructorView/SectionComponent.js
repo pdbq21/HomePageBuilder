@@ -4,17 +4,12 @@
 import React from 'react'
 
 export default function SectionComponent(props) {
-    const {
-        id, parentId, classNameActiveAddSection, handelDrop, handleDragEnd, handleDragOver, children, draggable,
-        handleDragStart
-    } = props;
+    const { id, classNameActiveAddSection, handelDrop, handleDragOver, children } = props;
 // todo: add drop-down menu with opening menu up or down
     // props => draggable='true'
     return (
         <div className="mdl-card pb-card pb-card--section  mdl-shadow--2dp"
-             draggable={draggable}
-             onDragEnd={(event) => handleDragEnd(event, id)}
-             onDragStart={(event) => handleDragStart(event, parentId, id)}
+
         >
             {/* vertical bar*/}
             {children[0]}

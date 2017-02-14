@@ -77,17 +77,18 @@ class SectionContainer extends Component {
                     classActiveDropArea={isActiveDropArea}
                     handelDrop={handelDrop}
                     first={true}
+                    name='this'
                     />) : null
                 }
 
                 <SectionComponent
-                classNameActiveAddSection={(isActiveDragStructure) ? 'pb-area--green' : 'pb-area--gray'}
-                handelDrop={this.handelDropRow}
-                handleDragOver={this.handleDragOverRow}
+                    classActiveDropArea={(isActiveDragStructure) ? 'pb-area--green' : 'pb-area--gray'}
                 id={id}
                 parentId={parentId}
                 draggable={isActiveMove}
 
+                    handelDrop={this.handelDropRow}
+                    handleDragOver={this.handleDragOverRow}
                 handleDragEnd={handleDragEnd}
                 handleDragStart={handleDragStart}
             >
@@ -104,6 +105,7 @@ class SectionContainer extends Component {
                         key={`key-${childrenId}`}
                     />
                 ))}
+
             </SectionComponent>
 
                 <DropAreaComponent
@@ -111,7 +113,8 @@ class SectionContainer extends Component {
                     handleDragOver={handleDragOver}
                     classActiveDropArea={isActiveDropArea}
                     handelDrop={handelDrop}
-                    first={false}
+                    isFirst={false}
+                    name='this'
                 />
             </div>
 
