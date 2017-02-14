@@ -56,7 +56,7 @@ class SectionContainer extends Component {
     render() {
         const {isActiveDragStructure} = this.props.mapStateToolbar;
 
-        const {id, parentId} = this.props;
+        const {id, parentId, index} = this.props;
         // id array the current Section for generating Rows
         const {childrenIds, isActiveMove} = this.props.mapStateSection;
         //console.log(this.props.mapStateSection);
@@ -70,6 +70,15 @@ class SectionContainer extends Component {
                 onDragEnter={(event) => handleDragEnter(event, id)}
                 onDragLeave={(event) => handleDragLeave(event, id)}
             >
+                {/* only first */}
+                {(index === 0)? (<DropAreaComponent
+                    id={id}
+                    handleDragOver={handleDragOver}
+                    classActiveDropArea={isActiveDropArea}
+                    handelDrop={handelDrop}
+                    />) : null
+                }
+
                 <SectionComponent
                 classNameActiveAddSection={(isActiveDragStructure) ? 'pb-area--green' : 'pb-area--gray'}
                 handelDrop={this.handelDropRow}

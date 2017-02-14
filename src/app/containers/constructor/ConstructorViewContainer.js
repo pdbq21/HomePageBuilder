@@ -114,11 +114,12 @@ class ConstructorViewContainer extends Component {
             <ConstructorViewBlockComponent
                 handleClickAddSection={this.handleClickAddSection}
             >
-                {childrenIds.map((childrenId) => (
+                {childrenIds.map((childrenId, index) => (
                     <SectionContainer
                         id={childrenId}
                         parentId={id}
                         key={`key-${childrenId}`}
+                        index={index}
 
                         handelDrop={this.handelDrop}
                         handleDragEnd={this.handleDragEnd}
