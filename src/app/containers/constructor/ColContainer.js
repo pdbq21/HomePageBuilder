@@ -9,6 +9,7 @@ import {connect} from 'react-redux'
 // components
 import ColComponent from '../../components/ConstructorView/ColComponent';
 import ElementComponent from '../../components/ConstructorView/ElementComponent';
+import DropAreaComponent from '../../components/DropAreaComponent';
 //containers
 import BarMenuContainer from '../BarMenuContainer';
 
@@ -28,7 +29,7 @@ class ColContainer extends Component {
     handelDropElement(event, id) {
         // Stop default browser behavior
         event.preventDefault();
-        console.log('drop');
+        //console.log('drop');
         const {ActionCreateNode, ActionAddNode, ActionAddElementType} = this.props.mapDispactchCol;
         const {elementType} = this.props.mapStateToolbar;
 
@@ -56,10 +57,7 @@ class ColContainer extends Component {
 
         return (
             <ColComponent
-                classNameActiveAddElement={(isActiveDragElement) ? 'pb-area--green' : 'pb-area--gray'}
                 col={columnsIndex}
-                handelDrop={this.handelDropElement}
-                handleDragOver={this.handleDragOverElement}
                 id={id}
             >
                 {childrenIds.map((childrenId) => (
@@ -78,6 +76,14 @@ class ColContainer extends Component {
                         />
                     </ElementComponent>
                 ))}
+                <DropAreaComponent
+                    classActiveDropArea={(isActiveDragElement) ? 'pb-area--green' : 'pb-area--gray'}
+                    id={id}
+                    handelDrop={this.handelDropElement}
+                    handleDragOver={this.handleDragOverElement}
+                    isFirst={false}
+                    name='element'
+                />
             </ColComponent>
         );
     }

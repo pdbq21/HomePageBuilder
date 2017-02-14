@@ -200,7 +200,7 @@
 .pb-bar--vertical-menu.is-active{
     visibility: visible;
 }
-.pb-area--drop-section{
+.is-not-active-area{
     display: none;
 }
 .is-active-area{

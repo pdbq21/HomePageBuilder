@@ -7,14 +7,12 @@ export default function DropAreaComponent(props) {
 const {
     id, handelDrop, handleDragOver, classActiveDropArea, isFirst, name
 } = props;
+
     return (<div
-        className={`pb-area pb-area--drop pb-area--drop-section ${(classActiveDropArea)? 'is-active-area' : ''}`}
+        className={`pb-area pb-area--drop pb-area--drop-section ${classActiveDropArea}`}
         onDrop={(event) => handelDrop(event, id, isFirst)}
         onDragOver={handleDragOver}
-        /*
-        onDragEnter={(event) => handleDragEnter(event, id)}
-        onDragLeave={(event) => handleDragLeave(event, id)}*/
     >
-        <span className="pb-area__caption">Drop the ${name} here!</span>
+        <span className="pb-area__caption">Drop the {name} here!</span>
     </div>);
 }

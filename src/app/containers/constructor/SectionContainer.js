@@ -71,47 +71,50 @@ class SectionContainer extends Component {
                 onDragLeave={(event) => handleDragLeave(event, id)}
             >
                 {/* only first */}
-                {(index === 0)? (<DropAreaComponent
-                    id={id}
-                    handleDragOver={handleDragOver}
-                    classActiveDropArea={isActiveDropArea}
-                    handelDrop={handelDrop}
-                    first={true}
-                    name='this'
+                {(index === 0) ? (<DropAreaComponent
+                        id={id}
+                        handleDragOver={handleDragOver}
+                        classActiveDropArea={(isActiveDropArea) ? 'is-active-area' : 'is-not-active-area'}
+                        handelDrop={handelDrop}
+                        first={true}
+                        name='this'
                     />) : null
                 }
 
                 <SectionComponent
-                    classActiveDropArea={(isActiveDragStructure) ? 'pb-area--green' : 'pb-area--gray'}
-                id={id}
-                parentId={parentId}
-                draggable={isActiveMove}
-
-                    handelDrop={this.handelDropRow}
-                    handleDragOver={this.handleDragOverRow}
-                handleDragEnd={handleDragEnd}
-                handleDragStart={handleDragStart}
-            >
-                <BarMenuContainer
                     id={id}
-                    type='section'
-                    positionMenu={false}
                     parentId={parentId}
-                />
-                {childrenIds.map((childrenId) => (
-                    <RowContainer
-                        id={childrenId}
-                        parentId={id}
-                        key={`key-${childrenId}`}
+                    draggable={isActiveMove}
+                    handleDragEnd={handleDragEnd}
+                    handleDragStart={handleDragStart}
+                >
+                    <BarMenuContainer
+                        id={id}
+                        type='section'
+                        positionMenu={false}
+                        parentId={parentId}
                     />
-                ))}
-
-            </SectionComponent>
+                    {childrenIds.map((childrenId) => (
+                        <RowContainer
+                            id={childrenId}
+                            parentId={id}
+                            key={`key-${childrenId}`}
+                        />
+                    ))}
+                    <DropAreaComponent
+                        classActiveDropArea={(isActiveDragStructure) ? 'pb-area--green' : 'pb-area--gray'}
+                        id={id}
+                        handelDrop={this.handelDropRow}
+                        handleDragOver={this.handleDragOverRow}
+                        isFirst={false}
+                        name='row'
+                    />
+                </SectionComponent>
 
                 <DropAreaComponent
                     id={id}
                     handleDragOver={handleDragOver}
-                    classActiveDropArea={isActiveDropArea}
+                    classActiveDropArea={(isActiveDropArea) ? 'is-active-area' : 'is-not-active-area'}
                     handelDrop={handelDrop}
                     isFirst={false}
                     name='this'
