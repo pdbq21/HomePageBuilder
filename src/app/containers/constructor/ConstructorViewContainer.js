@@ -64,10 +64,14 @@ class ConstructorViewContainer extends Component {
         // Stop default browser behavior
         //console.log('drop', id);
         event.preventDefault();
-        const {ActionDragLeaveDropArea, ActionExchangeNode, ActionIsActiveExchangeStructure} = this.props.mapDispactchConstructorView;
+        const {
+            ActionDragLeaveDropArea, ActionExchangeNode, ActionIsActiveExchangeStructure
+        } = this.props.mapDispactchConstructorView;
         ActionDragLeaveDropArea(id);
 
-        const {isActiveExchangeSection, isActiveExchangeRow, isActiveExchangeCol} = this.props.mapStateConstructorViewReducer;
+        const {
+            isActiveExchangeSection, isActiveExchangeRow, isActiveExchangeCol
+        } = this.props.mapStateConstructorViewReducer;
         let type;
         if (isActiveExchangeSection) {
             type = 'section'
@@ -114,7 +118,6 @@ class ConstructorViewContainer extends Component {
     handleDragEnter(event, id) {
         // Stop default browser behavior
         event.preventDefault();
-        //const {isActiveExchangeSection, isActiveExchangeRow, isActiveExchangeCol} = this.props.mapStateConstructorViewReducer;
         const {isActiveDragStructure, isActiveDragElement} = this.props.mapStateToolbarReducer;
 // if isActiveDragStructure === true => drag element in Toolbar
         // else === false => drag element in ConstructorView
@@ -130,7 +133,6 @@ class ConstructorViewContainer extends Component {
     handleDragEnterRow(event, id) {
         // Stop default browser behavior
         event.preventDefault();
-        //const {isActiveExchangeSection, isActiveExchangeRow, isActiveExchangeCol} = this.props.mapStateConstructorViewReducer;
         console.log('enter row', id);
         const {isActiveDragStructure, isActiveDragElement} = this.props.mapStateToolbarReducer;
 // if isActiveDragStructure === true => drag element in Toolbar
@@ -170,9 +172,14 @@ class ConstructorViewContainer extends Component {
         //Todo: need dragParentId, dragId, dropParentId, dropId; remove and push functions
         let dataRow = JSON.parse(event.dataTransfer.getData("dataRow"));
         console.log(dataRow);
-        const {ActionDragLeaveDropArea, ActionExchangeNode, ActionIsActiveExchangeStructure} = this.props.mapDispactchConstructorView;
+        const {
+            ActionDragLeaveDropArea, ActionExchangeNode, ActionIsActiveExchangeStructure
+        } = this.props.mapDispactchConstructorView;
         ActionIsActiveExchangeStructure(false, 'row');
+if (id !== dataRow.id){
+    // first delete , second push
 
+}
     }
 
     render() {

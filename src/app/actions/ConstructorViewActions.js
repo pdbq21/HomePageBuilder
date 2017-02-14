@@ -3,9 +3,10 @@
  */
 //CONSTANTS
 import {
-    ON_DRAG_ENTER, ON_DROP_SECTION, ON_DRAG_OVER, ON_DRAG_LEAVE, CREATE_ID, ADD_NODE, ADD_COLUMNS_DATA, ADD_ELEMENT_TYPE,
-    TOGGLE_BAR_MENU, REMOVE_CHILD, DELETE_NODE, TOGGLE_BAR_MENU_BLUR, CLICK_MOVE, ON_DRAG_ENTER_DROP_AREA,
-    ON_DRAG_LEAVE_DROP_AREA, CLICK_MOVE_END, EXCHANGE_NODE, EXCHANGE_STRUCTURE_ACTIVE
+    ON_DRAG_ENTER, ON_DROP_SECTION, ON_DRAG_OVER, ON_DRAG_LEAVE, CREATE_ID, ADD_NODE, ADD_COLUMNS_DATA,
+    ADD_ELEMENT_TYPE, TOGGLE_BAR_MENU, REMOVE_CHILD, DELETE_NODE, TOGGLE_BAR_MENU_BLUR, CLICK_MOVE,
+    ON_DRAG_ENTER_DROP_AREA, ON_DRAG_LEAVE_DROP_AREA, CLICK_MOVE_END, EXCHANGE_NODE, EXCHANGE_STRUCTURE_ACTIVE,
+    EXCHANGE_NODE_ROW_DELETE, EXCHANGE_NODE_ROW_PUSH
 } from '../constants/ConstructorViewConstants'
 
 export function ActionOnDropSection(id, name) {
@@ -135,6 +136,22 @@ export function ActionExchangeNode(nodeId, dragId, dropId, isFirst) {
         nodeId,
         dragId,
         dropId,
+        isFirst
+    };
+}
+export function ActionExchangeNodeRowDelete(nodeId, id, isFirst) {
+    return{
+        type: EXCHANGE_NODE_ROW_DELETE,
+        nodeId,
+        id,
+        isFirst
+    };
+}
+export function ActionExchangeNodeRowPush(nodeId, id, isFirst) {
+    return{
+        type: EXCHANGE_NODE_ROW_PUSH,
+        nodeId,
+        id,
         isFirst
     };
 }
