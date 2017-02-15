@@ -5,7 +5,7 @@
 import {
     ADD_NODE, CREATE_ID, ADD_COLUMNS_DATA, ADD_ELEMENT_TYPE, TOGGLE_BAR_MENU, REMOVE_CHILD,
     TOGGLE_BAR_MENU_BLUR, DELETE_NODE, CLICK_MOVE, ON_DRAG_ENTER_DROP_AREA, ON_DRAG_LEAVE_DROP_AREA,
-    CLICK_MOVE_END, EXCHANGE_NODE, EXCHANGE_STRUCTURE_ACTIVE, EXCHANGE_NODE_ROW_PUSH, EXCHANGE_NODE_ROW_DELETE
+    CLICK_MOVE_END, EXCHANGE_STRUCTURE_ACTIVE, EXCHANGE_NODE_PUSH, EXCHANGE_NODE_DELETE
 } from '../constants/ConstructorViewConstants'
 // default data state
 const initialState = {
@@ -60,32 +60,33 @@ const exchangeNode = (state, action) => {
     const {type, dragId, dropId, isFirst} = action;
     //console.log(state, dragId, dropId);
     switch (type) {
-        case EXCHANGE_NODE:
-            //action.dragId, action.dropId
-            let newArray = [];
-            state.forEach((id) => {
-                //state.splice(index, 1);
-                if (id !== dragId && id !== dropId) {
-                    newArray.push(id);
-                } else if (id === dropId && isFirst === false) {
-                    newArray.push(id);
-                    newArray.push(dragId);
-                } else if (id === dropId && isFirst === true) {
-                    newArray.push(dragId);
-                    newArray.push(id);
-                }
-            });
-            //console.log(newArray);
-            return newArray;
-        case EXCHANGE_NODE_ROW_PUSH:
-            state.forEach((id, index) => {
+        case EXCHANGE_NODE_PUSH:
+
+            for (let [index, id] of state.entries()){
                 if (id === dropId) {
-                    state.splice(++index, 0, dragId)
+                    if (isFirst) {
+                        state.splice(index, 0, dragId);
+                        break;
+                    } else {
+                        state.splice(++index, 0, dragId);
+                        break;
+                    }
                 }
-            });
+            }
+           /* state.forEach((id, index) => {
+                console.log(id, index, dropId);
+
+                if (id === dropId) {
+                    if (isFirst) {
+                        state.splice(index, 0, dragId)
+                    } else {
+                        state.splice(++index, 0, dragId)
+                    }
+                }
+            });*/
             return state;
-        case EXCHANGE_NODE_ROW_DELETE:
-            //
+
+        case EXCHANGE_NODE_DELETE:
             return state.filter(id =>
                 id !== action.id
             );
@@ -149,16 +150,9 @@ const node = (state, action) => {
             return Object.assign({}, state, {
                 isActiveDropArea: false
             });
-        case EXCHANGE_NODE:
-            return Object.assign({}, state, {
-                childrenIds: exchangeNode(state.childrenIds, action)
-            });
 
-        case EXCHANGE_NODE_ROW_PUSH:
-            return Object.assign({}, state, {
-                childrenIds: exchangeNode(state.childrenIds, action)
-            });
-        case EXCHANGE_NODE_ROW_DELETE:
+        case EXCHANGE_NODE_PUSH:
+        case EXCHANGE_NODE_DELETE:
             return Object.assign({}, state, {
                 childrenIds: exchangeNode(state.childrenIds, action)
             });

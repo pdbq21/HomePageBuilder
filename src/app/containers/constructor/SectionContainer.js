@@ -62,9 +62,11 @@ class SectionContainer extends Component {
         //console.log(this.props.mapStateSection);
         const {isActiveDropArea} = this.props.mapStateSection;
         const {
-            handelDrop, handleDragOver, handleDragEnd, handleDragEnter, handleDragLeave, handleDragStart,
-            handleDragEnterRow, handleDragLeaveRow, handelDropExchangeRow, handleDragStartExchangeRow
+            handleDragOver, handleDragEnd, handleDragEnter, handleDragLeave,
+            handelDropExchangeSection, handleDragStartSection, handelDropExchangeRow, handleDragStartRow,
+            handelDropExchangeElement, handleDragStartElement
         } = this.props;
+
         return (
             <div
                 style={{'marginBottom': '1em'}}
@@ -74,11 +76,14 @@ class SectionContainer extends Component {
                 {/* only first */}
                 {(index === 0) ? (<DropAreaComponent
                         id={id}
+                        classActiveDropArea={
+                            (isActiveDropArea && isActiveExchangeSection) ? 'is-active-area' : 'is-not-active-area'
+                        }
                         handleDragOver={handleDragOver}
-                        classActiveDropArea={(isActiveDropArea && isActiveExchangeSection) ? 'is-active-area' : 'is-not-active-area'}
-                        handelDrop={handelDrop}
-                        first={true}
+                        handelDrop={handelDropExchangeSection}
+                        isFirst={true}
                         name='this'
+                        parentId={parentId}
                     />) : null
                 }
 
@@ -87,7 +92,7 @@ class SectionContainer extends Component {
                     parentId={parentId}
                     draggable={isActiveMove}
                     handleDragEnd={handleDragEnd}
-                    handleDragStart={handleDragStart}
+                    handleDragStart={handleDragStartSection}
                 >
                     <BarMenuContainer
                         id={id}
@@ -95,18 +100,23 @@ class SectionContainer extends Component {
                         positionMenu={false}
                         parentId={parentId}
                     />
-                    {childrenIds.map((childrenId) => (
+                    {childrenIds.map((childrenId, index) => (
                         <RowContainer
                             id={childrenId}
                             parentId={id}
+                            index={index}
                             key={`key-${childrenId}`}
+
                             handleDragEnd={handleDragEnd}
-                            handleDragStartExchangeRow={handleDragStartExchangeRow}
+                            handleDragStartRow={handleDragStartRow}
                             handleDragOver={handleDragOver}
                             handelDropExchangeRow={handelDropExchangeRow}
 
-                            handleDragEnterRow={handleDragEnterRow}
-                            handleDragLeaveRow={handleDragLeaveRow}
+                            handleDragEnter={handleDragEnter}
+                            handleDragLeave={handleDragLeave}
+
+                            handelDropExchangeElement={handelDropExchangeElement}
+                            handleDragStartElement={handleDragStartElement}
                         />
                     ))}
                     <DropAreaComponent
@@ -116,16 +126,20 @@ class SectionContainer extends Component {
                         handleDragOver={this.handleDragOverRow}
                         isFirst={false}
                         name='row'
+                        parentId={parentId}
                     />
                 </SectionComponent>
 
                 <DropAreaComponent
                     id={id}
+                    classActiveDropArea={
+                        (isActiveDropArea && isActiveExchangeSection) ? 'is-active-area' : 'is-not-active-area'
+                    }
                     handleDragOver={handleDragOver}
-                    classActiveDropArea={(isActiveDropArea && isActiveExchangeSection) ? 'is-active-area' : 'is-not-active-area'}
-                    handelDrop={handelDrop}
+                    handelDrop={handelDropExchangeSection}
                     isFirst={false}
                     name='this'
+                    parentId={parentId}
                 />
             </div>
 

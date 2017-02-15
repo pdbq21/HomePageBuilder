@@ -8,10 +8,9 @@ import {connect} from 'react-redux'
 
 // components
 import ColComponent from '../../components/ConstructorView/ColComponent';
-import ElementComponent from '../../components/ConstructorView/ElementComponent';
 import DropAreaComponent from '../../components/DropAreaComponent';
 //containers
-import BarMenuContainer from '../BarMenuContainer';
+import ElementContainer from './ElementContainer';
 
 // actions
 //import * as testActions from '../actions/TestActions'
@@ -51,7 +50,10 @@ class ColContainer extends Component {
 
     render() {
         // todo: const {id, parentId} = this.props; for delete function
-        const {id, handleDragEnd, handleDragStart} = this.props;
+        const {
+            id, handleDragEnd, handleDragStartElement, handelDropExchangeElement, handleDragOver,
+            handleDragEnter, handleDragLeave
+        } = this.props;
         const {columnsIndex, childrenIds} = this.props.mapStateCol;
         const {isActiveDragElement} = this.props.mapStateToolbar;
 
@@ -60,26 +62,24 @@ class ColContainer extends Component {
                 col={columnsIndex}
                 id={id}
             >
-                {childrenIds.map((childrenId) => (
-                    <ElementComponent
+                {childrenIds.map((childrenId, index) => (
+                    <ElementContainer
                         id={childrenId}
                         parentId={id}
+                        index={index}
                         key={`key-${childrenId}`}
-                        type={this.props.mapState[childrenId].elementType}
 
-                        draggable={this.props.mapState[childrenId].isActiveMove}
                         handleDragEnd={handleDragEnd}
-                        handleDragStart={handleDragStart}
-                    >
-                        <BarMenuContainer
-                            positionMenu={true}
-                            id={childrenId}
-                            name={this.props.mapState[childrenId].elementType}
-                            type="col"
-                            parentId={id}
-                        />
-                    </ElementComponent>
+                        handleDragOver={handleDragOver}
+                        handleDragEnter={handleDragEnter}
+                        handleDragLeave={handleDragLeave}
+
+                        handelDropExchangeElement={handelDropExchangeElement}
+                        handleDragStartElement={handleDragStartElement}
+                    />
                 ))}
+
+
                 <DropAreaComponent
                     classActiveDropArea={(isActiveDragElement) ? 'pb-area--green' : 'pb-area--gray'}
                     id={id}
@@ -89,6 +89,7 @@ class ColContainer extends Component {
                     name='element'
                 />
             </ColComponent>
+
         );
     }
 }

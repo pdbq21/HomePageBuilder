@@ -34,7 +34,7 @@ class RowContainer extends Component {
         // Todo: Потрібно це виправити бо це "Костиль"
         // Note: проблема в тому що Row рендериться окремо з Col.
         // Потрібно якось обєднати створення Row по Section childrenIds: [...] with Row columnsIndex: [...]
-        if (childrenIds.length === 0){
+        if (childrenIds.length === 0) {
             columnsIndex.forEach((col) => {
                 const childrenId = ActionCreateNode(id).nodeId;
                 ActionAddNode(id, childrenId);
@@ -47,8 +47,8 @@ class RowContainer extends Component {
 
     render() {
         const {
-            id, parentId, handleDragStart, handleDragEnd, handelDropExchangeRow, handleDragOver, handleDragEnterRow,
-            handleDragLeaveRow, handleDragStartExchangeRow
+            id, parentId, index, handleDragStartRow, handleDragEnd, handelDropExchangeRow, handleDragOver,
+            handleDragEnter, handleDragLeave, handelDropExchangeElement, handleDragStartElement
         } = this.props;
         //console.log(this.props);
         const {isActiveExchangeRow} = this.props.mapStateConstructorViewReducer;
@@ -58,16 +58,31 @@ class RowContainer extends Component {
         return (
             <div
                 style={{'marginBottom': '1em'}}
-                onDragEnter={(isActiveExchangeRow)? (event) => handleDragEnterRow(event, id) : null}
-                onDragLeave={(isActiveExchangeRow)? (event) => handleDragLeaveRow(event, id) : null}
+                onDragEnter={(isActiveExchangeRow) ? (event) => handleDragEnter(event, id) : null}
+                onDragLeave={(isActiveExchangeRow) ? (event) => handleDragLeave(event, id) : null}
             >
+                {/* only first */}
+                {(index === 0) ? (
+                        <DropAreaComponent
+                            id={id}
+                            classActiveDropArea={
+                                (isActiveDropArea && isActiveExchangeRow) ? 'is-active-area' : 'is-not-active-area'
+                            }
+                            handleDragOver={(isActiveExchangeRow) ? handleDragOver : null}
+                            handelDrop={handelDropExchangeRow}
+                            isFirst={true}
+                            name='this'
+                            parentId={parentId}
+                        />) : null
+                }
+
                 <RowComponent
                     id={id}
                     parentId={parentId}
 
                     draggable={isActiveMove}
                     handleDragEnd={handleDragEnd}
-                    handleDragStart={handleDragStartExchangeRow}
+                    handleDragStart={handleDragStartRow}
                 >
                     <BarMenuContainer
                         positionMenu={true}
@@ -82,20 +97,27 @@ class RowContainer extends Component {
                             parentId={id}
                             key={`key-${childrenId}`}
 
+                            handleDragOver={handleDragOver}
                             handleDragEnd={handleDragEnd}
-                            handleDragStart={handleDragStart}
+                            handleDragEnter={handleDragEnter}
+                            handleDragLeave={handleDragLeave}
+
+                            handleDragStartElement={handleDragStartElement}
+                            handelDropExchangeElement={handelDropExchangeElement}
                         />
                     ))}
 
                 </RowComponent>
                 <DropAreaComponent
                     id={id}
-                    handleDragOver={handleDragOver}
+                    handleDragOver={(isActiveExchangeRow) ? handleDragOver : null}
                     handelDrop={handelDropExchangeRow}
-                    classActiveDropArea={(isActiveDropArea && isActiveExchangeRow) ? 'is-active-area' : 'is-not-active-area'}
+                    classActiveDropArea={
+                        (isActiveDropArea && isActiveExchangeRow) ? 'is-active-area' : 'is-not-active-area'
+                    }
                     isFirst={false}
                     name='this'
-                parentId={parentId}
+                    parentId={parentId}
                 />
             </div>
         );

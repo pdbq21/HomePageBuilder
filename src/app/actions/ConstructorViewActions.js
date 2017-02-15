@@ -5,8 +5,8 @@
 import {
     ON_DRAG_ENTER, ON_DROP_SECTION, ON_DRAG_OVER, ON_DRAG_LEAVE, CREATE_ID, ADD_NODE, ADD_COLUMNS_DATA,
     ADD_ELEMENT_TYPE, TOGGLE_BAR_MENU, REMOVE_CHILD, DELETE_NODE, TOGGLE_BAR_MENU_BLUR, CLICK_MOVE,
-    ON_DRAG_ENTER_DROP_AREA, ON_DRAG_LEAVE_DROP_AREA, CLICK_MOVE_END, EXCHANGE_NODE, EXCHANGE_STRUCTURE_ACTIVE,
-    EXCHANGE_NODE_ROW_DELETE, EXCHANGE_NODE_ROW_PUSH
+    ON_DRAG_ENTER_DROP_AREA, ON_DRAG_LEAVE_DROP_AREA, CLICK_MOVE_END, EXCHANGE_STRUCTURE_ACTIVE,
+    EXCHANGE_NODE_DELETE, EXCHANGE_NODE_PUSH
 } from '../constants/ConstructorViewConstants'
 
 export function ActionOnDropSection(id, name) {
@@ -130,30 +130,24 @@ export function ActionDragLeaveDropArea(nodeId) {
     };
 }
 
-export function ActionExchangeNode(nodeId, dragId, dropId, isFirst) {
+export function ActionExchangeNodeDelete(nodeId, id) {
     return{
-        type: EXCHANGE_NODE,
+        type: EXCHANGE_NODE_DELETE,
         nodeId,
-        dragId,
-        dropId,
-        isFirst
+        id
     };
 }
-export function ActionExchangeNodeRowDelete(nodeId, id, isFirst) {
+export function ActionExchangeNodePush(nodeId, dropId, dragId, isFirst) {
+
     return{
-        type: EXCHANGE_NODE_ROW_DELETE,
-        nodeId,
-        id,
-        isFirst
-    };
-}
-export function ActionExchangeNodeRowPush(nodeId, dropId, dragId, isFirst) {
-    return{
-        type: EXCHANGE_NODE_ROW_PUSH,
+        type: EXCHANGE_NODE_PUSH,
+        // parent id
         nodeId,
         dropId,
         dragId,
+        // if drop to first element === true, else === false
         isFirst
     };
 }
+
 

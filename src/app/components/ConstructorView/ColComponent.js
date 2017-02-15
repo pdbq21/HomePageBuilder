@@ -6,9 +6,11 @@ import React from 'react'
 export default function ColComponent(props) {
     //const {classNameActiveAddElement, col} = props;
     //const { id, handelDrop, handleDragOver, children } = props;
-    const { col, children } = props;
+    const {col, children } = props;
     return (
-    <div className={`mdl-cell--${col}-col`}>
+    <div className={`mdl-cell--${col}-col`}
+
+    >
         {/** mdl-cell--4-col => `mdl-cell--${this.props.colIndex}-col` */}
 
         {/* this.props.children Elements*/}

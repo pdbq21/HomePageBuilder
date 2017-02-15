@@ -22,17 +22,25 @@ class ConstructorViewContainer extends Component {
         super(props);
 
         this.handleClickAddSection = this.handleClickAddSection.bind(this);
-        this.handleDragStart = this.handleDragStart.bind(this);
+        //this.handleDragStart = this.handleDragStart.bind(this);
         this.handleDragEnd = this.handleDragEnd.bind(this);
-        this.handelDrop = this.handelDrop.bind(this);
+        //this.handelDrop = this.handelDrop.bind(this);
         this.handleDragOver = this.handleDragOver.bind(this);
         this.handleDragLeave = this.handleDragLeave.bind(this);
         this.handleDragEnter = this.handleDragEnter.bind(this);
 
-        this.handleDragEnterRow = this.handleDragEnterRow.bind(this);
-        this.handleDragLeaveRow = this.handleDragLeaveRow.bind(this);
+        this.dropExchangeNode = this.dropExchangeNode.bind(this);
+
+        this.handelDropExchangeSection = this.handelDropExchangeSection.bind(this);
+        this.handleDragStartSection = this.handleDragStartSection.bind(this);
+
         this.handelDropExchangeRow = this.handelDropExchangeRow.bind(this);
-        this.handleDragStartExchangeRow = this.handleDragStartExchangeRow.bind(this);
+        this.handleDragStartRow = this.handleDragStartRow.bind(this);
+
+        this.handelDropExchangeElement = this.handelDropExchangeElement.bind(this);
+        this.handleDragStartElement = this.handleDragStartElement.bind(this);
+
+
     }
 
     componentDidMount() {
@@ -47,11 +55,11 @@ class ConstructorViewContainer extends Component {
         ActionAddNode(id, childrenId);
     }
 
-    handleDragStart(event, parentId, id) {
+   /* handleDragStart(event, parentId, id) {
         //console.log('drag start', parentId, id);
         let data = JSON.stringify({parentId: parentId, id: id});
         event.dataTransfer.setData("data", data);
-    }
+    }*/
 
     handleDragEnd(event, id) {
         event.preventDefault();
@@ -60,18 +68,28 @@ class ConstructorViewContainer extends Component {
         //console.log(id);
     }
 
-    handelDrop(event, id, isFirst) {
+    /*handelDrop(event, id, isFirst, parentId) {
         // Stop default browser behavior
-        //console.log('drop', id);
         event.preventDefault();
-        const {
-            ActionDragLeaveDropArea, ActionExchangeNode, ActionIsActiveExchangeStructure
-        } = this.props.mapDispactchConstructorView;
-        ActionDragLeaveDropArea(id);
+
 
         const {
             isActiveExchangeSection, isActiveExchangeRow, isActiveExchangeCol
         } = this.props.mapStateConstructorViewReducer;
+
+        event.preventDefault();
+        const {
+            ActionDragLeaveDropArea, ActionExchangeNodePush, ActionExchangeNodeDelete,
+            ActionIsActiveExchangeStructure
+        } = this.props.mapDispactchConstructorView;
+
+        //console.log('handelDropExchangeRow', 'id ' + id, 'parentId ' + parentId);
+        let data = JSON.parse(event.dataTransfer.getData("data"));
+
+        //console.log(data, id, isFirst, parentId);
+
+        ActionDragLeaveDropArea(id);
+
         let type;
         if (isActiveExchangeSection) {
             type = 'section'
@@ -82,12 +100,35 @@ class ConstructorViewContainer extends Component {
         }
         ActionIsActiveExchangeStructure(false, type);
 
-        let data = JSON.parse(event.dataTransfer.getData("data"));
+        // if drop and drag element is not the same
         if (id !== data.id) {
-            // parentId: childrenIds: [ data.id, id] => [id, data.id]
-            ActionExchangeNode(data.parentId, data.id, id, isFirst);
+            // first delete , second push
+            // nodeId = data.parentId; id = data.id;
+            ActionExchangeNodeDelete(data.parentId, data.id);
+            // nodeId = parentId; dropId = id; dragId = dataRow.id;
+            console.log(data.parentId, parentId);
+            ActionExchangeNodePush(parentId, id, data.id, isFirst);
         }
-        //console.log(data);
+
+        this.dragEnterCounter = 0;
+    }*/
+
+    dropExchangeNode(type, id, parentId, data, isFirst){
+
+        const {
+            ActionDragLeaveDropArea, ActionExchangeNodePush, ActionExchangeNodeDelete,
+            ActionIsActiveExchangeStructure
+        } = this.props.mapDispactchConstructorView;
+
+        ActionDragLeaveDropArea(id);
+        ActionIsActiveExchangeStructure(false, type);
+
+        // if drop and drag element is not the same
+        if (id !== data.id) {
+            ActionExchangeNodeDelete(data.parentId, data.id);
+            ActionExchangeNodePush(parentId, id, data.id, isFirst);
+        }
+
         this.dragEnterCounter = 0;
     }
 
@@ -101,7 +142,7 @@ class ConstructorViewContainer extends Component {
     handleDragLeave(event, id) {
         // Stop default browser behavior
         event.preventDefault();
-        console.log('leave');
+        //console.log('leave', id);
         const {isActiveDragStructure, isActiveDragElement} = this.props.mapStateToolbarReducer;
 // if isActiveDragStructure === true => drag element in Toolbar
         // else === false => drag element in ConstructorView
@@ -119,66 +160,31 @@ class ConstructorViewContainer extends Component {
         // Stop default browser behavior
         event.preventDefault();
         const {isActiveDragStructure, isActiveDragElement} = this.props.mapStateToolbarReducer;
+        //console.log('enter');
 // if isActiveDragStructure === true => drag element in Toolbar
         // else === false => drag element in ConstructorView
         if (isActiveDragStructure === false && isActiveDragElement === false) {
             //++
             ++this.dragEnterCounter;
             const {ActionDragEnterDropArea} = this.props.mapDispactchConstructorView;
+
+            //console.log(event.target, id);
             ActionDragEnterDropArea(id);
         }
 
     }
 
-    handleDragEnterRow(event, id) {
-        // Stop default browser behavior
+    /*handelDropExchangeRow(event, id, isFirst, parentId) {
         event.preventDefault();
-        console.log('enter row', id);
-        const {isActiveDragStructure, isActiveDragElement} = this.props.mapStateToolbarReducer;
-// if isActiveDragStructure === true => drag element in Toolbar
-        // else === false => drag element in ConstructorView
-        if (isActiveDragStructure === false && isActiveDragElement === false) {
-            //++
-            ++this.dragEnterCounter;
-            const {ActionDragEnterDropArea} = this.props.mapDispactchConstructorView;
-            ActionDragEnterDropArea(id);
-        }
-
-    }
-
-    handleDragLeaveRow(event, id) {
-        // Stop default browser behavior
-        event.preventDefault();
-        console.log('leave row', id);
-        const {isActiveDragStructure, isActiveDragElement} = this.props.mapStateToolbarReducer;
-// if isActiveDragStructure === true => drag element in Toolbar
-        // else === false => drag element in ConstructorView
-        if (isActiveDragStructure === false && isActiveDragElement === false) {
-            const {ActionDragLeaveDropArea} = this.props.mapDispactchConstructorView;
-            --this.dragEnterCounter;
-            if (this.dragEnterCounter === 0) {
-                ActionDragLeaveDropArea(id);
-            }
-        }
-    }
-
-    handleDragStartExchangeRow(event, parentId, id) {
-        let dataRow = JSON.stringify({parentId: parentId, id: id});
-        event.dataTransfer.setData("dataRow", dataRow);
-    }
-
-    handelDropExchangeRow(event, id, isFirst, parentId) {
-        event.preventDefault();
-
         const {
             ActionDragLeaveDropArea, ActionExchangeNodeRowPush, ActionExchangeNodeRowDelete,
             ActionIsActiveExchangeStructure
         } = this.props.mapDispactchConstructorView;
 
-        console.log('handelDropExchangeRow', 'id ' + id, 'parentId ' + parentId);
+        //console.log('handelDropExchangeRow', 'id ' + id, 'parentId ' + parentId);
         //Todo: need dragParentId, dragId, dropParentId, dropId; remove and push functions
         let dataRow = JSON.parse(event.dataTransfer.getData("dataRow"));
-        console.log(dataRow);
+        //console.log(dataRow);
 
 
         ActionDragLeaveDropArea(id);
@@ -190,8 +196,42 @@ class ConstructorViewContainer extends Component {
             // nodeId = dataRow.parentId; id = dataRow.id;
             ActionExchangeNodeRowDelete(dataRow.parentId, dataRow.id);
             // nodeId = parentId; dropId = id; dragId = dataRow.id;
-            ActionExchangeNodeRowPush(parentId, id, dataRow.id);
+            ActionExchangeNodeRowPush(parentId, id, dataRow.id, isFirst);
         }
+    }*/
+
+    /*** Section function ***/
+    handelDropExchangeSection(event, id, isFirst, parentId){
+        // Stop default browser behavior
+        event.preventDefault();
+        let dataSection = JSON.parse(event.dataTransfer.getData("dataSection"));
+        this.dropExchangeNode('section', id, parentId, dataSection, isFirst);
+    }
+    handleDragStartSection(event, parentId, id) {
+        let dataSection = JSON.stringify({parentId: parentId, id: id});
+        event.dataTransfer.setData("dataSection", dataSection);
+    }
+
+    /*** Row function ***/
+    handelDropExchangeRow(event, id, isFirst, parentId){
+        event.preventDefault();
+        let dataRow = JSON.parse(event.dataTransfer.getData("dataRow"));
+        this.dropExchangeNode('row', id, parentId, dataRow, isFirst);
+    }
+    handleDragStartRow(event, parentId, id) {
+        let dataRow= JSON.stringify({parentId: parentId, id: id});
+        event.dataTransfer.setData("dataRow", dataRow);
+    }
+
+    /*** Element function ***/
+    handelDropExchangeElement(event, id, isFirst, parentId){
+        event.preventDefault();
+        let dataElement = JSON.parse(event.dataTransfer.getData("dataElement"));
+        this.dropExchangeNode('row', id, parentId, dataElement, isFirst);
+    }
+    handleDragStartElement(event, parentId, id) {
+        let dataElement= JSON.stringify({parentId: parentId, id: id});
+        event.dataTransfer.setData("dataElement", dataElement);
     }
 
     render() {
@@ -206,20 +246,25 @@ class ConstructorViewContainer extends Component {
                     <SectionContainer
                         id={childrenId}
                         parentId={id}
-                        key={`key-${childrenId}`}
+                        key={`key-${childrenId}-${index}`}
                         index={index}
 
-                        handelDrop={this.handelDrop}
+                        /*handelDrop={this.handelDrop}*/
                         handleDragEnd={this.handleDragEnd}
-                        handleDragStart={this.handleDragStart}
+                        /*handleDragStart={this.handleDragStart}*/
                         handleDragOver={this.handleDragOver}
                         handleDragEnter={this.handleDragEnter}
                         handleDragLeave={this.handleDragLeave}
 
-                        handleDragEnterRow={this.handleDragEnterRow}
-                        handleDragLeaveRow={this.handleDragLeaveRow}
+                        handelDropExchangeSection={this.handelDropExchangeSection}
+                        handleDragStartSection={this.handleDragStartSection}
+
                         handelDropExchangeRow={this.handelDropExchangeRow}
-                        handleDragStartExchangeRow={this.handleDragStartExchangeRow}
+                        handleDragStartRow={this.handleDragStartRow}
+
+                        handelDropExchangeElement={this.handelDropExchangeElement}
+                        handleDragStartElement={this.handleDragStartElement}
+
                     />
                 ))}
 
