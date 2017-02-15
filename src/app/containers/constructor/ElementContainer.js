@@ -26,7 +26,7 @@ class ElementContainer extends Component {
         } = this.props;
         const {elementType, isActiveMove, isActiveDropArea} = this.props.mapStateElement;
         const {isActiveExchangeCol} = this.props.mapStateConstructorViewReducer;
-console.log(elementType);
+
         return (
             <div
                 style={{'marginBottom': '1em'}}
@@ -61,7 +61,7 @@ console.log(elementType);
                         id={id}
                         name={elementType}
                         type="col"
-                        parentId={id}
+                        parentId={parentId}
                     />
                 </ElementComponent>
 
