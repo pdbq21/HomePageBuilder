@@ -58,9 +58,8 @@ class SectionContainer extends Component {
         const {isActiveExchangeSection} = this.props.mapStateConstructorViewReducer;
         const {id, parentId, index} = this.props;
         // id array the current Section for generating Rows
-        const {childrenIds, isActiveMove} = this.props.mapStateSection;
+        const {childrenIds, isActiveMove, isActiveEditPanel, isActiveDropArea} = this.props.mapStateSection;
         //console.log(this.props.mapStateSection);
-        const {isActiveDropArea} = this.props.mapStateSection;
         const {
             handleDragOver, handleDragEnd, handleDragEnter, handleDragLeave,
             handelDropExchangeSection, handleDragStartSection, handelDropExchangeRow, handleDragStartRow,
@@ -91,6 +90,7 @@ class SectionContainer extends Component {
                     id={id}
                     parentId={parentId}
                     draggable={isActiveMove}
+                    classActiveEditPanel={(isActiveEditPanel) ? 'is-active-edit-panel' : ''}
                     handleDragEnd={handleDragEnd}
                     handleDragStart={handleDragStartSection}
                 >

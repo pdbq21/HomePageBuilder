@@ -6,30 +6,30 @@ import {
     ON_DRAG_ENTER, ON_DROP_SECTION, ON_DRAG_OVER, ON_DRAG_LEAVE, CREATE_ID, ADD_NODE, ADD_COLUMNS_DATA,
     ADD_ELEMENT_TYPE, TOGGLE_BAR_MENU, REMOVE_CHILD, DELETE_NODE, TOGGLE_BAR_MENU_BLUR, CLICK_MOVE,
     ON_DRAG_ENTER_DROP_AREA, ON_DRAG_LEAVE_DROP_AREA, CLICK_MOVE_END, EXCHANGE_STRUCTURE_ACTIVE,
-    EXCHANGE_NODE_DELETE, EXCHANGE_NODE_PUSH
+    EXCHANGE_NODE_DELETE, EXCHANGE_NODE_PUSH, ACTIVE_EDIT_PANEL
 } from '../constants/ConstructorViewConstants'
 
 export function ActionOnDropSection(id, name) {
-    return{
+    return {
         type: ON_DROP_SECTION,
         id,
         name
     };
 }
 export function ActionOnDragEnter() {
-    return{
+    return {
         type: ON_DRAG_ENTER,
         //empty
     };
 }
 export function ActionOnDragOver() {
-    return{
+    return {
         type: ON_DRAG_OVER,
         //empty
     };
 }
 export function ActionOnDragLeave() {
-    return{
+    return {
         type: ON_DRAG_LEAVE,
         //empty
     };
@@ -39,7 +39,7 @@ export function ActionOnDragLeave() {
 // Todo: this function will create array ids sections
 let nextId = 0;
 export function ActionCreateNode(parentId) {
-    return{
+    return {
         type: CREATE_ID,
         parentId,
         nodeId: `id_${nextId++}`
@@ -47,7 +47,7 @@ export function ActionCreateNode(parentId) {
 }
 
 export function ActionAddNode(nodeId, childrenId) {
-    return{
+    return {
         type: ADD_NODE,
         nodeId,
         childrenId
@@ -55,14 +55,14 @@ export function ActionAddNode(nodeId, childrenId) {
 }
 
 export function ActionAddColumnsData(nodeId, colIndex) {
-    return{
+    return {
         type: ADD_COLUMNS_DATA,
         nodeId,
         colIndex
     };
 }
 export function ActionAddElementType(nodeId, elementType) {
-    return{
+    return {
         type: ADD_ELEMENT_TYPE,
         nodeId,
         elementType
@@ -70,39 +70,39 @@ export function ActionAddElementType(nodeId, elementType) {
 }
 
 export function ActionToggleBarMenu(nodeId) {
-    return{
+    return {
         type: TOGGLE_BAR_MENU,
         nodeId
     };
 }
 export function ActionToggleBarMenuBlur(nodeId) {
-    return{
+    return {
         type: TOGGLE_BAR_MENU_BLUR,
         nodeId
     };
 }
 export function ActionRemoveChild(nodeId, childId) {
-    return{
+    return {
         type: REMOVE_CHILD,
         nodeId,
         childId
     };
 }
 export function ActionDeleteNode(nodeId) {
-    return{
+    return {
         type: DELETE_NODE,
         nodeId
     };
 }
 export function ActionMove(nodeId, structureType) {
-    return{
+    return {
         type: CLICK_MOVE,
         nodeId,
         structureType
     };
 }
 export function ActionIsActiveExchangeStructure(isActive, structureType) {
-    return{
+    return {
         type: EXCHANGE_STRUCTURE_ACTIVE,
         nodeId: 'data',
         isActive,
@@ -110,28 +110,28 @@ export function ActionIsActiveExchangeStructure(isActive, structureType) {
     };
 }
 export function ActionMoveEnd(nodeId) {
-    return{
+    return {
         type: CLICK_MOVE_END,
         nodeId
     };
 }
 
 export function ActionDragEnterDropArea(nodeId) {
-    return{
+    return {
         type: ON_DRAG_ENTER_DROP_AREA,
         nodeId
     };
 }
 
 export function ActionDragLeaveDropArea(nodeId) {
-    return{
+    return {
         type: ON_DRAG_LEAVE_DROP_AREA,
         nodeId
     };
 }
 
 export function ActionExchangeNodeDelete(nodeId, id) {
-    return{
+    return {
         type: EXCHANGE_NODE_DELETE,
         nodeId,
         id
@@ -139,7 +139,7 @@ export function ActionExchangeNodeDelete(nodeId, id) {
 }
 export function ActionExchangeNodePush(nodeId, dropId, dragId, isFirst) {
 
-    return{
+    return {
         type: EXCHANGE_NODE_PUSH,
         // parent id
         nodeId,
@@ -147,6 +147,14 @@ export function ActionExchangeNodePush(nodeId, dropId, dragId, isFirst) {
         dragId,
         // if drop to first element === true, else === false
         isFirst
+    };
+}
+export function ActionActiveEditPanel(nodeId, id) {
+    return {
+        type: ACTIVE_EDIT_PANEL,
+        nodeId,
+        id
+
     };
 }
 

@@ -6,7 +6,7 @@ import img from '../../../static/images/icon-image-128.png'; // Tell Webpack thi
 
 export default function ElementComponent(props) {
 
-    const {type, children, draggable, handleDragEnd, handleDragStart, parentId, id} = props;
+    const {type, children, draggable, handleDragEnd, handleDragStart, parentId, id, classActiveEditPanel} = props;
 
     let element;
     switch (type) {
@@ -30,7 +30,7 @@ export default function ElementComponent(props) {
             break;
     }
     return (
-        <div className="mdl-card pb-card pb-card--col mdl-shadow--2dp"
+        <div className={`mdl-card pb-card pb-card--col mdl-shadow--2dp ${classActiveEditPanel}`}
              draggable={draggable}
              onDragEnd={(event) => handleDragEnd(event, id)}
              onDragStart={(event) => handleDragStart(event, parentId, id)}

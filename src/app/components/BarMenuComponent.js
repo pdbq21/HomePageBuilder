@@ -5,10 +5,13 @@ import React from 'react'
 
 export default function BarMenuComponent(props) {
     const {
-        id, type, handelClickBarMenu, classActiveMenu, handelClickRemove,
-        handelBlurBarMenu, positionMenu, handleMove, handleMoveEnd
+        id, type, parentId, handelClickBarMenu, classActiveMenu, handelClickRemove,
+        handelBlurBarMenu, positionMenu, handleMove, handleMoveEnd, handleActiveEdit,
+
     } = props;
-    return (<div className={`pb-bar pb-bar--${(positionMenu) ? 'horizontal' : 'vertical'}`}>
+    return (<div className={`pb-bar pb-bar--${(positionMenu) ? 'horizontal' : 'vertical'} `}
+                 onClick={() => handleActiveEdit(id, parentId)}
+    >
         <div className="pb-bar__button"
              onMouseDown={() => handleMove(id)}
              onMouseUp={() => handleMoveEnd(id)}

@@ -53,7 +53,7 @@ class RowContainer extends Component {
         //console.log(this.props);
         const {isActiveExchangeRow} = this.props.mapStateConstructorViewReducer;
         // id array the current Section for generating Rows
-        const {childrenIds, isActiveMove, isActiveDropArea} = this.props.mapStateRow;
+        const {childrenIds, isActiveMove, isActiveDropArea, isActiveEditPanel} = this.props.mapStateRow;
 
         return (
             <div
@@ -79,7 +79,7 @@ class RowContainer extends Component {
                 <RowComponent
                     id={id}
                     parentId={parentId}
-
+                    classActiveEditPanel={(isActiveEditPanel) ? 'is-active-edit-panel' : ''}
                     draggable={isActiveMove}
                     handleDragEnd={handleDragEnd}
                     handleDragStart={handleDragStartRow}

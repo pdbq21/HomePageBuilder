@@ -24,7 +24,7 @@ class ElementContainer extends Component {
             id, parentId, index, handleDragEnd, handleDragOver,
             handleDragEnter, handleDragLeave, handelDropExchangeElement, handleDragStartElement
         } = this.props;
-        const {elementType, isActiveMove, isActiveDropArea} = this.props.mapStateElement;
+        const {elementType, isActiveMove, isActiveDropArea, isActiveEditPanel} = this.props.mapStateElement;
         const {isActiveExchangeCol} = this.props.mapStateConstructorViewReducer;
 
         return (
@@ -52,6 +52,7 @@ class ElementContainer extends Component {
                     id={id}
                     parentId={parentId}
                     draggable={isActiveMove}
+                    classActiveEditPanel={(isActiveEditPanel) ? 'is-active-edit-panel' : ''}
                     type={elementType}
                     handleDragEnd={handleDragEnd}
                     handleDragStart={handleDragStartElement}

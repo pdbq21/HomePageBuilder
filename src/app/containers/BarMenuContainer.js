@@ -26,6 +26,8 @@ class BarMenuContainer extends Component {
         this.handleMove = this.handleMove.bind(this);
         this.handleMoveEnd = this.handleMoveEnd.bind(this);
 
+        this.handleActiveEdit = this.handleActiveEdit.bind(this);
+
     }
 
     handelBlurBarMenu(id) {
@@ -61,19 +63,28 @@ class BarMenuContainer extends Component {
         ActionIsActiveExchangeStructure(false, type);
     }
 
+    handleActiveEdit(id, parentId){
+
+console.log(id, parentId);
+        const {ActionActiveEditPanel} = this.props.mapDispactchBarMenu;
+        ActionActiveEditPanel(id);
+    }
 
     render() {
-        const {id, positionMenu, name, type} = this.props;
+        const {id, positionMenu, name, type, parentId} = this.props;
         const {isActiveMenu} = this.props.mapStateBarMenu;
         return (
             <BarMenuComponent
                 handelClickBarMenu={this.handelClickBarMenu}
                 handelBlurBarMenu={this.handelBlurBarMenu}
                 handelClickRemove={this.handelClickRemove}
+                handleActiveEdit={this.handleActiveEdit}
 
                 classActiveMenu={(isActiveMenu) ? 'is-active' : ''}
+
                 positionMenu={positionMenu}
                 id={id}
+                parentId={parentId}
                 name={name}
                 type={type}
                 handleMove={this.handleMove}
