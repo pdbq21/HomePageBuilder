@@ -145,6 +145,7 @@ class ConstructorViewContainer extends Component {
         }
 
     }
+
     handleDragLeaveRow(event, id) {
         // Stop default browser behavior
         event.preventDefault();
@@ -166,20 +167,31 @@ class ConstructorViewContainer extends Component {
         event.dataTransfer.setData("dataRow", dataRow);
     }
 
-    handelDropExchangeRow(event, id, isFirst, parentId){
+    handelDropExchangeRow(event, id, isFirst, parentId) {
         event.preventDefault();
-        console.log('handelDropExchangeRow', 'id '+id, 'parentId '+parentId);
+
+        const {
+            ActionDragLeaveDropArea, ActionExchangeNodeRowPush, ActionExchangeNodeRowDelete,
+            ActionIsActiveExchangeStructure
+        } = this.props.mapDispactchConstructorView;
+
+        console.log('handelDropExchangeRow', 'id ' + id, 'parentId ' + parentId);
         //Todo: need dragParentId, dragId, dropParentId, dropId; remove and push functions
         let dataRow = JSON.parse(event.dataTransfer.getData("dataRow"));
         console.log(dataRow);
-        const {
-            ActionDragLeaveDropArea, ActionExchangeNode, ActionIsActiveExchangeStructure
-        } = this.props.mapDispactchConstructorView;
-        ActionIsActiveExchangeStructure(false, 'row');
-if (id !== dataRow.id){
-    // first delete , second push
 
-}
+
+        ActionDragLeaveDropArea(id);
+        ActionIsActiveExchangeStructure(false, 'row');
+
+        // if drop and drag element is not the same
+        if (id !== dataRow.id) {
+            // first delete , second push
+            // nodeId = dataRow.parentId; id = dataRow.id;
+            ActionExchangeNodeRowDelete(dataRow.parentId, dataRow.id);
+            // nodeId = parentId; dropId = id; dragId = dataRow.id;
+            ActionExchangeNodeRowPush(parentId, id, dataRow.id);
+        }
     }
 
     render() {

@@ -28,14 +28,20 @@ class RowContainer extends Component {
 
     createColumnsChildren() {
         const {ActionCreateNode, ActionAddNode, ActionAddColumnsData} = this.props.mapDispactchSection;
-        const {columnsIndex} = this.props.mapStateRow;
+        const {columnsIndex, childrenIds} = this.props.mapStateRow;
         const {id} = this.props;
 
-        columnsIndex.forEach((col) => {
-            const childrenId = ActionCreateNode(id).nodeId;
-            ActionAddNode(id, childrenId);
-            ActionAddColumnsData(childrenId, col);
-        });
+        // Todo: Потрібно це виправити бо це "Костиль"
+        // Note: проблема в тому що Row рендериться окремо з Col.
+        // Потрібно якось обєднати створення Row по Section childrenIds: [...] with Row columnsIndex: [...]
+        if (childrenIds.length === 0){
+            columnsIndex.forEach((col) => {
+                const childrenId = ActionCreateNode(id).nodeId;
+                ActionAddNode(id, childrenId);
+                ActionAddColumnsData(childrenId, col);
+            });
+        }
+
     }
 
 

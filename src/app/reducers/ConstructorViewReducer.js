@@ -78,16 +78,12 @@ const exchangeNode = (state, action) => {
             //console.log(newArray);
             return newArray;
         case EXCHANGE_NODE_ROW_PUSH:
-            //action.dragId, action.dropId
-
-            //console.log(newArray);
-            // state.splice(index, 0, action.id)
-            // Todo: need to finish this!!!
-            return state.forEach((id, index) => {
-                if (id === action.id){
-                    return state.splice(index, 0, action.id)
+            state.forEach((id, index) => {
+                if (id === dropId) {
+                    state.splice(++index, 0, dragId)
                 }
             });
+            return state;
         case EXCHANGE_NODE_ROW_DELETE:
             //
             return state.filter(id =>

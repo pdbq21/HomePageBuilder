@@ -147,11 +147,12 @@ export function ActionExchangeNodeRowDelete(nodeId, id, isFirst) {
         isFirst
     };
 }
-export function ActionExchangeNodeRowPush(nodeId, id, isFirst) {
+export function ActionExchangeNodeRowPush(nodeId, dropId, dragId, isFirst) {
     return{
         type: EXCHANGE_NODE_ROW_PUSH,
         nodeId,
-        id,
+        dropId,
+        dragId,
         isFirst
     };
 }
