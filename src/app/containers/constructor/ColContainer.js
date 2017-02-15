@@ -51,10 +51,11 @@ class ColContainer extends Component {
     render() {
         // todo: const {id, parentId} = this.props; for delete function
         const {
-            id, handleDragEnd, handleDragStartElement, handelDropExchangeElement, handleDragOver,
+            id, parentId, handleDragEnd, handleDragStartElement, handelDropExchangeElement, handleDragOver,
             handleDragEnter, handleDragLeave
         } = this.props;
         const {columnsIndex, childrenIds} = this.props.mapStateCol;
+        const {isActiveExchangeCol} = this.props.mapState;
         const {isActiveDragElement} = this.props.mapStateToolbar;
 
         return (
@@ -78,10 +79,25 @@ class ColContainer extends Component {
                         handleDragStartElement={handleDragStartElement}
                     />
                 ))}
-
+                {
+                    (childrenIds.length === 0)? (<DropAreaComponent
+                            id={id}
+                            handleDragOver={handleDragOver}
+                            handelDrop={handelDropExchangeElement}
+                            classActiveDropArea={
+                                (isActiveDropArea && isActiveExchangeCol) ? 'is-active-area' : 'is-not-active-area'
+                            }
+                            isFirst={false}
+                            name='this'
+                            parentId={parentId}
+                        />) : null
+                }
 
                 <DropAreaComponent
                     classActiveDropArea={(isActiveDragElement) ? 'pb-area--green' : 'pb-area--gray'}
+                    hidden={
+                        (isActiveExchangeCol) ? 'none' : 'block'
+                    }
                     id={id}
                     handelDrop={this.handelDropElement}
                     handleDragOver={this.handleDragOverElement}

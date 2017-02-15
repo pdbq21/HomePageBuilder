@@ -55,7 +55,7 @@ class SectionContainer extends Component {
 
     render() {
         const {isActiveDragStructure} = this.props.mapStateToolbar;
-        const {isActiveExchangeSection} = this.props.mapStateConstructorViewReducer;
+        const {isActiveExchangeSection, isActiveExchangeRow} = this.props.mapStateConstructorViewReducer;
         const {id, parentId, index} = this.props;
         // id array the current Section for generating Rows
         const {childrenIds, isActiveMove, isActiveEditPanel, isActiveDropArea} = this.props.mapStateSection;
@@ -63,14 +63,20 @@ class SectionContainer extends Component {
         const {
             handleDragOver, handleDragEnd, handleDragEnter, handleDragLeave,
             handelDropExchangeSection, handleDragStartSection, handelDropExchangeRow, handleDragStartRow,
-            handelDropExchangeElement, handleDragStartElement
+            handelDropExchangeElement, handleDragStartElement, handleDragEnterRow, handleDragLeaveRow
         } = this.props;
 
         return (
             <div
                 style={{'marginBottom': '1em'}}
-                onDragEnter={(isActiveExchangeSection)? (event) => handleDragEnter(event, id) : null}
-                onDragLeave={(isActiveExchangeSection)? (event) => handleDragLeave(event, id) : null}
+                onDragEnter={(isActiveExchangeSection)?
+                    (event) => handleDragEnter(event, id) :
+                    (event) => handleDragEnterRow(event, id)
+                }
+                onDragLeave={(isActiveExchangeSection)?
+                    (event) => handleDragLeave(event, id) :
+                    (event) => handleDragLeaveRow(event, id)
+                }
             >
                 {/* only first */}
                 {(index === 0) ? (<DropAreaComponent
@@ -119,8 +125,26 @@ class SectionContainer extends Component {
                             handleDragStartElement={handleDragStartElement}
                         />
                     ))}
+                    {
+                        (childrenIds.length === 0)? (<DropAreaComponent
+                                id={id}
+                                handleDragOver={handleDragOver}
+                                handelDrop={handelDropExchangeRow}
+                                classActiveDropArea={
+                                    (isActiveDropArea && isActiveExchangeRow) ? 'is-active-area' : 'is-not-active-area'
+                                }
+                                isFirst={false}
+                                name='this'
+                                parentId={parentId}
+                            />) : null
+                    }
+
                     <DropAreaComponent
                         classActiveDropArea={(isActiveDragStructure) ? 'pb-area--green' : 'pb-area--gray'}
+
+                        hidden={
+                            (isActiveDropArea && isActiveExchangeRow) ? 'none' : 'block'
+                        }
                         id={id}
                         handelDrop={this.handelDropRow}
                         handleDragOver={this.handleDragOverRow}
@@ -129,7 +153,6 @@ class SectionContainer extends Component {
                         parentId={parentId}
                     />
                 </SectionComponent>
-
                 <DropAreaComponent
                     id={id}
                     classActiveDropArea={

@@ -24,8 +24,9 @@ export default function SectionComponent(props) {
                 {/*<!-- Row block -->*/}
                 {children[1]}
 
-                {/* <!-- Drop area for the row -->*/}
                 {children[2]}
+                {/* <!-- Drop area for the row -->*/}
+                {children[3]}
                 {/*<div
                     className={`pb-area pb-area--drop ${classNameActiveAddSection}`}
                     onDrop={(event) => handelDrop(event, id)}

@@ -36,6 +36,8 @@ class ConstructorViewContainer extends Component {
 
         this.handelDropExchangeRow = this.handelDropExchangeRow.bind(this);
         this.handleDragStartRow = this.handleDragStartRow.bind(this);
+        this.handleDragEnterRow = this.handleDragEnterRow.bind(this);
+        this.handleDragLeaveRow = this.handleDragLeaveRow.bind(this);
 
         this.handelDropExchangeElement = this.handelDropExchangeElement.bind(this);
         this.handleDragStartElement = this.handleDragStartElement.bind(this);
@@ -223,6 +225,41 @@ class ConstructorViewContainer extends Component {
         event.dataTransfer.setData("dataRow", dataRow);
     }
 
+    handleDragLeaveRow(event, id) {
+        // Stop default browser behavior
+        event.preventDefault();
+        //console.log('leave', id);
+        const {isActiveDragStructure, isActiveDragElement} = this.props.mapStateToolbarReducer;
+// if isActiveDragStructure === true => drag element in Toolbar
+        // else === false => drag element in ConstructorView
+        if (isActiveDragStructure === false && isActiveDragElement === false) {
+            const {ActionDragLeaveDropArea} = this.props.mapDispactchConstructorView;
+            --this.dragEnterCounter;
+            if (this.dragEnterCounter === 0) {
+                ActionDragLeaveDropArea(id);
+            }
+        }
+
+    }
+
+    handleDragEnterRow(event, id) {
+        // Stop default browser behavior
+        event.preventDefault();
+        const {isActiveDragStructure, isActiveDragElement} = this.props.mapStateToolbarReducer;
+        //console.log('enter');
+// if isActiveDragStructure === true => drag element in Toolbar
+        // else === false => drag element in ConstructorView
+        if (isActiveDragStructure === false && isActiveDragElement === false) {
+            //++
+            ++this.dragEnterCounter;
+            const {ActionDragEnterDropArea} = this.props.mapDispactchConstructorView;
+
+            //console.log(event.target, id);
+            ActionDragEnterDropArea(id);
+        }
+
+    }
+
     /*** Element function ***/
     handelDropExchangeElement(event, id, isFirst, parentId) {
         event.preventDefault();
@@ -262,6 +299,8 @@ class ConstructorViewContainer extends Component {
 
                         handelDropExchangeRow={this.handelDropExchangeRow}
                         handleDragStartRow={this.handleDragStartRow}
+                        handleDragEnterRow={this.handleDragEnterRow}
+                        handleDragLeaveRow={this.handleDragLeaveRow}
 
                         handelDropExchangeElement={this.handelDropExchangeElement}
                         handleDragStartElement={this.handleDragStartElement}
