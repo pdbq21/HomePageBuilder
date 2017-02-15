@@ -20,14 +20,13 @@ import * as actionsConstructorView from '../../actions/ConstructorViewActions'
 class ElementContainer extends Component {
 
     render() {
-
         const {
             id, parentId, index, handleDragEnd, handleDragOver,
             handleDragEnter, handleDragLeave, handelDropExchangeElement, handleDragStartElement
         } = this.props;
         const {elementType, isActiveMove, isActiveDropArea} = this.props.mapStateElement;
         const {isActiveExchangeCol} = this.props.mapStateConstructorViewReducer;
-
+console.log(elementType);
         return (
             <div
                 style={{'marginBottom': '1em'}}

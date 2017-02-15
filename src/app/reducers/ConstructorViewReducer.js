@@ -73,17 +73,6 @@ const exchangeNode = (state, action) => {
                     }
                 }
             }
-           /* state.forEach((id, index) => {
-                console.log(id, index, dropId);
-
-                if (id === dropId) {
-                    if (isFirst) {
-                        state.splice(index, 0, dragId)
-                    } else {
-                        state.splice(++index, 0, dragId)
-                    }
-                }
-            });*/
             return state;
 
         case EXCHANGE_NODE_DELETE:
