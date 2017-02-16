@@ -10,7 +10,7 @@ export default function BarMenuComponent(props) {
 
     } = props;
     return (<div className={`pb-bar pb-bar--${(positionMenu) ? 'horizontal' : 'vertical'} `}
-                 onClick={() => handleActiveEdit(id, parentId)}
+
     >
         <div className="pb-bar__button"
              onMouseDown={() => handleMove(id)}
@@ -20,8 +20,11 @@ export default function BarMenuComponent(props) {
                 <i className="material-icons">swap_vert</i>
             </button>
         </div>
-
-        {(positionMenu) ? <div className="pb-bar__caption"><span>{props.name}</span></div> : ''}
+        <div
+            onClick={() => handleActiveEdit(id, parentId)}
+        >
+            {(positionMenu) ? <div className="pb-bar__caption"><span>{props.name}</span></div> : ''}
+        </div>
 
 
         <div className="pb-bar__menu">

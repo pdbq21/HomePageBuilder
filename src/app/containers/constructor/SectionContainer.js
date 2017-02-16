@@ -11,7 +11,7 @@ import SectionComponent from '../../components/ConstructorView/SectionComponent'
 import BarMenuContainer from '../BarMenuContainer';
 import DropAreaComponent from '../../components/DropAreaComponent';
 //containers
-import RowContainer from './RowContainer'
+import RowContainer from './RowContainer';
 // actions
 //import * as testActions from '../actions/TestActions'
 import * as actionsConstructorView from '../../actions/ConstructorViewActions'
@@ -27,16 +27,27 @@ class SectionContainer extends Component {
 
     handelDropRow(event, id) {
         // Stop default browser behavior
-        // console.log('drop');
+        //console.log('drop', id); // id === Section id
         event.preventDefault();
         const {ActionCreateNode, ActionAddNode, ActionAddColumnsData} = this.props.mapDispactchSection;
         // [6, 6] / [4, 4, 4] ...
         const {columns} = this.props.mapStateToolbar;
         // if drop Element columns.length = 0;
         if (columns.length) {
-            const childrenId = ActionCreateNode(id).nodeId;
-            ActionAddNode(id, childrenId);
-            ActionAddColumnsData(childrenId, columns);
+            // create Row
+            const childrenIdRow = ActionCreateNode(id).nodeId;
+            ActionAddNode(id, childrenIdRow);
+            ActionAddColumnsData(childrenIdRow, columns);
+// create Row children - Cols
+            columns.forEach((col) => {
+                //console.log(col, index);
+                const childrenId = ActionCreateNode(childrenIdRow).nodeId;
+                ActionAddNode(childrenIdRow, childrenId);
+                ActionAddColumnsData(childrenId, col);
+            });
+            /*  const childrenId = ActionCreateNode(id).nodeId;
+             ActionAddNode(id, childrenId);
+             ActionAddColumnsData(childrenId, columns);*/
         }
 
     }
@@ -69,11 +80,11 @@ class SectionContainer extends Component {
         return (
             <div
                 style={{'marginBottom': '1em'}}
-                onDragEnter={(isActiveExchangeSection)?
+                onDragEnter={(isActiveExchangeSection) ?
                     (event) => handleDragEnter(event, id) :
                     (event) => handleDragEnterRow(event, id)
                 }
-                onDragLeave={(isActiveExchangeSection)?
+                onDragLeave={(isActiveExchangeSection) ?
                     (event) => handleDragLeave(event, id) :
                     (event) => handleDragLeaveRow(event, id)
                 }
@@ -106,27 +117,49 @@ class SectionContainer extends Component {
                         positionMenu={false}
                         parentId={parentId}
                     />
-                    {childrenIds.map((childrenId, index) => (
-                        <RowContainer
-                            id={childrenId}
-                            parentId={id}
-                            index={index}
-                            key={`key-${childrenId}`}
+                    {/*childrenIds.map((childrenId, index) => (
+                     <RowContainer
+                     id={childrenId}
+                     parentId={id}
+                     index={index}
+                     key={`key-${childrenId}`}
 
-                            handleDragEnd={handleDragEnd}
-                            handleDragStartRow={handleDragStartRow}
-                            handleDragOver={handleDragOver}
-                            handelDropExchangeRow={handelDropExchangeRow}
+                     handleDragEnd={handleDragEnd}
+                     handleDragStartRow={handleDragStartRow}
+                     handleDragOver={handleDragOver}
+                     handelDropExchangeRow={handelDropExchangeRow}
 
-                            handleDragEnter={handleDragEnter}
-                            handleDragLeave={handleDragLeave}
+                     handleDragEnter={handleDragEnter}
+                     handleDragLeave={handleDragLeave}
 
-                            handelDropExchangeElement={handelDropExchangeElement}
-                            handleDragStartElement={handleDragStartElement}
-                        />
-                    ))}
+                     handelDropExchangeElement={handelDropExchangeElement}
+                     handleDragStartElement={handleDragStartElement}
+                     />
+                     ))*/}
                     {
-                        (childrenIds.length === 0)? (<DropAreaComponent
+                        childrenIds.map((childrenId, index) => (
+                            <RowContainer
+                                id={childrenId}
+                                parentId={id}
+                                index={index}
+                                key={`key-${childrenId}`}
+
+                                handleDragEnd={handleDragEnd}
+                                handleDragStartRow={handleDragStartRow}
+                                handleDragOver={handleDragOver}
+                                handelDropExchangeRow={handelDropExchangeRow}
+
+                                handleDragEnter={handleDragEnter}
+                                handleDragLeave={handleDragLeave}
+
+                                handelDropExchangeElement={handelDropExchangeElement}
+                                handleDragStartElement={handleDragStartElement}
+                            />
+                        ))
+                    }
+
+                    {
+                        (childrenIds.length === 0) ? (<DropAreaComponent
                                 id={id}
                                 handleDragOver={handleDragOver}
                                 handelDrop={handelDropExchangeRow}
@@ -141,7 +174,6 @@ class SectionContainer extends Component {
 
                     <DropAreaComponent
                         classActiveDropArea={(isActiveDragStructure) ? 'pb-area--green' : 'pb-area--gray'}
-
                         hidden={
                             (isActiveDropArea && isActiveExchangeRow) ? 'none' : 'block'
                         }

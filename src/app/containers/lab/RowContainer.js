@@ -1,27 +1,48 @@
 /**
- * Created by ruslan on 16.02.17.
- */
-/**
  * Created by ruslan on 08.02.17.
  */
 // lib
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 
-//components
+// components
 import RowComponent from '../../components/ConstructorView/RowComponent';
 import DropAreaComponent from '../../components/DropAreaComponent';
 //containers
-import ColContainer from './ColContainer';
+import ColContainer from '../constructor/ColContainer';
 import BarMenuContainer from '../BarMenuContainer';
-
 // actions
 import * as actionsConstructorView from '../../actions/ConstructorViewActions'
 
 // Application
-class TestContainer extends Component {
+class RowContainer extends Component {
+    constructor(props) {
+        super(props);
+        this.createColumnsChildren = this.createColumnsChildren.bind(this);
 
+    }
+
+    componentWillMount() {
+        //this.createColumnsChildren();
+    }
+
+    createColumnsChildren() {
+        const {ActionCreateNode, ActionAddNode, ActionAddColumnsData} = this.props.mapDispactchSection;
+        const {columnsIndex, childrenIds} = this.props.mapStateRow;
+        const {id} = this.props;
+
+        // Todo: Потрібно це виправити бо це "Костиль"
+        // Note: проблема в тому що Row рендериться окремо з Col.
+        // Потрібно якось обєднати створення Row по Section childrenIds: [...] with Row columnsIndex: [...]
+        if (childrenIds.length === 0) {
+            columnsIndex.forEach((col) => {
+                const childrenId = ActionCreateNode(id).nodeId;
+                ActionAddNode(id, childrenId);
+                ActionAddColumnsData(childrenId, col);
+            });
+        }
+    }
 
     render() {
         const {
@@ -29,9 +50,9 @@ class TestContainer extends Component {
             handleDragEnter, handleDragLeave, handelDropExchangeElement, handleDragStartElement
         } = this.props;
         //console.log(this.props);
-        const {isActiveExchangeRow} = this.props.mapStateConstructorView;
+        const {isActiveExchangeRow} = this.props.mapStateConstructorViewReducer;
         // id array the current Section for generating Rows
-        const {childrenIds, isActiveMove, isActiveDropArea, isActiveEditPanel} = this.props.mapStateRow;
+        const {childrenIds, isActiveMove, isActiveDropArea, isActiveEditPanel, columnsIndex} = this.props.mapStateRow;
 
         return (
             <div
@@ -69,8 +90,14 @@ class TestContainer extends Component {
                         type='row'
                         parentId={parentId}
                     />
+                    {
+                        childrenIds.map((childrenId, index) => (
+                            console.log(childrenId, index, columnsIndex[index])
+                        //this.testCreate(id, childrenId, columnsIndex[index])
 
-                    {childrenIds.map((childrenId) => (
+                        ))
+                    }
+                    /*{childrenIds.map((childrenId) => (
                         <ColContainer
                             id={childrenId}
                             parentId={id}
@@ -84,7 +111,7 @@ class TestContainer extends Component {
                             handleDragStartElement={handleDragStartElement}
                             handelDropExchangeElement={handelDropExchangeElement}
                         />
-                    ))}
+                    ))}*/
 
                 </RowComponent>
                 <DropAreaComponent
@@ -106,14 +133,14 @@ class TestContainer extends Component {
 function mapStateToProps(state, ownProps) {
     return {
         mapStateRow: state.ConstructorViewReducer[ownProps.id],
-        mapStateConstructorView: state.ConstructorViewReducer,
+        mapStateConstructorViewReducer: state.ConstructorViewReducer
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        mapDispactchCol: bindActionCreators(actionsConstructorView, dispatch)
+        mapDispactchSection: bindActionCreators(actionsConstructorView, dispatch)
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(TestContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(RowContainer)
