@@ -6,7 +6,7 @@ import {
     ON_DRAG_ENTER, ON_DROP_SECTION, ON_DRAG_OVER, ON_DRAG_LEAVE, CREATE_ID, ADD_NODE, ADD_COLUMNS_DATA,
     ADD_ELEMENT_TYPE, TOGGLE_BAR_MENU, REMOVE_CHILD, DELETE_NODE, TOGGLE_BAR_MENU_BLUR, CLICK_MOVE,
     ON_DRAG_ENTER_DROP_AREA, ON_DRAG_LEAVE_DROP_AREA, CLICK_MOVE_END, EXCHANGE_STRUCTURE_ACTIVE,
-    EXCHANGE_NODE_DELETE, EXCHANGE_NODE_PUSH, ACTIVE_EDIT_PANEL
+    EXCHANGE_NODE_DELETE, EXCHANGE_NODE_PUSH, ACTIVE_EDIT_PANEL, ADD_STYLES
 } from '../constants/ConstructorViewConstants'
 
 export function ActionOnDropSection(id, name) {
@@ -154,7 +154,13 @@ export function ActionActiveEditPanel(nodeId, id) {
         type: ACTIVE_EDIT_PANEL,
         nodeId,
         id
-
+    };
+}
+export function ActionAddStyles(nodeId, id) {
+    return {
+        type: ADD_STYLES,
+        nodeId,
+        id
     };
 }
 

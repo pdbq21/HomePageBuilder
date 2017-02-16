@@ -4,7 +4,7 @@
 import React from 'react'
 
 export function StructurePanel(props) {
-    const { OnDragStart, OnDragEnd } = props;
+    const {OnDragStart, OnDragEnd} = props;
     return (
         <ul className="mdl-list pb-list--panel pb-list--no-spacing"
             onDragStart={OnDragStart}
@@ -62,7 +62,7 @@ export function StructurePanel(props) {
     );
 }
 export function ContentPanel(props) {
-    const { OnDragStart, OnDragEnd } = props;
+    const {OnDragStart, OnDragEnd} = props;
     return (
         <div className="mdl-grid"
              onDragStart={OnDragStart}
@@ -143,14 +143,47 @@ export function TemplatesPanel() {
         </ul>
     );
 }
-export function EditPanel() {
+export function EditPanel(props) {
+    const {onChange} = props;
     return (
-        <span className="mdl-chip mdl-chip--contact">
-                    <span className="mdl-chip__contact mdl-color--red mdl-color-text--white">!</span>
-                    <span className="mdl-chip__text">
-                        <strong>Note: </strong>
-                        Select component to be able to edit it's properties.
-                    </span>
-                </span>
+            <div className="mdl-card mdl-shadow--2dp">
+                <div className="mdl-card__title">
+                    <h2 className="mdl-card__title-text">Style</h2>
+                </div>
+
+                <div className="mdl-card__actions mdl-card--border">
+                    <div className="mdl-grid">
+                        <div className="mdl-cell mdl-cell--12-col">
+                            <h5>Background</h5>
+                        </div>
+
+                        <div className="mdl-cell mdl-cell--6-col">
+                            <label htmlFor="sample1">Image</label>
+                        </div>
+                        <div className="mdl-cell mdl-cell--6-col">
+                            <div className="mdl-textfield pb-field mdl-js-textfield">
+                                <input className="mdl-textfield__input" type="file" id="sample1"/>
+                            </div>
+                        </div>
+
+
+                        <div className="mdl-cell mdl-cell--6-col">
+                            <label htmlFor="sample2">Color</label>
+                        </div>
+                        <div className="mdl-cell mdl-cell--6-col">
+                            <div className="mdl-textfield pb-field mdl-js-textfield">
+                                <input
+                                    className="mdl-textfield__input"
+                                    type="color"
+                                    id="sample2"
+
+                                    onChange={(event) => (onChange(event.target.value))}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
     );
 }

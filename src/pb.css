@@ -1,0 +1,275 @@
+.pb-toolbox .mdl-tabs__panel {
+    padding: 16px;
+}
+
+/* Toolbox */
+.pb-toolbox {
+    background-color: #F5F5F5;
+    height: 95vh;
+}
+
+/* List */
+.pb-list--md-spacing .mdl-list__item {
+    margin: 0;
+    padding: 16px 0;
+}
+
+.pb-list--no-spacing {
+    margin: 0;
+    padding: 0;
+}
+
+.pb-list--no-spacing .pb-card {
+    padding: 8px 0;
+    margin-bottom: 16px;
+}
+
+/* Card */
+.pb-card {
+    height: auto;
+    min-height: 0;
+    width: auto;
+    min-width: 0;
+}
+
+.pb-card--row + .pb-card--row,
+.pb-card--row + .pb-area--drop,
+.pb-card--col + .pb-area--drop {
+    margin-top: 16px;
+}
+
+.pb-card--section {
+    flex-direction: row;
+    margin-bottom: 16px;
+}
+
+.pb-card--active {
+    background-color: #DFF0D8;
+}
+
+.pb-card--grab:hover {
+    cursor: grab;
+}
+
+.pb-card--grab:active {
+    cursor: move;
+    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, .14), 0 6px 30px 5px rgba(0, 0, 0, .12), 0 8px 10px -5px rgba(0, 0, 0, .2);
+}
+
+/*.pb-block--active {*/
+/*position: relative;*/
+/*}*/
+/*.pb-block--active:before {*/
+/*content: "Modifiable";*/
+/*position: absolute;*/
+/*font-size: 70%;*/
+/*text-transform: uppercase;*/
+/*font-weight: bold;*/
+/*color: #3c763d;*/
+/*top: -20px;*/
+/*left: 50%;*/
+/*transform: translateX(-50%);*/
+/*}*/
+
+/* Background */
+.pb-background {
+    padding: 16px;
+    width: auto;
+    margin: 0;
+}
+
+/* Bar */
+.pb-bar {
+    box-sizing: border-box;
+    position: relative;
+    background: #3F51B5;
+    color: white;
+    padding: 16px;
+}
+
+.pb-bar--horizontal {
+    width: 64px;
+    min-height: 100px;
+}
+
+.pb-bar--horizontal .pb-bar__menu {
+    bottom: 16px;
+}
+
+.pb-bar--vertical {
+    width: 100%;
+    line-height: 36px;
+    padding: 8px 16px;
+}
+
+.pb-bar--vertical .pb-bar__menu {
+    right: 16px;
+    top: 8px;
+}
+
+.pb-bar--text {
+    background: #7C7C7C;
+}
+
+.pb-bar--text + .pb-background * {
+    color: #7c7c7c;
+}
+
+.pb-bar--heading + .pb-background * {
+    color: #7c7c7c;
+}
+
+.pb-bar--heading + .pb-background h1,
+.pb-bar--heading + .pb-background h2,
+.pb-bar--heading + .pb-background h3,
+.pb-bar--heading + .pb-background h4,
+.pb-bar--heading + .pb-background h5,
+.pb-bar--heading + .pb-background h5 {
+    margin-bottom: 0;
+}
+
+.pb-bar--image {
+    background: #E91E63;
+}
+
+.pb-bar--image + .pb-background {
+    padding: 0;
+}
+
+.pb-bar--button {
+    background-color: #FF9800;
+}
+
+.pb-bar--button + .pb-background {
+    text-align: center;
+}
+
+.pb-bar__button {
+    position: absolute;
+}
+
+.pb-bar__menu {
+    position: absolute;
+}
+
+.pb-bar__caption {
+    display: block;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Image */
+.pb-image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* Form */
+.pb-form-wide .mdl-card {
+    width: auto;
+}
+
+.pb-form-wide .pb-field {
+    width: 100%;
+}
+
+/* Field */
+.pb-field {
+    margin: 0;
+    padding: 0;
+}
+
+/* Drop area */
+.pb-area {
+    text-align: center;
+}
+
+.pb-area--drop {
+    padding: 8px;
+    background-color: white;
+    border: 1px dashed;
+}
+
+.pb-area--green {
+    background-color: #DFF0D8;
+    border-color: #3c763d;
+    color: #3c763d;
+}
+
+.pb-area--gray {
+    border-color: #7c7c7c;
+    color: #7c7c7c;
+}
+
+.pb-area__caption {
+    display: block;
+    text-align: center;
+    font-size: 70%;
+    line-height: 1.5;
+}
+
+/* Content */
+.pb-content--empty {
+    font-size: 75%;
+    color: #7c7c7c;
+}
+
+.pb-content--smaller * {
+    font-size: 75%;
+    line-height: 1.5em;
+    margin: 0 0 0.75em 0;
+}
+
+.pb-content--smaller h1 {
+    font-size: 135%;
+}
+
+.pb-content--smaller h2 {
+    font-size: 125%;
+}
+
+.pb-content--smaller h3 {
+    font-size: 115%;
+}
+
+.pb-content--smaller h4 {
+    font-size: 105%;
+}
+
+.pb-content--smaller h5 {
+    font-size: 95%;
+}
+
+.pb-content--smaller h6 {
+    font-size: 85%;
+}
+
+.pb-content--smaller small {
+    font-size: 75%;
+}
+
+/* Sketch grid */
+.pb-grid--sketch {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.pb-grid--sketch .mdl-cell {
+    background-color: #BDBDBD;
+    color: white;
+    padding: 16px 8px;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* Reordered */
+.mdl-switch.is-upgraded {
+    padding-left: 38px;
+}
+
+/* Wrap */
+.pb-wrap--normal-spacing .mdl-card {
+    margin-bottom: 16px;
+}

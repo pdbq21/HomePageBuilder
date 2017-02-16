@@ -37,7 +37,8 @@
 
 .pb-card--section {
     flex-direction: row;
-    margin-bottom: 16px;
+   /* margin-bottom: 16px;
+    margin-top: 16px;*/
 }
 
 .pb-card--active {
@@ -203,9 +204,12 @@
 .is-not-active-area{
     display: none;
 }
+
 .is-active-area{
 background-color: #00c853;
     display: block;
+    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 .is-active-edit-panel{
@@ -213,3 +217,13 @@ background-color: #00c853;
     -moz-box-shadow: inset 0px 0px 0px 10px rgb(76,175,80);
     box-shadow: inset 0px 0px 0px 10px rgb(76,175,80);
 }
+/*
+.child-elements-pointer-events-none {
+    pointer-events: none;
+}
+.pb-workspace>div>div>*{
+    pointer-events: none;
+}
+.pb-workspace>div>div{
+    pointer-events: auto;
+}*/

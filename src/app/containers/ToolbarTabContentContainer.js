@@ -22,8 +22,10 @@ class ToolbarTabContentContainer extends Component {
         this.handelDragEndRow = this.handelDragEndRow.bind(this);
         this.handelDragStartContent = this.handelDragStartContent.bind(this);
         this.handelDragEndContent = this.handelDragEndContent.bind(this);
+        this.handelChangeColor = this.handelChangeColor.bind(this);
 
         this.renderTabContent = this.renderTabContent.bind(this);
+        this.renderTabEdit = this.renderTabEdit.bind(this);
     }
 
     handelDragStartRow(event) {
@@ -57,6 +59,11 @@ class ToolbarTabContentContainer extends Component {
         ActionOnDragEnd('data-elementType');
     }
 
+    handelChangeColor(color){
+        const {ActionChangeBackgroundColor} = this.props.mapDispactchToolbar;
+        ActionChangeBackgroundColor(color);
+    }
+
     renderTabContent(){
         const {activeTab} = this.props.mapStateToolbarReducer;
 
@@ -80,10 +87,20 @@ class ToolbarTabContentContainer extends Component {
         }
     }
 
+    renderTabEdit(){
+
+return (
+    <EditPanel
+        onChange={this.handelChangeColor}
+    />
+)
+    }
+
     render() {
+        const {isActiveEditPanel} = this.props.mapStateToolbarReducer;
         return (
             <ToolbarTabContentComponent >
-                {this.renderTabContent()}
+                {(isActiveEditPanel)? this.renderTabEdit() : this.renderTabContent()}
             </ToolbarTabContentComponent>
         );
     }

@@ -45,11 +45,7 @@ class SectionContainer extends Component {
                 ActionAddNode(childrenIdRow, childrenId);
                 ActionAddColumnsData(childrenId, col);
             });
-            /*  const childrenId = ActionCreateNode(id).nodeId;
-             ActionAddNode(id, childrenId);
-             ActionAddColumnsData(childrenId, columns);*/
         }
-
     }
 
     handleDragOverRow(event) {
@@ -67,7 +63,7 @@ class SectionContainer extends Component {
     render() {
         const {isActiveDragStructure} = this.props.mapStateToolbar;
         const {isActiveExchangeSection, isActiveExchangeRow} = this.props.mapStateConstructorViewReducer;
-        const {id, parentId, index} = this.props;
+        const {id, parentId} = this.props; // index
         // id array the current Section for generating Rows
         const {childrenIds, isActiveMove, isActiveEditPanel, isActiveDropArea} = this.props.mapStateSection;
         //console.log(this.props.mapStateSection);
@@ -79,7 +75,6 @@ class SectionContainer extends Component {
 
         return (
             <div
-                style={{'marginBottom': '1em'}}
                 onDragEnter={(isActiveExchangeSection) ?
                     (event) => handleDragEnter(event, id) :
                     (event) => handleDragEnterRow(event, id)
@@ -88,22 +83,25 @@ class SectionContainer extends Component {
                     (event) => handleDragLeave(event, id) :
                     (event) => handleDragLeaveRow(event, id)
                 }
+                style={{'marginBottom': '1em'}}
             >
                 {/* only first */}
-                {(index === 0) ? (<DropAreaComponent
-                        id={id}
-                        classActiveDropArea={
-                            (isActiveDropArea && isActiveExchangeSection) ? 'is-active-area' : 'is-not-active-area'
-                        }
-                        handleDragOver={handleDragOver}
-                        handelDrop={handelDropExchangeSection}
-                        isFirst={true}
-                        name='this'
-                        parentId={parentId}
-                    />) : null
-                }
+
+                <DropAreaComponent
+                    id={id}
+                    classActiveDropArea={
+                        (isActiveDropArea && isActiveExchangeSection) ? 'is-active-area' : 'is-not-active-area'
+                    }
+                    handleDragOver={handleDragOver}
+                    handelDrop={handelDropExchangeSection}
+                    isFirst={true}
+                    name='this'
+                    parentId={parentId}
+                />
+
 
                 <SectionComponent
+                    pointerEvents={(isActiveExchangeSection && isActiveDropArea)? 'none' : 'auto'}
                     id={id}
                     parentId={parentId}
                     draggable={isActiveMove}
@@ -117,25 +115,6 @@ class SectionContainer extends Component {
                         positionMenu={false}
                         parentId={parentId}
                     />
-                    {/*childrenIds.map((childrenId, index) => (
-                     <RowContainer
-                     id={childrenId}
-                     parentId={id}
-                     index={index}
-                     key={`key-${childrenId}`}
-
-                     handleDragEnd={handleDragEnd}
-                     handleDragStartRow={handleDragStartRow}
-                     handleDragOver={handleDragOver}
-                     handelDropExchangeRow={handelDropExchangeRow}
-
-                     handleDragEnter={handleDragEnter}
-                     handleDragLeave={handleDragLeave}
-
-                     handelDropExchangeElement={handelDropExchangeElement}
-                     handleDragStartElement={handleDragStartElement}
-                     />
-                     ))*/}
                     {
                         childrenIds.map((childrenId, index) => (
                             <RowContainer
@@ -196,9 +175,11 @@ class SectionContainer extends Component {
                     name='this'
                     parentId={parentId}
                 />
+
             </div>
 
-        );
+    )
+        ;
     }
 }
 
@@ -220,3 +201,31 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SectionContainer)
+
+/* Note:
+
+ {childrenIds.map((childrenId, index) => (
+ <RowContainer
+ id={childrenId}
+ parentId={id}
+ index={index}
+ key={`key-${childrenId}`}
+
+ handleDragEnd={handleDragEnd}
+ handleDragStartRow={handleDragStartRow}
+ handleDragOver={handleDragOver}
+ handelDropExchangeRow={handelDropExchangeRow}
+
+ handleDragEnter={handleDragEnter}
+ handleDragLeave={handleDragLeave}
+
+ handelDropExchangeElement={handelDropExchangeElement}
+ handleDragStartElement={handleDragStartElement}
+ />
+ ))}
+
+ const childrenId = ActionCreateNode(id).nodeId;
+ ActionAddNode(id, childrenId);
+ ActionAddColumnsData(childrenId, columns);
+
+ */

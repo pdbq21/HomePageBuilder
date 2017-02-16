@@ -13,6 +13,7 @@ import BarMenuComponent from '../components/BarMenuComponent';
 // actions
 //import * as testActions from '../actions/TestActions'
 import * as actionsConstructorView from '../actions/ConstructorViewActions'
+import * as actionsToolbar from '../actions/ToolbarActions'
 
 // Application
 class BarMenuContainer extends Component {
@@ -65,9 +66,11 @@ class BarMenuContainer extends Component {
 
     handleActiveEdit(id, parentId){
 
-console.log(id, parentId);
+        console.log(id, parentId);
         const {ActionActiveEditPanel} = this.props.mapDispactchBarMenu;
+        const {ActionEditPanel} = this.props.mapDispactchToolbar;
         ActionActiveEditPanel(id);
+        ActionEditPanel();
     }
 
     render() {
@@ -103,7 +106,8 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        mapDispactchBarMenu: bindActionCreators(actionsConstructorView, dispatch)
+        mapDispactchBarMenu: bindActionCreators(actionsConstructorView, dispatch),
+        mapDispactchToolbar: bindActionCreators(actionsToolbar, dispatch)
     }
 }
 

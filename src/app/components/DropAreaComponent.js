@@ -14,6 +14,11 @@ const {
         onDrop={(event) => handelDrop(event, id, isFirst, parentId)}
         onDragOver={handleDragOver}
     >
-        <span className="pb-area__caption">Drop the {name} here!</span>
+        <span
+            className="pb-area__caption"
+            style={{'pointerEvents': 'none'}}
+        >
+            Drop the {name} here!
+        </span>
     </div>);
 }

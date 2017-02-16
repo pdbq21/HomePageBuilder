@@ -2,7 +2,7 @@
  * Created by ruslan on 31.01.17.
  */
 import {
-    ON_DRAG_START, ON_DRAG_END, ON_CLICK_NAVIGATION
+    ON_DRAG_START, ON_DRAG_END, ON_CLICK_NAVIGATION, ACTIVE_EDIT_PANEL, CHANGE_BACKGROUND_COLOR
 } from '../constants/ToolbarConstants'
 
 
@@ -29,5 +29,18 @@ export function ActionSelectNavigation(name) {
     return {
         type: ON_CLICK_NAVIGATION,
         name,
+    }
+}
+
+// Edit Panel
+export function ActionEditPanel() {
+    return {
+        type: ACTIVE_EDIT_PANEL,
+    }
+}
+export function ActionChangeBackgroundColor(color) {
+    return {
+        type: CHANGE_BACKGROUND_COLOR,
+        color
     }
 }
