@@ -55,7 +55,7 @@ class ColContainer extends Component {
             handleDragEnter, handleDragLeave
         } = this.props;
         const {columnsIndex, childrenIds} = this.props.mapStateCol;
-        const {isActiveExchangeCol} = this.props.mapState;
+        const {isActiveExchangeCol, isActiveDropArea} = this.props.mapState;
         const {isActiveDragElement} = this.props.mapStateToolbar;
 
         return (
