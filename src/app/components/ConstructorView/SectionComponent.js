@@ -12,7 +12,7 @@ export default function SectionComponent(props) {
 // todo: add drop-down menu with opening menu up or down
     // props => draggable='true'
     return (
-        <div className={`mdl-card pb-card pb-card--section  mdl-shadow--2dp ${classActiveEditPanel}`}
+        <div className={`mdl-card pb-card pb-card--section  mdl-shadow--2dp ${classActiveEditPanel} testSection`}
              draggable={draggable}
              onDragEnd={(event) => handleDragEnd(event, id)}
              onDragStart={(event) => handleDragStart(event, parentId, id)}

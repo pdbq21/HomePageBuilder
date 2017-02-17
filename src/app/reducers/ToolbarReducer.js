@@ -25,9 +25,9 @@ const initialState = {
         {
             name: 'Templates',
         },
-        {
+        /*{
             name: 'Edit',
-        }
+        }*/
     ],
 
 };

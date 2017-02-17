@@ -51,8 +51,8 @@ class ColContainer extends Component {
     render() {
         // todo: const {id, parentId} = this.props; for delete function
         const {
-            id, parentId, handleDragEnd, handleDragStartElement, handelDropExchangeElement, handleDragOver,
-            handleDragEnter, handleDragLeave
+            id, parentId, handleDragStartElement, handelDropExchangeElement, handleDragOver,
+            handleDragEnter, handleDragLeave, handleDragEndElement
         } = this.props;
         const {columnsIndex, childrenIds} = this.props.mapStateCol;
         const {isActiveExchangeCol, isActiveDropArea} = this.props.mapState;
@@ -70,7 +70,7 @@ class ColContainer extends Component {
                         index={index}
                         key={`key-${childrenId}`}
 
-                        handleDragEnd={handleDragEnd}
+                        handleDragEnd={handleDragEndElement}
                         handleDragOver={handleDragOver}
                         handleDragEnter={handleDragEnter}
                         handleDragLeave={handleDragLeave}

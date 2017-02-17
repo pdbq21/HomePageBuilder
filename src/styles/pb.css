@@ -228,3 +228,18 @@ background-color: #00c853;
 .pb-workspace>div>div{
     pointer-events: auto;
 }*/
+/*
+.pointerEventsSection{
+    pointer-events: none;
+}
+.pointerEventsSection .material-icons{
+    pointer-events: auto;
+}
+.pointerEventsSection .testSection{
+    pointer-events: auto;
+}
+*/
+.pointerEventsSection .testSection>div *{
+    pointer-events: none;
+}
+

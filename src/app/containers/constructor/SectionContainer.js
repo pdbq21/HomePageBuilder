@@ -68,9 +68,10 @@ class SectionContainer extends Component {
         const {childrenIds, isActiveMove, isActiveEditPanel, isActiveDropArea} = this.props.mapStateSection;
         //console.log(this.props.mapStateSection);
         const {
-            handleDragOver, handleDragEnd, handleDragEnter, handleDragLeave,
+            handleDragOver, handleDragEndSection, handleDragEnter, handleDragLeave,
             handelDropExchangeSection, handleDragStartSection, handelDropExchangeRow, handleDragStartRow,
-            handelDropExchangeElement, handleDragStartElement, handleDragEnterRow, handleDragLeaveRow
+            handelDropExchangeElement, handleDragStartElement, handleDragEnterRow, handleDragLeaveRow,
+            handleDragEndRow, handleDragEndElement
         } = this.props;
 
         let currentStyle;
@@ -99,7 +100,7 @@ class SectionContainer extends Component {
                     classActiveDropArea={
                         (isActiveDropArea && isActiveExchangeSection) ? 'is-active-area' : 'is-not-active-area'
                     }
-                    handleDragOver={handleDragOver}
+                    handleDragOver={(isActiveEditPanel)? handleDragOver : () => {}}
                     handelDrop={handelDropExchangeSection}
                     isFirst={true}
                     name='this'
@@ -113,8 +114,8 @@ class SectionContainer extends Component {
                     parentId={parentId}
                     draggable={isActiveMove}
                     classActiveEditPanel={(isActiveEditPanel) ? 'is-active-edit-panel' : ''}
-                    handleDragEnd={handleDragEnd}
-                    handleDragStart={handleDragStartSection}
+                    handleDragEnd={(isActiveExchangeSection)? handleDragEndSection : () => {} }
+                    handleDragStart={(isActiveExchangeSection)? handleDragStartSection : () => {} }
 
                     styles={currentStyle}
                 >
@@ -132,7 +133,7 @@ class SectionContainer extends Component {
                                 index={index}
                                 key={`key-${childrenId}`}
 
-                                handleDragEnd={handleDragEnd}
+                                handleDragEnd={handleDragEndRow}
                                 handleDragStartRow={handleDragStartRow}
                                 handleDragOver={handleDragOver}
                                 handelDropExchangeRow={handelDropExchangeRow}
@@ -142,6 +143,7 @@ class SectionContainer extends Component {
 
                                 handelDropExchangeElement={handelDropExchangeElement}
                                 handleDragStartElement={handleDragStartElement}
+                                handleDragEndElement={handleDragEndElement}
                             />
                         ))
                     }
@@ -178,7 +180,7 @@ class SectionContainer extends Component {
                     classActiveDropArea={
                         (isActiveDropArea && isActiveExchangeSection) ? 'is-active-area' : 'is-not-active-area'
                     }
-                    handleDragOver={handleDragOver}
+                    handleDragOver={(isActiveEditPanel)? handleDragOver : () => {}}
                     handelDrop={handelDropExchangeSection}
                     isFirst={false}
                     name='this'

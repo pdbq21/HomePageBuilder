@@ -5,12 +5,13 @@ import React from 'react'
 
 export default function ConstructorViewBlockComponent(props) {
     const {
-        handleClickAddSection, children, pointerEvents
+        handleClickAddSection, children,
+        classPointerEvents
     } = props;
 
     return (
-        <div className="pb-workspace mdl-cell mdl-cell--8-col"
-             style={{'pointerEvents': pointerEvents}}
+        <div className={`pb-workspace mdl-cell mdl-cell--8-col ${classPointerEvents}`}
+
             /* onDragEnd={handleDragEnd}*/
         >
             {children}

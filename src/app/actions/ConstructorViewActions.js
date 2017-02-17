@@ -7,7 +7,7 @@ import {
     ADD_ELEMENT_TYPE, TOGGLE_BAR_MENU, REMOVE_CHILD, DELETE_NODE, TOGGLE_BAR_MENU_BLUR, CLICK_MOVE,
     ON_DRAG_ENTER_DROP_AREA, ON_DRAG_LEAVE_DROP_AREA, CLICK_MOVE_END, EXCHANGE_STRUCTURE_ACTIVE,
     EXCHANGE_NODE_DELETE, EXCHANGE_NODE_PUSH, ACTIVATE_EDIT_PANEL, ADD_STYLES, DEACTIVATE_EDIT_PANEL,
-
+    DATA_EXCHANGE_STRUCTURE_ACTIVE,
 } from '../constants/ConstructorViewConstants'
 
 export function ActionOnDropSection(id, name) {
@@ -107,6 +107,13 @@ export function ActionIsActiveExchangeStructure(isActive, structureType) {
         type: EXCHANGE_STRUCTURE_ACTIVE,
         nodeId: 'data',
         isActive,
+        structureType
+    };
+}
+export function ActionDataExchangeStructure(nodeId, structureType) {
+    return {
+        type: DATA_EXCHANGE_STRUCTURE_ACTIVE,
+        nodeId,
         structureType
     };
 }

@@ -144,7 +144,7 @@ export function TemplatesPanel() {
     );
 }
 export function EditPanel(props) {
-    const {onChange} = props;
+    const {onChange, onChangeImage} = props;
     return (
             <div className="mdl-card mdl-shadow--2dp">
                 <div className="mdl-card__title">
@@ -162,7 +162,9 @@ export function EditPanel(props) {
                         </div>
                         <div className="mdl-cell mdl-cell--6-col">
                             <div className="mdl-textfield pb-field mdl-js-textfield">
-                                <input className="mdl-textfield__input" type="file" id="sample1"/>
+                                <input className="mdl-textfield__input" type="file" id="sample1"
+                                       onChange={(event) => (onChangeImage(event.target.value))}
+                                />
                             </div>
                         </div>
 

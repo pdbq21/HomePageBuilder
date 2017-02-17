@@ -26,7 +26,8 @@ class TestContainer extends Component {
     render() {
         const {
             id, parentId, index, handleDragStartRow, handleDragEnd, handelDropExchangeRow, handleDragOver,
-            handleDragEnter, handleDragLeave, handelDropExchangeElement, handleDragStartElement
+            handleDragEnter, handleDragLeave, handelDropExchangeElement, handleDragStartElement,
+            handleDragEndElement
         } = this.props;
         //console.log(this.props);
         const {isActiveExchangeRow} = this.props.mapStateConstructorView;
@@ -93,6 +94,7 @@ class TestContainer extends Component {
 
                             handleDragStartElement={handleDragStartElement}
                             handelDropExchangeElement={handelDropExchangeElement}
+                            handleDragEndElement={handleDragEndElement}
                         />
                     ))}
 

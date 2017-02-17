@@ -25,6 +25,7 @@ class ToolbarTabContentContainer extends Component {
         this.handelDragEndContent = this.handelDragEndContent.bind(this);
 
         this.handelChangeBackgroundColor = this.handelChangeBackgroundColor.bind(this);
+        this.handelChangeImage = this.handelChangeImage.bind(this);
 
         this.renderTabContent = this.renderTabContent.bind(this);
         this.renderTabEdit = this.renderTabEdit.bind(this);
@@ -67,6 +68,9 @@ class ToolbarTabContentContainer extends Component {
 
         ActionChangeBackgroundColor(idActiveStructure, color);
     }
+    handelChangeImage(path){
+        console.log(path);
+    }
 
     renderTabContent() {
         const {activeTab} = this.props.mapStateToolbarReducer;
@@ -84,8 +88,8 @@ class ToolbarTabContentContainer extends Component {
                 />;
             case 'Templates':
                 return <TemplatesPanel />;
-            case 'Edit':
-                return <EditPanel />;
+/*            case 'Edit':
+                return <EditPanel />;*/
             default:
                 console.error('Error: other tab name', activeTab);
         }
@@ -96,6 +100,7 @@ class ToolbarTabContentContainer extends Component {
         return (
             <EditPanel
                 onChange={this.handelChangeBackgroundColor}
+                onChangeImage={this.handelChangeImage}
             />
         )
     }

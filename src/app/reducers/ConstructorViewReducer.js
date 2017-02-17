@@ -6,7 +6,7 @@ import {
     ADD_NODE, CREATE_ID, ADD_COLUMNS_DATA, ADD_ELEMENT_TYPE, TOGGLE_BAR_MENU, REMOVE_CHILD,
     TOGGLE_BAR_MENU_BLUR, DELETE_NODE, CLICK_MOVE, ON_DRAG_ENTER_DROP_AREA, ON_DRAG_LEAVE_DROP_AREA,
     CLICK_MOVE_END, EXCHANGE_STRUCTURE_ACTIVE, EXCHANGE_NODE_PUSH, EXCHANGE_NODE_DELETE,
-    ACTIVATE_EDIT_PANEL, DEACTIVATE_EDIT_PANEL, ADD_STYLES
+    ACTIVATE_EDIT_PANEL, DEACTIVATE_EDIT_PANEL, ADD_STYLES, DATA_EXCHANGE_STRUCTURE_ACTIVE
 } from '../constants/ConstructorViewConstants'
 // default data state
 const initialState = {
@@ -183,6 +183,7 @@ const deleteMany = (state, ids) => {
 export default function (state = initialState, action) {
     const {nodeId} = action;
 //console.log(state);
+
     if (typeof nodeId === 'undefined') {
         return state;
     }
@@ -193,6 +194,14 @@ export default function (state = initialState, action) {
     }
     if (action.type === EXCHANGE_STRUCTURE_ACTIVE) {
         return isActiveExchangeStructure(state, action);
+    }
+    if ( action.type === DATA_EXCHANGE_STRUCTURE_ACTIVE ){
+return Object.assign({}, state, {
+    dataExchangeStructure: {
+        dragId: action.nodeId,
+        dragType: action.structureType
+    }
+})
     }
 
     return Object.assign({}, state, {
