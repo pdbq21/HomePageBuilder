@@ -26,7 +26,12 @@ class ElementContainer extends Component {
         } = this.props;
         const {elementType, isActiveMove, isActiveDropArea, isActiveEditPanel} = this.props.mapStateElement;
         const {isActiveExchangeCol} = this.props.mapStateConstructorViewReducer;
-
+        let currentStyle;
+        if (typeof this.props.mapStateElementStyles !== 'undefined') {
+            currentStyle = this.props.mapStateElementStyles.currentStyle;
+        } else {
+            currentStyle = this.props.mapStateEditPanel.defaultStyle;
+        }
         return (
             <div
                 style={{'marginBottom': '1em'}}
@@ -56,6 +61,8 @@ class ElementContainer extends Component {
                     type={elementType}
                     handleDragEnd={handleDragEnd}
                     handleDragStart={handleDragStartElement}
+
+                    styles={currentStyle}
                 >
                     <BarMenuContainer
                         positionMenu={true}
@@ -85,7 +92,9 @@ class ElementContainer extends Component {
 function mapStateToProps(state, ownProps) {
     return {
         mapStateElement: state.ConstructorViewReducer[ownProps.id],
-        mapStateConstructorViewReducer: state.ConstructorViewReducer
+        mapStateConstructorViewReducer: state.ConstructorViewReducer,
+        mapStateEditPanel: state.EditPanelReducer,
+        mapStateElementStyles: state.EditPanelReducer[ownProps.id],
     }
 }
 

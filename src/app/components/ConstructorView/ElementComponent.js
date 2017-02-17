@@ -6,8 +6,8 @@ import img from '../../../static/images/icon-image-128.png'; // Tell Webpack thi
 
 export default function ElementComponent(props) {
 
-    const {type, children, draggable, handleDragEnd, handleDragStart, parentId, id, classActiveEditPanel} = props;
-
+    const {type, children, draggable, handleDragEnd, handleDragStart, parentId, id, classActiveEditPanel, styles} = props;
+    const {backgroundColor} = styles;
     let element;
     switch (type) {
         case 'Text':
@@ -34,6 +34,12 @@ export default function ElementComponent(props) {
              draggable={draggable}
              onDragEnd={(event) => handleDragEnd(event, id)}
              onDragStart={(event) => handleDragStart(event, parentId, id)}
+
+             style={
+                 {
+                     'backgroundColor': backgroundColor
+                 }
+             }
         >
 
             {/* bar menu component*/}

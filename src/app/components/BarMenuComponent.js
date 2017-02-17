@@ -22,6 +22,8 @@ export default function BarMenuComponent(props) {
         </div>
         <div
             onClick={() => handleActiveEditPanel(id, parentId)}
+            style={{'height': '100%',
+                'width': '100%'}}
         >
             {(positionMenu) ? <div className="pb-bar__caption"><span>{props.name}</span></div> : ''}
         </div>

@@ -6,8 +6,9 @@ import React from 'react'
 export default function SectionComponent(props) {
     const {
         id, parentId, handleDragEnd, children, draggable,
-        handleDragStart, classActiveEditPanel,
+        handleDragStart, classActiveEditPanel, styles
     } = props;
+    const {backgroundColor} = styles;
 // todo: add drop-down menu with opening menu up or down
     // props => draggable='true'
     return (
@@ -15,6 +16,12 @@ export default function SectionComponent(props) {
              draggable={draggable}
              onDragEnd={(event) => handleDragEnd(event, id)}
              onDragStart={(event) => handleDragStart(event, parentId, id)}
+
+             style={
+                 {
+                     'backgroundColor': backgroundColor
+                 }
+             }
         >
             {/* vertical bar*/}
             {children[0]}

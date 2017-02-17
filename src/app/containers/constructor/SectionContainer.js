@@ -73,6 +73,13 @@ class SectionContainer extends Component {
             handelDropExchangeElement, handleDragStartElement, handleDragEnterRow, handleDragLeaveRow
         } = this.props;
 
+        let currentStyle;
+        if (typeof this.props.mapStateSectionStyles !== 'undefined') {
+            currentStyle = this.props.mapStateSectionStyles.currentStyle;
+        } else {
+            currentStyle = this.props.mapStateEditPanel.defaultStyle;
+        }
+
         return (
             <div
                 onDragEnter={(isActiveExchangeSection) ?
@@ -108,6 +115,8 @@ class SectionContainer extends Component {
                     classActiveEditPanel={(isActiveEditPanel) ? 'is-active-edit-panel' : ''}
                     handleDragEnd={handleDragEnd}
                     handleDragStart={handleDragStartSection}
+
+                    styles={currentStyle}
                 >
                     <BarMenuContainer
                         id={id}
@@ -190,7 +199,9 @@ function mapStateToProps(state, ownProps) {
         // data only this current Section
         // id={childrenId} => ownProps.id
         mapStateSection: state.ConstructorViewReducer[ownProps.id],
-        mapStateConstructorViewReducer: state.ConstructorViewReducer
+        mapStateConstructorViewReducer: state.ConstructorViewReducer,
+        mapStateEditPanel: state.EditPanelReducer,
+        mapStateSectionStyles: state.EditPanelReducer[ownProps.id],
     }
 }
 
