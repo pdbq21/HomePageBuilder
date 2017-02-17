@@ -2,8 +2,8 @@
  * Created by ruslan on 17.02.17.
  */
 import {
-    IS_ACTIVE_EDIT_PANEL, CHANGE_BACKGROUND_COLOR
-} from '../constants/ToolbarConstants'
+    IS_ACTIVE_EDIT_PANEL, CHANGE_BACKGROUND_COLOR, CREATE_NODE_STYLES, DELETE_NODE_STYLES
+} from '../constants/EditPanelConstants'
 
 
 // Edit Panel
@@ -14,9 +14,24 @@ export function ActionIsActiveEditPanel(id, boolean) {
         boolean
     }
 }
-export function ActionChangeBackgroundColor(color) {
+export function ActionCreateNodeStyles(nodeId) {
+    return {
+        type: CREATE_NODE_STYLES,
+        nodeId
+    }
+}
+export function ActionDeleteNodeStyles(nodeId) {
+    return {
+        type: DELETE_NODE_STYLES,
+        nodeId
+    }
+}
+
+
+export function ActionChangeBackgroundColor(nodeId, color) {
     return {
         type: CHANGE_BACKGROUND_COLOR,
+        nodeId,
         color
     }
 }

@@ -141,7 +141,7 @@ class SectionContainer extends Component {
                         (childrenIds.length === 0) ? (<DropAreaComponent
                                 id={id}
                                 handleDragOver={handleDragOver}
-                                handelDrop={handelDropExchangeRow}
+                                handelDrop={handelDropExchangeSection}
                                 classActiveDropArea={
                                     (isActiveDropArea && isActiveExchangeRow) ? 'is-active-area' : 'is-not-active-area'
                                 }

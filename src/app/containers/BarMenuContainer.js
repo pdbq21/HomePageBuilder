@@ -47,8 +47,12 @@ class BarMenuContainer extends Component {
 
     handelClickRemove(id) {
         const {ActionRemoveChild, ActionDeleteNode} = this.props.mapDispactchConstructorView;
+        const {ActionDeleteNodeStyles} = this.props.mapDispactchEditPanel;
+
         ActionRemoveChild(this.props.parentId, id);
         ActionDeleteNode(id);
+
+        ActionDeleteNodeStyles(id);
     }
 
     handleMove(id) {
@@ -68,7 +72,7 @@ class BarMenuContainer extends Component {
     handleActiveEditPanel(id, parentId){
 // id - Row id; parentId - Section id;
         console.log('id: ',id,'parentId: ', parentId);
-        const { ActionIsActiveEditPanel } = this.props.mapDispactchEditPanel;
+        const { ActionIsActiveEditPanel, ActionCreateNodeStyles } = this.props.mapDispactchEditPanel;
         const {ActionActivateEditPanel, ActionDeactivateEditPanel} = this.props.mapDispactchConstructorView;
         const {isActiveEditPanel, idActiveStructure} = this.props.mapStateEditPanel;
 
@@ -79,12 +83,16 @@ class BarMenuContainer extends Component {
             if (isActiveEditPanel === false) {
                 // на даному етапі тільки активує структуру
                 ActionActivateEditPanel(id);
+                // need if first time
+
             } else if (isActiveEditPanel === true){
                 // деактивує попереднню активну структуру
                 ActionDeactivateEditPanel(idActiveStructure);
                 // активує поточну структуру
                 ActionActivateEditPanel(id);
+
             }
+            ActionCreateNodeStyles(id);
             // додає id активної структури для Edit Panel
             ActionIsActiveEditPanel(id, true);
         }

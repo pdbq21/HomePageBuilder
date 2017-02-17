@@ -30,9 +30,6 @@ const initialState = {
         }
     ],
 
-    currentStyle: {
-
-    }
 };
 
 function ColOrElement(state, action) {
@@ -86,7 +83,6 @@ export default function ToolbarReducer(state = initialState, action) {
             return Object.assign({}, state, {
                 currentStyle: changeStyle(state.currentStyle, action)
             });*/
-
 
         default:
             return state;

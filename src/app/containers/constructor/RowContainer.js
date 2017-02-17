@@ -5,7 +5,7 @@
  * Created by ruslan on 08.02.17.
  */
 // lib
-import React, { Component } from 'react'
+import React, {Component} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 
@@ -32,7 +32,14 @@ class TestContainer extends Component {
         const {isActiveExchangeRow} = this.props.mapStateConstructorView;
         // id array the current Section for generating Rows
         const {childrenIds, isActiveMove, isActiveDropArea, isActiveEditPanel} = this.props.mapStateRow;
-        const {currentStyle} = this.props.mapStateEditPanel;
+        //console.log(this.props.mapStateRowStyles);
+        let currentStyle;
+        if (typeof this.props.mapStateRowStyles !== 'undefined') {
+            currentStyle = this.props.mapStateRowStyles.currentStyle;
+        } else {
+            currentStyle = this.props.mapStateEditPanel.defaultStyle;
+        }
+        //
 
         return (
             <div
@@ -109,6 +116,7 @@ class TestContainer extends Component {
 function mapStateToProps(state, ownProps) {
     return {
         mapStateRow: state.ConstructorViewReducer[ownProps.id],
+        mapStateRowStyles: state.EditPanelReducer[ownProps.id],
         mapStateConstructorView: state.ConstructorViewReducer,
         mapStateEditPanel: state.EditPanelReducer,
     }

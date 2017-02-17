@@ -23,7 +23,8 @@ class ToolbarTabContentContainer extends Component {
         this.handelDragEndRow = this.handelDragEndRow.bind(this);
         this.handelDragStartContent = this.handelDragStartContent.bind(this);
         this.handelDragEndContent = this.handelDragEndContent.bind(this);
-        this.handelChangeColor = this.handelChangeColor.bind(this);
+
+        this.handelChangeBackgroundColor = this.handelChangeBackgroundColor.bind(this);
 
         this.renderTabContent = this.renderTabContent.bind(this);
         this.renderTabEdit = this.renderTabEdit.bind(this);
@@ -60,9 +61,11 @@ class ToolbarTabContentContainer extends Component {
         ActionOnDragEnd('data-elementType');
     }
 
-    handelChangeColor(color) {
+    handelChangeBackgroundColor(color) {
         const {ActionChangeBackgroundColor} = this.props.mapDispactchEditPanel;
-        ActionChangeBackgroundColor(color);
+        const {idActiveStructure} = this.props.mapStateEditPanel;
+
+        ActionChangeBackgroundColor(idActiveStructure, color);
     }
 
     renderTabContent() {
@@ -92,7 +95,7 @@ class ToolbarTabContentContainer extends Component {
 // Todo: залежно від вибраної структури генерити EditPanel
         return (
             <EditPanel
-                onChange={this.handelChangeColor}
+                onChange={this.handelChangeBackgroundColor}
             />
         )
     }

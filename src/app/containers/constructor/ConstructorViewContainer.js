@@ -169,7 +169,7 @@ class ConstructorViewContainer extends Component {
         // Stop default browser behavior
         //event.preventDefault();
         const {isActiveDragStructure, isActiveDragElement} = this.props.mapStateToolbarReducer;
-        console.log('enter', this.dragEnterCounter);
+        //console.log('enter', this.dragEnterCounter);
 // if isActiveDragStructure === true => drag element in Toolbar
         // else === false => drag element in ConstructorView
         if (isActiveDragStructure === false && isActiveDragElement === false) {
@@ -177,7 +177,6 @@ class ConstructorViewContainer extends Component {
             ++this.dragEnterCounter;
             const {ActionDragEnterDropArea} = this.props.mapDispactchConstructorView;
 
-            console.log('handleDragEnter', id);
             ActionDragEnterDropArea(id);
         }
         event.stopPropagation();
