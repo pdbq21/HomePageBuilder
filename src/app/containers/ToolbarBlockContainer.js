@@ -31,7 +31,8 @@ class ToolbarBlockContainer extends Component {
 
     render() {
         //console.log('ToolbarBlockContainer props: ', this.props);
-        const {activeTab, tabs, isActiveEditPanel} = this.props.mapStateToolbarReducer;
+        const {activeTab, tabs} = this.props.mapStateToolbarReducer;
+        const {isActiveEditPanel} = this.props.mapStateEditPanel;
 
         return (
             <ToolbarBlockComponent>
@@ -49,7 +50,8 @@ class ToolbarBlockContainer extends Component {
 
 function mapStateToProps(state) {
     return {
-        mapStateToolbarReducer: state.ToolbarReducer
+        mapStateToolbarReducer: state.ToolbarReducer,
+        mapStateEditPanel: state.EditPanelReducer,
     }
 }
 

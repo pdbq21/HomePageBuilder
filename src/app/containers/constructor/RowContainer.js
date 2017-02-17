@@ -32,6 +32,7 @@ class TestContainer extends Component {
         const {isActiveExchangeRow} = this.props.mapStateConstructorView;
         // id array the current Section for generating Rows
         const {childrenIds, isActiveMove, isActiveDropArea, isActiveEditPanel} = this.props.mapStateRow;
+        const {currentStyle} = this.props.mapStateEditPanel;
 
         return (
             <div
@@ -61,6 +62,8 @@ class TestContainer extends Component {
                     draggable={isActiveMove}
                     handleDragEnd={handleDragEnd}
                     handleDragStart={handleDragStartRow}
+
+                    styles={currentStyle}
                 >
                     <BarMenuContainer
                         positionMenu={true}
@@ -107,6 +110,7 @@ function mapStateToProps(state, ownProps) {
     return {
         mapStateRow: state.ConstructorViewReducer[ownProps.id],
         mapStateConstructorView: state.ConstructorViewReducer,
+        mapStateEditPanel: state.EditPanelReducer,
     }
 }
 

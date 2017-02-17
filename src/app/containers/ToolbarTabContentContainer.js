@@ -13,6 +13,7 @@ import {StructurePanel, ContentPanel, TemplatesPanel, EditPanel} from '../compon
 
 // actions
 import * as actionsToolbar from '../actions/ToolbarActions'
+import * as actionsEditPanel from '../actions/EditPanelActions'
 
 // Application
 class ToolbarTabContentContainer extends Component {
@@ -34,14 +35,14 @@ class ToolbarTabContentContainer extends Component {
         //console.log(event.target.getAttribute('data-col'));
         const dataAttr = event.target.getAttribute('data-col').split('-');
         const {ActionOnDragStart} = this.props.mapDispactchToolbar;
-         ActionOnDragStart(dataAttr, 'data-col');
+        ActionOnDragStart(dataAttr, 'data-col');
         /*event.dataTransfer.dropEffect = "move";
-        event.dataTransfer.setData("text", event.target.getAttribute('id'));*/
+         event.dataTransfer.setData("text", event.target.getAttribute('id'));*/
     }
 
     handelDragEndRow() {
         //console.log('drag end');
-       // console.log(event.target);
+        // console.log(event.target);
         const {ActionOnDragEnd} = this.props.mapDispactchToolbar;
         ActionOnDragEnd('data-col');
     }
@@ -59,12 +60,12 @@ class ToolbarTabContentContainer extends Component {
         ActionOnDragEnd('data-elementType');
     }
 
-    handelChangeColor(color){
-        const {ActionChangeBackgroundColor} = this.props.mapDispactchToolbar;
+    handelChangeColor(color) {
+        const {ActionChangeBackgroundColor} = this.props.mapDispactchEditPanel;
         ActionChangeBackgroundColor(color);
     }
 
-    renderTabContent(){
+    renderTabContent() {
         const {activeTab} = this.props.mapStateToolbarReducer;
 
         switch (activeTab) {
@@ -87,20 +88,20 @@ class ToolbarTabContentContainer extends Component {
         }
     }
 
-    renderTabEdit(){
-
-return (
-    <EditPanel
-        onChange={this.handelChangeColor}
-    />
-)
+    renderTabEdit() {
+// Todo: залежно від вибраної структури генерити EditPanel
+        return (
+            <EditPanel
+                onChange={this.handelChangeColor}
+            />
+        )
     }
 
     render() {
-        const {isActiveEditPanel} = this.props.mapStateToolbarReducer;
+        const {isActiveEditPanel} = this.props.mapStateEditPanel;
         return (
             <ToolbarTabContentComponent >
-                {(isActiveEditPanel)? this.renderTabEdit() : this.renderTabContent()}
+                {(isActiveEditPanel) ? this.renderTabEdit() : this.renderTabContent()}
             </ToolbarTabContentComponent>
         );
     }
@@ -108,13 +109,15 @@ return (
 
 function mapStateToProps(state, ownProps) {
     return {
-        mapStateToolbarReducer: state.ToolbarReducer
+        mapStateToolbarReducer: state.ToolbarReducer,
+        mapStateEditPanel: state.EditPanelReducer
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        mapDispactchToolbar: bindActionCreators(actionsToolbar, dispatch)
+        mapDispactchToolbar: bindActionCreators(actionsToolbar, dispatch),
+        mapDispactchEditPanel: bindActionCreators(actionsEditPanel, dispatch),
     }
 }
 

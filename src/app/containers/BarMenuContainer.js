@@ -14,6 +14,7 @@ import BarMenuComponent from '../components/BarMenuComponent';
 //import * as testActions from '../actions/TestActions'
 import * as actionsConstructorView from '../actions/ConstructorViewActions'
 import * as actionsToolbar from '../actions/ToolbarActions'
+import * as actionsEditPanel from '../actions/EditPanelActions'
 
 // Application
 class BarMenuContainer extends Component {
@@ -27,12 +28,12 @@ class BarMenuContainer extends Component {
         this.handleMove = this.handleMove.bind(this);
         this.handleMoveEnd = this.handleMoveEnd.bind(this);
 
-        this.handleActiveEdit = this.handleActiveEdit.bind(this);
+        this.handleActiveEditPanel = this.handleActiveEditPanel.bind(this);
 
     }
 
     handelBlurBarMenu(id) {
-        const {ActionToggleBarMenuBlur} = this.props.mapDispactchBarMenu;
+        const {ActionToggleBarMenuBlur} = this.props.mapDispactchConstructorView;
         //Todo: need change this logic
         setTimeout(function () {
             ActionToggleBarMenuBlur(id);
@@ -40,37 +41,61 @@ class BarMenuContainer extends Component {
     }
 
     handelClickBarMenu(id) {
-        const {ActionToggleBarMenu} = this.props.mapDispactchBarMenu;
+        const {ActionToggleBarMenu} = this.props.mapDispactchConstructorView;
         ActionToggleBarMenu(id);
     }
 
     handelClickRemove(id) {
-        const {ActionRemoveChild, ActionDeleteNode} = this.props.mapDispactchBarMenu;
+        const {ActionRemoveChild, ActionDeleteNode} = this.props.mapDispactchConstructorView;
         ActionRemoveChild(this.props.parentId, id);
         ActionDeleteNode(id);
     }
 
     handleMove(id) {
         const {type} = this.props;
-        const {ActionMove, ActionIsActiveExchangeStructure} = this.props.mapDispactchBarMenu;
+        const {ActionMove, ActionIsActiveExchangeStructure} = this.props.mapDispactchConstructorView;
         ActionMove(id);
         ActionIsActiveExchangeStructure(true, type);
     }
 
     handleMoveEnd(id) {
         const {type} = this.props;
-        const {ActionMoveEnd, ActionIsActiveExchangeStructure} = this.props.mapDispactchBarMenu;
+        const {ActionMoveEnd, ActionIsActiveExchangeStructure} = this.props.mapDispactchConstructorView;
         ActionMoveEnd(id);
         ActionIsActiveExchangeStructure(false, type);
     }
 
-    handleActiveEdit(id, parentId){
+    handleActiveEditPanel(id, parentId){
+// id - Row id; parentId - Section id;
+        console.log('id: ',id,'parentId: ', parentId);
+        const { ActionIsActiveEditPanel } = this.props.mapDispactchEditPanel;
+        const {ActionActivateEditPanel, ActionDeactivateEditPanel} = this.props.mapDispactchConstructorView;
+        const {isActiveEditPanel, idActiveStructure} = this.props.mapStateEditPanel;
 
-        console.log(id, parentId);
-        const {ActionActiveEditPanel} = this.props.mapDispactchBarMenu;
+        if (idActiveStructure === id){
+            ActionDeactivateEditPanel(idActiveStructure);
+            ActionIsActiveEditPanel('', false);
+        }else{
+            if (isActiveEditPanel === false) {
+                // на даному етапі тільки активує структуру
+                ActionActivateEditPanel(id);
+            } else if (isActiveEditPanel === true){
+                // деактивує попереднню активну структуру
+                ActionDeactivateEditPanel(idActiveStructure);
+                // активує поточну структуру
+                ActionActivateEditPanel(id);
+            }
+            // додає id активної структури для Edit Panel
+            ActionIsActiveEditPanel(id, true);
+        }
+
+
+
+        /*const {ActionActiveEditPanel} = this.props.mapDispactchConstructorView;
         const {ActionEditPanel} = this.props.mapDispactchToolbar;
         ActionActiveEditPanel(id);
-        ActionEditPanel();
+        ActionEditPanel();*/
+
     }
 
     render() {
@@ -81,7 +106,7 @@ class BarMenuContainer extends Component {
                 handelClickBarMenu={this.handelClickBarMenu}
                 handelBlurBarMenu={this.handelBlurBarMenu}
                 handelClickRemove={this.handelClickRemove}
-                handleActiveEdit={this.handleActiveEdit}
+                handleActiveEditPanel={this.handleActiveEditPanel}
 
                 classActiveMenu={(isActiveMenu) ? 'is-active' : ''}
 
@@ -100,14 +125,16 @@ class BarMenuContainer extends Component {
 function mapStateToProps(state, ownProps) {
     //console.log('state SectionContainer:', state, 'ownProps SectionContainer:', ownProps);
     return {
-        mapStateBarMenu: state.ConstructorViewReducer[ownProps.id]
+        mapStateBarMenu: state.ConstructorViewReducer[ownProps.id],
+        mapStateEditPanel: state.EditPanelReducer,
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        mapDispactchBarMenu: bindActionCreators(actionsConstructorView, dispatch),
-        mapDispactchToolbar: bindActionCreators(actionsToolbar, dispatch)
+        mapDispactchConstructorView: bindActionCreators(actionsConstructorView, dispatch),
+        mapDispactchToolbar: bindActionCreators(actionsToolbar, dispatch),
+        mapDispactchEditPanel: bindActionCreators(actionsEditPanel, dispatch)
     }
 }
 

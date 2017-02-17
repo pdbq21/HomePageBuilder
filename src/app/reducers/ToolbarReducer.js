@@ -2,8 +2,8 @@
  * Created by ruslan on 30.01.17.
  */
 // import constants from '../constants'
-import {ON_DRAG_START, ON_DRAG_END, ON_CLICK_NAVIGATION, ACTIVE_EDIT_PANEL,
-    CHANGE_BACKGROUND_COLOR
+import {ON_DRAG_START, ON_DRAG_END, ON_CLICK_NAVIGATION, /*ACTIVE_EDIT_PANEL,
+    CHANGE_BACKGROUND_COLOR*/
 } from '../constants/ToolbarConstants'
 // default data state
 const initialState = {
@@ -12,7 +12,7 @@ const initialState = {
     columns: [],
     elementType: '',
     //edit panel
-    isActiveEditPanel: false,
+    //isActiveEditPanel: false,
     //navigation
     activeTab: 'Rows', // default
     tabs: [
@@ -57,7 +57,7 @@ function ColOrElement(state, action) {
     }
 }
 
-
+/*
 const changeStyle = (state, action) => {
     switch (action.type) {
         // constant name
@@ -68,7 +68,7 @@ const changeStyle = (state, action) => {
         default:
             return state;
     }
-};
+};*/
 
 export default function ToolbarReducer(state = initialState, action) {
     switch (action.type) {
@@ -80,12 +80,12 @@ export default function ToolbarReducer(state = initialState, action) {
         case ON_CLICK_NAVIGATION:
             return {...state, activeTab: action.name};
 
-        case ACTIVE_EDIT_PANEL:
+        /*case ACTIVE_EDIT_PANEL:
             return {...state, isActiveEditPanel: true};
         case CHANGE_BACKGROUND_COLOR:
             return Object.assign({}, state, {
                 currentStyle: changeStyle(state.currentStyle, action)
-            });
+            });*/
 
 
         default:

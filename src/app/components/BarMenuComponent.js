@@ -6,7 +6,7 @@ import React from 'react'
 export default function BarMenuComponent(props) {
     const {
         id, type, parentId, handelClickBarMenu, classActiveMenu, handelClickRemove,
-        handelBlurBarMenu, positionMenu, handleMove, handleMoveEnd, handleActiveEdit,
+        handelBlurBarMenu, positionMenu, handleMove, handleMoveEnd, handleActiveEditPanel,
 
     } = props;
     return (<div className={`pb-bar pb-bar--${(positionMenu) ? 'horizontal' : 'vertical'} `}
@@ -21,7 +21,7 @@ export default function BarMenuComponent(props) {
             </button>
         </div>
         <div
-            onClick={() => handleActiveEdit(id, parentId)}
+            onClick={() => handleActiveEditPanel(id, parentId)}
         >
             {(positionMenu) ? <div className="pb-bar__caption"><span>{props.name}</span></div> : ''}
         </div>
