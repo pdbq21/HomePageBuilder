@@ -8,7 +8,8 @@ import {connect} from 'react-redux'
 
 // components
 import ToolbarTabContentComponent from '../components/Toolbar/ToolbarTabContentComponent'
-import {StructurePanel, ContentPanel, TemplatesPanel, EditPanel} from '../components/Toolbar/TabContentComponents.js'
+import {StructurePanel, ContentPanel, TemplatesPanel} from '../components/Toolbar/TabContentComponents.js'
+import {EditPanelNavigation, EditPanel} from '../components/Toolbar/TabEditPanelComponent.js'
 //containers
 
 // actions
@@ -23,10 +24,12 @@ class ToolbarTabContentContainer extends Component {
         this.handelDragEndRow = this.handelDragEndRow.bind(this);
         this.handelDragStartContent = this.handelDragStartContent.bind(this);
         this.handelDragEndContent = this.handelDragEndContent.bind(this);
-
+// edit panel
         this.handelChangeBackgroundColor = this.handelChangeBackgroundColor.bind(this);
         this.handelChangeImage = this.handelChangeImage.bind(this);
 
+        this.handelEditPanelNavigation = this.handelEditPanelNavigation.bind(this);
+// render component functions
         this.renderTabContent = this.renderTabContent.bind(this);
         this.renderTabEdit = this.renderTabEdit.bind(this);
     }
@@ -68,8 +71,15 @@ class ToolbarTabContentContainer extends Component {
 
         ActionChangeBackgroundColor(idActiveStructure, color);
     }
-    handelChangeImage(path){
+
+    handelChangeImage(path) {
         console.log(path);
+    }
+
+    handelEditPanelNavigation(event){
+        const {ActionSelectEditPanelNavigation} = this.props.mapDispactchEditPanel;
+        // Content / Styles
+        ActionSelectEditPanelNavigation(event.target.textContent);
     }
 
     renderTabContent() {
@@ -88,8 +98,8 @@ class ToolbarTabContentContainer extends Component {
                 />;
             case 'Templates':
                 return <TemplatesPanel />;
-/*            case 'Edit':
-                return <EditPanel />;*/
+            /*            case 'Edit':
+             return <EditPanel />;*/
             default:
                 console.error('Error: other tab name', activeTab);
         }
@@ -97,11 +107,21 @@ class ToolbarTabContentContainer extends Component {
 
     renderTabEdit() {
 // Todo: залежно від вибраної структури генерити EditPanel
+        const {activeTab, tabs} = this.props.mapStateEditPanel;
+
         return (
-            <EditPanel
-                onChange={this.handelChangeBackgroundColor}
-                onChangeImage={this.handelChangeImage}
-            />
+            [<EditPanelNavigation
+            key='key-tab-edit-0'
+            handelEditPanelNavigation={this.handelEditPanelNavigation}
+            activeTab={activeTab}
+            navigationTabs={tabs}
+            />,
+                <EditPanel
+                    key='key-tab-edit-1'
+                    onChange={this.handelChangeBackgroundColor}
+                    onChangeImage={this.handelChangeImage}
+                    activeTab={activeTab}
+                />]
         )
     }
 

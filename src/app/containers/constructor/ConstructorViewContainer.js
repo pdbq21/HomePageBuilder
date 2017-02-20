@@ -57,7 +57,7 @@ class ConstructorViewContainer extends Component {
         ActionAddNode(id, childrenId);
     }
 
-    dragEndExchangeNode(id){
+    dragEndExchangeNode(id) {
         this.dragEnterCounter = 0;
         const {
             ActionDragLeaveDropArea, ActionIsActiveExchangeStructure, ActionDataExchangeStructure,
@@ -70,19 +70,20 @@ class ConstructorViewContainer extends Component {
         ActionIsActiveExchangeStructure(false, dataExchangeStructure.dragType);
         ActionDataExchangeStructure('', '');
     }
+
     /*handleDragEnd(event, id) {
-        event.preventDefault();
-        this.dragEnterCounter = 0;
-        const {
-            ActionDragLeaveDropArea, ActionIsActiveExchangeStructure, ActionDataExchangeStructure,
-            ActionMoveEnd
-        } = this.props.mapDispactchConstructorView;
-        const {dataExchangeStructure} = this.props.mapStateConstructorViewReducer;
-        ActionMoveEnd(id);
-        ActionDragLeaveDropArea(dataExchangeStructure.dragId);
-        ActionIsActiveExchangeStructure(false, dataExchangeStructure.dragType);
-        ActionDataExchangeStructure('', '');
-    }*/
+     event.preventDefault();
+     this.dragEnterCounter = 0;
+     const {
+     ActionDragLeaveDropArea, ActionIsActiveExchangeStructure, ActionDataExchangeStructure,
+     ActionMoveEnd
+     } = this.props.mapDispactchConstructorView;
+     const {dataExchangeStructure} = this.props.mapStateConstructorViewReducer;
+     ActionMoveEnd(id);
+     ActionDragLeaveDropArea(dataExchangeStructure.dragId);
+     ActionIsActiveExchangeStructure(false, dataExchangeStructure.dragType);
+     ActionDataExchangeStructure('', '');
+     }*/
     /*handelDrop(event, id, isFirst, parentId) {
      // Stop default browser behavior
      event.preventDefault();
@@ -143,7 +144,7 @@ class ConstructorViewContainer extends Component {
             ActionExchangeNodePush(parentId, id, data.id, isFirst);
         }
 
-       this.dragEnterCounter = 0;
+        this.dragEnterCounter = 0;
     }
 
     handleDragOver(event) {
@@ -152,6 +153,7 @@ class ConstructorViewContainer extends Component {
         event.stopPropagation();
         return false;
     }
+
     handleDragLeave(event, id) {
         // Stop default browser behavior
         //event.preventDefault();
@@ -164,19 +166,20 @@ class ConstructorViewContainer extends Component {
             //ActionDragLeaveDropArea(id);
             --this.dragEnterCounter;
             if (this.dragEnterCounter === 0) {
-               ActionDragLeaveDropArea(id);
-           }
+                ActionDragLeaveDropArea(id);
+            }
         }
         event.stopPropagation();
         event.preventDefault();
         return false;
     }
+
     handleDragEnter(event, id) {
 
         // Stop default browser behavior
         //event.preventDefault();
         const {isActiveDragStructure, isActiveDragElement} = this.props.mapStateToolbarReducer;
-        //console.log('enter', this.dragEnterCounter);
+        console.log('enter', this.dragEnterCounter);
 // if isActiveDragStructure === true => drag element in Toolbar
         // else === false => drag element in ConstructorView
         if (isActiveDragStructure === false && isActiveDragElement === false) {
@@ -190,6 +193,7 @@ class ConstructorViewContainer extends Component {
         event.preventDefault();
         return false;
     }
+
     /*handelDropExchangeRow(event, id, isFirst, parentId) {
      event.preventDefault();
      const {
@@ -222,34 +226,40 @@ class ConstructorViewContainer extends Component {
         let dataSection = JSON.parse(event.dataTransfer.getData("dataSection"));
         this.dropExchangeNode('section', id, parentId, dataSection, isFirst);
     }
+
     handleDragStartSection(event, parentId, id) {
         let dataSection = JSON.stringify({parentId: parentId, id: id});
         event.dataTransfer.setData("dataSection", dataSection);
-        console.log('section');
-const {ActionDataExchangeStructure} = this.props.mapDispactchConstructorView;
+        //console.log('section');
+        const {ActionDataExchangeStructure} = this.props.mapDispactchConstructorView;
         ActionDataExchangeStructure(id, 'section');
     }
+
     handleDragEndSection(event, id) {
         event.preventDefault();
         this.dragEndExchangeNode(id);
     }
+
     /*** Row function ***/
     handelDropExchangeRow(event, id, isFirst, parentId) {
         event.preventDefault();
         let dataRow = JSON.parse(event.dataTransfer.getData("dataRow"));
         this.dropExchangeNode('row', id, parentId, dataRow, isFirst);
     }
+
     handleDragStartRow(event, parentId, id) {
         let dataRow = JSON.stringify({parentId: parentId, id: id});
         event.dataTransfer.setData("dataRow", dataRow);
-        console.log(id);
+        //console.log(id);
         const {ActionDataExchangeStructure} = this.props.mapDispactchConstructorView;
         ActionDataExchangeStructure(id, 'row');
     }
+
     handleDragEndRow(event, id) {
         event.preventDefault();
         this.dragEndExchangeNode(id);
     }
+
     handleDragLeaveRow(event, id) {
         // Stop default browser behavior
         event.preventDefault();
@@ -266,6 +276,7 @@ const {ActionDataExchangeStructure} = this.props.mapDispactchConstructorView;
         }
 
     }
+
     handleDragEnterRow(event, id) {
         // Stop default browser behavior
         event.preventDefault();
@@ -283,18 +294,21 @@ const {ActionDataExchangeStructure} = this.props.mapDispactchConstructorView;
         }
 
     }
+
     /*** Element function ***/
     handelDropExchangeElement(event, id, isFirst, parentId) {
         event.preventDefault();
         let dataElement = JSON.parse(event.dataTransfer.getData("dataElement"));
         this.dropExchangeNode('col', id, parentId, dataElement, isFirst);
     }
+
     handleDragStartElement(event, parentId, id) {
         let dataElement = JSON.stringify({parentId: parentId, id: id});
         event.dataTransfer.setData("dataElement", dataElement);
         const {ActionDataExchangeStructure} = this.props.mapDispactchConstructorView;
         ActionDataExchangeStructure(id, 'col');
     }
+
     handleDragEndElement(event, id) {
         event.preventDefault();
         this.dragEndExchangeNode(id);
@@ -307,7 +321,7 @@ const {ActionDataExchangeStructure} = this.props.mapDispactchConstructorView;
         return (
             <ConstructorViewBlockComponent
                 handleClickAddSection={this.handleClickAddSection}
-classPointerEvents={(isActiveExchangeSection)? 'pointerEventsSection' : ''}
+                classPointerEvents={(isActiveExchangeSection) ? 'pointerEventsSection' : ''}
             >
                 {childrenIds.map((childrenId, index) => (
                     <SectionContainer

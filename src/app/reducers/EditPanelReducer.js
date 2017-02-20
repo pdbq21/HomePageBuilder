@@ -3,7 +3,8 @@
  */
 // import constants from '../constants'
 import {
-    IS_ACTIVE_EDIT_PANEL, CHANGE_BACKGROUND_COLOR, CREATE_NODE_STYLES, DELETE_NODE_STYLES
+    IS_ACTIVE_EDIT_PANEL, CHANGE_BACKGROUND_COLOR, CREATE_NODE_STYLES, DELETE_NODE_STYLES,
+    SELECT_EDIT_PANEL_NAVIGATION
 } from '../constants/EditPanelConstants'
 // default data state
 const initialState = {
@@ -11,7 +12,20 @@ const initialState = {
     idActiveStructure: '',
     defaultStyle: {
         backgroundColor: '#ffffff'
-    }
+    },
+
+    activeTab: 'Content', // default
+    tabs: [
+        {
+            name: 'Content',
+        },
+        {
+            name: 'Styles',
+        },
+        /*{
+         name: 'Edit',
+         }*/
+    ],
 };
 
 
@@ -62,6 +76,10 @@ export default function EditPanelReducer(state = initialState, action) {
                 return Object.assign({}, state, {
                     isActiveEditPanel: action.boolean,
                     idActiveStructure: action.id
+                });
+            case SELECT_EDIT_PANEL_NAVIGATION:
+                return Object.assign({}, state, {
+                    activeTab: action.name
                 });
 
             default:

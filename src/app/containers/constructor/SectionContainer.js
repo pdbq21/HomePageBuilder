@@ -106,8 +106,6 @@ class SectionContainer extends Component {
                     name='this'
                     parentId={parentId}
                 />
-
-
                 <SectionComponent
                     pointerEvents={(isActiveExchangeSection && isActiveDropArea)? 'none' : 'auto'}
                     id={id}
@@ -187,10 +185,7 @@ class SectionContainer extends Component {
                     parentId={parentId}
                 />
 
-            </div>
-
-    )
-        ;
+            </div>);
     }
 }
 

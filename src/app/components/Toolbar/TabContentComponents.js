@@ -143,6 +143,7 @@ export function TemplatesPanel() {
         </ul>
     );
 }
+/*
 export function EditPanel(props) {
     const {onChange, onChangeImage} = props;
     return (
@@ -188,4 +189,4 @@ export function EditPanel(props) {
             </div>
 
     );
-}
+}*/
