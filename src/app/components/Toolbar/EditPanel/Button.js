@@ -7,45 +7,54 @@ export default  function EditPanelButton(props) {
     const {activeTab} = props;
     return (
         (activeTab === 'Content') ?
-            <div className="">
-button
-            </div> :
-            <div className="mdl-card mdl-shadow--2dp">
-                <div className="mdl-card__title">
-                    <h2 className="mdl-card__title-text">Style</h2>
+            <div className="mdl-grid pb-form pb-form--full-width">
+                <div className="mdl-cell mdl-cell--12-col">
+                    <input className="pb-field pb-field--input" type="text" placeholder="Text"/>
                 </div>
 
-                <div className="mdl-card__actions mdl-card--border">
-                    <div className="mdl-grid">
-                        <div className="mdl-cell mdl-cell--12-col">
-                            <h5>Background</h5>
-                        </div>
+                <div className="mdl-cell mdl-cell--12-col">
+                    <input className="pb-field pb-field--input" type="text" placeholder="Url"/>
+                </div>
 
-                        <div className="mdl-cell mdl-cell--6-col">
-                            <label htmlFor="sample1">Image</label>
-                        </div>
-                        <div className="mdl-cell mdl-cell--6-col">
-                            <div className="mdl-textfield pb-field mdl-js-textfield">
-                                <input className="mdl-textfield__input" type="file" id="sample1"
+                <div className="mdl-cell mdl-cell--8-col">
+                    <label className="pb-label" htmlFor="button-type">Link type</label>
+                </div>
+                <div className="mdl-cell mdl-cell--4-col">
+                    <select name="pb-field pb-field--select" id="button-type">
+                        <option value="page">Open web page</option>
+                        <option value="email">Send email</option>
+                        <option value="call">Make call</option>
+                        <option value="sms">Send SMS</option>
+                    </select>
+                </div>
 
-                                />
-                            </div>
-                        </div>
+                <div className="mdl-cell mdl-cell--8-col">
+                    <label className="pb-label" htmlFor="button-type">Open in new window</label>
+                </div>
+                <div className="mdl-cell mdl-cell--4-col">
+                    <input type="checkbox" id="" className="pb-field pb-field--checkbox" checked/>
+                </div>
+            </div> :
+            <div className="mdl-grid pb-form--full-width">
+                <div className="mdl-cell mdl-cell--8-col">
+                    <label className="pb-label" htmlFor="button-color">Text Color</label>
+                </div>
+                <div className="mdl-cell mdl-cell--4-col">
+                    <input className="pb-field pb-field--text" type="text" id="button-color" placeholder="#F1F1F1"/>
+                </div>
 
+                <div className="mdl-cell mdl-cell--8-col">
+                    <label className="pb-label" htmlFor="button-bg-color">Background Color</label>
+                </div>
+                <div className="mdl-cell mdl-cell--4-col">
+                    <input className="pb-field pb-field--text" type="text" id="button-bg-color" placeholder="#F1F1F1"/>
+                </div>
 
-                        <div className="mdl-cell mdl-cell--6-col">
-                            <label htmlFor="sample2">Color</label>
-                        </div>
-                        <div className="mdl-cell mdl-cell--6-col">
-                            <div className="mdl-textfield pb-field mdl-js-textfield">
-                                <input
-                                    className="mdl-textfield__input"
-                                    type="color"
-                                    id="sample2"
-                                />
-                            </div>
-                        </div>
-                    </div>
+                <div className="mdl-cell mdl-cell--8-col">
+                    <label className="pb-label" htmlFor="button-bg-image">Background Image</label>
+                </div>
+                <div className="mdl-cell mdl-cell--4-col">
+                    <input className="pb-field pb-field--file" type="file" id="button-bg-image"/>
                 </div>
             </div>
     );

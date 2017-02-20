@@ -144,6 +144,26 @@
     margin: 0 auto;
 }
 
+/* Form */
+.pb-form.pb-form--full-width .pb-field {
+    width: 100%;
+}
+
+/* Field */
+.pb-field {
+    line-height: 1.5em;
+}
+
+.pb-field--file {
+    overflow: hidden;
+}
+
+/* Label */
+.pb-label {
+    line-height: 1.5em;
+    position: static;
+}
+
 /* Drop area */
 .pb-area {
     text-align: center;
