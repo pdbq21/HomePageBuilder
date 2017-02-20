@@ -6,59 +6,63 @@ import React from 'react'
 export function StructurePanel(props) {
     const {OnDragStart, OnDragEnd} = props;
     return (
-        <ul className="mdl-list pb-list--panel pb-list--no-spacing"
-            onDragStart={OnDragStart}
-            onDragEnd={OnDragEnd}
-        >
-            <li className="mdl-card pb-card pb-card--grab mdl-shadow--2dp"
-                draggable='true'
-                data-col="12"
-            >
-                <div className="mdl-grid pb-grid--sketch">
-                    <div className="mdl-cell mdl-cell--12-col">12</div>
-                </div>
-            </li>
-            <li className="mdl-card pb-card pb-card--grab mdl-shadow--2dp"
-                draggable='true'
-                data-col="6-6"
-            >
-                <div className="mdl-grid pb-grid--sketch">
-                    <div className="mdl-cell mdl-cell--6-col">6</div>
-                    <div className="mdl-cell mdl-cell--6-col">6</div>
-                </div>
-            </li>
-            <li className="mdl-card pb-card pb-card--grab mdl-shadow--2dp"
-                draggable='true'
-                data-col="4-4-4"
-            >
-                <div className="mdl-grid pb-grid--sketch">
-                    <div className="mdl-cell mdl-cell--4-col">4</div>
-                    <div className="mdl-cell mdl-cell--4-col">4</div>
-                    <div className="mdl-cell mdl-cell--4-col">4</div>
-                </div>
-            </li>
-            <li className="mdl-card pb-card pb-card--grab mdl-shadow--2dp"
-                draggable='true'
-                data-col="3-6-3"
-            >
-                <div className="mdl-grid pb-grid--sketch">
-                    <div className="mdl-cell mdl-cell--3-col">3</div>
-                    <div className="mdl-cell mdl-cell--6-col">6</div>
-                    <div className="mdl-cell mdl-cell--3-col">3</div>
-                </div>
-            </li>
-            <li className="mdl-card pb-card pb-card--grab mdl-shadow--2dp"
-                draggable='true'
-                data-col="3-3-3-3"
-            >
-                <div className="mdl-grid pb-grid--sketch">
-                    <div className="mdl-cell mdl-cell--3-col">3</div>
-                    <div className="mdl-cell mdl-cell--3-col">3</div>
-                    <div className="mdl-cell mdl-cell--3-col">3</div>
-                    <div className="mdl-cell mdl-cell--3-col">3</div>
-                </div>
-            </li>
-        </ul>
+        <div className="mdl-grid">
+            <div className="mdl-cell mdl-cell--12-col">
+                <ul className="mdl-list pb-list--panel pb-list--no-spacing"
+                    onDragStart={OnDragStart}
+                    onDragEnd={OnDragEnd}
+                >
+                    <li className="mdl-card pb-card pb-card--grab mdl-shadow--2dp"
+                        draggable='true'
+                        data-col="12"
+                    >
+                        <div className="mdl-grid pb-grid--sketch">
+                            <div className="mdl-cell mdl-cell--12-col">12</div>
+                        </div>
+                    </li>
+                    <li className="mdl-card pb-card pb-card--grab mdl-shadow--2dp"
+                        draggable='true'
+                        data-col="6-6"
+                    >
+                        <div className="mdl-grid pb-grid--sketch">
+                            <div className="mdl-cell mdl-cell--6-col">6</div>
+                            <div className="mdl-cell mdl-cell--6-col">6</div>
+                        </div>
+                    </li>
+                    <li className="mdl-card pb-card pb-card--grab mdl-shadow--2dp"
+                        draggable='true'
+                        data-col="4-4-4"
+                    >
+                        <div className="mdl-grid pb-grid--sketch">
+                            <div className="mdl-cell mdl-cell--4-col">4</div>
+                            <div className="mdl-cell mdl-cell--4-col">4</div>
+                            <div className="mdl-cell mdl-cell--4-col">4</div>
+                        </div>
+                    </li>
+                    <li className="mdl-card pb-card pb-card--grab mdl-shadow--2dp"
+                        draggable='true'
+                        data-col="3-6-3"
+                    >
+                        <div className="mdl-grid pb-grid--sketch">
+                            <div className="mdl-cell mdl-cell--3-col">3</div>
+                            <div className="mdl-cell mdl-cell--6-col">6</div>
+                            <div className="mdl-cell mdl-cell--3-col">3</div>
+                        </div>
+                    </li>
+                    <li className="mdl-card pb-card pb-card--grab mdl-shadow--2dp"
+                        draggable='true'
+                        data-col="3-3-3-3"
+                    >
+                        <div className="mdl-grid pb-grid--sketch">
+                            <div className="mdl-cell mdl-cell--3-col">3</div>
+                            <div className="mdl-cell mdl-cell--3-col">3</div>
+                            <div className="mdl-cell mdl-cell--3-col">3</div>
+                            <div className="mdl-cell mdl-cell--3-col">3</div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
     );
 }
 export function ContentPanel(props) {
