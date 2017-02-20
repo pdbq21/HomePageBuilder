@@ -106,8 +106,6 @@ class SectionContainer extends Component {
                     name='this'
                     parentId={parentId}
                 />
-
-
                 <SectionComponent
                     pointerEvents={(isActiveExchangeSection && isActiveDropArea)? 'none' : 'auto'}
                     id={id}
@@ -121,6 +119,7 @@ class SectionContainer extends Component {
                 >
                     <BarMenuContainer
                         id={id}
+                        name='Section'
                         type='section'
                         positionMenu={false}
                         parentId={parentId}
@@ -187,10 +186,7 @@ class SectionContainer extends Component {
                     parentId={parentId}
                 />
 
-            </div>
-
-    )
-        ;
+            </div>);
     }
 }
 
