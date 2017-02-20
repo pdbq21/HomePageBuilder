@@ -100,8 +100,9 @@
 }
 
 .pb-bar--vertical {
-    width: 64px;
+    width: 52px;
     min-height: 100px;
+    padding: 16px 8px;
 }
 .pb-bar--vertical .pb-bar__menu {
     bottom: 16px;
