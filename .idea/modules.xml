@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/../HomePageBuilder/.idea/HomePageConstructor.iml" filepath="$PROJECT_DIR$/../HomePageBuilder/.idea/HomePageConstructor.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/pagebuilder-react.iml" filepath="$PROJECT_DIR$/.idea/pagebuilder-react.iml" />
     </modules>
   </component>
 </project>
