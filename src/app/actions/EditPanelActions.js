@@ -8,10 +8,11 @@ import {
 
 
 // Edit Panel
-export function ActionIsActiveEditPanel(id, boolean) {
+export function ActionIsActiveEditPanel(id, name, boolean) {
     return {
         type: IS_ACTIVE_EDIT_PANEL,
         id,//for this current id EditPanel is active
+        name, // Section/Row/Text/Image ...
         boolean
     }
 }

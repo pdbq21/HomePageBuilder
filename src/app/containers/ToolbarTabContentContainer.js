@@ -107,7 +107,7 @@ class ToolbarTabContentContainer extends Component {
 
     renderTabEdit() {
 // Todo: залежно від вибраної структури генерити EditPanel
-        const {activeTab, tabs} = this.props.mapStateEditPanel;
+        const {activeTab, tabs, ActiveStructure} = this.props.mapStateEditPanel;
 
         return (
             [<EditPanelNavigation
@@ -117,6 +117,7 @@ class ToolbarTabContentContainer extends Component {
             navigationTabs={tabs}
             />,
                 <EditPanel
+                    structureName={ActiveStructure.name}
                     key='key-tab-edit-1'
                     onChange={this.handelChangeBackgroundColor}
                     onChangeImage={this.handelChangeImage}

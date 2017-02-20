@@ -119,6 +119,7 @@ class SectionContainer extends Component {
                 >
                     <BarMenuContainer
                         id={id}
+                        name='Section'
                         type='section'
                         positionMenu={false}
                         parentId={parentId}

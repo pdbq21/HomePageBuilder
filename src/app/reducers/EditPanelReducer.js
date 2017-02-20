@@ -9,7 +9,10 @@ import {
 // default data state
 const initialState = {
     isActiveEditPanel: false,
-    idActiveStructure: '',
+    ActiveStructure: {
+        id: '',
+        name: ''
+    },
     defaultStyle: {
         backgroundColor: '#ffffff'
     },
@@ -75,7 +78,11 @@ export default function EditPanelReducer(state = initialState, action) {
             case IS_ACTIVE_EDIT_PANEL:
                 return Object.assign({}, state, {
                     isActiveEditPanel: action.boolean,
-                    idActiveStructure: action.id
+                    ActiveStructure: {
+                        id: action.id,
+                        name: action.name
+                    },
+
                 });
             case SELECT_EDIT_PANEL_NAVIGATION:
                 return Object.assign({}, state, {

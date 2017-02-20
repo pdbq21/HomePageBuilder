@@ -20,8 +20,7 @@ export function EditPanelNavigation(props) {
             })}
         </div>);
 }
-
-function EditPanelContent(props) {
+/*function EditPanelContent(props) {
     return (
         <div>
 
@@ -72,17 +71,279 @@ function EditPanelStyles(props) {
             </div>
         </div>
     );
+}*/
+
+function EditPanelSection(props) {
+    const {activeTab} = props;
+    return (
+        (activeTab === 'Content') ?
+            <div>
+
+            </div> :
+            <div className="mdl-card mdl-shadow--2dp">
+                <div className="mdl-card__title">
+                    <h2 className="mdl-card__title-text">Style</h2>
+                </div>
+
+                <div className="mdl-card__actions mdl-card--border">
+                    <div className="mdl-grid">
+                        <div className="mdl-cell mdl-cell--12-col">
+                            <h5>Background</h5>
+                        </div>
+
+                        <div className="mdl-cell mdl-cell--6-col">
+                            <label htmlFor="sample1">Image</label>
+                        </div>
+                        <div className="mdl-cell mdl-cell--6-col">
+                            <div className="mdl-textfield pb-field mdl-js-textfield">
+                                <input className="mdl-textfield__input" type="file" id="sample1"
+
+                                />
+                            </div>
+                        </div>
+
+
+                        <div className="mdl-cell mdl-cell--6-col">
+                            <label htmlFor="sample2">Color</label>
+                        </div>
+                        <div className="mdl-cell mdl-cell--6-col">
+                            <div className="mdl-textfield pb-field mdl-js-textfield">
+                                <input
+                                    className="mdl-textfield__input"
+                                    type="color"
+                                    id="sample2"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    );
+}
+function EditPanelRow(props) {
+    const {activeTab} = props;
+    return (
+        (activeTab === 'Content') ?
+            <div>
+
+            </div> :
+            <div className="mdl-card mdl-shadow--2dp">
+                <div className="mdl-card__title">
+                    <h2 className="mdl-card__title-text">Style</h2>
+                </div>
+
+                <div className="mdl-card__actions mdl-card--border">
+                    <div className="mdl-grid">
+                        <div className="mdl-cell mdl-cell--12-col">
+                            <h5>Background</h5>
+                        </div>
+
+                        <div className="mdl-cell mdl-cell--6-col">
+                            <label htmlFor="sample1">Image</label>
+                        </div>
+                        <div className="mdl-cell mdl-cell--6-col">
+                            <div className="mdl-textfield pb-field mdl-js-textfield">
+                                <input className="mdl-textfield__input" type="file" id="sample1"
+
+                                />
+                            </div>
+                        </div>
+
+
+                        <div className="mdl-cell mdl-cell--6-col">
+                            <label htmlFor="sample2">Color</label>
+                        </div>
+                        <div className="mdl-cell mdl-cell--6-col">
+                            <div className="mdl-textfield pb-field mdl-js-textfield">
+                                <input
+                                    className="mdl-textfield__input"
+                                    type="color"
+                                    id="sample2"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    );
+}
+function EditPanelText(props) {
+    const {activeTab} = props;
+    return (
+        (activeTab === 'Content') ?
+            <div>
+
+            </div> :
+            <div className="mdl-card mdl-shadow--2dp">
+                <div className="mdl-card__title">
+                    <h2 className="mdl-card__title-text">Style</h2>
+                </div>
+
+                <div className="mdl-card__actions mdl-card--border">
+                    <div className="mdl-grid">
+                        <div className="mdl-cell mdl-cell--12-col">
+                            <h5>Background</h5>
+                        </div>
+
+                        <div className="mdl-cell mdl-cell--6-col">
+                            <label htmlFor="sample1">Image</label>
+                        </div>
+                        <div className="mdl-cell mdl-cell--6-col">
+                            <div className="mdl-textfield pb-field mdl-js-textfield">
+                                <input className="mdl-textfield__input" type="file" id="sample1"
+
+                                />
+                            </div>
+                        </div>
+
+
+                        <div className="mdl-cell mdl-cell--6-col">
+                            <label htmlFor="sample2">Color</label>
+                        </div>
+                        <div className="mdl-cell mdl-cell--6-col">
+                            <div className="mdl-textfield pb-field mdl-js-textfield">
+                                <input
+                                    className="mdl-textfield__input"
+                                    type="color"
+                                    id="sample2"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    );
+}
+function EditPanelImage(props) {
+    const {activeTab} = props;
+    return (
+        (activeTab === 'Content') ?
+            <div>
+
+            </div> :
+            <div className="mdl-card mdl-shadow--2dp">
+                <div className="mdl-card__title">
+                    <h2 className="mdl-card__title-text">Style</h2>
+                </div>
+
+                <div className="mdl-card__actions mdl-card--border">
+                    <div className="mdl-grid">
+                        <div className="mdl-cell mdl-cell--12-col">
+                            <h5>Background</h5>
+                        </div>
+
+                        <div className="mdl-cell mdl-cell--6-col">
+                            <label htmlFor="sample1">Image</label>
+                        </div>
+                        <div className="mdl-cell mdl-cell--6-col">
+                            <div className="mdl-textfield pb-field mdl-js-textfield">
+                                <input className="mdl-textfield__input" type="file" id="sample1"
+
+                                />
+                            </div>
+                        </div>
+
+
+                        <div className="mdl-cell mdl-cell--6-col">
+                            <label htmlFor="sample2">Color</label>
+                        </div>
+                        <div className="mdl-cell mdl-cell--6-col">
+                            <div className="mdl-textfield pb-field mdl-js-textfield">
+                                <input
+                                    className="mdl-textfield__input"
+                                    type="color"
+                                    id="sample2"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    );
+}
+function EditPanelButton(props) {
+    const {activeTab} = props;
+    return (
+        (activeTab === 'Content') ?
+            <div>
+
+            </div> :
+            <div className="mdl-card mdl-shadow--2dp">
+                <div className="mdl-card__title">
+                    <h2 className="mdl-card__title-text">Style</h2>
+                </div>
+
+                <div className="mdl-card__actions mdl-card--border">
+                    <div className="mdl-grid">
+                        <div className="mdl-cell mdl-cell--12-col">
+                            <h5>Background</h5>
+                        </div>
+
+                        <div className="mdl-cell mdl-cell--6-col">
+                            <label htmlFor="sample1">Image</label>
+                        </div>
+                        <div className="mdl-cell mdl-cell--6-col">
+                            <div className="mdl-textfield pb-field mdl-js-textfield">
+                                <input className="mdl-textfield__input" type="file" id="sample1"
+
+                                />
+                            </div>
+                        </div>
+
+
+                        <div className="mdl-cell mdl-cell--6-col">
+                            <label htmlFor="sample2">Color</label>
+                        </div>
+                        <div className="mdl-cell mdl-cell--6-col">
+                            <div className="mdl-textfield pb-field mdl-js-textfield">
+                                <input
+                                    className="mdl-textfield__input"
+                                    type="color"
+                                    id="sample2"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    );
 }
 
 export function EditPanel(props) {
-    const {onChange, onChangeImage, activeTab} = props;
-    return (
-        (activeTab === 'Content') ?
-            <EditPanelContent /> :
-            <EditPanelStyles
+    const {onChange, onChangeImage, activeTab, structureName} = props;
+
+    switch (structureName) {
+        case 'Section':
+            return (<EditPanelSection
+                activeTab={activeTab}
                 onChange={onChange}
                 onChangeImage={onChangeImage}
-            />
-
-    );
+            />);
+        case 'Row':
+            return (<EditPanelRow
+                activeTab={activeTab}
+                onChange={onChange}
+                onChangeImage={onChangeImage}
+            />);
+        case 'Text':
+            return (<EditPanelText
+                activeTab={activeTab}
+                onChange={onChange}
+                onChangeImage={onChangeImage}
+            />);
+        case 'Image':
+            return (<EditPanelImage
+                activeTab={activeTab}
+                onChange={onChange}
+                onChangeImage={onChangeImage}
+            />);
+        case 'Button':
+            return (<EditPanelButton
+                activeTab={activeTab}
+                onChange={onChange}
+                onChangeImage={onChangeImage}
+            />);
+        default:
+            return console.error('Error: Other structure name', structureName);
+    }
 }

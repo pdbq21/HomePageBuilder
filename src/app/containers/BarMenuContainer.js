@@ -69,16 +69,16 @@ class BarMenuContainer extends Component {
         ActionIsActiveExchangeStructure(false, type);
     }
 
-    handleActiveEditPanel(id, parentId){
-// id - Row id; parentId - Section id;
-        console.log('id: ',id,'parentId: ', parentId);
+    handleActiveEditPanel(id, parentId, name){
+// id - Row id; parentId - Section id; name - Section/Row/Text/Image...
+        console.log('id: ',id,'parentId: ', parentId, name);
         const { ActionIsActiveEditPanel, ActionCreateNodeStyles } = this.props.mapDispactchEditPanel;
         const {ActionActivateEditPanel, ActionDeactivateEditPanel} = this.props.mapDispactchConstructorView;
-        const {isActiveEditPanel, idActiveStructure} = this.props.mapStateEditPanel;
-
-        if (idActiveStructure === id){
-            ActionDeactivateEditPanel(idActiveStructure);
-            ActionIsActiveEditPanel('', false);
+        const {isActiveEditPanel, ActiveStructure} = this.props.mapStateEditPanel;
+//console.log(ActiveStructure);
+        if (ActiveStructure.id === id){
+            ActionDeactivateEditPanel(ActiveStructure.id);
+            ActionIsActiveEditPanel('', '', false);
         }else{
             if (isActiveEditPanel === false) {
                 // на даному етапі тільки активує структуру
@@ -87,14 +87,14 @@ class BarMenuContainer extends Component {
 
             } else if (isActiveEditPanel === true){
                 // деактивує попереднню активну структуру
-                ActionDeactivateEditPanel(idActiveStructure);
+                ActionDeactivateEditPanel(ActiveStructure.id);
                 // активує поточну структуру
                 ActionActivateEditPanel(id);
 
             }
             ActionCreateNodeStyles(id);
             // додає id активної структури для Edit Panel
-            ActionIsActiveEditPanel(id, true);
+            ActionIsActiveEditPanel(id, name, true);
         }
 
 

@@ -5,7 +5,7 @@ import React from 'react'
 
 export default function BarMenuComponent(props) {
     const {
-        id, type, parentId, handelClickBarMenu, classActiveMenu, handelClickRemove,
+        id, type, parentId, name, handelClickBarMenu, classActiveMenu, handelClickRemove,
         handelBlurBarMenu, positionMenu, handleMove, handleMoveEnd, handleActiveEditPanel,
 
     } = props;
@@ -21,11 +21,11 @@ export default function BarMenuComponent(props) {
             </button>
         </div>
         <div
-            onClick={() => handleActiveEditPanel(id, parentId)}
+            onClick={() => handleActiveEditPanel(id, parentId, name)}
             style={{'height': '100%',
                 'width': '100%'}}
         >
-            {(positionMenu) ? <div className="pb-bar__caption"><span>{props.name}</span></div> : ''}
+            {(positionMenu) ? <div className="pb-bar__caption"><span>{name}</span></div> : ''}
         </div>
 
 
