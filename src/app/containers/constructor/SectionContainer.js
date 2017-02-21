@@ -71,7 +71,8 @@ class SectionContainer extends Component {
             handleDragOver, handleDragEndSection, handleDragEnter, handleDragLeave,
             handelDropExchangeSection, handleDragStartSection, handelDropExchangeRow, handleDragStartRow,
             handelDropExchangeElement, handleDragStartElement, handleDragEnterRow, handleDragLeaveRow,
-            handleDragEndRow, handleDragEndElement
+            handleDragEndRow, handleDragEndElement,
+
         } = this.props;
 
         let currentStyle;
@@ -91,6 +92,7 @@ class SectionContainer extends Component {
                     (event) => handleDragLeave(event, id) :
                     (event) => handleDragLeaveRow(event, id)
                 }
+
                 style={{'marginBottom': '1em'}}
             >
                 {/* only first */}

@@ -8,6 +8,7 @@ import {
     ON_DRAG_ENTER_DROP_AREA, ON_DRAG_LEAVE_DROP_AREA, CLICK_MOVE_END, EXCHANGE_STRUCTURE_ACTIVE,
     EXCHANGE_NODE_DELETE, EXCHANGE_NODE_PUSH, ACTIVATE_EDIT_PANEL, ADD_STYLES, DEACTIVATE_EDIT_PANEL,
     DATA_EXCHANGE_STRUCTURE_ACTIVE,
+    TEST_ACTIVE_DROP_ZONE
 } from '../constants/ConstructorViewConstants'
 
 export function ActionOnDropSection(id, name) {
@@ -172,6 +173,13 @@ export function ActionDeactivateEditPanel(nodeId) {
 export function ActionAddStyles(nodeId, id) {
     return {
         type: ADD_STYLES,
+        nodeId,
+        id
+    };
+}
+export function ActionTestActiveDropZone(nodeId, id) {
+    return {
+        type: TEST_ACTIVE_DROP_ZONE,
         nodeId,
         id
     };
