@@ -20,6 +20,7 @@ export default function WorkAreaComponent() {
 
                 </RowComponent>
             </ SectionComponent>
+
         </div>
     );
 }

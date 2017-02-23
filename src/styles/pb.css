@@ -1,13 +1,19 @@
-.pb-toolbox .mdl-tabs__panel {
-    padding: 16px;
-}
-
 /* Toolbox */
 .pb-toolbox {
     background-color: #F5F5F5;
     height: 95vh;
     position: fixed;
     right: 0;
+}
+
+/* Background */
+.pb-background {
+    padding: 16px;
+    width: auto;
+    height: auto;
+    margin: 0;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
 }
 
 /* List */
@@ -37,8 +43,13 @@
 
 .pb-card--section {
     flex-direction: row;
-   /* margin-bottom: 16px;
-    margin-top: 16px;*/
+}
+.pb-card--section > .pb-background {
+    width: 100%;
+}
+
+.pb-card--row > .pb-background {
+    padding: 16px 8px;
 }
 
 .pb-card--active {
@@ -68,15 +79,6 @@
     /*transform: translateX(-50%);*/
 /*}*/
 
-/* Background */
-.pb-background {
-    padding: 16px;
-    /*width: auto;*/
-    /* change this */
-    height: auto;
-    width: 100%;
-}
-
 /* Bar */
 .pb-bar {
     box-sizing: border-box;
@@ -98,8 +100,9 @@
 }
 
 .pb-bar--vertical {
-    width: 64px;
+    width: 52px;
     min-height: 100px;
+    padding: 16px 8px;
 }
 .pb-bar--vertical .pb-bar__menu {
     bottom: 16px;
@@ -136,8 +139,29 @@
 /* Image */
 .pb-image {
     display: block;
-    width: 100%;
+    max-width: 100%;
     height: auto;
+    margin: 0 auto;
+}
+
+/* Form */
+.pb-form.pb-form--full-width .pb-field {
+    width: 100%;
+}
+
+/* Field */
+.pb-field {
+    line-height: 1.5em;
+}
+
+.pb-field--file {
+    overflow: hidden;
+}
+
+/* Label */
+.pb-label {
+    line-height: 1.5em;
+    position: static;
 }
 
 /* Drop area */
@@ -239,7 +263,8 @@ background-color: #00c853;
     pointer-events: auto;
 }
 */
+/*
 .pointerEventsSection .testSection>div *{
     pointer-events: none;
-}
+}*/
 

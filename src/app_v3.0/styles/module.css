@@ -1,0 +1,73 @@
+/* Root app */
+.pb-main-box {
+    position: relative;
+}
+
+/* Workarea  */
+.pb-workarea {
+    background-color: #F1F2F7;
+    padding: 0;
+    margin: 0;
+}
+
+/* Toolbar */
+.pb-toolbar {
+    background-color: #767676;
+    color: #aeb2b7;
+}
+
+/* Section */
+.pb-section {
+    display: table;
+}
+
+/* Row */
+.pb-row {
+    margin: 15px 0;
+}
+
+/* Bar */
+.control-bar {
+    position: absolute;
+    width: 15px;
+    background-color: white;
+    top: 0;
+    left: 0;
+    height: 100%;
+}
+.control-bar:before {
+    content: "-";
+    position: absolute;
+    color: black;
+    height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+.control-bar:hover {
+    cursor: pointer;
+}
+.control-bar:active {
+    cursor: move;
+}
+
+/* Card */
+.dashed-card {
+    border: 2px dashed #828295;
+    background-color: #E5E6EB;
+    text-align: center;
+    width: 100%;
+}
+
+/* Common */
+.pb-section,
+.pb-row {
+    position: relative;
+    padding-left: 15px;
+}
+
+.pb-section-content,
+.pb-row-content {
+    display: flex;
+}
