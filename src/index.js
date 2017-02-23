@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import {Provider} from 'react-redux';
-//import App from './app/App'
+import {Provider} from 'react-redux';
+
 //import Builder from './app/containers/BuilderContainer';
 //import configureStore from './app/store/configureStore';
+import configureStore from './app_v3.0/store/configureStore';
 // import styles
 //app 3.0
 //import BuilderComponent from './app_v3.0/components/BuilderComponent'
 
-import BuilderComponent from './app_v3.0/components/BuilderComponent'
+import BuilderContainer from './app_v3.0/containers/BuilderContainer'
 import './app_v3.0/styles/bootstrap/bootstrap-reboot.css';
 import './app_v3.0/styles/bootstrap/bootstrap-grid.css';
 import './app_v3.0/styles/bootstrap/bootstrap.css';
@@ -25,17 +26,17 @@ import './app_v3.0/styles/index.css';
 //import './styles/material.css'
 //import './styles/pb.css'
 //import './styles/main.css'
-/*
+
 const store = configureStore();
 
 ReactDOM.render(
     <Provider store={store}>
-        <BuilderComponent />
+        <BuilderContainer />
     </Provider>,
     document.getElementById('root-app-pb')
-);*/
-
+);
+/*
  ReactDOM.render(
- <BuilderComponent />,
+ <BuilderContainer />,
  document.getElementById('root-app-pb')
- );
+ );*/

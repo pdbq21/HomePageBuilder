@@ -18,13 +18,23 @@
 
 /* Section */
 .pb-section {
-    display: table;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pb-section-content {
+    width: 100%;
 }
 
 /* Row */
 .pb-row {
     margin: 15px 0;
 }
+
+.pb-row-content {
+    padding: 0 15px;
+}
+
 
 /* Bar */
 .control-bar {
@@ -34,8 +44,6 @@
     top: 0;
     left: 0;
     height: 100%;
-
-    border-radius: 1em;
 }
 .control-bar:before {
     content: "-";
@@ -69,24 +77,26 @@
     padding-left: 15px;
 }
 
-.pb-section-content,
-.pb-row-content {
-    display: flex;
+.icon-plus:before {
+content: '+';
 }
 
-
-#cross:before {
-    background: red;
-    height: 100px;
-    position: relative;
-    width: 20px;
+.icon-plus{
+    font-size: 3em;
 }
-#cross:after {
-    background: red;
-    content: "";
-    height: 20px;
-    left: -40px;
-    position: absolute;
-    top: 40px;
-    width: 100px;
+
+.pb-add-section-button{
+    background-color: #00c853;
+    display: block;
+    margin: 2em auto;
+    border: none;
+    border-radius: 5em;
+    height: 5em;
+    width: 5em;
+    color: white;
+}
+.pb-add-section-button:focus,
+.pb-add-section-button:hover{
+    background-color: #009e4a;
+    outline: none;
 }
