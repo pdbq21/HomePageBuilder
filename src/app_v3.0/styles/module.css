@@ -44,9 +44,11 @@
     top: 0;
     left: 0;
     height: 100%;
+    border-radius: 1em;
+    vertical-align: middle;
 }
 .control-bar:before {
-    content: "-";
+    content: "☰";
     position: absolute;
     color: black;
     height: 100%;
@@ -55,6 +57,8 @@
     width: 100%;
     text-align: center;
 }
+
+
 .control-bar:hover {
     cursor: pointer;
 }
