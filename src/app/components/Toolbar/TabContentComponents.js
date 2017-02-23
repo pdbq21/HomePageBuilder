@@ -2,6 +2,11 @@
  * Created by ruslan on 08.02.17.
  */
 import React from 'react'
+//import ItemTypes from './ItemTypes';
+//import { DragSource } from 'react-dnd';
+
+
+
 
 export function StructurePanel(props) {
 console.log(props);

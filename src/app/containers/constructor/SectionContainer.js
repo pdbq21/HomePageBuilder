@@ -95,19 +95,8 @@ class SectionContainer extends Component {
 
                 style={{'marginBottom': '1em'}}
             >
-                {/* only first */}
 
-                <DropAreaComponent
-                    id={id}
-                    classActiveDropArea={
-                        (isActiveDropArea && isActiveExchangeSection) ? 'is-active-area' : 'is-not-active-area'
-                    }
-                    handleDragOver={(isActiveEditPanel)? handleDragOver : () => {}}
-                    handelDrop={handelDropExchangeSection}
-                    isFirst={true}
-                    name='this'
-                    parentId={parentId}
-                />
+
                 <SectionComponent
                     pointerEvents={(isActiveExchangeSection && isActiveDropArea)? 'none' : 'auto'}
                     id={id}
@@ -149,44 +138,18 @@ class SectionContainer extends Component {
                         ))
                     }
 
-                    {
-                        (childrenIds.length === 0) ? (<DropAreaComponent
-                                id={id}
-                                handleDragOver={handleDragOver}
-                                handelDrop={handelDropExchangeSection}
-                                classActiveDropArea={
-                                    (isActiveDropArea && isActiveExchangeRow) ? 'is-active-area' : 'is-not-active-area'
-                                }
-                                isFirst={false}
-                                name='this'
-                                parentId={parentId}
-                            />) : null
-                    }
 
                     <DropAreaComponent
                         classActiveDropArea={(isActiveDragStructure) ? 'pb-area--green' : 'pb-area--gray'}
-                        hidden={
-                            (isActiveDropArea && isActiveExchangeRow) ? 'none' : 'block'
-                        }
+
                         id={id}
-                        handelDrop={this.handelDropRow}
-                        handleDragOver={this.handleDragOverRow}
+
                         isFirst={false}
                         name='row'
                         parentId={parentId}
                     />
                 </SectionComponent>
-                <DropAreaComponent
-                    id={id}
-                    classActiveDropArea={
-                        (isActiveDropArea && isActiveExchangeSection) ? 'is-active-area' : 'is-not-active-area'
-                    }
-                    handleDragOver={(isActiveEditPanel)? handleDragOver : () => {}}
-                    handelDrop={handelDropExchangeSection}
-                    isFirst={false}
-                    name='this'
-                    parentId={parentId}
-                />
+
 
             </div>);
     }
