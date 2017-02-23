@@ -1,0 +1,17 @@
+.pb-main-box .pb-workarea,
+.pb-main-box .pb-toolbar {
+    height: 900px;
+    overflow: auto;
+}
+
+/* Workarea */
+
+/* Card */
+.dashed-card .card-block > .fa {
+    margin-right: 3px;
+}
+
+/* Section */
+.pb-section .control-bar {
+    background-color: dodgerblue;
+}

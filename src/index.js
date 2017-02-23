@@ -10,6 +10,7 @@ import BuilderComponent from './app_v3.0/components/BuilderComponent'
 import './app_v3.0/styles/bootstrap/bootstrap-reboot.css';
 import './app_v3.0/styles/bootstrap/bootstrap-grid.css';
 import './app_v3.0/styles/bootstrap/bootstrap.css';
+import './app_v3.0/styles/font-awesome.css';
 import './app_v3.0/styles/base.css';
 import './app_v3.0/styles/theme.css';
 import './app_v3.0/styles/module.css';
