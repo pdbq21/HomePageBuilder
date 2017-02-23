@@ -32,8 +32,10 @@ export default function BuilderComponent() {
                                     }}
                                 ></div>
                                 <div className="pb-row-content">
-                                    <div className="col">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad assumenda consectetur cumque doloribus dolorum ducimus eveniet facere iusto labore laborum libero, modi natus optio pariatur quae suscipit tempore voluptatum.</div>
-                                    <div className="col">23</div>
+                                    <div className="row">
+                                        <div className="col">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab ad assumenda consectetur cumque doloribus dolorum ducimus eveniet facere iusto labore laborum libero, modi natus optio pariatur quae suscipit tempore voluptatum.</div>
+                                        <div className="col">23</div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -47,11 +49,9 @@ export default function BuilderComponent() {
                             }}
                         ></div>
                         <div className="pb-section-content">
-                            <div className="col">
-                                <div className="card dashed-card">
-                                    <div className="card-block">
-                                        <i className="fa fa-hand-paper-o"></i> Drag and drop a <b>row</b> here to start!
-                                    </div>
+                            <div className="card dashed-card">
+                                <div className="card-block">
+                                    <i className="fa fa-hand-paper-o"></i> Drag and drop a <b>row</b> here to start!
                                 </div>
                             </div>
                         </div>

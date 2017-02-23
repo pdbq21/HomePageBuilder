@@ -18,13 +18,23 @@
 
 /* Section */
 .pb-section {
-    display: table;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.pb-section-content {
+    width: 100%;
 }
 
 /* Row */
 .pb-row {
     margin: 15px 0;
 }
+
+.pb-row-content {
+    padding: 0 15px;
+}
+
 
 /* Bar */
 .control-bar {
@@ -65,9 +75,4 @@
 .pb-row {
     position: relative;
     padding-left: 15px;
-}
-
-.pb-section-content,
-.pb-row-content {
-    display: flex;
 }
