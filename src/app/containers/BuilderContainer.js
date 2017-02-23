@@ -3,6 +3,8 @@
  */
 // lib
 import React, { Component } from 'react'
+import HTML5Backend from 'react-dnd-html5-backend';
+import { DragDropContext } from 'react-dnd';
 //import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
@@ -43,4 +45,5 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
+BuilderContainer = DragDropContext(HTML5Backend)(BuilderContainer);
 export default connect(mapStateToProps, mapDispatchToProps)(BuilderContainer)
