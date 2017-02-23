@@ -8,11 +8,14 @@ import React from 'react';
 // import WorkAreaComponent from './WorkArea/WorkAreaComponent'
 // import ToolbarComponent from './Toolbar/ToolbarComponent'
 
+
 export default function BuilderComponent() {
+
 
     return (
         <div className="pb-main-box container-fluid">
             <div className="row">
+
                 {/* Workarea */}
                 <div className="pb-workarea col-sm-12 col-md-7 col-lg-8 col-xl-9">
                     {/* Empty section */}
@@ -56,6 +59,14 @@ export default function BuilderComponent() {
                             </div>
                         </div>
                     </div>
+
+                    <div className="button-add-section" id="cross">
+                        <button className="">
+                            <em>+</em>
+                            Add Section gfhf fgdf g
+                            fds gd g d
+                        </button>
+                    </div>
                 </div>
 
                 {/* Toolbar */}
@@ -66,8 +77,7 @@ export default function BuilderComponent() {
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab adipisci cum dignissimos dolore dolores eaque, enim esse eum ex fugiat ipsa, laudantium molestias nam quam quidem quis quos soluta velit.
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab adipisci cum dignissimos dolore dolores eaque, enim esse eum ex fugiat ipsa, laudantium molestias nam quam quidem quis quos soluta velit.
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab adipisci cum dignissimos dolore dolores eaque, enim esse eum ex fugiat ipsa, laudantium molestias nam quam quidem quis quos soluta velit.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab adipisci cum dignissimos dolore dolores eaque, enim esse eum ex fugiat ipsa, laudantium molestias nam quam quidem quis quos soluta velit.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab adipisci cum dignissimos dolore dolores eaque, enim esse eum ex fugiat ipsa, laudantium molestias nam quam quidem quis quos soluta velit.
+                    Lorem ipsvcgbvcfd dfg dfg um dolor sit amet, consectetur adipisicing elit. Ab adipisci cum dignissimos dolore dolores eaque, enim esse eum ex fugiat ipsa, laudantium molestias nam quam quidem quis quos soluta velit.
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab adipisci cum dignissimos dolore dolores eaque, enim esse eum ex fugiat ipsa, laudantium molestias nam quam quidem quis quos soluta velit.
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab adipisci cum dignissimos dolore dolores eaque, enim esse eum ex fugiat ipsa, laudantium molestias nam quam quidem quis quos soluta velit.
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab adipisci cum dignissimos dolore dolores eaque, enim esse eum ex fugiat ipsa, laudantium molestias nam quam quidem quis quos soluta velit.
@@ -77,5 +87,6 @@ export default function BuilderComponent() {
                 </div>
             </div>
         </div>
+
     );
 }
