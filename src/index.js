@@ -7,6 +7,14 @@ import ReactDOM from 'react-dom';
 // import styles
 //app 3.0
 import BuilderComponent from './app_v3.0/components/BuilderComponent'
+import './app_v3.0/styles/bootstrap/bootstrap-reboot.css';
+import './app_v3.0/styles/bootstrap/bootstrap-grid.css';
+import './app_v3.0/styles/bootstrap/bootstrap.css';
+import './app_v3.0/styles/base.css';
+import './app_v3.0/styles/theme.css';
+import './app_v3.0/styles/module.css';
+import './app_v3.0/styles/layout.css';
+import './app_v3.0/styles/state.css';
 import './app_v3.0/styles/index.css';
 // styles web kit
 /*
