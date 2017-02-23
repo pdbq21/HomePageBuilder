@@ -5,25 +5,28 @@
 import React, {Component} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-
 // components
 import ToolbarTabContentComponent from '../components/Toolbar/ToolbarTabContentComponent'
 import {StructurePanel, ContentPanel, TemplatesPanel} from '../components/Toolbar/TabContentComponents.js'
 import {EditPanelNavigation, EditPanel} from '../components/Toolbar/TabEditPanelComponent.js'
 //containers
 
+
+
 // actions
 import * as actionsToolbar from '../actions/ToolbarActions'
 import * as actionsEditPanel from '../actions/EditPanelActions'
+
+
 
 // Application
 class ToolbarTabContentContainer extends Component {
     constructor(props) {
         super(props);
-        this.handelDragStartRow = this.handelDragStartRow.bind(this);
+/*        this.handelDragStartRow = this.handelDragStartRow.bind(this);
         this.handelDragEndRow = this.handelDragEndRow.bind(this);
         this.handelDragStartContent = this.handelDragStartContent.bind(this);
-        this.handelDragEndContent = this.handelDragEndContent.bind(this);
+        this.handelDragEndContent = this.handelDragEndContent.bind(this);*/
 // edit panel
         this.handelChangeBackgroundColor = this.handelChangeBackgroundColor.bind(this);
         this.handelChangeImage = this.handelChangeImage.bind(this);
@@ -34,15 +37,15 @@ class ToolbarTabContentContainer extends Component {
         this.renderTabEdit = this.renderTabEdit.bind(this);
     }
 
-    handelDragStartRow(event) {
+/*    handelDragStartRow(event) {
         //console.log('drag start');
         // 12 / 6-6 / 4-4-4 ...
         //console.log(event.target.getAttribute('data-col'));
         const dataAttr = event.target.getAttribute('data-col').split('-');
         const {ActionOnDragStart} = this.props.mapDispactchToolbar;
         ActionOnDragStart(dataAttr, 'data-col');
-        /*event.dataTransfer.dropEffect = "move";
-         event.dataTransfer.setData("text", event.target.getAttribute('id'));*/
+        /!*event.dataTransfer.dropEffect = "move";
+         event.dataTransfer.setData("text", event.target.getAttribute('id'));*!/
     }
 
     handelDragEndRow() {
@@ -63,7 +66,7 @@ class ToolbarTabContentContainer extends Component {
     handelDragEndContent() {
         const {ActionOnDragEnd} = this.props.mapDispactchToolbar;
         ActionOnDragEnd('data-elementType');
-    }
+    }*/
 
     handelChangeBackgroundColor(color) {
         const {ActionChangeBackgroundColor} = this.props.mapDispactchEditPanel;
@@ -87,14 +90,12 @@ class ToolbarTabContentContainer extends Component {
 
         switch (activeTab) {
             case 'Rows':
-                return <StructurePanel
-                    OnDragStart={this.handelDragStartRow}
-                    OnDragEnd={this.handelDragEndRow}
-                />;
+                //
+                return <StructurePanel />;
+
             case 'Elements':
                 return <ContentPanel
-                    OnDragStart={this.handelDragStartContent}
-                    OnDragEnd={this.handelDragEndContent}
+
                 />;
             case 'Templates':
                 return <TemplatesPanel />;

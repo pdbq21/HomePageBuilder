@@ -16,7 +16,12 @@ const initialState = {
     },
     isActiveExchangeSection: false,
     isActiveExchangeRow: false,
-    isActiveExchangeCol: false
+    isActiveExchangeCol: false,
+
+    testActiveDropZone: {
+        bool: false,
+        idStructure: ''
+    }
 };
 
 function createChildrenIds(state, action) {

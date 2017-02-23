@@ -43,6 +43,7 @@ class ConstructorViewContainer extends Component {
         this.handelDropExchangeElement = this.handelDropExchangeElement.bind(this);
         this.handleDragStartElement = this.handleDragStartElement.bind(this);
         this.handleDragEndElement = this.handleDragEndElement.bind(this);
+
     }
 
     componentDidMount() {
@@ -64,7 +65,7 @@ class ConstructorViewContainer extends Component {
             ActionMoveEnd
         } = this.props.mapDispactchConstructorView;
         const {dataExchangeStructure} = this.props.mapStateConstructorViewReducer;
-        console.log(dataExchangeStructure);
+        //console.log(dataExchangeStructure);
         ActionMoveEnd(id);
         ActionDragLeaveDropArea(dataExchangeStructure.dragId);
         ActionIsActiveExchangeStructure(false, dataExchangeStructure.dragType);
@@ -155,19 +156,27 @@ class ConstructorViewContainer extends Component {
     }
 
     handleDragLeave(event, id) {
+        /*if (this.dragEnterCounter === 2){
+         event.stopPropagation();
+         event.preventDefault();
+         return false;
+         }*/
         // Stop default browser behavior
         //event.preventDefault();
-        //console.log('leave', id);
+        console.log('leave', id);
         const {isActiveDragStructure, isActiveDragElement} = this.props.mapStateToolbarReducer;
 // if isActiveDragStructure === true => drag element in Toolbar
         // else === false => drag element in ConstructorView
         if (isActiveDragStructure === false && isActiveDragElement === false) {
             const {ActionDragLeaveDropArea} = this.props.mapDispactchConstructorView;
             //ActionDragLeaveDropArea(id);
+
             --this.dragEnterCounter;
             if (this.dragEnterCounter === 0) {
                 ActionDragLeaveDropArea(id);
             }
+
+
         }
         event.stopPropagation();
         event.preventDefault();
@@ -176,18 +185,27 @@ class ConstructorViewContainer extends Component {
 
     handleDragEnter(event, id) {
 
+        if (this.dragEnterCounter === 2) {
+            event.stopPropagation();
+            event.preventDefault();
+            return false;
+        }
         // Stop default browser behavior
         //event.preventDefault();
         const {isActiveDragStructure, isActiveDragElement} = this.props.mapStateToolbarReducer;
-        console.log('enter', this.dragEnterCounter);
+        console.log('enter', id);
 // if isActiveDragStructure === true => drag element in Toolbar
         // else === false => drag element in ConstructorView
         if (isActiveDragStructure === false && isActiveDragElement === false) {
             //++
-            ++this.dragEnterCounter;
-            const {ActionDragEnterDropArea} = this.props.mapDispactchConstructorView;
+            //++this.dragEnterCounter;
 
-            ActionDragEnterDropArea(id);
+            if (this.dragEnterCounter <= 1) {
+                ++this.dragEnterCounter;
+                const {ActionDragEnterDropArea} = this.props.mapDispactchConstructorView;
+                ActionDragEnterDropArea(id);
+            }
+
         }
         event.stopPropagation();
         event.preventDefault();
@@ -347,7 +365,6 @@ class ConstructorViewContainer extends Component {
                         handelDropExchangeElement={this.handelDropExchangeElement}
                         handleDragStartElement={this.handleDragStartElement}
                         handleDragEndElement={this.handleDragEndElement}
-
                     />
                 ))}
 
