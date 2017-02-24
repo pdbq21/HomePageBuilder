@@ -3,14 +3,33 @@
  */
 // import lib
 import React from 'react';
-
+import {DragSource} from 'react-dnd'
 //import component
 
+function RowItem(props) {
+    const {children, connectDragSource} = props;
+    return connectDragSource(
+        <div className="pb-sketch pb-row-sketch">
+            {children}
+        </div>
+    );
+}
 
+const RowItemDrag = DragSource('DROP_ROW', {
+    beginDrag() {
+        return {
+        };
+    },
 
+    endDrag() {
+    }
+}, (connect, monitor) => ({
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging()
+}))(RowItem);
 
-export default function RowsPanelComponent(props) {
-const {connectDragSource} = props;
+export default function RowsPanelComponent() {
+//const {connectDragSource} = props;
 
     return (
         <div className="">
@@ -35,35 +54,34 @@ const {connectDragSource} = props;
                 <h4 className="pb-panel-caption">Common</h4>
 
                 <div className="pb-panel-content">
-                    {connectDragSource(<div className="pb-sketch pb-row-sketch">
+                    <RowItemDrag>
                         <span className="pb-row-sketch-item"/>
-                    </div>)}
+                    </RowItemDrag>
 
-                    <div className="pb-sketch pb-row-sketch">
+                    <RowItemDrag>
                         <span className="pb-row-sketch-item"/>
                         <span className="pb-row-sketch-item"/>
-                    </div>
+                    </RowItemDrag>
+                    <RowItemDrag>
+                        <span className="pb-row-sketch-item"/>
+                        <span className="pb-row-sketch-item"/>
+                        <span className="pb-row-sketch-item"/>
+                    </RowItemDrag>
 
-                    <div className="pb-sketch pb-row-sketch">
+                    <RowItemDrag>
                         <span className="pb-row-sketch-item"/>
                         <span className="pb-row-sketch-item"/>
                         <span className="pb-row-sketch-item"/>
-                    </div>
+                        <span className="pb-row-sketch-item"/>
+                    </RowItemDrag>
 
-                    <div className="pb-sketch pb-row-sketch">
-                        <span className="pb-row-sketch-item"/>
-                        <span className="pb-row-sketch-item"/>
-                        <span className="pb-row-sketch-item"/>
-                        <span className="pb-row-sketch-item"/>
-                    </div>
-
-                    <div className="pb-sketch pb-row-sketch">
+                    <RowItemDrag>
                         <span className="pb-row-sketch-item"/>
                         <span className="pb-row-sketch-item"/>
                         <span className="pb-row-sketch-item"/>
                         <span className="pb-row-sketch-item"/>
                         <span className="pb-row-sketch-item"/>
-                    </div>
+                    </RowItemDrag>
                 </div>
             </div>
 
@@ -71,23 +89,23 @@ const {connectDragSource} = props;
                 <h4 className="pb-panel-caption">Rare</h4>
 
                 <div className="pb-panel-content">
-                    <div className="pb-sketch pb-row-sketch">
+                    <RowItemDrag>
                         <span className="pb-row-sketch-item grow-3"/>
                         <span className="pb-row-sketch-item grow-6"/>
                         <span className="pb-row-sketch-item grow-3"/>
-                    </div>
+                    </RowItemDrag>
 
-                    <div className="pb-sketch pb-row-sketch">
+                    <RowItemDrag>
                         <span className="pb-row-sketch-item grow-6"/>
                         <span className="pb-row-sketch-item grow-3"/>
                         <span className="pb-row-sketch-item grow-3"/>
-                    </div>
+                    </RowItemDrag>
 
-                    <div className="pb-sketch pb-row-sketch">
+                    <RowItemDrag>
                         <span className="pb-row-sketch-item grow-3"/>
                         <span className="pb-row-sketch-item grow-3"/>
                         <span className="pb-row-sketch-item grow-6"/>
-                    </div>
+                    </RowItemDrag>
                 </div>
             </div>
 
@@ -96,11 +114,14 @@ const {connectDragSource} = props;
                 <span className="pb-panel-annotation">Allow you to add columns dynamically</span>
 
                 <div className="pb-panel-content">
-                    <div className="pb-sketch pb-row-sketch">
+                    <RowItemDrag>
                         <span className="pb-row-sketch-item"/>
-                    </div>
+                    </RowItemDrag>
                 </div>
             </div>
         </div>
     );
 }
+
+
+

@@ -17,55 +17,53 @@ import RowsPanelComponent from '../../components/Toolbar/ContentMenu/ContentPane
 // Application
 class ContentPanelsContainer extends Component {
 
-		render() {
-				const { connectDragSource } = this.props;
-				return (
-						<div>
-										<RowsPanelComponent
-												connectDragSource={connectDragSource}
-										/>
-						</div>
+    render() {
+        const {connectDragSource,} = this.props;
+        return (
+            <div>
+                <RowsPanelComponent
+                    connectDragSource={connectDragSource}
+                />
+            </div>
 
-				);
-		}
+        );
+    }
 }
 
 function mapStateToProps(state) {
-		return {
-				mapStateWorkArea: state.WorkAreaReducer,
-				mapStateToolbar: state.ToolbarReducer
-		}
+    return {
+        mapStateWorkArea: state.WorkAreaReducer,
+        mapStateToolbar: state.ToolbarReducer
+    }
 }
 
 function mapDispatchToProps(dispatch) {
-		return {
-				mapDispactchWorkArea: bindActionCreators(ToolbarActions, dispatch)
-		}
+    return {
+        mapDispactchWorkArea: bindActionCreators(ToolbarActions, dispatch)
+    }
 }
 
 
-
-
 ContentPanelsContainer = DragSource('BOX', {
-		beginDrag(props) {
-				return {
-						name: props.name
-				};
-		},
+    beginDrag(props) {
+        return {
+            name: props.name
+        };
+    },
 
-		endDrag(props, monitor) {
-				const item = monitor.getItem();
-				const dropResult = monitor.getDropResult();
+    endDrag(props, monitor) {
+        const item = monitor.getItem();
+        const dropResult = monitor.getDropResult();
 
-				if (dropResult) {
-						window.alert( // eslint-disable-line no-alert
-								`You dropped ${item.name} into ${dropResult.name}!`
-						);
-				}
-		}
+        if (dropResult) {
+            window.alert( // eslint-disable-line no-alert
+                `You dropped ${item.name} into ${dropResult.name}!`
+            );
+        }
+    }
 }, (connect, monitor) => ({
-		connectDragSource: connect.dragSource(),
-		isDragging: monitor.isDragging()
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging()
 }))(ContentPanelsContainer);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContentPanelsContainer)
