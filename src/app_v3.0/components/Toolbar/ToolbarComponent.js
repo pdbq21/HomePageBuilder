@@ -23,9 +23,9 @@ export default function ToolbarComponent() {
                 <p>2</p>
 
                 <ul className="pb-menu-items list-unstyled">
-                    <li><i className="fa fa-puzzle-piece"></i></li>
-                    <li><i className="fa fa-paint-brush"></i></li>
-                    <li><i className="fa fa-tasks"></i></li>
+                    <li><i className="fa fa-puzzle-piece"/></li>
+                    <li><i className="fa fa-paint-brush"/></li>
+                    <li><i className="fa fa-tasks"/></li>
                 </ul>
             </div>
         </div>

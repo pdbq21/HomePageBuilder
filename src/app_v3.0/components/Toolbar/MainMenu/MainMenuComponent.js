@@ -8,7 +8,7 @@ import React from 'react';
 
 
 export default function MainMenuComponent(props) {
-const {children} = props;
+    const {children} = props;
     return (
         <div className="">
             {children}

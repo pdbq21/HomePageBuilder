@@ -5,10 +5,10 @@
 import React from 'react';
 
 //import component
-import SectionComponent from './SectionComponent'
 /*import SectionComponent from './SectionComponent'
 import RowComponent from './RowComponent'
 import ControlBarComponent from './ControlBarComponent'*/
+
 const Colors = {
     'SOFT_RED': '#EC644B', //236,100,75
     'CHESTNUT_ROSE': '#D24D57',//    210, 77, 87
@@ -124,25 +124,28 @@ export default function WorkAreaComponent() {
             {/* Empty section */}
             <div className="pb-section">
                 <div
-                    className="pb-bar control-bar"
+                    className="pb-bar pb-control-bar"
                     style={{
                         "backgroundColor": "#00acc1"
                     }}
                 ></div>
                 <div className="pb-section-content">
-                    <div className="pb-row written-row">
+                    <div className="pb-row">
                         <div
-                            className="pb-bar control-bar"
+                            className="pb-bar pb-control-bar"
                             style={{
                                 "backgroundColor": "yellow"
                             }}
                         ></div>
                         <div className="pb-row-content">
                             <div className="row">
-                                <div className="col">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Ab ad assumenda consectetur cumque doloribus dolorum ducimus eveniet facere
-                                    iusto labore laborum libero, modi natus optio pariatur quae suscipit tempore
-                                    voluptatum.
+                                <div className="col">
+                                    <div className="pb-element pb-text-element">
+                                        Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                        Ab ad assumenda consectetur cumque doloribus dolorum ducimus eveniet facere
+                                        iusto labore laborum libero, modi natus optio pariatur quae suscipit tempore
+                                        voluptatum.
+                                    </div>
                                 </div>
                                 <div className="col">23</div>
                             </div>
@@ -153,28 +156,28 @@ export default function WorkAreaComponent() {
 
             <div className="pb-section">
                 <div
-                    className="pb-bar control-bar"
+                    className="pb-bar pb-control-bar"
                     style={{
                         "backgroundColor": "#00acc1"
                     }}
                 ></div>
                 <div className="pb-section-content">
-                    <div className="card dashed-card">
+                    <div className="card pb-dashed-card">
                         <div className="card-block">
-                            <i className="fa fa-hand-paper-o"></i> Drag and drop a <b>row</b> here to start!
+                            <i className="fa fa-hand-paper-o"/> Drag and drop a <b>row</b> here to start!
                         </div>
                     </div>
                 </div>
             </div>
             <button className="pb-add-section-button">
-                <em className="icon-plus"></em>
+                <i className="pb-icon-plus"/>
             </button>
-            {Object.keys(Colors).map((name) => (
-                <SectionComponent
-                    color={Colors[name]}
-                    name={name}
-                />
-            ))}
+            {/*{Object.keys(Colors).map((name) => (*/}
+                {/*<SectionComponent*/}
+                    {/*color={Colors[name]}*/}
+                    {/*name={name}*/}
+                {/*/>*/}
+            {/*))}*/}
         </div>
     );
 }

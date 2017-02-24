@@ -7,18 +7,19 @@
 /* Workarea */
 
 /* Card */
-.dashed-card .card-block > .fa {
+.pb-dashed-card .card-block > .fa {
     margin-right: 3px;
 }
 
 /* Section */
-.pb-section .control-bar {
+.pb-section .pb-control-bar {
     background-color: dodgerblue;
 }
 
-/* Menu */
+/* Toolbar */
 .pb-toolbar .pb-menu {
     height: 100%;
+    flex-grow: 1;
 }
 
 .pb-toolbar .pb-main-menu {

@@ -40,10 +40,11 @@
 
 /* Menu */
 .pb-menu {
-    flex-grow: 1;
-}
-.pb-menu-items > li {
 
+}
+.pb-menu-items {
+    margin: 0;
+    padding: 0;
 }
 
 .pb-main-menu {
@@ -51,6 +52,11 @@
     width: 50px;
 }
 .pb-main-menu .pb-menu-items > li {
+    position: relative;
+    height: 50px;
+    width: 50px;
+}
+.pb-main-menu .pb-menu-items > li:hover {
     position: relative;
     height: 50px;
     width: 50px;
@@ -71,7 +77,7 @@
 }
 
 /* Bar */
-.control-bar {
+.pb-control-bar {
     position: absolute;
     width: 15px;
     background-color: white;
@@ -81,7 +87,7 @@
     border-radius: 1em;
     vertical-align: middle;
 }
-.control-bar:before {
+.pb-control-bar:before {
     content: "☰";
     position: absolute;
     color: black;
@@ -93,15 +99,17 @@
 }
 
 
-.control-bar:hover {
+.pb-control-bar:hover {
     cursor: pointer;
 }
-.control-bar:active {
+.pb-control-bar:active {
     cursor: move;
 }
 
+/* Element */
+
 /* Card */
-.dashed-card {
+.pb-dashed-card {
     border: 2px dashed #828295;
     background-color: #E5E6EB;
     text-align: center;
@@ -115,11 +123,13 @@
     padding-left: 15px;
 }
 
-.icon-plus:before {
-content: '+';
+
+/* Button */
+.pb-icon-plus:before {
+    content: '+';
 }
 
-.icon-plus{
+.pb-icon-plus {
     font-size: 3em;
 }
 
