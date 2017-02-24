@@ -14,6 +14,9 @@
 .pb-toolbar {
     background-color: #767676;
     color: #aeb2b7;
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
 }
 
 /* Section */
@@ -35,6 +38,37 @@
     padding: 0 15px;
 }
 
+/* Menu */
+.pb-menu {
+    flex-grow: 1;
+}
+.pb-menu-items > li {
+
+}
+
+.pb-main-menu {
+    position: relative;
+    width: 50px;
+}
+.pb-main-menu .pb-menu-items > li {
+    position: relative;
+    height: 50px;
+    width: 50px;
+}
+.pb-main-menu .pb-menu-items > li:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.pb-main-menu .pb-menu-items > li .fa {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.pb-content-menu {
+}
 
 /* Bar */
 .control-bar {

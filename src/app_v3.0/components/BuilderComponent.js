@@ -60,20 +60,19 @@ export default function BuilderComponent() {
 
                 {/* Toolbar */}
                 <div className="pb-toolbar col-sm-12 col-md-5 col-lg-4 col-xl-3">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab adipisci cum dignissimos dolore dolores eaque, enim esse eum ex fugiat ipsa, laudantium molestias nam quam quidem quis quos soluta velit.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab adipisci cum dignissimos dolore dolores eaque, enim esse eum ex fugiat ipsa, laudantium molestias nam quam quidem quis quos soluta velit.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab adipisci cum dignissimos dolore dolores eaque, enim esse eum ex fugiat ipsa, laudantium molestias nam quam quidem quis quos soluta velit.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab adipisci cum dignissimos dolore dolores eaque, enim esse eum ex fugiat ipsa, laudantium molestias nam quam quidem quis quos soluta velit.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab adipisci cum dignissimos dolore dolores eaque, enim esse eum ex fugiat ipsa, laudantium molestias nam quam quidem quis quos soluta velit.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab adipisci cum dignissimos dolore dolores eaque, enim esse eum ex fugiat ipsa, laudantium molestias nam quam quidem quis quos soluta velit.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab adipisci cum dignissimos dolore dolores eaque, enim esse eum ex fugiat ipsa, laudantium molestias nam quam quidem quis quos soluta velit.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab adipisci cum dignissimos dolore dolores eaque, enim esse eum ex fugiat ipsa, laudantium molestias nam quam quidem quis quos soluta velit.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab adipisci cum dignissimos dolore dolores eaque, enim esse eum ex fugiat ipsa, laudantium molestias nam quam quidem quis quos soluta velit.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab adipisci cum dignissimos dolore dolores eaque, enim esse eum ex fugiat ipsa, laudantium molestias nam quam quidem quis quos soluta velit.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab adipisci cum dignissimos dolore dolores eaque, enim esse eum ex fugiat ipsa, laudantium molestias nam quam quidem quis quos soluta velit.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab adipisci cum dignissimos dolore dolores eaque, enim esse eum ex fugiat ipsa, laudantium molestias nam quam quidem quis quos soluta velit.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab adipisci cum dignissimos dolore dolores eaque, enim esse eum ex fugiat ipsa, laudantium molestias nam quam quidem quis quos soluta velit.
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab adipisci cum dignissimos dolore dolores eaque, enim esse eum ex fugiat ipsa, laudantium molestias nam quam quidem quis quos soluta velit.
+                    <div className="pb-menu pb-content-menu">
+                        1
+                    </div>
+
+                    <div className="pb-menu pb-main-menu">
+                        <p>2</p>
+
+                        <ul className="pb-menu-items list-unstyled">
+                            <li><i className="fa fa-puzzle-piece"></i></li>
+                            <li><i className="fa fa-paint-brush"></i></li>
+                            <li><i className="fa fa-tasks"></i></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

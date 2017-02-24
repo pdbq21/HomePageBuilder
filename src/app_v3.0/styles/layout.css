@@ -15,3 +15,20 @@
 .pb-section .control-bar {
     background-color: dodgerblue;
 }
+
+/* Menu */
+.pb-toolbar .pb-menu {
+    height: 100%;
+}
+
+.pb-toolbar .pb-main-menu {
+    flex-grow: .0000001;
+}
+
+.pb-toolbar .pb-main-menu .pb-menu-items {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+}
