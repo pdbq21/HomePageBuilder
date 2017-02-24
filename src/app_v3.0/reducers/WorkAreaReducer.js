@@ -15,3 +15,11 @@ export default function WorkAreaReducer(state = initialState, action) {
             return state;
     }
 }
+/*
+const greetingReducer = (state='' , action) => {
+    switch (action.type) {
+        case 'SAY_HELLO': return 'Hello '
+        case 'SAY_GOODBYE': return 'Goodbye '
+    }
+    return state
+};*/

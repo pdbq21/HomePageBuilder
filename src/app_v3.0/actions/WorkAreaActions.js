@@ -4,8 +4,9 @@
 
 import { COLOR_PICKER } from '../constants/WorkAreaConstants'
 
-// max = Colors.length;
+
 function getRandomInt(min, max) {
+    // max = Colors.length;
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 

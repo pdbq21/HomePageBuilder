@@ -13,3 +13,8 @@ export default combineReducers({
     ConstructorViewReducer,
     ToolbarReducer
 })
+/*
+const reducers = combineReducers({
+    greeting: greetingReducer,
+    name: nameReducer
+})*/
