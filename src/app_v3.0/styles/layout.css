@@ -74,8 +74,17 @@
 /* Menu > content-menu */
 .pb-content-menu .pb-panel {
     background-color: transparent;
+    padding: 15px;
 }
 
 .pb-content-menu .pb-panel-caption {
+    color: #bfbfc1;
+}
 
+.pb-content-menu .pb-panel-content p {
+
+}
+
+.pb-content-menu .pb-panel-content .pb-sketch {
+    margin-bottom: 7px;
 }
