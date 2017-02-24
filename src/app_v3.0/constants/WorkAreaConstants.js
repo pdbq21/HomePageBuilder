@@ -9,3 +9,5 @@ export const ADD_NODE = 'ADD_NODE';
 
 export const REMOVE_CHILD = 'REMOVE_CHILD';
 export const DELETE_NODE = 'DELETE_NODE';
+
+export const MOVE_SECTION = 'MOVE_SECTION';

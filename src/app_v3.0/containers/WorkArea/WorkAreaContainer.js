@@ -19,10 +19,29 @@ class WorkAreaContainer extends Component {
 				super(props);
 
 				this.handleClickAddSection = this.handleClickAddSection.bind(this);
+
+				this.moveCard = this.moveCard.bind(this);
 		}
 
 		componentDidMount() {
 				// empty
+		}
+
+		moveCard(dragIndex, hoverIndex) {
+				console.log('dragIndex', 'hoverIndex', dragIndex, hoverIndex);
+				//const {cards} = this.state;
+				//const dragCard = cards[dragIndex];
+
+
+
+				//let newCard = this.state.cards;
+				//let temp = cards[hoverIndex];
+				//newCard[hoverIndex] = dragCard;
+				//newCard[dragIndex] = temp;
+
+				/*this.setState({
+						cards: newCard
+				});*/
 		}
 
 		handleClickAddSection() {
@@ -47,6 +66,8 @@ class WorkAreaContainer extends Component {
 												index={index}
 
 												color="#EC644B"
+
+												moveCard={this.moveCard}
 										/>
 								))}
 						</WorkAreaComponent>
@@ -68,9 +89,6 @@ function mapDispatchToProps(dispatch) {
 				mapDispactchWorkArea: bindActionCreators(WorkAreaActions, dispatch)
 		}
 }
-/*
-@DragDropContext(HTML5Backend)
-@DropTarget(ItemTypes.CARD, cardTarget, connect => ({
-		connectDropTarget: connect.dropTarget()
-}))*/
+
+WorkAreaContainer = DragDropContext(HTML5Backend)(WorkAreaContainer);
 export default connect(mapStateToProps, mapDispatchToProps)(WorkAreaContainer)
