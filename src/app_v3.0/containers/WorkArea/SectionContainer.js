@@ -15,7 +15,6 @@ import ControlBarContainer from './ControlBarContainer'
 
 import * as WorkAreaActions from '../../actions/WorkAreaActions'
 
-
 const cardSource = {
 		beginDrag(props) {
 				return {
@@ -80,16 +79,19 @@ class SectionContainer extends Component {
 		componentDidMount() {
 				// empty
 		}
-
-		handleClickAddSection() {
+		handleClickAddSection(){
 
 		}
 
+
 		render() {
 				const {id} = this.props;
-				const { connectDragSource, connectDropTarget } = this.props;
+				const { isDragging, connectDragSource, connectDropTarget } = this.props;
+				const opacity = (isDragging)? 0 : 1;
 				return connectDragSource(connectDropTarget(
-						<div>
+						<div
+								style={{ 'opacity': opacity }}
+						>
 								<SectionComponent
 
 								>
@@ -98,6 +100,7 @@ class SectionContainer extends Component {
 										/>
 										<DropAreaComponent
 												name="Row"
+												index={id}
 										/>
 								</SectionComponent>
 						</div>

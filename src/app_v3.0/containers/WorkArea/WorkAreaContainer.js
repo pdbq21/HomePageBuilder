@@ -5,7 +5,7 @@
 import React, { Component } from 'react';
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import { DropTarget, DragDropContext } from 'react-dnd';
+import { DragDropContext } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 // import container
 import SectionContainer from './SectionContainer'
@@ -28,20 +28,9 @@ class WorkAreaContainer extends Component {
 		}
 
 		moveCard(dragIndex, hoverIndex) {
-				console.log('dragIndex', 'hoverIndex', dragIndex, hoverIndex);
-				//const {cards} = this.state;
-				//const dragCard = cards[dragIndex];
-
-
-
-				//let newCard = this.state.cards;
-				//let temp = cards[hoverIndex];
-				//newCard[hoverIndex] = dragCard;
-				//newCard[dragIndex] = temp;
-
-				/*this.setState({
-						cards: newCard
-				});*/
+				const {id} = this.props;
+				const {ActionMoveSection} = this.props.mapDispactchWorkArea;
+				ActionMoveSection(id, dragIndex, hoverIndex);
 		}
 
 		handleClickAddSection() {
@@ -62,7 +51,7 @@ class WorkAreaContainer extends Component {
 										<SectionContainer
 												id={childrenId}
 												parentId={id}
-												key={`key-${childrenId}-${index}`}
+												key={`key-${childrenId}`}
 												index={index}
 
 												color="#EC644B"

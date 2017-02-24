@@ -46,7 +46,7 @@ const node = (state, action) => {
 								colorControlBar: action.color
 						});
 				case MOVE_SECTION:
-
+// todo: refactoring this
 						const dragId = state.childrenIds[action.dragIndex];
 						const temp = state.childrenIds[action.hoverIndex];
 						let newCard = state.childrenIds;
