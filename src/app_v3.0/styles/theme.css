@@ -1,3 +1,41 @@
 #root-app-pb {
     color: #767676;
 }
+
+/* Button */
+.btn:hover {
+    cursor: pointer;
+}
+
+.btn-default {
+    background-color: #c7cbd6;
+    border-color: #c7cbd6;
+    color: #fff;
+}
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+    background-color: #b0b5b9;
+    border-color: #b0b5b9;
+    color: #fff;
+}
+
+.btn-primary {
+    background-color: #1fb5ad;
+    border-color: #1fb5ad;
+    color: #FFFFFF;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open .dropdown-toggle.btn-primary {
+    background-color: #1ca59e;
+    border-color: #1ca59e;
+    color: #FFFFFF;
+}
+
+.btn-transparent {
+    background-color: transparent;
+    border-color: transparent;
+    color: inherit;
+}
+.btn-transparent:hover, .btn-transparent:focus, .btn-transparent:active, .btn-transparent.active, .open .dropdown-toggle.btn-transparent {
+    background-color: #b0b5b9;
+    border-color: #b0b5b9;
+    color: white;
+}

@@ -16,16 +16,27 @@ export default function ToolbarComponent() {
     return (
         <div className="pb-toolbar col-sm-12 col-md-5 col-lg-4 col-xl-3">
             <div className="pb-menu pb-content-menu">
-                1
+                <div className="row">
+                    <div className="col">
+                        <h3 className="pb-menu-caption">Rows</h3>
+                    </div>
+                </div>
             </div>
 
             <div className="pb-menu pb-main-menu">
-                <p>2</p>
+                <ul className="pb-menu-start list-unstyled">
+                    <li><button className="btn btn-transparent fa fa-angle-right" type="button"/></li>
+                </ul>
 
                 <ul className="pb-menu-items list-unstyled">
-                    <li><i className="fa fa-puzzle-piece"></i></li>
-                    <li><i className="fa fa-paint-brush"></i></li>
-                    <li><i className="fa fa-tasks"></i></li>
+                    <li title="Elements"><i className="fa fa-puzzle-piece"/></li>
+                    <li className="active" title="Rows"><i className="fa fa-tasks"/></li>
+                    <li title="Templates"><i className="fa fa-newspaper-o"/></li>
+                    <li title="Edit"><i className="fa fa-paint-brush"/></li>
+                </ul>
+
+                <ul className="pb-menu-end list-unstyled">
+                    <li><button className="btn btn-primary fa fa-save" type="button" title="Save"/></li>
                 </ul>
             </div>
         </div>
