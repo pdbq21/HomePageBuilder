@@ -86,18 +86,21 @@ class SectionContainer extends Component {
 
 		render() {
 				const {id} = this.props;
-				const { isDragging, connectDragSource, connectDropTarget } = this.props;
+				const { isDragging, connectDragSource, connectDropTarget, connectDragPreview } = this.props;
 				const opacity = (isDragging)? 0 : 1;
-				return connectDragSource(connectDropTarget(
+				return connectDragPreview(connectDropTarget(
 						<div
 								style={{ 'opacity': opacity }}
 						>
 								<SectionComponent
 
 								>
+										{connectDragSource(<div>
 										<ControlBarContainer
 												currentId={id}
 										/>
+										</div>)}
+
 										<DropAreaComponent
 												name="Row"
 												index={id}
@@ -129,6 +132,7 @@ SectionContainer = DropTarget('CARD', cardTarget, connect => ({
 }))(SectionContainer);
 SectionContainer = DragSource('CARD', cardSource, (connect, monitor) => ({
 		connectDragSource: connect.dragSource(),
+		connectDragPreview: connect.dragPreview(),
 		isDragging: monitor.isDragging()
 }))(SectionContainer);
 export default connect(mapStateToProps, mapDispatchToProps)(SectionContainer)
