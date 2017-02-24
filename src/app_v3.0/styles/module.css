@@ -50,27 +50,72 @@
 
 .pb-menu-caption {
     margin: 0;
-    padding: 0;
+    padding: 0 15px;
     border: none;
     outline: none;
     line-height: 50px;
     background-color: #1FB5AD;
     color: white;
     text-transform: uppercase;
+    font-size: 1.15em;
+}
+.pb-menu-caption-icon {
+    margin-right: 5px;
 }
 
 /* Menu > main-menu */
 .pb-main-menu {
     position: relative;
-    width: 50px;
+    min-width: 50px;
+    margin-left: auto;
     background-color: #202025;
+}
+
+.pb-main-menu-end {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 0;
+}
+
+.pb-main-menu-start,
+.pb-main-menu-end {
+    width: 100%;
+}
+.pb-main-menu-start > li .btn,
+.pb-main-menu-end > li .btn {
+    width: 100%;
+    height: 50px;
+    border-radius: 0;
 }
 
 /* Menu > content-menu */
 .pb-content-menu {
+    width: 100%;
     background-color: #28282E;
 }
 
+
+/* Panel */
+.pb-panel {
+    background-color: white;
+}
+
+.pb-panel-caption {
+
+}
+
+/* Option */
+.pb-option {
+    display: flex;
+}
+
+.pb-option-name {
+
+}
+
+.pb-option-value {
+    margin-left: auto;
+}
 
 /* Bar */
 .pb-control-bar {

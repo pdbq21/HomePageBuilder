@@ -21,11 +21,6 @@
 /* Toolbar */
 .pb-toolbar .pb-menu {
     height: 100%;
-    flex-grow: 1;
-}
-
-.pb-toolbar .pb-main-menu {
-    flex-grow: .0000001;
 }
 
 
@@ -34,6 +29,7 @@
     position: absolute;
     top: 50%;
     left: 50%;
+    width: 100%;
     text-align: center;
     transform: translate(-50%, -50%);
 }
@@ -75,21 +71,11 @@
     transform: translate(-50%, -50%);
 }
 
-.pb-main-menu .pb-menu-end {
-    position: absolute;
-    bottom: 0;
-    margin-bottom: 0;
+/* Menu > content-menu */
+.pb-content-menu .pb-panel {
+    background-color: transparent;
 }
 
-.pb-main-menu .pb-menu-start > li .btn,
-.pb-main-menu .pb-menu-end > li .btn {
-    width: 100%;
-    height: 50px;
-    border-radius: 0;
-}
+.pb-content-menu .pb-panel-caption {
 
-.pb-main-menu .pb-menu-start,
-.pb-main-menu .pb-menu-items,
-.pb-main-menu .pb-menu-end {
-    width: 100%;
 }
