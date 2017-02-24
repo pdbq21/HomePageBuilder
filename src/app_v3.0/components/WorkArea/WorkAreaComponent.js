@@ -5,11 +5,7 @@
 import React from 'react';
 
 //import component
-import SectionComponent from './SectionComponent'
-/*import SectionComponent from './SectionComponent'
-import RowComponent from './RowComponent'
-import ControlBarComponent from './ControlBarComponent'*/
-const Colors = {
+/*const Colors = {
     'SOFT_RED': '#EC644B', //236,100,75
     'CHESTNUT_ROSE': '#D24D57',//    210, 77, 87
     'POMEGRANATE': '#F22613',//        242, 38, 19
@@ -114,67 +110,30 @@ const Colors = {
    // 'EDWARD': '#ABB7B7',//171, 183, 183
    // 'CARARRA': '#F2F1EF',//242, 241, 239
     //'SILVER': '#BFBFBF',//191, 191, 191
-};
+};*/
 
 
-export default function WorkAreaComponent() {
-
+export default function WorkAreaComponent(props) {
+const { children, handleClickAddSection } = props;
     return (
         <div className="pb-workarea col-sm-12 col-md-7 col-lg-8 col-xl-9">
-            {/* Empty section */}
-            <div className="pb-section">
-                <div
-                    className="pb-bar control-bar"
-                    style={{
-                        "backgroundColor": "#00acc1"
-                    }}
-                ></div>
-                <div className="pb-section-content">
-                    <div className="pb-row written-row">
-                        <div
-                            className="pb-bar control-bar"
-                            style={{
-                                "backgroundColor": "yellow"
-                            }}
-                        ></div>
-                        <div className="pb-row-content">
-                            <div className="row">
-                                <div className="col">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                    Ab ad assumenda consectetur cumque doloribus dolorum ducimus eveniet facere
-                                    iusto labore laborum libero, modi natus optio pariatur quae suscipit tempore
-                                    voluptatum.
-                                </div>
-                                <div className="col">23</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {/* section */}
+            {children}
 
-            <div className="pb-section">
-                <div
-                    className="pb-bar control-bar"
-                    style={{
-                        "backgroundColor": "#00acc1"
-                    }}
-                ></div>
-                <div className="pb-section-content">
-                    <div className="card dashed-card">
-                        <div className="card-block">
-                            <i className="fa fa-hand-paper-o"></i> Drag and drop a <b>row</b> here to start!
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button className="pb-add-section-button">
+            <button
+                className="pb-add-section-button"
+                onClick={handleClickAddSection}
+            >
                 <em className="icon-plus"></em>
             </button>
-            {Object.keys(Colors).map((name) => (
-                <SectionComponent
-                    color={Colors[name]}
-                    name={name}
-                />
-            ))}
+
         </div>
     );
 }
+
+/*            {Object.keys(Colors).map((name) => (
+ <SectionComponent
+ color={Colors[name]}
+ name={name}
+ />
+ ))}*/

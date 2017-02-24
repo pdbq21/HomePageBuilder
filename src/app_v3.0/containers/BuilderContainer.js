@@ -22,7 +22,7 @@ class BuilderContainer extends Component {
         return (
             <BuilderComponent >
                 <WorkAreaContainer
-                    id={0}
+                    id={'id_work_area'}
                 />
                 <ToolbarContainer />
             </BuilderComponent>

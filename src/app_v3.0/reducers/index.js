@@ -5,11 +5,16 @@
 import { combineReducers } from 'redux';
 
 // Reducers
-import ConstructorViewReducer from './WorkAreaReducer';
+import {WorkAreaReducer} from './WorkAreaReducer';
 import ToolbarReducer from './ToolbarReducer';
 
 // Combine Reducers
 export default combineReducers({
-    ConstructorViewReducer,
+		WorkAreaReducer,
     ToolbarReducer
 })
+/*
+const reducers = combineReducers({
+    greeting: greetingReducer,
+    name: nameReducer
+})*/
