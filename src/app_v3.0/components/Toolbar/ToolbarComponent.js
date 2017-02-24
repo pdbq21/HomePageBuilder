@@ -30,12 +30,13 @@ export default function ToolbarComponent() {
 
                 <ul className="pb-menu-items list-unstyled">
                     <li title="Elements"><i className="fa fa-puzzle-piece"/></li>
-                    <li className="active" title="Rows"><i className="fa fa-tasks"/></li>
+                    <li className="active" title="Rows"><i className="fa fa-th"/></li>
                     <li title="Templates"><i className="fa fa-newspaper-o"/></li>
                     <li title="Edit"><i className="fa fa-paint-brush"/></li>
                 </ul>
 
                 <ul className="pb-menu-end list-unstyled">
+                    <li><button className="btn btn-transparent fa fa-eye" type="button" title="Preview"/></li>
                     <li><button className="btn btn-primary fa fa-save" type="button" title="Save"/></li>
                 </ul>
             </div>

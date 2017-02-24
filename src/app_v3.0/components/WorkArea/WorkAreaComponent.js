@@ -23,7 +23,7 @@ const { children, handleClickAddSection } = props;
                 className="pb-add-section-button"
                 onClick={handleClickAddSection}
             >
-                <i className="icon-plus"/>
+                <i className="pb-icon-plus"/>
             </button>
         </div>
     );

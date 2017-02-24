@@ -11,7 +11,7 @@ export default function ControlBarComponent(props) {
 
     return (
         <div
-            className="pb-bar control-bar"
+            className="pb-bar pb-control-bar"
             style={{
                 "backgroundColor": `#${backgroundColor}`
             }}
