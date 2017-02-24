@@ -6,10 +6,17 @@ import React from 'react';
 
 //import component
 import ToolbarComponent from '../../components/Toolbar/ToolbarComponent'
+//import container
+import ContentMenuContainer from './ContentMenuContainer'
+import MainMenuContainer from './MainMenuContainer'
 
 export default function ToolbarContainer() {
 
     return (
-            <ToolbarComponent />
+            <ToolbarComponent>
+								<ContentMenuContainer />
+
+								<MainMenuContainer />
+            </ToolbarComponent>
     );
 }

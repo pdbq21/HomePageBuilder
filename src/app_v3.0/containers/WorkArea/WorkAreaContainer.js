@@ -5,8 +5,8 @@
 import React, { Component } from 'react';
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import { DragDropContext } from 'react-dnd';
-import HTML5Backend from 'react-dnd-html5-backend';
+//import { DragDropContext } from 'react-dnd';
+//import HTML5Backend from 'react-dnd-html5-backend';
 // import container
 import SectionContainer from './SectionContainer'
 //import component
@@ -20,14 +20,14 @@ class WorkAreaContainer extends Component {
 
 				this.handleClickAddSection = this.handleClickAddSection.bind(this);
 
-				this.moveCard = this.moveCard.bind(this);
+				this.handleMoveSection = this.handleMoveSection.bind(this);
 		}
 
 		componentDidMount() {
 				// empty
 		}
 
-		moveCard(dragIndex, hoverIndex) {
+		handleMoveSection(dragIndex, hoverIndex) {
 				const {id} = this.props;
 				const {ActionMoveSection} = this.props.mapDispactchWorkArea;
 				ActionMoveSection(id, dragIndex, hoverIndex);
@@ -56,7 +56,7 @@ class WorkAreaContainer extends Component {
 
 												color="#EC644B"
 
-												moveCard={this.moveCard}
+												handleMoveSection={this.handleMoveSection}
 										/>
 								))}
 						</WorkAreaComponent>
@@ -79,5 +79,5 @@ function mapDispatchToProps(dispatch) {
 		}
 }
 
-WorkAreaContainer = DragDropContext(HTML5Backend)(WorkAreaContainer);
+//WorkAreaContainer = DragDropContext(HTML5Backend)(WorkAreaContainer);
 export default connect(mapStateToProps, mapDispatchToProps)(WorkAreaContainer)

@@ -10,8 +10,11 @@ import React from 'react';
 export default function ContentMenuComponent(props) {
     const {children} = props;
     return (
-        <div className="">
-            {children}
+        <div className="pb-menu pb-content-menu">
+            {/* tabs navigation */}
+						{children[0]}
+            {/* panels Rows/Elements/Styles... */}
+            {children[1]}
         </div>
     );
 }

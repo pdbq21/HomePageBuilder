@@ -7,15 +7,17 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import { findDOMNode } from 'react-dom';
 import { DragSource, DropTarget } from 'react-dnd';
-//import component
+//import ItemTypes for Drag'n'Drop
+import {DRAG_SECTION} from '../../constants/ItemTypes'
+//import components
 import SectionComponent from '../../components/WorkArea/SectionComponent'
 import DropAreaComponent from '../../components/WorkArea/DropAreaComponent'
-// import container
+// import containers
 import ControlBarContainer from './ControlBarContainer'
-
+// import actions
 import * as WorkAreaActions from '../../actions/WorkAreaActions'
 
-const cardSource = {
+const sectionSource = {
 		beginDrag(props) {
 				return {
 						id: props.id,
@@ -23,7 +25,8 @@ const cardSource = {
 				};
 		}
 };
-const cardTarget = {
+
+const sectionTarget = {
 		hover(props, monitor, component) {
 				const dragIndex = monitor.getItem().index;
 				const hoverIndex = props.index;
@@ -60,7 +63,7 @@ const cardTarget = {
 				}
 
 				// Time to actually perform the action
-				props.moveCard(dragIndex, hoverIndex);
+				props.handleMoveSection(dragIndex, hoverIndex);
 
 				// Note: we're mutating the monitor item here!
 				// Generally it's better to avoid mutations,
@@ -69,6 +72,17 @@ const cardTarget = {
 				monitor.getItem().index = hoverIndex;
 		}
 };
+
+const targetCollect = connect => ({
+		connectDropTarget: connect.dropTarget()
+});
+
+const sourceCollect = (connect, monitor) => ({
+		connectDragSource: connect.dragSource(),
+		connectDragPreview: connect.dragPreview(),
+		isDragging: monitor.isDragging()
+});
+
 class SectionContainer extends Component {
 		constructor(props) {
 				super(props);
@@ -88,6 +102,7 @@ class SectionContainer extends Component {
 				const {id} = this.props;
 				const { isDragging, connectDragSource, connectDropTarget, connectDragPreview } = this.props;
 				const opacity = (isDragging)? 0 : 1;
+
 				return connectDragPreview(connectDropTarget(
 						<div
 								style={{ 'opacity': opacity }}
@@ -127,12 +142,6 @@ function mapDispatchToProps(dispatch) {
 		}
 }
 
-SectionContainer = DropTarget('CARD', cardTarget, connect => ({
-		connectDropTarget: connect.dropTarget()
-}))(SectionContainer);
-SectionContainer = DragSource('CARD', cardSource, (connect, monitor) => ({
-		connectDragSource: connect.dragSource(),
-		connectDragPreview: connect.dragPreview(),
-		isDragging: monitor.isDragging()
-}))(SectionContainer);
+SectionContainer = DropTarget(DRAG_SECTION, sectionTarget, targetCollect)(SectionContainer);
+SectionContainer = DragSource(DRAG_SECTION, sectionSource, sourceCollect)(SectionContainer);
 export default connect(mapStateToProps, mapDispatchToProps)(SectionContainer)

@@ -8,7 +8,7 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 //import component
 import ControlBarComponent from '../../components/WorkArea/ControlBarComponent'
-
+// import actions
 import * as WorkAreaActions from '../../actions/WorkAreaActions'
 
 class ControlBarContainer extends Component {
@@ -33,7 +33,7 @@ class ControlBarContainer extends Component {
 		}
 
 		render() {
-				const {colorControlBar} =this.props.mapStateWorkArea;
+				const {colorControlBar} = this.props.mapStateWorkArea;
 				return (
 						<ControlBarComponent
 								backgroundColor={colorControlBar}
