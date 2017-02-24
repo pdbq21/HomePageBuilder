@@ -38,43 +38,39 @@
     padding: 0 15px;
 }
 
+/* Element */
+.pb-element {
+
+}
+
 /* Menu */
 .pb-menu {
 
 }
-.pb-menu-items {
+
+.pb-menu-caption {
     margin: 0;
     padding: 0;
+    border: none;
+    outline: none;
+    line-height: 50px;
+    background-color: #1FB5AD;
+    color: white;
+    text-transform: uppercase;
 }
 
+/* Menu > main-menu */
 .pb-main-menu {
     position: relative;
     width: 50px;
-}
-.pb-main-menu .pb-menu-items > li {
-    position: relative;
-    height: 50px;
-    width: 50px;
-}
-.pb-main-menu .pb-menu-items > li:hover {
-    position: relative;
-    height: 50px;
-    width: 50px;
-}
-.pb-main-menu .pb-menu-items > li:after {
-    content: "";
-    display: block;
-    clear: both;
-}
-.pb-main-menu .pb-menu-items > li .fa {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    background-color: #202025;
 }
 
+/* Menu > content-menu */
 .pb-content-menu {
+    background-color: #28282E;
 }
+
 
 /* Bar */
 .pb-control-bar {
@@ -97,8 +93,6 @@
     width: 100%;
     text-align: center;
 }
-
-
 .pb-control-bar:hover {
     cursor: pointer;
 }
@@ -106,7 +100,6 @@
     cursor: move;
 }
 
-/* Element */
 
 /* Card */
 .pb-dashed-card {
@@ -115,6 +108,7 @@
     text-align: center;
     width: 100%;
 }
+
 
 /* Common */
 .pb-section,
@@ -125,14 +119,6 @@
 
 
 /* Button */
-.pb-icon-plus:before {
-    content: '+';
-}
-
-.pb-icon-plus {
-    font-size: 3em;
-}
-
 .pb-add-section-button{
     background-color: #00c853;
     display: block;
@@ -147,4 +133,13 @@
 .pb-add-section-button:hover{
     background-color: #009e4a;
     outline: none;
+}
+
+
+/* Icon */
+.pb-icon-plus:before {
+    content: '+';
+}
+.pb-icon-plus {
+    font-size: 3em;
 }

@@ -1,20 +1,22 @@
+/* Box > main-box */
 .pb-main-box .pb-workarea,
 .pb-main-box .pb-toolbar {
     height: 900px;
     overflow: auto;
 }
 
-/* Workarea */
 
-/* Card */
+/* Card > dashed-card */
 .pb-dashed-card .card-block > .fa {
     margin-right: 3px;
 }
+
 
 /* Section */
 .pb-section .pb-control-bar {
     background-color: dodgerblue;
 }
+
 
 /* Toolbar */
 .pb-toolbar .pb-menu {
@@ -26,10 +28,68 @@
     flex-grow: .0000001;
 }
 
-.pb-toolbar .pb-main-menu .pb-menu-items {
+
+/* Menu > main-menu */
+.pb-main-menu .pb-menu-items {
     position: absolute;
     top: 50%;
     left: 50%;
     text-align: center;
     transform: translate(-50%, -50%);
+}
+.pb-main-menu .pb-menu-items > li {
+    position: relative;
+    height: 50px;
+    opacity: .75;
+}
+.pb-main-menu .pb-menu-items > li:hover {
+    cursor: pointer;
+    opacity: 1;
+}
+.pb-main-menu .pb-menu-items > li:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.pb-main-menu .pb-menu-items > li.active {
+    color: #1FB5AD;
+    opacity: 1;
+    cursor: default;
+}
+.pb-main-menu .pb-menu-items > li.active:before {
+    border: 8px solid transparent;
+    border-left-color: #28282E;
+    content: "";
+    display: block;
+    height: 0;
+    width: 0;
+    margin-top: -8px;
+    position: absolute;
+    top: 50%;
+    left: 0;
+}
+.pb-main-menu .pb-menu-items > li .fa {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.pb-main-menu .pb-menu-end {
+    position: absolute;
+    bottom: 0;
+    margin-bottom: 0;
+}
+
+.pb-main-menu .pb-menu-start > li .btn,
+.pb-main-menu .pb-menu-end > li .btn {
+    width: 100%;
+    height: 50px;
+    border-radius: 0;
+}
+
+.pb-main-menu .pb-menu-start,
+.pb-main-menu .pb-menu-items,
+.pb-main-menu .pb-menu-end {
+    width: 100%;
 }
