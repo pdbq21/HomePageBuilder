@@ -5,7 +5,8 @@
 import React, { Component } from 'react';
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-
+import { DropTarget, DragDropContext } from 'react-dnd';
+import HTML5Backend from 'react-dnd-html5-backend';
 // import container
 import SectionContainer from './SectionContainer'
 //import component
@@ -67,5 +68,9 @@ function mapDispatchToProps(dispatch) {
 				mapDispactchWorkArea: bindActionCreators(WorkAreaActions, dispatch)
 		}
 }
-
+/*
+@DragDropContext(HTML5Backend)
+@DropTarget(ItemTypes.CARD, cardTarget, connect => ({
+		connectDropTarget: connect.dropTarget()
+}))*/
 export default connect(mapStateToProps, mapDispatchToProps)(WorkAreaContainer)

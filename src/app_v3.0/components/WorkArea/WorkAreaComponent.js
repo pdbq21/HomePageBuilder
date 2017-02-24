@@ -5,8 +5,7 @@
 import React from 'react';
 
 //import component
-/*const Colors = {
-=======
+
 /*import SectionComponent from './SectionComponent'
 import RowComponent from './RowComponent'
 import ControlBarComponent from './ControlBarComponent'*/

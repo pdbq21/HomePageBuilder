@@ -9,7 +9,7 @@ export default function DropAreaComponent(props) {
     return(
         <div className="card pb-dashed-card">
             <div className="card-block">
-                <i className="fa fa-hand-paper-o"/>  <b>{name}</b> here to start!
+                <i className="fa fa-hand-paper-o"/> Drag and drop a <b>{name}</b> here to start!
             </div>
         </div>
     );
