@@ -8,23 +8,44 @@ import React from 'react';
 
 
 export default function SectionComponent(props) {
-const {color, name} = props;
+const {children} = props;
     return (
         <div className="pb-section">
-            <div
-                className="pb-bar control-bar"
-                style={{
-                    "backgroundColor": color
-                }}
-            >
-            </div>
+						{/* control bar */}
+						{children[0]}
             <div className="pb-section-content">
-                <div className="card dashed-card">
-                    <div className="card-block">
-                        <i className="fa fa-hand-paper-o"></i>  <b>{name}</b> here to start!
-                    </div>
-                </div>
+								{/* drop area */}
+								{children[1]}
             </div>
         </div>
     );
 }
+
+/*<div className="pb-section">
+ <div
+ className="pb-bar control-bar"
+ style={{
+ "backgroundColor": "#00acc1"
+ }}
+ ></div>
+ <div className="pb-section-content">
+ <div className="pb-row written-row">
+ <div
+ className="pb-bar control-bar"
+ style={{
+ "backgroundColor": "yellow"
+ }}
+ ></div>
+ <div className="pb-row-content">
+ <div className="row">
+ <div className="col">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+ Ab ad assumenda consectetur cumque doloribus dolorum ducimus eveniet facere
+ iusto labore laborum libero, modi natus optio pariatur quae suscipit tempore
+ voluptatum.
+ </div>
+ <div className="col">23</div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>*/
