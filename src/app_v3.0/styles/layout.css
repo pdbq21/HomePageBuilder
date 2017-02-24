@@ -47,12 +47,12 @@
     display: block;
     clear: both;
 }
-.pb-main-menu .pb-menu-items > li.active {
+.pb-main-menu .pb-menu-items > .pb-active-menu-item {
     color: #1FB5AD;
     opacity: 1;
     cursor: default;
 }
-.pb-main-menu .pb-menu-items > li.active:before {
+.pb-main-menu .pb-menu-items > .pb-active-menu-item:before {
     border: 8px solid transparent;
     border-left-color: #28282E;
     content: "";

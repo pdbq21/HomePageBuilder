@@ -116,7 +116,7 @@ export default function ToolbarComponent() {
 
                 <ul className="pb-menu-items list-unstyled">
                     <li title="Elements"><i className="fa fa-puzzle-piece"/></li>
-                    <li className="active" title="Rows"><i className="fa fa-th"/></li>
+                    <li className="pb-active-menu-item" title="Rows"><i className="fa fa-th"/></li>
                     <li title="Templates"><i className="fa fa-newspaper-o"/></li>
                     <li title="Edit"><i className="fa fa-paint-brush"/></li>
                 </ul>
