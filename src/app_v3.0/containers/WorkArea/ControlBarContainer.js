@@ -46,7 +46,6 @@ class ControlBarContainer extends Component {
 
 
 function mapStateToProps(state, ownProps) {
-		console.log(ownProps);
 		return {
 				mapStateWorkArea: state.WorkAreaReducer[ownProps.currentId],
 				mapStateToolbar: state.ToolbarReducer
