@@ -7,7 +7,8 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 // components
 import ToolbarTabContentComponent from '../components/Toolbar/ToolbarTabContentComponent'
-import {StructurePanel, ContentPanel, TemplatesPanel} from '../components/Toolbar/TabContentComponents.js'
+import RowsPanel from '../components/Toolbar/TabPanels/RowsPanel'
+import { ContentPanel, TemplatesPanel} from '../components/Toolbar/TabContentComponents.js'
 import {EditPanelNavigation, EditPanel} from '../components/Toolbar/TabEditPanelComponent.js'
 //containers
 
@@ -91,7 +92,7 @@ class ToolbarTabContentContainer extends Component {
         switch (activeTab) {
             case 'Rows':
                 //
-                return <StructurePanel />;
+                return <RowsPanel />;
 
             case 'Elements':
                 return <ContentPanel

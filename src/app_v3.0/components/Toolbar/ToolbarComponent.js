@@ -5,25 +5,29 @@
 import React from 'react';
 
 //import component
-import MainMenuComponent from './MainMenu/MainMenuComponent'
-import ContentSourceListComponent from './MainMenu/ContentSourceListComponent'
-import ContentMenuComponent from './ContentMenu/ContentMenuComponent'
-import TabsNavigationComponent from './ContentMenu/TabsNavigationComponent'
-import RowsPanelComponent from './ContentMenu/ContentPanels/RowsPanelComponent'
+/*import MainMenuComponent from './MainMenu/MainMenuComponent'
+ import ContentSourceListComponent from './MainMenu/ContentSourceListComponent'
+ import ContentMenuComponent from './ContentMenu/ContentMenuComponent'
+ import TabsNavigationComponent from './ContentMenu/TabsNavigationComponent'
+ import RowsPanelComponent from './ContentMenu/ContentPanels/RowsPanelComponent'*/
 
 export default function ToolbarComponent() {
 
     return (
-        <div className="">
+        <div className="pb-toolbar col-sm-12 col-md-5 col-lg-4 col-xl-3">
+            <div className="pb-menu pb-content-menu">
+                1
+            </div>
 
-            <ContentMenuComponent>
-                <TabsNavigationComponent />
-                <RowsPanelComponent />
-            </ContentMenuComponent>
+            <div className="pb-menu pb-main-menu">
+                <p>2</p>
 
-            <MainMenuComponent>
-                <ContentSourceListComponent />
-            </MainMenuComponent>
+                <ul className="pb-menu-items list-unstyled">
+                    <li><i className="fa fa-puzzle-piece"></i></li>
+                    <li><i className="fa fa-paint-brush"></i></li>
+                    <li><i className="fa fa-tasks"></i></li>
+                </ul>
+            </div>
         </div>
     );
 }
