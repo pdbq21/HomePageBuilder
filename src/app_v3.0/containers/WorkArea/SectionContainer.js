@@ -14,6 +14,7 @@ import SectionComponent from '../../components/WorkArea/SectionComponent'
 import DropAreaComponent from '../../components/WorkArea/DropAreaComponent'
 // import containers
 import ControlBarContainer from './ControlBarContainer'
+import RowContainer from './RowContainer'
 // import actions
 import * as WorkAreaActions from '../../actions/WorkAreaActions'
 
@@ -135,7 +136,7 @@ class SectionContainer extends Component {
         const {id} = this.props;
         const {isDragging, connectDragSource, connectDropTarget, connectDragPreview} = this.props;
         const opacity = (isDragging) ? 0 : 1;
-
+        const {childrenIds} = this.props.mapStateSection;
         return connectDragPreview(connectDropTarget(
             <div
                 style={{'opacity': opacity}}
@@ -148,7 +149,16 @@ class SectionContainer extends Component {
                             currentId={id}
                         />
                     </div>)}
-
+                    {
+                        childrenIds.map((childrenId, index) => (
+                            <RowContainer
+                                id={childrenId}
+                                parentId={id}
+                                index={index}
+                                key={`key-${childrenId}`}
+                            />
+                        ))
+                    }
                     <DropAreaTarget
                         name="Row"
                         index={id}
@@ -161,10 +171,11 @@ class SectionContainer extends Component {
 }
 
 
-function mapStateToProps(state) {
-    //console.log('state WorkAreaContainer', state);
+function mapStateToProps(state, ownProps) {
+    //console.log('state Section', state);
     return {
         mapStateWorkArea: state.WorkAreaReducer,
+        mapStateSection: state.WorkAreaReducer[ownProps.id],
         mapStateToolbar: state.ToolbarReducer
     }
 }

@@ -2,16 +2,39 @@
  * Created by ruslan on 23.02.17.
  */
 // import lib
-import React from 'react';
+import React, { Component } from 'react';
 
+//import container
+import ControlBarContainer from './ControlBarContainer'
 //import component
+import RowComponent from '../../components/WorkArea/RowComponent'
 
 
-export default function RowComponent(props) {
-const {children} = props;
-    return (
-        <div className="">
-            {children}
-        </div>
-    );
+export default  class RowContainer extends Component {
+    constructor(props) {
+        super(props);
+
+        this.handleDropRow = this.handleDropRow.bind(this);
+    }
+
+    componentDidMount() {
+        // empty
+    }
+
+
+
+    handleDropRow(){
+
+    }
+
+    render() {
+        const {id} = this.props;
+        return (
+            <RowComponent>
+                <ControlBarContainer
+                    currentId={id}
+                />
+            </RowComponent>
+        );
+    }
 }

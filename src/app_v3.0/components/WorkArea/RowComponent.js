@@ -12,7 +12,7 @@ const {children} = props;
     return (
         <div className="pb-row written-row">
             {/* control bar */}
-            {children[0]}
+            {children}
             <div className="pb-row-content">
                 <div className="row">
                     <div className="col">Lorem ipsum dolor sit amet, consectetur adipisicing elit.

@@ -14,10 +14,11 @@ export default function SectionComponent(props) {
             {/* control bar */}
             {children[0]}
             <div className="pb-section-content">
-                {/* drop area */}
+                {/* row */}
                 {children[1]}
 
-
+                {/* drop area */}
+                {children[2]}
             </div>
         </div>
     );
