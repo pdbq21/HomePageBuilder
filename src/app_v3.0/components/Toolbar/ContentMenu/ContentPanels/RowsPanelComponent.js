@@ -16,8 +16,9 @@ function RowItem(props) {
 }
 
 const RowItemDrag = DragSource('DROP_ROW', {
-    beginDrag() {
+    beginDrag(props) {
         return {
+            gridType: props.gridType
         };
     },
 
@@ -54,28 +55,38 @@ export default function RowsPanelComponent() {
                 <h4 className="pb-panel-caption">Common</h4>
 
                 <div className="pb-panel-content">
-                    <RowItemDrag>
+                    <RowItemDrag
+                    gridType="12"
+                    >
                         <span className="pb-row-sketch-item"/>
                     </RowItemDrag>
 
-                    <RowItemDrag>
+                    <RowItemDrag
+                    gridType="6-6"
+                    >
                         <span className="pb-row-sketch-item"/>
                         <span className="pb-row-sketch-item"/>
                     </RowItemDrag>
-                    <RowItemDrag>
-                        <span className="pb-row-sketch-item"/>
-                        <span className="pb-row-sketch-item"/>
-                        <span className="pb-row-sketch-item"/>
-                    </RowItemDrag>
-
-                    <RowItemDrag>
-                        <span className="pb-row-sketch-item"/>
+                    <RowItemDrag
+                    gridType="4-4-4"
+                    >
                         <span className="pb-row-sketch-item"/>
                         <span className="pb-row-sketch-item"/>
                         <span className="pb-row-sketch-item"/>
                     </RowItemDrag>
 
-                    <RowItemDrag>
+                    <RowItemDrag
+                    gridType="3-3-3-3"
+                    >
+                        <span className="pb-row-sketch-item"/>
+                        <span className="pb-row-sketch-item"/>
+                        <span className="pb-row-sketch-item"/>
+                        <span className="pb-row-sketch-item"/>
+                    </RowItemDrag>
+
+                    <RowItemDrag
+                    gridType="2-2-2-2-2"
+                    >
                         <span className="pb-row-sketch-item"/>
                         <span className="pb-row-sketch-item"/>
                         <span className="pb-row-sketch-item"/>
@@ -89,19 +100,25 @@ export default function RowsPanelComponent() {
                 <h4 className="pb-panel-caption">Rare</h4>
 
                 <div className="pb-panel-content">
-                    <RowItemDrag>
+                    <RowItemDrag
+                        gridType="3-6-3"
+                    >
                         <span className="pb-row-sketch-item grow-3"/>
                         <span className="pb-row-sketch-item grow-6"/>
                         <span className="pb-row-sketch-item grow-3"/>
                     </RowItemDrag>
 
-                    <RowItemDrag>
+                    <RowItemDrag
+                    gridType="6-3-3"
+                    >
                         <span className="pb-row-sketch-item grow-6"/>
                         <span className="pb-row-sketch-item grow-3"/>
                         <span className="pb-row-sketch-item grow-3"/>
                     </RowItemDrag>
 
-                    <RowItemDrag>
+                    <RowItemDrag
+                    gridType="3-3-6"
+                    >
                         <span className="pb-row-sketch-item grow-3"/>
                         <span className="pb-row-sketch-item grow-3"/>
                         <span className="pb-row-sketch-item grow-6"/>
@@ -114,7 +131,9 @@ export default function RowsPanelComponent() {
                 <span className="pb-panel-annotation">Allow you to add columns dynamically</span>
 
                 <div className="pb-panel-content">
-                    <RowItemDrag>
+                    <RowItemDrag
+                    gridType="flex"
+                    >
                         <span className="pb-row-sketch-item"/>
                     </RowItemDrag>
                 </div>

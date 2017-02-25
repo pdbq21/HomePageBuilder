@@ -83,10 +83,13 @@ const sourceCollect = (connect, monitor) => ({
     connectDragPreview: connect.dragPreview(),
     isDragging: monitor.isDragging()
 });
-const DropAreaTarget = DropTarget('DROP_ROW', {drop(props, monitor, component) {
-    console.log('drop',props, monitor, component, monitor.getItem());//{ name: 'test_name' };
-    return {name: 'Dustbin', testDrop: 'testDrop'};
-}}, (connect, monitor) => {
+const DropAreaTarget = DropTarget('DROP_ROW', {
+    drop(props, monitor, component) {
+        props.onDrop(monitor.getItem());
+        console.log('drop', props, monitor, component, monitor.getItem());//{ name: 'test_name' };
+        return {name: 'Dustbin', testDrop: 'testDrop'};
+    }
+}, (connect, monitor) => {
     return {
         connectDropTarget: connect.dropTarget(),
         isOver: monitor.isOver(),
@@ -98,6 +101,8 @@ class SectionContainer extends Component {
         super(props);
 
         this.handleClickAddSection = this.handleClickAddSection.bind(this);
+
+        this.handleDropRow = this.handleDropRow.bind(this);
     }
 
     componentDidMount() {
@@ -108,6 +113,31 @@ class SectionContainer extends Component {
 
     }
 
+    handleDropRow(id, item){
+console.log(id, item.gridType);
+        const {ActionCreateNode, ActionAddNode} = this.props.mapDispactchWorkArea;
+        const childrenId = ActionCreateNode(id).nodeId;
+        // create Row
+        ActionAddNode(id, childrenId);
+/*
+        const {ActionCreateNode, ActionAddNode, ActionAddColumnsData} = this.props.mapDispactchSection;
+        // [6, 6] / [4, 4, 4] ...
+        const {columns} = this.props.mapStateToolbar;
+        // if drop Element columns.length = 0;
+        if (columns.length) {
+            // create Row
+            const childrenIdRow = ActionCreateNode(id).nodeId;
+            ActionAddNode(id, childrenIdRow);
+            ActionAddColumnsData(childrenIdRow, columns);
+// create Row children - Cols
+            columns.forEach((col) => {
+                //console.log(col, index);
+                const childrenId = ActionCreateNode(childrenIdRow).nodeId;
+                ActionAddNode(childrenIdRow, childrenId);
+                ActionAddColumnsData(childrenId, col);
+            });
+        }*/
+    }
 
     render() {
         const {id} = this.props;
@@ -130,6 +160,7 @@ class SectionContainer extends Component {
                     <DropAreaTarget
                         name="Row"
                         index={id}
+                        onDrop={item => this.handleDropRow(id, item)}
                     />
                 </SectionComponent>
             </div>

@@ -8,20 +8,23 @@ import React from 'react';
 
 
 export default function SectionComponent(props) {
-const {children} = props;
+    const {children} = props;
     return (
         <div className="pb-section">
-						{/* control bar */}
-						{children[0]}
+            {/* control bar */}
+            {children[0]}
             <div className="pb-section-content">
-								{/* drop area */}
-								{children[1]}
+                {/* drop area */}
+                {children[1]}
+
+
             </div>
         </div>
     );
 }
 
-/*<div className="pb-section">
+/*
+ <div className="pb-section">
  <div
  className="pb-bar control-bar"
  style={{
@@ -49,3 +52,4 @@ const {children} = props;
  </div>
  </div>
  </div>*/
+
