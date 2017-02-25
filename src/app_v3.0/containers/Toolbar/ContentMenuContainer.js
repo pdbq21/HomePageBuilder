@@ -4,11 +4,11 @@
 
 // lib
 import React, {Component} from 'react'
-import {bindActionCreators} from 'redux'
+//import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 
 //actions
-import * as ToolbarActions from '../../actions/ToolbarActions'
+//import * as ToolbarActions from '../../actions/ToolbarActions'
 //import component
 import ContentMenuComponent from '../../components/Toolbar/ContentMenu/ContentMenuComponent'
 import TabsNavigationComponent from '../../components/Toolbar/ContentMenu/TabsNavigationComponent'
@@ -17,34 +17,33 @@ import ContentPanelsContainer from './ContentPanelsContainer'
 // Application
 class ContentMenuContainer extends Component {
 
-		render() {
+    render() {
+        const {isVisibleContentMenu} = this.props.mapStateToolbar;
 
-				return (
-						<div>
-								<ContentMenuComponent>
-										<TabsNavigationComponent />
-										<ContentPanelsContainer />
-								</ContentMenuComponent>
-						</div>
-
-				);
-		}
+        if (isVisibleContentMenu) {
+            return (
+                <ContentMenuComponent>
+                    <TabsNavigationComponent />
+                    <ContentPanelsContainer />
+                </ContentMenuComponent>
+            );
+        } else {
+            return null;
+        }
+    }
 }
 
 function mapStateToProps(state) {
-		return {
-				mapStateWorkArea: state.WorkAreaReducer,
-				mapStateToolbar: state.ToolbarReducer
-		}
+    return {
+        mapStateToolbar: state.ToolbarReducer
+    }
 }
 
 function mapDispatchToProps(dispatch) {
-		return {
-				mapDispactchWorkArea: bindActionCreators(ToolbarActions, dispatch)
-		}
+    return {
+        //mapDispactchWorkArea: bindActionCreators(ToolbarActions, dispatch)
+    }
 }
-
-
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContentMenuContainer)

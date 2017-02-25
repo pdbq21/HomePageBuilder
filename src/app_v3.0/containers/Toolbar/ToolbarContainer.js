@@ -2,21 +2,51 @@
  * Created by ruslan on 23.02.17.
  */
 // import lib
-import React from 'react';
+import React, {Component} from 'react';
+//import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
 
-//import component
-import ToolbarComponent from '../../components/Toolbar/ToolbarComponent'
-//import container
+// import container
 import ContentMenuContainer from './ContentMenuContainer'
 import MainMenuContainer from './MainMenuContainer'
+//import component
+import ToolbarComponent from '../../components/Toolbar/ToolbarComponent'
+// import actions
+//import * as ToolbarActions from '../../actions/ToolbarActions'
 
-export default function ToolbarContainer() {
+class ToolbarContainer extends Component {
+   /* constructor(props) {
+        super(props);
+    }*/
 
-    return (
+    componentDidMount() {
+        // empty
+    }
+
+
+
+    render() {
+
+        return (
             <ToolbarComponent>
-								<ContentMenuContainer />
+                <ContentMenuContainer />
 
-								<MainMenuContainer />
+                <MainMenuContainer />
             </ToolbarComponent>
-    );
+        );
+    }
 }
+
+
+function mapStateToProps(state) {
+    return {
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+    }
+}
+
+//WorkAreaContainer = DragDropContext(HTML5Backend)(WorkAreaContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(ToolbarContainer)
