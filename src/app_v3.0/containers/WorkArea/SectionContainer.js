@@ -114,29 +114,21 @@ class SectionContainer extends Component {
     }
 
     handleDropRow(id, item){
-console.log(id, item.gridType);
-        const {ActionCreateNode, ActionAddNode} = this.props.mapDispactchWorkArea;
-        const childrenId = ActionCreateNode(id).nodeId;
+        // id => parentId section / item => {gridType: '6-6'}
+        const {ActionCreateNode, ActionAddNode, ActionGridIndex} = this.props.mapDispactchWorkArea;
+        const childrenIdRow = ActionCreateNode(id).nodeId;
         // create Row
-        ActionAddNode(id, childrenId);
-/*
-        const {ActionCreateNode, ActionAddNode, ActionAddColumnsData} = this.props.mapDispactchSection;
-        // [6, 6] / [4, 4, 4] ...
-        const {columns} = this.props.mapStateToolbar;
-        // if drop Element columns.length = 0;
-        if (columns.length) {
-            // create Row
-            const childrenIdRow = ActionCreateNode(id).nodeId;
-            ActionAddNode(id, childrenIdRow);
-            ActionAddColumnsData(childrenIdRow, columns);
-// create Row children - Cols
-            columns.forEach((col) => {
-                //console.log(col, index);
-                const childrenId = ActionCreateNode(childrenIdRow).nodeId;
-                ActionAddNode(childrenIdRow, childrenId);
-                ActionAddColumnsData(childrenId, col);
-            });
-        }*/
+        ActionAddNode(id, childrenIdRow);
+
+        // create Row children - Cols
+        // item.gridType => 6-6/3-3-3-3 ... split('-') => [6, 6,]
+        item.gridType.split('-').forEach((gridIndex) => {
+            const childrenId = ActionCreateNode(childrenIdRow).nodeId;
+            // create Col
+            ActionAddNode(childrenIdRow, childrenId);
+            // example: add gridIndex: 6
+            ActionGridIndex(childrenId, gridIndex);
+        });
     }
 
     render() {
