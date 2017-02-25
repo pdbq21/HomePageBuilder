@@ -11,7 +11,7 @@ import {connect} from 'react-redux'
 //import * as ToolbarActions from '../../actions/ToolbarActions'
 //import component
 import ContentMenuComponent from '../../components/Toolbar/ContentMenu/ContentMenuComponent'
-import TabsNavigationComponent from '../../components/Toolbar/ContentMenu/TabsNavigationComponent'
+//import TabsNavigationComponent from '../../components/Toolbar/ContentMenu/TabsNavigationComponent'
 // import container
 import ContentPanelsContainer from './ContentPanelsContainer'
 // Application
@@ -23,7 +23,6 @@ class ContentMenuContainer extends Component {
         if (isVisibleContentMenu) {
             return (
                 <ContentMenuComponent>
-                    <TabsNavigationComponent />
                     <ContentPanelsContainer />
                 </ContentMenuComponent>
             );

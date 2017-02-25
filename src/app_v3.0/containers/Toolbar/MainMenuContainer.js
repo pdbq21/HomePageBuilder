@@ -15,24 +15,34 @@ import * as ToolbarActions from '../../actions/ToolbarActions'
 class MainMenuContainer extends Component {
     constructor(props) {
         super(props);
-this.handleToggleContentMenu = this.handleToggleContentMenu.bind(this)
+
+        this.handleToggleContentMenu = this.handleToggleContentMenu.bind(this);
+        this.handelNavigationItems = this.handelNavigationItems.bind(this);
     }
 
     componentDidMount() {
         // empty
     }
 
-    handleToggleContentMenu(){
-const {ActionToggleContentMenu} = this.props.mapDispactchToolbar;
+    handleToggleContentMenu() {
+        const {ActionToggleContentMenu} = this.props.mapDispactchToolbar;
         ActionToggleContentMenu();
-	}
+    }
+
+    handelNavigationItems(event) {
+        const {ActionSelectMenuItem} = this.props.mapDispactchToolbar;
+        //console.log(event.target.getAttribute('title'));
+        // event.target.getAttribute('title') => Rows/Elements/Edit/Template
+        ActionSelectMenuItem(event.target.getAttribute('title'));
+    }
 
     render() {
 
         return (
-			<MainMenuComponent
-				handleToggleContentMenu={this.handleToggleContentMenu}
-			/>
+            <MainMenuComponent
+                handleToggleContentMenu={this.handleToggleContentMenu}
+                handelNavigationItems={event => this.handelNavigationItems(event)}
+            />
         );
     }
 }

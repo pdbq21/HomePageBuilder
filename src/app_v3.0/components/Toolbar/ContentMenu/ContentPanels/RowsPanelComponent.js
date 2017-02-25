@@ -34,6 +34,11 @@ export default function RowsPanelComponent() {
 
     return (
         <div className="">
+
+            <h3 className="pb-menu-caption">
+                <i className="fa fa-th pb-menu-caption-icon"/>Rows
+            </h3>
+
             <p className="pb-menu-description lead">Blocks that help you to build section structure</p>
 
             <div className="pb-panel">

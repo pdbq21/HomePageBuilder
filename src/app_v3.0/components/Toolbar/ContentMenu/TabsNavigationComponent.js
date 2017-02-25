@@ -11,9 +11,7 @@ export default function TabsNavigationComponent() {
 
     return (
         <div className="">
-            <h3 className="pb-menu-caption">
-                <i className="fa fa-th pb-menu-caption-icon"/>Rows
-            </h3>
+
         </div>
     );
 }

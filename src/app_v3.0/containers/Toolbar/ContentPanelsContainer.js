@@ -5,25 +5,53 @@
 // lib
 import React, {Component} from 'react'
 import {DragSource} from 'react-dnd'
-import {bindActionCreators} from 'redux'
+//import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 
 //actions
-import * as ToolbarActions from '../../actions/ToolbarActions'
+//import * as ToolbarActions from '../../actions/ToolbarActions'
 //import component
 import RowsPanelComponent from '../../components/Toolbar/ContentMenu/ContentPanels/RowsPanelComponent'
+import ElementsPanelComponent from '../../components/Toolbar/ContentMenu/ContentPanels/ElementsPanelComponent'
+import StylesPanelComponent from '../../components/Toolbar/ContentMenu/ContentPanels/StylesPanelComponent'
+import TemplatesPanelComponent from '../../components/Toolbar/ContentMenu/ContentPanels/TemplatesPanelComponent'
 
 
 // Application
 class ContentPanelsContainer extends Component {
+    constructor(props) {
+        super(props);
+
+        this.renderContentPanel = this.renderContentPanel.bind(this);
+    }
+
+    renderContentPanel() {
+        const {activeMenuItem} = this.props.mapStateToolbar;
+        const {connectDragSource,} = this.props;
+        switch (activeMenuItem) {
+            case 'Rows':
+                return (<RowsPanelComponent
+                    connectDragSource={connectDragSource}
+                />);
+            case 'Elements':
+                return <ElementsPanelComponent
+
+                />;
+            case 'Edit':
+                return <StylesPanelComponent />;
+            case 'Templates':
+                return <TemplatesPanelComponent />;
+
+            default:
+                console.error('Error: other tab name, ', activeMenuItem);
+        }
+    }
 
     render() {
-        const {connectDragSource,} = this.props;
+
         return (
             <div>
-                <RowsPanelComponent
-                    connectDragSource={connectDragSource}
-                />
+                {this.renderContentPanel()}
             </div>
 
         );
@@ -32,14 +60,14 @@ class ContentPanelsContainer extends Component {
 
 function mapStateToProps(state) {
     return {
-        mapStateWorkArea: state.WorkAreaReducer,
+        //mapStateWorkArea: state.WorkAreaReducer,
         mapStateToolbar: state.ToolbarReducer
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        mapDispactchWorkArea: bindActionCreators(ToolbarActions, dispatch)
+       // mapDispactchToolbar: bindActionCreators(ToolbarActions, dispatch)
     }
 }
 

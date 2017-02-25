@@ -8,7 +8,7 @@ import React from 'react';
 
 
 export default function MainMenuComponent(props) {
-    const {handleToggleContentMenu} = props;
+    const {handleToggleContentMenu, handelNavigationItems} = props;
     return (
         <div className="pb-menu pb-main-menu">
             <ul className="pb-main-menu-start list-unstyled">
@@ -21,11 +21,31 @@ export default function MainMenuComponent(props) {
                 </li>
             </ul>
 
-            <ul className="pb-menu-items list-unstyled">
-                <li title="Elements"><i className="fa fa-puzzle-piece"/></li>
-                <li className="pb-active-menu-item" title="Rows"><i className="fa fa-th"/></li>
-                <li title="Templates"><i className="fa fa-newspaper-o"/></li>
-                <li title="Edit"><i className="fa fa-paint-brush"/></li>
+            <ul
+                className="pb-menu-items list-unstyled"
+                onClick={handelNavigationItems}
+            >
+                <li className="pb-active-menu-item" title="Rows">
+                    <i className="fa fa-th"
+                       style={{'pointerEvents': 'none'}}
+                    />
+                </li>
+                <li className="" title="Elements">
+                    <i className="fa fa-puzzle-piece"
+                    style={{'pointerEvents': 'none'}}
+                    />
+                </li>
+                <li className="" title="Edit">
+                    <i className="fa fa-paint-brush"
+                       style={{'pointerEvents': 'none'}}
+                    />
+                </li>
+                <li className="" title="Templates">
+                    <i className="fa fa-newspaper-o"
+                    style={{'pointerEvents': 'none'}}
+                    />
+                </li>
+
             </ul>
 
             <ul className="pb-main-menu-end list-unstyled">
