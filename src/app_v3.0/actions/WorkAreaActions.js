@@ -108,11 +108,12 @@ export function ActionCreateNode(parentId) {
 }
 
 // push new child in parent data / children: [...]
-export function ActionAddNode(nodeId, childrenId) {
+export function ActionAddNode(nodeId, childrenId, dropId) {
     return {
         type: ADD_NODE,
         nodeId,
-        childrenId
+        childrenId,
+        dropId
     };
 }
 

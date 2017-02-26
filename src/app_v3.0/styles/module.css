@@ -234,3 +234,14 @@
 .pb-icon-plus {
     font-size: 3em;
 }
+
+/* Drop Zone */
+.pb-drop-zone{
+    visibility: hidden;
+height: 3em;
+position: absolute;
+width: 100%;
+bottom: 0;
+left: 0;
+background: linear-gradient(0deg, #14ec46 0%, rgba(255, 255, 255, 0) 100%);
+}

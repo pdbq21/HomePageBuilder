@@ -19,7 +19,19 @@ function createChildrenIds(state, action) {
     //console.log(action);
     switch (action.type) {
         case ADD_NODE:
-            return [...state, action.childrenId];
+            //
+            if (typeof action.dropId === 'undefined') {
+                return [...state, action.childrenId];
+            } else {
+                for (let [index, id] of state.entries()) {
+                    if (id === action.dropId) {
+                        state.splice(++index, 0, action.childrenId);
+                        break;
+                    }
+                }
+                return state;
+            }
+
         case REMOVE_CHILD:
             //return state.filter(id => id !== action.childId);
             return state;

@@ -99,7 +99,7 @@ const DropAreaTarget = DropTarget('DROP_ROW', {
 })(DropAreaComponent);
 
 function DropAreaRow(props) {
-    const {canDrop, isOver,connectDropTarget} = props;
+    const {canDrop, isOver, connectDropTarget} = props;
     const isActive = canDrop && isOver;
     let style;
 
@@ -195,18 +195,12 @@ class SectionContainer extends Component {
                     </div>)}
                     {(childrenIds.length) ?
                         (childrenIds.map((childrenId, index) => (
-                            [
-                                <RowContainer
-                                    id={childrenId}
-                                    parentId={id}
-                                    index={index}
-                                    key={`key-${childrenId}`}
-                                />,
-                                <DropAreaRowTarget
-                                    key={`key-drip-row-${childrenId}`}
-                                    onDrop={item => this.handleDropRow(id, item)}
-                                />
-                            ]
+                            <RowContainer
+                                id={childrenId}
+                                parentId={id}
+                                index={index}
+                                key={`key-${childrenId}`}
+                            />
                         ))) :
                         (<DropAreaTarget
                             name="Row"

@@ -20,6 +20,8 @@ console.log(props);
                     {children[1]}
                 </div>
             </div>
+            {/* drop zone */}
+            {children[2]}
         </div>
     );
 }
