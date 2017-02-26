@@ -21,9 +21,11 @@ const {children} = props;
                         voluptatum.
                     </div>
                     <div className="col">23</div>
+                    <div className="col">Ab ad assumenda consectetur cumque doloribus dolorum ducimus eveniet facere
+                        iusto labore laborum libero, modi natus optio pariatur quae suscipit tempore
+                        voluptatum.</div>
                 </div>
             </div>
-
         </div>
     );
 }

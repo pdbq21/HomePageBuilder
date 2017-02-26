@@ -27,7 +27,6 @@ const sectionSource = {
     }
 };
 
-
 const sectionTarget = {
     hover(props, monitor, component) {
         const dragIndex = monitor.getItem().index;
@@ -84,6 +83,7 @@ const sourceCollect = (connect, monitor) => ({
     connectDragPreview: connect.dragPreview(),
     isDragging: monitor.isDragging()
 });
+
 const DropAreaTarget = DropTarget('DROP_ROW', {
     drop(props, monitor, component) {
         props.onDrop(monitor.getItem());
@@ -97,6 +97,50 @@ const DropAreaTarget = DropTarget('DROP_ROW', {
         canDrop: monitor.canDrop()
     };
 })(DropAreaComponent);
+
+function DropAreaRow(props) {
+    const {canDrop, isOver,connectDropTarget} = props;
+    const isActive = canDrop && isOver;
+    let style;
+
+    if (isActive) {
+        style = {
+            'height': '3em',
+            'position': 'absolute',
+            'width': '100%',
+            'bottom': 0,
+            'background': 'linear-gradient(0deg, #14a136 0%, rgba(255, 255, 255, 0) 100%)'
+        };
+    } else if (canDrop) {
+        style = {
+            'height': '3em',
+            'position': 'absolute',
+            'width': '100%',
+            'bottom': 0,
+            'background': 'linear-gradient(0deg, #14ec46 0%, rgba(255, 255, 255, 0) 100%)'
+        };
+    }
+    return connectDropTarget(
+        <div
+            className="test-drop-zone"
+            style={style}
+        />
+    );
+}
+
+const DropAreaRowTarget = DropTarget('DROP_ROW', {
+    drop(props, monitor) {
+        props.onDrop(monitor.getItem());
+        return {};
+    }
+}, (connect, monitor) => {
+    return {
+        connectDropTarget: connect.dropTarget(),
+        isOver: monitor.isOver(),
+        canDrop: monitor.canDrop()
+    };
+})(DropAreaRow);
+
 class SectionContainer extends Component {
     constructor(props) {
         super(props);
@@ -114,7 +158,7 @@ class SectionContainer extends Component {
 
     }
 
-    handleDropRow(id, item){
+    handleDropRow(id, item) {
         // id => parentId section / item => {gridType: '6-6'}
         const {ActionCreateNode, ActionAddNode, ActionGridIndex} = this.props.mapDispactchWorkArea;
         const childrenIdRow = ActionCreateNode(id).nodeId;
@@ -149,21 +193,28 @@ class SectionContainer extends Component {
                             currentId={id}
                         />
                     </div>)}
-                    {
-                        childrenIds.map((childrenId, index) => (
-                            <RowContainer
-                                id={childrenId}
-                                parentId={id}
-                                index={index}
-                                key={`key-${childrenId}`}
-                            />
-                        ))
+                    {(childrenIds.length) ?
+                        (childrenIds.map((childrenId, index) => (
+                            [
+                                <RowContainer
+                                    id={childrenId}
+                                    parentId={id}
+                                    index={index}
+                                    key={`key-${childrenId}`}
+                                />,
+                                <DropAreaRowTarget
+                                    key={`key-drip-row-${childrenId}`}
+                                    onDrop={item => this.handleDropRow(id, item)}
+                                />
+                            ]
+                        ))) :
+                        (<DropAreaTarget
+                            name="Row"
+                            index={id}
+                            onDrop={item => this.handleDropRow(id, item)}
+                        />)
                     }
-                    <DropAreaTarget
-                        name="Row"
-                        index={id}
-                        onDrop={item => this.handleDropRow(id, item)}
-                    />
+
                 </SectionComponent>
             </div>
         ));

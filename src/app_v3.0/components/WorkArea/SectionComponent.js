@@ -13,12 +13,12 @@ export default function SectionComponent(props) {
         <div className="pb-section">
             {/* control bar */}
             {children[0]}
-            <div className="pb-section-content">
-                {/* row */}
+            <div
+                className="pb-section-content"
+                style={{'position': 'relative'}}
+            >
+                {/* row / drop area */}
                 {children[1]}
-
-                {/* drop area */}
-                {children[2]}
             </div>
         </div>
     );
