@@ -9,21 +9,15 @@ import React from 'react';
 
 export default function RowComponent(props) {
 const {children} = props;
+console.log(props);
     return (
         <div className="pb-row written-row">
             {/* control bar */}
-            {children}
+            {children[0]}
             <div className="pb-row-content">
                 <div className="row">
-                    <div className="col">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        Ab ad assumenda consectetur cumque doloribus dolorum ducimus eveniet facere
-                        iusto labore laborum libero, modi natus optio pariatur quae suscipit tempore
-                        voluptatum.
-                    </div>
-                    <div className="col">23</div>
-                    <div className="col">Ab ad assumenda consectetur cumque doloribus dolorum ducimus eveniet facere
-                        iusto labore laborum libero, modi natus optio pariatur quae suscipit tempore
-                        voluptatum.</div>
+                    {/* col */}
+                    {children[1]}
                 </div>
             </div>
         </div>
