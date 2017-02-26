@@ -88,7 +88,7 @@ const DropAreaTarget = DropTarget('DROP_ROW', {
     drop(props, monitor, component) {
         props.onDrop(monitor.getItem());
         console.log('drop', props, monitor, component, monitor.getItem());//{ name: 'test_name' };
-        return {name: 'Dustbin', testDrop: 'testDrop'};
+        return {testDrop: 'testDrop'};
     }
 }, (connect, monitor) => {
     return {
