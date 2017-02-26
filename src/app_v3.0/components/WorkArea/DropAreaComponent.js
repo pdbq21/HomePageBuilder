@@ -6,7 +6,7 @@ import React from 'react'
 
 export default function DropAreaComponent(props) {
 
-    const {name, index,  canDrop, isOver,connectDropTarget} = props;
+    const {name, canDrop, isOver,connectDropTarget} = props;
     const isActive = canDrop && isOver;
     let style;
 
@@ -19,7 +19,7 @@ export default function DropAreaComponent(props) {
         <div className="card pb-dashed-card"
         style={style}>
             <div className="card-block">
-                <i className="fa fa-hand-paper-o"/> Drag and drop a <b>{name}-{index}</b> here to start!
+                <i className="fa fa-hand-paper-o"/> Drag and drop a <b>{name}</b> here to start!
             </div>
         </div>
     );

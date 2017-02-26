@@ -5,8 +5,11 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import {DropTarget} from 'react-dnd';
+import {findDOMNode} from 'react-dom';
+import {DragSource, DropTarget} from 'react-dnd';
 
+//import ItemTypes for Drag'n'Drop
+import {DRAG_ROW} from '../../constants/ItemTypes'
 // import actions
 import * as WorkAreaActions from '../../actions/WorkAreaActions'
 
@@ -17,6 +20,71 @@ import ControlBarContainer from './ControlBarContainer'
 //import component
 import RowComponent from '../../components/WorkArea/RowComponent'
 
+const sectionSource = {
+    beginDrag(props) {
+        return {
+            id: props.id,
+            index: props.index
+        };
+    }
+};
+
+const sectionTarget = {
+    hover(props, monitor, component) {
+        const dragIndex = monitor.getItem().index;
+        const hoverIndex = props.index;
+
+        // Don't replace items with themselves
+        if (dragIndex === hoverIndex) {
+            return;
+        }
+
+        // Determine rectangle on screen
+        const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
+
+        // Get vertical middle
+        const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+
+        // Determine mouse position
+        const clientOffset = monitor.getClientOffset();
+
+        // Get pixels to the top
+        const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+
+        // Only perform the move when the mouse has crossed half of the items height
+        // When dragging downwards, only move when the cursor is below 50%
+        // When dragging upwards, only move when the cursor is above 50%
+
+        // Dragging downwards
+        if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+            return;
+        }
+
+        // Dragging upwards
+        if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+            return;
+        }
+
+        // Time to actually perform the action
+        props.handleMoveRow(dragIndex, hoverIndex);
+
+        // Note: we're mutating the monitor item here!
+        // Generally it's better to avoid mutations,
+        // but it's good here for the sake of performance
+        // to avoid expensive index searches.
+        monitor.getItem().index = hoverIndex;
+    }
+};
+
+const targetCollect = connect => ({
+    connectDropTarget: connect.dropTarget()
+});
+
+const sourceCollect = (connect, monitor) => ({
+    connectDragSource: connect.dragSource(),
+    connectDragPreview: connect.dragPreview(),
+    isDragging: monitor.isDragging()
+});
 
 function DropAreaRow(props) {
     const {canDrop, isOver,connectDropTarget} = props;
@@ -85,13 +153,22 @@ class RowContainer extends Component {
     }
 
     render() {
+
         const {id, parentId} = this.props;
         const {childrenIds} = this.props.mapStateRow;
-        return (
+        const {isDragging, connectDragSource, connectDropTarget, connectDragPreview} = this.props;
+        const opacity = (isDragging) ? 0 : 1;
+
+        return connectDragPreview(connectDropTarget(
+            <div
+                style={{'opacity': opacity}}
+            >
             <RowComponent>
-                <ControlBarContainer
-                    currentId={id}
-                />
+                {connectDragSource(<div>
+                    <ControlBarContainer
+                        currentId={id}
+                    />
+                </div>)}
                 {
                     childrenIds.map((childrenId, index) => (
 
@@ -108,7 +185,8 @@ class RowContainer extends Component {
                     onDrop={item => this.handleDropRow(parentId, id, item)}
                 />
             </RowComponent>
-        );
+            </div>
+        ));
     }
 }
 function mapStateToProps(state, ownProps) {
@@ -122,4 +200,7 @@ function mapDispatchToProps(dispatch) {
         mapDispactchWorkArea: bindActionCreators(WorkAreaActions, dispatch)
     }
 }
+
+RowContainer = DropTarget(DRAG_ROW, sectionTarget, targetCollect)(RowContainer);
+RowContainer = DragSource(DRAG_ROW, sectionSource, sourceCollect)(RowContainer);
 export default connect(mapStateToProps, mapDispatchToProps)(RowContainer)

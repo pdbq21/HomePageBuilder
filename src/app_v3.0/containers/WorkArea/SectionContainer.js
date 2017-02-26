@@ -98,64 +98,22 @@ const DropAreaTarget = DropTarget('DROP_ROW', {
     };
 })(DropAreaComponent);
 
-function DropAreaRow(props) {
-    const {canDrop, isOver, connectDropTarget} = props;
-    const isActive = canDrop && isOver;
-    let style;
-
-    if (isActive) {
-        style = {
-            'height': '3em',
-            'position': 'absolute',
-            'width': '100%',
-            'bottom': 0,
-            'background': 'linear-gradient(0deg, #14a136 0%, rgba(255, 255, 255, 0) 100%)'
-        };
-    } else if (canDrop) {
-        style = {
-            'height': '3em',
-            'position': 'absolute',
-            'width': '100%',
-            'bottom': 0,
-            'background': 'linear-gradient(0deg, #14ec46 0%, rgba(255, 255, 255, 0) 100%)'
-        };
-    }
-    return connectDropTarget(
-        <div
-            className="test-drop-zone"
-            style={style}
-        />
-    );
-}
-
-const DropAreaRowTarget = DropTarget('DROP_ROW', {
-    drop(props, monitor) {
-        props.onDrop(monitor.getItem());
-        return {};
-    }
-}, (connect, monitor) => {
-    return {
-        connectDropTarget: connect.dropTarget(),
-        isOver: monitor.isOver(),
-        canDrop: monitor.canDrop()
-    };
-})(DropAreaRow);
 
 class SectionContainer extends Component {
     constructor(props) {
         super(props);
 
-        this.handleClickAddSection = this.handleClickAddSection.bind(this);
-
         this.handleDropRow = this.handleDropRow.bind(this);
+        this.handleMoveRow = this.handleMoveRow.bind(this);
     }
 
     componentDidMount() {
         // empty
     }
-
-    handleClickAddSection() {
-
+    handleMoveRow(dragIndex, hoverIndex) {
+        const {id} = this.props;
+        const {ActionMoveSection} = this.props.mapDispactchWorkArea;
+        ActionMoveSection(id, dragIndex, hoverIndex);
     }
 
     handleDropRow(id, item) {
@@ -200,11 +158,12 @@ class SectionContainer extends Component {
                                 parentId={id}
                                 index={index}
                                 key={`key-${childrenId}`}
+
+                                handleMoveRow={this.handleMoveRow}
                             />
                         ))) :
                         (<DropAreaTarget
                             name="Row"
-                            index={id}
                             onDrop={item => this.handleDropRow(id, item)}
                         />)
                     }
