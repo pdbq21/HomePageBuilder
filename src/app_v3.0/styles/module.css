@@ -1,6 +1,11 @@
-/* Root app */
+/* Box */
 .pb-main-box {
     position: relative;
+}
+
+.pb-col-4-box {
+    display: flex;
+    justify-content: space-around;
 }
 
 /* Workarea  */
@@ -121,7 +126,6 @@
 .pb-row-sketch:active {
     cursor: move;
 }
-
 .pb-row-sketch-item {
     margin: 1px;
     background-color: #95b75d;
@@ -130,6 +134,33 @@
 }
 .pb-row-sketch:hover .pb-row-sketch-item {
     background-color: #88a755;
+}
+
+.pb-element-sketch {
+    text-align: center;
+    height: calc(100% - 2px);
+    line-height: 100%;
+    margin: 1px;
+    padding: 15px 10px;
+    background-color: #474752;
+}
+.pb-element-sketch:hover {
+    color: #bfbfc1;
+    cursor: grab;
+}
+.pb-element-sketch:active {
+    cursor: move;
+}
+.pb-element-sketch * {
+    vertical-align: middle;
+}
+.pb-element-sketch-icon {
+    font-size: 2em;
+    display: block;
+    margin-bottom: 3px;
+}
+.pb-element-sketch-caption {
+
 }
 
 
