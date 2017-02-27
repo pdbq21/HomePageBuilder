@@ -4,7 +4,7 @@
 // import constants from '../constants'
 import {
     COLOR_PICKER, CREATE_ID, ADD_NODE, REMOVE_CHILD, MOVE_SECTION, GRID_INDEX, EXCHANGE_NODE_REMOVE,
-		EXCHANGE_NODE_ADD
+		EXCHANGE_NODE_ADD, MOVE_CHANGE_SECTION
 } from '../constants/WorkAreaConstants'
 
 // default data state
@@ -34,8 +34,8 @@ function createChildrenIds(state, action) {
             }
 
         case REMOVE_CHILD:
-            //return state.filter(id => id !== action.childId);
-            return state;
+            return state.filter(id => id !== action.childId);
+            //return state;
         default:
             return state
     }
@@ -52,7 +52,10 @@ const exchangeNode = (state, action) => {
 						return state.filter(id =>
 								id !== dragId
 						);
-
+        case MOVE_CHANGE_SECTION:
+						// dragId, dragIndex, hoverIndex
+						state.splice(action.hoverIndex, 0, action.dragId);
+						return state;
 				default:
 						return state
 		}
@@ -68,6 +71,7 @@ const node = (state, action) => {
             };
 
         case ADD_NODE:
+        case	REMOVE_CHILD:
             return Object.assign({}, state, {
                 childrenIds: createChildrenIds(state.childrenIds, action)
             });
@@ -89,6 +93,10 @@ const node = (state, action) => {
 
             return Object.assign({}, state, {
                 childrenIds: newCard
+            });
+        case MOVE_CHANGE_SECTION:
+            return Object.assign({}, state, {
+                childrenIds: exchangeNode(state.childrenIds, action)
             });
 				case EXCHANGE_NODE_ADD:
         case EXCHANGE_NODE_REMOVE:

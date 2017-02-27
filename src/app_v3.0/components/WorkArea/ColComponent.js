@@ -4,9 +4,9 @@
 import React from 'react'
 
 export default function ColComponent(props) {
-    const {children} = props;
+    const {children, gridIndex} = props;
     return (
-        <div className="col">
+        <div className={`col-${gridIndex}`}>
             {children}
         </div>
     );

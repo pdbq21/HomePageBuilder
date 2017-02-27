@@ -32,9 +32,9 @@ const sectionSource = {
 
 const sectionTarget = {
     hover(props, monitor, component) {
+
         const dragIndex = monitor.getItem().index;
         const hoverIndex = props.index;
-
         // Don't replace items with themselves
         if (dragIndex === hoverIndex) {
             return;
@@ -67,7 +67,12 @@ const sectionTarget = {
         }
 
         // Time to actually perform the action
-        props.handleMoveRow(dragIndex, hoverIndex);
+        if (component.props.parentId === monitor.getItem().parentId){
+						props.handleMoveRow(dragIndex, hoverIndex);
+        } else {
+						props.handleMoveRow(dragIndex, hoverIndex, monitor.getItem());
+        }
+
 
         // Note: we're mutating the monitor item here!
         // Generally it's better to avoid mutations,

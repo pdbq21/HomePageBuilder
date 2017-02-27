@@ -3,7 +3,7 @@
  */
 
 import {COLOR_PICKER, CREATE_ID, ADD_NODE, MOVE_SECTION, GRID_INDEX, EXCHANGE_NODE_ADD,
-		EXCHANGE_NODE_REMOVE
+		EXCHANGE_NODE_REMOVE, MOVE_CHANGE_SECTION, REMOVE_CHILD
 } from '../constants/WorkAreaConstants'
 
 // color data base
@@ -118,6 +118,13 @@ export function ActionAddNode(nodeId, childrenId, dropId) {
         dropId
     };
 }
+export function ActionRemoveChild(nodeId, childId) {
+		return {
+				type: REMOVE_CHILD,
+				nodeId,
+				childId
+		};
+}
 
 export function ActionGridIndex(nodeId, gridIndex) {
     return {
@@ -131,6 +138,15 @@ export function ActionMoveSection(nodeId, dragIndex, hoverIndex) {
     return {
         type: MOVE_SECTION,
         nodeId,
+        dragIndex,
+        hoverIndex
+    };
+}
+export function ActionMoveChangeSection(nodeId, dragId, dragIndex, hoverIndex) {
+    return {
+        type: MOVE_CHANGE_SECTION,
+        nodeId,
+				dragId,
         dragIndex,
         hoverIndex
     };

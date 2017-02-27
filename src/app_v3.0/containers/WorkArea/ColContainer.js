@@ -21,9 +21,10 @@ class ColContainer extends Component {
     }*/
 
     render() {
+        const {gridIndex} = this.props.mapStateCol;
         return (
             <ColComponent
-
+                gridIndex={gridIndex}
             >
                 <div className="card pb-dashed-card">
                     <div className="card-block">
@@ -38,6 +39,7 @@ class ColContainer extends Component {
 
 function mapStateToProps(state, ownProps) {
     return {
+				mapStateCol: state.WorkAreaReducer[ownProps.id],
     }
 }
 
