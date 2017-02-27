@@ -117,7 +117,8 @@ class SectionContainer extends Component {
 				// todo: It need to finish
 				const {id} = this.props;
 				const {ActionMoveSection} = this.props.mapDispactchWorkArea;
-				if (typeof item === "undefined") {
+				ActionMoveSection(id, dragIndex, hoverIndex);
+				/*if (typeof item === "undefined") {
 						ActionMoveSection(id, dragIndex, hoverIndex);
 				} else {
 						// 1. add child in new parent; 2. remove in old parent id
@@ -129,7 +130,7 @@ class SectionContainer extends Component {
 
 
 						ActionMoveSection(id, dragIndex, hoverIndex, item.id);
-				}
+				}*/
 		}
 
 		handleDropRow(id, item) {
