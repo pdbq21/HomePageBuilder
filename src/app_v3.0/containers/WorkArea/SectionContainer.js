@@ -84,10 +84,11 @@ const sourceCollect = (connect, monitor) => ({
     isDragging: monitor.isDragging()
 });
 
-const DropAreaTarget = DropTarget('DROP_ROW', {
+const DropAreaTarget = DropTarget(['DROP_ROW', 'DRAG_ROW'], {
     drop(props, monitor, component) {
+				//console.log('drop', props, monitor, component, monitor.getItem());//{ name: 'test_name' };
         props.onDrop(monitor.getItem());
-        console.log('drop', props, monitor, component, monitor.getItem());//{ name: 'test_name' };
+
         return {testDrop: 'testDrop'};
     }
 }, (connect, monitor) => {
@@ -117,21 +118,30 @@ class SectionContainer extends Component {
     }
 
     handleDropRow(id, item) {
-        // id => parentId section / item => {gridType: '6-6'}
-        const {ActionCreateNode, ActionAddNode, ActionGridIndex} = this.props.mapDispactchWorkArea;
-        const childrenIdRow = ActionCreateNode(id).nodeId;
-        // create Row
-        ActionAddNode(id, childrenIdRow);
+        // id => parentId section; item => {gridType: '6-6'} / item => {id: '', index: 0, parentId: ''}
 
-        // create Row children - Cols
-        // item.gridType => 6-6/3-3-3-3 ... split('-') => [6, 6,]
-        item.gridType.split('-').forEach((gridIndex) => {
-            const childrenId = ActionCreateNode(childrenIdRow).nodeId;
-            // create Col
-            ActionAddNode(childrenIdRow, childrenId);
-            // example: add gridIndex: 6
-            ActionGridIndex(childrenId, gridIndex);
-        });
+        if (typeof item.gridType !== 'undefined') {
+						const {ActionCreateNode, ActionAddNode, ActionGridIndex} = this.props.mapDispactchWorkArea;
+						const childrenIdRow = ActionCreateNode(id).nodeId;
+						// create Row
+						ActionAddNode(id, childrenIdRow);
+            // create Row children - Cols
+						// item.gridType => 6-6/3-3-3-3 ... split('-') => [6, 6,]
+						item.gridType.split('-').forEach((gridIndex) => {
+								const childrenId = ActionCreateNode(childrenIdRow).nodeId;
+								// create Col
+								ActionAddNode(childrenIdRow, childrenId);
+								// example: add gridIndex: 6
+								ActionGridIndex(childrenId, gridIndex);
+						});
+				}else{
+						console.log(id, item.id, item.parentId);
+						// id => drop parentId; item.id => drag id; item.parentId => drag parentId
+						const {ActionExchangeNodeRemove, ActionExchangeNodeAdd} = this.props.mapDispactchWorkArea;
+						ActionExchangeNodeRemove(item.parentId, item.id);
+						ActionExchangeNodeAdd(id, item.id)
+        }
+
     }
 
     render() {

@@ -9,7 +9,6 @@ import React from 'react';
 
 export default function RowComponent(props) {
 const {children} = props;
-console.log(props);
     return (
         <div className="pb-row written-row">
             {/* control bar */}

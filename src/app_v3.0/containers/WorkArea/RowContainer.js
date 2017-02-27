@@ -24,7 +24,8 @@ const sectionSource = {
     beginDrag(props) {
         return {
             id: props.id,
-            index: props.index
+            index: props.index,
+            parentId: props.parentId
         };
     }
 };

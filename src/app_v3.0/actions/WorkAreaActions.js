@@ -2,7 +2,9 @@
  * Created by ruslan on 23.02.17.
  */
 
-import {COLOR_PICKER, CREATE_ID, ADD_NODE, MOVE_SECTION, GRID_INDEX} from '../constants/WorkAreaConstants'
+import {COLOR_PICKER, CREATE_ID, ADD_NODE, MOVE_SECTION, GRID_INDEX, EXCHANGE_NODE_ADD,
+		EXCHANGE_NODE_REMOVE
+} from '../constants/WorkAreaConstants'
 
 // color data base
 const colors = ['EC644B',
@@ -131,5 +133,19 @@ export function ActionMoveSection(nodeId, dragIndex, hoverIndex) {
         nodeId,
         dragIndex,
         hoverIndex
+    };
+}
+export function ActionExchangeNodeRemove(nodeId, dragId) {
+    return {
+        type: EXCHANGE_NODE_REMOVE,
+        nodeId,
+        dragId
+    };
+}
+export function ActionExchangeNodeAdd(nodeId, dropId) {
+    return {
+        type: EXCHANGE_NODE_ADD,
+        nodeId,
+        dropId
     };
 }

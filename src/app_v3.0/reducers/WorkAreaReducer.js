@@ -3,7 +3,8 @@
  */
 // import constants from '../constants'
 import {
-    COLOR_PICKER, CREATE_ID, ADD_NODE, REMOVE_CHILD, MOVE_SECTION, GRID_INDEX
+    COLOR_PICKER, CREATE_ID, ADD_NODE, REMOVE_CHILD, MOVE_SECTION, GRID_INDEX, EXCHANGE_NODE_REMOVE,
+		EXCHANGE_NODE_ADD
 } from '../constants/WorkAreaConstants'
 
 // default data state
@@ -40,6 +41,23 @@ function createChildrenIds(state, action) {
     }
 }
 
+const exchangeNode = (state, action) => {
+		const {type, dragId, dropId} = action;
+		//console.log(state, dragId, dropId);
+		switch (type) {
+				case EXCHANGE_NODE_ADD:
+						return [...state, dropId];
+
+				case EXCHANGE_NODE_REMOVE:
+						return state.filter(id =>
+								id !== dragId
+						);
+
+				default:
+						return state
+		}
+};
+
 const node = (state, action) => {
     switch (action.type) {
         case CREATE_ID:
@@ -72,6 +90,12 @@ const node = (state, action) => {
             return Object.assign({}, state, {
                 childrenIds: newCard
             });
+				case EXCHANGE_NODE_ADD:
+        case EXCHANGE_NODE_REMOVE:
+            return Object.assign({}, state, {
+                childrenIds: exchangeNode(state.childrenIds, action)
+            });
+
 
         default:
             return state
