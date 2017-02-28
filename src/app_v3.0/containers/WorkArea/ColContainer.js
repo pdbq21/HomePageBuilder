@@ -21,14 +21,14 @@ class ColContainer extends Component {
     }*/
 
     render() {
-        const {gridIndex} = this.props.mapStateCol;
+        const {gridIndex, parentId} = this.props.mapStateCol;
         return (
             <ColComponent
                 gridIndex={gridIndex}
             >
                 <div className="card pb-dashed-card">
                     <div className="card-block">
-                        <i className="fa fa-hand-paper-o"/> Drag and drop a <b>Element</b> here to start!
+                        <i className="fa fa-hand-paper-o"/> Drag and drop a <b>Element {parentId}</b> here to start!
                     </div>
                 </div>
             </ColComponent>

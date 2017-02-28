@@ -4,7 +4,7 @@
 // import constants from '../constants'
 import {
     COLOR_PICKER, CREATE_ID, ADD_NODE, REMOVE_CHILD, MOVE_SECTION, GRID_INDEX, EXCHANGE_NODE_REMOVE,
-		EXCHANGE_NODE_ADD, MOVE_CHANGE_SECTION
+		EXCHANGE_NODE_ADD, MOVE_CHANGE_SECTION, MOVE_ROW
 } from '../constants/WorkAreaConstants'
 
 // default data state
@@ -94,6 +94,18 @@ const node = (state, action) => {
             return Object.assign({}, state, {
                 childrenIds: newCard
             });
+
+        case MOVE_ROW:
+						const dragRowId = state.childrenIds[action.dragIndex];
+						const hoverRowId = state.childrenIds[action.hoverIndex];
+						let newChildrenIds = state.childrenIds;
+						newChildrenIds[action.hoverIndex] = dragRowId;
+						newChildrenIds[action.dragIndex] = hoverRowId;
+
+						return Object.assign({}, state, {
+								childrenIds: newChildrenIds
+						});
+
         case MOVE_CHANGE_SECTION:
             return Object.assign({}, state, {
                 childrenIds: exchangeNode(state.childrenIds, action)

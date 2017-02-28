@@ -21,6 +21,7 @@ class WorkAreaContainer extends Component {
         this.handleClickAddSection = this.handleClickAddSection.bind(this);
 
         this.handleMoveSection = this.handleMoveSection.bind(this);
+        this.handleMoveRow = this.handleMoveRow.bind(this);
     }
 
     componentDidMount() {
@@ -31,6 +32,23 @@ class WorkAreaContainer extends Component {
         const {id} = this.props;
         const {ActionMoveSection} = this.props.mapDispactchWorkArea;
         ActionMoveSection(id, dragIndex, hoverIndex);
+    }
+
+    handleMoveRow(dragIndex, hoverIndex, item, component) {
+        // hover => component; drag => item;
+        const {id, parentId, index} = component;
+        console.log(item, id, parentId, index);
+        const {ActionMoveRow} = this.props.mapDispactchWorkArea;
+
+        if (item.parentId === parentId){
+						ActionMoveRow(item.parentId, dragIndex, hoverIndex);
+        }else{
+            // Todo: remove drag.id in old Section, add in new Section
+						const {ActionExchangeNodeRemove, ActionExchangeNodeAdd} = this.props.mapDispactchWorkArea;
+						ActionExchangeNodeRemove(item.parentId, item.id);
+						ActionExchangeNodeAdd(parentId, item.id);
+						console.log(item, id, parentId, index);
+        }
     }
 
     handleClickAddSection() {
@@ -58,6 +76,7 @@ class WorkAreaContainer extends Component {
                         color="#EC644B"
 
                         handleMoveSection={this.handleMoveSection}
+                        handleMoveRow={this.handleMoveRow}
                     />
                 ))}
             </WorkAreaComponent>

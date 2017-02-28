@@ -22,7 +22,8 @@ const sectionSource = {
 		beginDrag(props) {
 				return {
 						id: props.id,
-						index: props.index
+						index: props.index,
+						parentId: props.parentId
 				};
 		}
 };
@@ -161,7 +162,7 @@ class SectionContainer extends Component {
 		}
 
 		render() {
-				const {id} = this.props;
+				const {id, handleMoveRow} = this.props;
 				const {isDragging, connectDragSource, connectDropTarget, connectDragPreview} = this.props;
 				const opacity = (isDragging) ? 0 : 1;
 				const {childrenIds} = this.props.mapStateSection;
@@ -185,7 +186,7 @@ class SectionContainer extends Component {
 																index={index}
 																key={`key-${childrenId}`}
 
-																handleMoveRow={this.handleMoveRow}
+																handleMoveRow={handleMoveRow}
 														/>
 												))) :
 												(<DropAreaTarget

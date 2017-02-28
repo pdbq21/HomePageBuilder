@@ -67,13 +67,14 @@ const sectionTarget = {
         }
 
         // Time to actually perform the action
+        /*console.log(props, component.props, monitor.getItem())
         if (component.props.parentId === monitor.getItem().parentId){
 						props.handleMoveRow(dragIndex, hoverIndex);
         } else {
 						props.handleMoveRow(dragIndex, hoverIndex, monitor.getItem());
-        }
+        }*/
 
-
+				props.handleMoveRow(dragIndex, hoverIndex, monitor.getItem(), component.props);
         // Note: we're mutating the monitor item here!
         // Generally it's better to avoid mutations,
         // but it's good here for the sake of performance
