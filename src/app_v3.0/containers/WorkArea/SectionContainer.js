@@ -29,6 +29,9 @@ const sectionSource = {
 };
 
 const sectionTarget = {
+		drop(){
+			console.log('drop')
+		},
 		hover(props, monitor, component) {
 				const dragIndex = monitor.getItem().index;
 				const hoverIndex = props.index;
@@ -152,12 +155,11 @@ class SectionContainer extends Component {
 								ActionGridIndex(childrenId, gridIndex);
 						});
 				} else {
-						console.log(id, item.id, item.parentId);
+						//console.log(id, item.id, item.parentId);
 						// id => drop parentId; item.id => drag id; item.parentId => drag parentId
-						const {ActionExchangeNodeRemove, ActionExchangeNodeAdd, ActionActiveOpacity} = this.props.mapDispactchWorkArea;
+						const {ActionExchangeNodeRemove, ActionExchangeNodeAdd} = this.props.mapDispactchWorkArea;
 						ActionExchangeNodeRemove(item.parentId, item.id);
 						ActionExchangeNodeAdd(id, item.id);
-						ActionActiveOpacity('');
 				}
 
 		}

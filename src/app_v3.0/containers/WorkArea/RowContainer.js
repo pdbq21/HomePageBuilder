@@ -27,6 +27,10 @@ const sectionSource = {
             index: props.index,
             parentId: props.parentId
         };
+    },
+		endDrag(props){
+				const {ActionActiveOpacity} = props.mapDispactchWorkArea;
+				ActionActiveOpacity('');
     }
 };
 
@@ -120,6 +124,7 @@ function DropAreaRow(props) {
 
 const DropAreaRowTarget = DropTarget('DROP_ROW', {
     drop(props, monitor) {
+
         props.onDrop(monitor.getItem());
         return {};
     }
@@ -206,6 +211,7 @@ class RowContainer extends Component {
 function mapStateToProps(state, ownProps) {
     return {
         mapStateRow: state.WorkAreaReducer[ownProps.id],
+        mapStateWorkArea: state.WorkAreaReducer,
     }
 }
 
