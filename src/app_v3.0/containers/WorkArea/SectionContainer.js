@@ -29,9 +29,7 @@ const sectionSource = {
 };
 
 const sectionTarget = {
-    drop(){
-        console.log('drop')
-    },
+
     hover(props, monitor, component) {
         const dragIndex = monitor.getItem().index;
         const hoverIndex = props.index;
