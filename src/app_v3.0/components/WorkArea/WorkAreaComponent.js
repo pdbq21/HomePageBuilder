@@ -18,6 +18,36 @@ const { children, handleClickAddSection } = props;
             {/* section */}
             {children}
 
+            {/* custom code */}
+
+            <div className="pb-section">
+                <div className="pb-bar pb-control-bar"></div>
+                <div className="pb-section-content">
+                    <div className="pb-row written-row">
+                        <div className="pb-bar pb-control-bar"></div>
+                        <div className="pb-row-content">
+                            <div className="row">
+                                <div className="col">
+                                    <div className="pb-element pb-image-element">
+                                        <i className="pb-image-element-icon fa fa-image"/>
+                                        <span className="pb-image-element-caption">
+                                            Drop your image here OR:
+                                        </span>
+                                        <button className="pb-image-element-button btn btn-primary">
+                                            Select an image
+                                        </button>
+                                    </div>
+                                </div>
+                                <div className="col"></div>
+                                <div className="col"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* custom code */}
+
             <button
                 className="pb-add-section-button"
                 onClick={handleClickAddSection}
