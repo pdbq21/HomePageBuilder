@@ -47,11 +47,11 @@ class ControlBarContainer extends Component {
         event.preventDefault();
         if (event.type === 'contextmenu') {
 // if click right button
-            console.log(event.clientX, event.clientY);
+            console.log(event.nativeEvent.offsetY);
 
             const {currentId} = this.props;
             const {ActionActiveContextMenu} = this.props.mapDispactchWorkArea;
-            ActionActiveContextMenu(currentId);
+            ActionActiveContextMenu(currentId, event.nativeEvent.offsetY);
             this.focusContextMenu();
         } else {
             // if click left button => event.type === 'click'
@@ -60,7 +60,7 @@ class ControlBarContainer extends Component {
 
     handelBlurContextMenu() {
         const {ActionActiveContextMenu} = this.props.mapDispactchWorkArea;
-        ActionActiveContextMenu('');
+        ActionActiveContextMenu('', 0);
         /*let currentTarget = e.currentTarget;
 
          setTimeout(function () {
@@ -79,7 +79,7 @@ class ControlBarContainer extends Component {
         const {currentId, connectDragSource} = this.props;
         const {colorControlBar} = this.props.mapCurrentState;
         const {activeContextMenu} = this.props.mapStateWorkArea;
-        const display = (activeContextMenu === currentId) ? 'block' : 'none';
+        const display = (activeContextMenu.id === currentId) ? 'block' : 'none';
 //classActiveMenu
         return (
             <div>
@@ -95,7 +95,8 @@ class ControlBarContainer extends Component {
                         className="pb-context-menu"
                         onBlur={this.handelBlurContextMenu}
                         style={{
-                            'display': display
+                            'display': display,
+                            'top': activeContextMenu.top
                         }}
                         ref="contextMenu"
                         tabIndex={0}

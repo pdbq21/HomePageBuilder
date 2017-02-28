@@ -180,10 +180,11 @@ export function ActionActiveOpacity(id) {
         id
     };
 }
-export function ActionActiveContextMenu(id) {
+export function ActionActiveContextMenu(id, top) {
     return {
         type: ACTIVE_CONTEXT_MENU,
-        id
+        id,
+        top
     };
 }
 /*
