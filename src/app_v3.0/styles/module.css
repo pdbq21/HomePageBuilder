@@ -262,7 +262,17 @@
 .pb-control-bar:active {
     cursor: move;
 }
-
+/* Bar > Context menu*/
+.pb-context-menu{
+    position: absolute;
+    background-color: #e8e8f5;
+    z-index: 1;
+    list-style-type: none;
+    padding: 1em;
+    top: 0;
+    left: 1em;
+cursor: auto;
+}
 
 /* Card */
 .pb-dashed-card {

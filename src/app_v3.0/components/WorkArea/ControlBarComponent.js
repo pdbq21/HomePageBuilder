@@ -7,7 +7,7 @@ import React from 'react';
 //import component
 
 export default function ControlBarComponent(props) {
-    const {backgroundColor, handleClickControlBar, handelBlurControlBar} = props;
+    const {backgroundColor, handleClickControlBar} = props;
 
     return (
         <div
@@ -17,7 +17,7 @@ export default function ControlBarComponent(props) {
             }}
             onClick={handleClickControlBar}
             onContextMenu={handleClickControlBar}
-            onBlur={handelBlurControlBar}
+
         >
 
         </div>

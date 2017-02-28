@@ -20,7 +20,7 @@ const { children, handleClickAddSection } = props;
 
             {/* custom code */}
 
-            <div className="pb-section">
+            {/*<div className="pb-section">
                 <div className="pb-bar pb-control-bar"></div>
                 <div className="pb-section-content">
                     <div className="pb-row written-row">
@@ -31,7 +31,7 @@ const { children, handleClickAddSection } = props;
                                     <div className="pb-element pb-link-element">
                                         <a href="#">
                                             Sample link
-                                            {/* e.preventDefault() */}
+                                            /!* e.preventDefault() *!/
                                         </a>
                                     </div>
                                 </div>
@@ -43,7 +43,7 @@ const { children, handleClickAddSection } = props;
                                         </span>
                                         <button className="pb-image-element-button btn btn-primary">
                                             Select an image
-                                            {/* e.preventDefault() -> click on input below */}
+                                            /!* e.preventDefault() -> click on input below *!/
                                         </button>
                                         <input type="file" className="pb-image-element-input"/>
                                     </div>
@@ -69,7 +69,7 @@ const { children, handleClickAddSection } = props;
                                         </span>
                                         <button className="pb-gallery-element-button btn btn-primary">
                                             Select images
-                                            {/* e.preventDefault() -> click on input below */}
+                                            /!* e.preventDefault() -> click on input below *!/
                                         </button>
                                         <input type="file" className="pb-gallery-element-input"/>
                                     </div>
@@ -78,7 +78,7 @@ const { children, handleClickAddSection } = props;
                                     <div className="pb-element pb-button-element">
                                         <a href="#" className="btn btn-primary">
                                             Sample button text
-                                            {/* e.preventDefault() */}
+                                            /!* e.preventDefault() *!/
                                         </a>
                                     </div>
                                 </div>
@@ -94,7 +94,7 @@ const { children, handleClickAddSection } = props;
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>*/}
 
             {/* custom code */}
 
