@@ -3,7 +3,8 @@
  */
 
 import {COLOR_PICKER, CREATE_ID, ADD_NODE, MOVE_SECTION, GRID_INDEX, EXCHANGE_NODE_ADD,
-		EXCHANGE_NODE_REMOVE, MOVE_CHANGE_SECTION, REMOVE_CHILD, MOVE_ROW, IS_OPACITY
+		EXCHANGE_NODE_REMOVE, MOVE_CHANGE_SECTION, REMOVE_CHILD, MOVE_ROW, IS_OPACITY,
+		ACTIVE_CONTEXT_MENU
 } from '../constants/WorkAreaConstants'
 
 // color data base
@@ -179,3 +180,17 @@ export function ActionActiveOpacity(id) {
         id
     };
 }
+export function ActionActiveContextMenu(id) {
+    return {
+        type: ACTIVE_CONTEXT_MENU,
+        id
+    };
+}
+/*
+export function ActionBlurContextMenu(id) {
+    return {
+        type: BLUR_CONTEXT_MENU,
+        id
+    };
+}*/
+

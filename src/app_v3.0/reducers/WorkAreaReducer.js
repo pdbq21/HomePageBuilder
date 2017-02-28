@@ -4,7 +4,7 @@
 // import constants from '../constants'
 import {
     COLOR_PICKER, CREATE_ID, ADD_NODE, REMOVE_CHILD, MOVE_SECTION, GRID_INDEX, EXCHANGE_NODE_REMOVE,
-		EXCHANGE_NODE_ADD, MOVE_CHANGE_SECTION, MOVE_ROW, IS_OPACITY
+		EXCHANGE_NODE_ADD, MOVE_CHANGE_SECTION, MOVE_ROW, IS_OPACITY, ACTIVE_CONTEXT_MENU
 } from '../constants/WorkAreaConstants'
 
 // default data state
@@ -13,7 +13,8 @@ const initialState = {
         id: 'id_work_area',
         childrenIds: []
     },
-		opacityId: ''
+		opacityId: '',
+		activeContextMenu: ''
 };
 
 
@@ -112,6 +113,7 @@ const node = (state, action) => {
             return Object.assign({}, state, {
                 childrenIds: exchangeNode(state.childrenIds, action)
             });
+
 				case EXCHANGE_NODE_ADD:
         case EXCHANGE_NODE_REMOVE:
             return Object.assign({}, state, {
@@ -131,6 +133,10 @@ export function WorkAreaReducer(state = initialState, action) {
 						case IS_OPACITY:
 								return Object.assign({}, state, {
 										opacityId: action.id
+								});
+						case ACTIVE_CONTEXT_MENU:
+								return Object.assign({}, state, {
+										activeContextMenu: action.id
 								});
 
 
