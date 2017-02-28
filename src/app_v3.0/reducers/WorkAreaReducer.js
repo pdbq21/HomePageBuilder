@@ -4,7 +4,8 @@
 // import constants from '../constants'
 import {
     COLOR_PICKER, CREATE_ID, ADD_NODE, REMOVE_CHILD, MOVE_SECTION, GRID_INDEX, EXCHANGE_NODE_REMOVE,
-    EXCHANGE_NODE_ADD, MOVE_CHANGE_SECTION, MOVE_ROW, IS_OPACITY, ACTIVE_CONTEXT_MENU
+    EXCHANGE_NODE_ADD, MOVE_CHANGE_SECTION, MOVE_ROW, IS_OPACITY, ACTIVE_CONTEXT_MENU,
+    DELETE_NODE
 } from '../constants/WorkAreaConstants'
 
 // default data state
@@ -78,7 +79,7 @@ const node = (state, action) => {
             };
 
         case ADD_NODE:
-        case    REMOVE_CHILD:
+        case REMOVE_CHILD:
             return Object.assign({}, state, {
                 childrenIds: createChildrenIds(state.childrenIds, action)
             });
@@ -128,7 +129,17 @@ const node = (state, action) => {
             return state
     }
 };
-
+// Todo: refactoring functions getAllDescendantIds and deleteMany
+const getAllDescendantIds = (state, nodeId) => (
+    state[nodeId].childrenIds.reduce((acc, childId) => (
+        [...acc, childId, ...getAllDescendantIds(state, childId)]
+    ), [])
+);
+const deleteMany = (state, ids) => {
+    state = {...state};
+    ids.forEach(id => delete state[id]);
+    return state
+};
 export function WorkAreaReducer(state = initialState, action) {
     const {nodeId} = action;
 
@@ -150,6 +161,10 @@ export function WorkAreaReducer(state = initialState, action) {
             default:
                 return state
         }
+    }
+    if (action.type === DELETE_NODE) {
+        const descendantIds = getAllDescendantIds(state, nodeId);
+        return deleteMany(state, [nodeId, ...descendantIds])
     }
 
     return Object.assign({}, state, {

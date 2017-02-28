@@ -20,6 +20,7 @@ class ControlBarContainer extends Component {
         this.getColor = this.getColor.bind(this);
         this.handleClickControlBar = this.handleClickControlBar.bind(this);
         this.handelBlurContextMenu = this.handelBlurContextMenu.bind(this);
+        this.handleRemove = this.handleRemove.bind(this);
     }
 
     componentWillMount() {
@@ -75,8 +76,19 @@ class ControlBarContainer extends Component {
          }, 200);*/
     }
 
+    handleRemove(id, parentId){
+        //console.log(parentId, id);
+        const {ActionRemoveChild, ActionDeleteNode, ActionActiveContextMenu} = this.props.mapDispactchWorkArea;
+        //const {ActionDeleteNodeStyles} = this.props.mapDispactchEditPanel;
+        ActionRemoveChild(parentId, id);
+        ActionDeleteNode(id);
+        ActionActiveContextMenu('', 0);
+// remove styles
+        //ActionDeleteNodeStyles(id);
+    }
+
     render() {
-        const {currentId, connectDragSource} = this.props;
+        const {currentId, parentId, connectDragSource} = this.props;
         const {colorControlBar} = this.props.mapCurrentState;
         const {activeContextMenu} = this.props.mapStateWorkArea;
         const display = (activeContextMenu.id === currentId) ? 'block' : 'none';
@@ -101,9 +113,9 @@ class ControlBarContainer extends Component {
                         ref="contextMenu"
                         tabIndex={0}
                     >
-                        <li>Remove</li>
-                        <li>Copy</li>
-                        <li>Paste</li>
+                        <li onClick={() => this.handleRemove(currentId, parentId)} className="pb-context-menu-btn">Remove</li>
+                        <li className="pb-context-menu-btn">Copy</li>
+                        <li className="pb-context-menu-btn">Paste</li>
                     </ul>
                 </div>
 

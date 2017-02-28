@@ -262,16 +262,32 @@
 .pb-control-bar:active {
     cursor: move;
 }
-/* Bar > Context menu*/
-.pb-context-menu{
+/* Bar + Context menu*/
+.pb-context-menu,
+.pb-context-menu:focus{
+    outline: none;
     position: absolute;
-    background-color: #e8e8f5;
+    background-color: #dbf5e9;
     z-index: 1;
     list-style-type: none;
     padding: 1em;
     top: 0;
-    left: 1em;
-cursor: auto;
+    left: 1.5em;
+cursor: default;
+}
+.pb-context-menu:before{
+    border: 8px solid transparent;
+    border-right-color: #b65e41;
+    content: "";
+    display: block;
+    height: 0;
+    width: 0;
+    position: absolute;
+    top: 0;
+    left: -1em;
+}
+.pb-context-menu-btn:hover{
+    background-color: #00c853;
 }
 
 /* Card */

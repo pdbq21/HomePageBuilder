@@ -2,9 +2,10 @@
  * Created by ruslan on 23.02.17.
  */
 
-import {COLOR_PICKER, CREATE_ID, ADD_NODE, MOVE_SECTION, GRID_INDEX, EXCHANGE_NODE_ADD,
-		EXCHANGE_NODE_REMOVE, MOVE_CHANGE_SECTION, REMOVE_CHILD, MOVE_ROW, IS_OPACITY,
-		ACTIVE_CONTEXT_MENU
+import {
+    COLOR_PICKER, CREATE_ID, ADD_NODE, MOVE_SECTION, GRID_INDEX, EXCHANGE_NODE_ADD,
+    EXCHANGE_NODE_REMOVE, MOVE_CHANGE_SECTION, REMOVE_CHILD, MOVE_ROW, IS_OPACITY,
+    ACTIVE_CONTEXT_MENU, DELETE_NODE
 } from '../constants/WorkAreaConstants'
 
 // color data base
@@ -120,13 +121,18 @@ export function ActionAddNode(nodeId, childrenId, dropId) {
     };
 }
 export function ActionRemoveChild(nodeId, childId) {
-		return {
-				type: REMOVE_CHILD,
-				nodeId,
-				childId
-		};
+    return {
+        type: REMOVE_CHILD,
+        nodeId,
+        childId
+    };
 }
-
+export function ActionDeleteNode(nodeId) {
+    return {
+        type: DELETE_NODE,
+        nodeId
+    };
+}
 export function ActionGridIndex(nodeId, gridIndex) {
     return {
         type: GRID_INDEX,
@@ -155,7 +161,7 @@ export function ActionMoveChangeSection(nodeId, dragId, dragIndex, hoverIndex) {
     return {
         type: MOVE_CHANGE_SECTION,
         nodeId,
-				dragId,
+        dragId,
         dragIndex,
         hoverIndex
     };
@@ -188,10 +194,10 @@ export function ActionActiveContextMenu(id, top) {
     };
 }
 /*
-export function ActionBlurContextMenu(id) {
-    return {
-        type: BLUR_CONTEXT_MENU,
-        id
-    };
-}*/
+ export function ActionBlurContextMenu(id) {
+ return {
+ type: BLUR_CONTEXT_MENU,
+ id
+ };
+ }*/
 
