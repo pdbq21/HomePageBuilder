@@ -4,6 +4,7 @@
 
 // import lib
 import React, {Component} from 'react';
+import ReactDOM from 'react-dom'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 //import component
@@ -29,7 +30,11 @@ class ControlBarContainer extends Component {
 		}
 
 		componentDidMount() {
-				// empty
+				this.focusDiv();
+		}
+
+		focusDiv() {
+				ReactDOM.findDOMNode(this.refs.theDiv).focus();
 		}
 
 		getColor() {
@@ -44,13 +49,17 @@ class ControlBarContainer extends Component {
 // if click right button
 
 						console.log(event.clientX, event.clientY);
+
 						const {currentId} = this.props;
 						const {ActionActiveContextMenu} = this.props.mapDispactchWorkArea;
 						ActionActiveContextMenu(currentId);
-
+						//event.target.focus();
+						this.focusDiv();
 				} else {
 						// if click left button => event.type === 'click'
 				}
+
+
 		}
 
 		handelBlurControlBar(e){
@@ -72,7 +81,7 @@ class ControlBarContainer extends Component {
 				const {currentId, connectDragSource} = this.props;
 				const {colorControlBar} = this.props.mapCurrentState;
 				const {activeContextMenu} = this.props.mapStateWorkArea;
-
+//classActiveMenu
 				return (
 						<div>
 								{connectDragSource(<div>
@@ -83,12 +92,11 @@ class ControlBarContainer extends Component {
 										>
 										</ControlBarComponent>
 								</div>)}
-								{(activeContextMenu === currentId)?
-										(<ContextMenuComponent
-												handelBlurControlBar={this.handelBlurControlBar}
-										/>) :
-										null
-								}
+								<ContextMenuComponent
+										handelBlurControlBar={this.handelBlurControlBar}
+										visibility={(activeContextMenu === currentId)? 'visible' : 'hidden'}
+								/>
+
 
 						</div>
 				);
