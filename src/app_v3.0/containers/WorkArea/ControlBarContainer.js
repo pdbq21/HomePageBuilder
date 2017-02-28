@@ -8,6 +8,7 @@ import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 //import component
 import ControlBarComponent from '../../components/WorkArea/ControlBarComponent'
+import ContextMenuComponent from '../../components/WorkArea/ContextMenuComponent'
 // import actions
 import * as WorkAreaActions from '../../actions/WorkAreaActions'
 
@@ -16,11 +17,13 @@ class ControlBarContainer extends Component {
 				super(props);
 
 				this.getColor = this.getColor.bind(this);
+				this.handleClickControlBar = this.handleClickControlBar.bind(this);
+				this.handelBlurControlBar = this.handelBlurControlBar.bind(this);
 		}
 
 		componentWillMount() {
-				const {colorControlBar} = this.props.mapStateWorkArea;
-				if (typeof colorControlBar === "undefined"){
+				const {colorControlBar} = this.props.mapCurrentState;
+				if (typeof colorControlBar === "undefined") {
 						this.getColor();
 				}
 		}
@@ -35,22 +38,69 @@ class ControlBarContainer extends Component {
 				return ActionColorPicker(currentId);
 		}
 
-		render() {
-				const {colorControlBar} = this.props.mapStateWorkArea;
-				return (
-						<ControlBarComponent
-								backgroundColor={colorControlBar}
-						>
+		handleClickControlBar(event) {
+				event.preventDefault();
+				if (event.type === 'contextmenu') {
+// if click right button
 
-						</ControlBarComponent>
+						console.log(event.clientX, event.clientY);
+						const {currentId} = this.props;
+						const {ActionActiveContextMenu} = this.props.mapDispactchWorkArea;
+						ActionActiveContextMenu(currentId);
+
+				} else {
+						// if click left button => event.type === 'click'
+				}
+		}
+
+		handelBlurControlBar(e){
+				let currentTarget = e.currentTarget;
+
+				setTimeout(function() {
+						if (!currentTarget.contains(document.activeElement)) {
+								console.log('component officially blurred');
+						}
+				}, 0);
+				/*const {ActionActiveContextMenu} = this.props.mapDispactchWorkArea;
+				//Todo: need change this logic
+				setTimeout(function () {
+						ActionActiveContextMenu('');
+				}, 200);*/
+		}
+
+		render() {
+				const {currentId, connectDragSource} = this.props;
+				const {colorControlBar} = this.props.mapCurrentState;
+				const {activeContextMenu} = this.props.mapStateWorkArea;
+
+				return (
+						<div>
+								{connectDragSource(<div>
+										<ControlBarComponent
+												backgroundColor={colorControlBar}
+												handleClickControlBar={(event) => this.handleClickControlBar(event)}
+												handelBlurControlBar={this.handelBlurControlBar}
+										>
+										</ControlBarComponent>
+								</div>)}
+								{(activeContextMenu === currentId)?
+										(<ContextMenuComponent
+												handelBlurControlBar={this.handelBlurControlBar}
+										/>) :
+										null
+								}
+
+						</div>
 				);
+
 		}
 }
 
 
 function mapStateToProps(state, ownProps) {
 		return {
-				mapStateWorkArea: state.WorkAreaReducer[ownProps.currentId],
+				mapCurrentState: state.WorkAreaReducer[ownProps.currentId],
+				mapStateWorkArea: state.WorkAreaReducer,
 				mapStateToolbar: state.ToolbarReducer
 		}
 }

@@ -176,11 +176,10 @@ class SectionContainer extends Component {
 								<SectionComponent
 
 								>
-										{connectDragSource(<div>
 												<ControlBarContainer
 														currentId={id}
+														connectDragSource={connectDragSource}
 												/>
-										</div>)}
 										{(childrenIds.length) ?
 												(childrenIds.map((childrenId, index) => (
 														<RowContainer
