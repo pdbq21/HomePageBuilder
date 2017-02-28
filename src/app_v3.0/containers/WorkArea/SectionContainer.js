@@ -154,15 +154,16 @@ class SectionContainer extends Component {
 				} else {
 						console.log(id, item.id, item.parentId);
 						// id => drop parentId; item.id => drag id; item.parentId => drag parentId
-						const {ActionExchangeNodeRemove, ActionExchangeNodeAdd} = this.props.mapDispactchWorkArea;
+						const {ActionExchangeNodeRemove, ActionExchangeNodeAdd, ActionActiveOpacity} = this.props.mapDispactchWorkArea;
 						ActionExchangeNodeRemove(item.parentId, item.id);
-						ActionExchangeNodeAdd(id, item.id)
+						ActionExchangeNodeAdd(id, item.id);
+						ActionActiveOpacity('');
 				}
 
 		}
 
 		render() {
-				const {id, handleMoveRow} = this.props;
+				const {id, handleMoveRow, opacityId} = this.props;
 				const {isDragging, connectDragSource, connectDropTarget, connectDragPreview} = this.props;
 				const opacity = (isDragging) ? 0 : 1;
 				const {childrenIds} = this.props.mapStateSection;
@@ -185,7 +186,7 @@ class SectionContainer extends Component {
 																parentId={id}
 																index={index}
 																key={`key-${childrenId}`}
-
+																opacityId={(opacityId === childrenId)}
 																handleMoveRow={handleMoveRow}
 														/>
 												))) :

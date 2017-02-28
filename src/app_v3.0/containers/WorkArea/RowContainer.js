@@ -35,8 +35,12 @@ const sectionTarget = {
 
         const dragIndex = monitor.getItem().index;
         const hoverIndex = props.index;
+        const dragParentId = monitor.getItem().parentId;
+        const hoverParentId = component.props.parentId;
+
+
         // Don't replace items with themselves
-        if (dragIndex === hoverIndex) {
+        if (dragIndex === hoverIndex && dragParentId === hoverParentId) {
             return;
         }
 
@@ -137,6 +141,9 @@ class RowContainer extends Component {
     componentDidMount() {
         // empty
     }
+    componentWillMount() {
+        // empty
+    }
 
 
     handleDropRow(parentId, id, item) {
@@ -161,10 +168,10 @@ class RowContainer extends Component {
 
     render() {
 
-        const {id, parentId} = this.props;
+        const {id, parentId, opacityId} = this.props;
         const {childrenIds} = this.props.mapStateRow;
         const {isDragging, connectDragSource, connectDropTarget, connectDragPreview} = this.props;
-        const opacity = (isDragging) ? 0 : 1;
+        const opacity = (isDragging || opacityId) ? 0 : 1;
 
         return connectDragPreview(connectDropTarget(
             <div

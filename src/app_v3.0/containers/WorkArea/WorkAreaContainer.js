@@ -34,21 +34,59 @@ class WorkAreaContainer extends Component {
         ActionMoveSection(id, dragIndex, hoverIndex);
     }
 
-    handleMoveRow(dragIndex, hoverIndex, item, component) {
+    handleMoveRow(dragIndex, hoverIndex, items, component) {
         // hover => component; drag => item;
-        const {id, parentId, index} = component;
-        console.log(item, id, parentId, index);
-        const {ActionMoveRow} = this.props.mapDispactchWorkArea;
+        const {parentId} = component;
 
-        if (item.parentId === parentId){
-						ActionMoveRow(item.parentId, dragIndex, hoverIndex);
-        }else{
+        const {ActionMoveRow} = this.props.mapDispactchWorkArea;
+				//console.log('index drag: ',items.index, 'index hover: ',index);
+// up index drag:  0 index hover:  3
+        //down index drag:  2 index hover:  0
+				//console.log('this parent', component);
+        if (items.parentId === parentId){
+
+						ActionMoveRow(items.parentId, dragIndex, hoverIndex);
+				}else{
+						//console.log('other parent', items.parentId, dragIndex, hoverIndex);
+						// Todo: remove drag in old Section, add in new Section, need: change items.parentId on component.parentId
+						const {ActionRemoveChild, ActionAddNode, ActionActiveOpacity} = this.props.mapDispactchWorkArea;
+						ActionRemoveChild(items.parentId, items.id);
+						ActionAddNode(component.parentId, items.id, component.id);
+						ActionActiveOpacity(items.id);
+						//const opacity = 0;
+						items.parentId = component.parentId;
+						items.index = component.index;
+						let newHoverIndex = items.index + 1;
+						ActionMoveRow(items.parentId, items.index, newHoverIndex);
+
+
+						/*if (items.index > index){
+								const {ActionRemoveChild, ActionAddNode} = this.props.mapDispactchWorkArea;
+								ActionRemoveChild(items.parentId, items.id);
+								ActionAddNode(component.parentId, items.id, component.id);
+            }else if (items.index < index ){
+								const {ActionRemoveChild, ActionAddNode} = this.props.mapDispactchWorkArea;
+								ActionRemoveChild(items.parentId, items.id);
+								ActionAddNode(component.parentId, items.id, component.id);
+								items.parentId = component.parentId;
+								items.index = component.index;
+								let newHoverIndex = items.index + 1;
+								ActionMoveRow(items.parentId, items.index, newHoverIndex);
+            }*/
+				//component.index = ++items.index;
+						//ActionMoveRow(items.parentId, dragIndex, hoverIndex);
+// run Up / run Down
+//console.log()
+//component.index = ++items.index;
+				}
+        /*}else{
             // Todo: remove drag.id in old Section, add in new Section
 						const {ActionExchangeNodeRemove, ActionExchangeNodeAdd} = this.props.mapDispactchWorkArea;
 						ActionExchangeNodeRemove(item.parentId, item.id);
 						ActionExchangeNodeAdd(parentId, item.id);
 						console.log(item, id, parentId, index);
-        }
+        }*/
+
     }
 
     handleClickAddSection() {
@@ -62,6 +100,7 @@ class WorkAreaContainer extends Component {
     render() {
         const {id} = this.props;
         const {childrenIds} = this.props.mapStateWorkArea[id];
+        const {opacityId} = this.props.mapStateWorkArea;
         return (
             <WorkAreaComponent
                 handleClickAddSection={this.handleClickAddSection}
@@ -72,11 +111,9 @@ class WorkAreaContainer extends Component {
                         parentId={id}
                         key={`key-${childrenId}`}
                         index={index}
-
-                        color="#EC644B"
-
                         handleMoveSection={this.handleMoveSection}
                         handleMoveRow={this.handleMoveRow}
+                        opacityId={opacityId}
                     />
                 ))}
             </WorkAreaComponent>

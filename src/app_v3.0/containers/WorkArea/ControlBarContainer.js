@@ -19,7 +19,10 @@ class ControlBarContainer extends Component {
 		}
 
 		componentWillMount() {
-				this.getColor();
+				const {colorControlBar} = this.props.mapStateWorkArea;
+				if (typeof colorControlBar === "undefined"){
+						this.getColor();
+				}
 		}
 
 		componentDidMount() {

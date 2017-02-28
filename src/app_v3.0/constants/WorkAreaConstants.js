@@ -17,3 +17,5 @@ export const EXCHANGE_NODE_ADD = 'EXCHANGE_NODE_ADD';
 export const EXCHANGE_NODE_REMOVE = 'EXCHANGE_NODE_REMOVE';
 
 export const GRID_INDEX = 'GRID_INDEX';
+
+export const IS_OPACITY = 'IS_OPACITY';

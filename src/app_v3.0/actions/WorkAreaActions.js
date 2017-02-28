@@ -3,7 +3,7 @@
  */
 
 import {COLOR_PICKER, CREATE_ID, ADD_NODE, MOVE_SECTION, GRID_INDEX, EXCHANGE_NODE_ADD,
-		EXCHANGE_NODE_REMOVE, MOVE_CHANGE_SECTION, REMOVE_CHILD, MOVE_ROW
+		EXCHANGE_NODE_REMOVE, MOVE_CHANGE_SECTION, REMOVE_CHILD, MOVE_ROW, IS_OPACITY
 } from '../constants/WorkAreaConstants'
 
 // color data base
@@ -171,5 +171,11 @@ export function ActionExchangeNodeAdd(nodeId, dropId) {
         type: EXCHANGE_NODE_ADD,
         nodeId,
         dropId
+    };
+}
+export function ActionActiveOpacity(id) {
+    return {
+        type: IS_OPACITY,
+        id
     };
 }
