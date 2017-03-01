@@ -28,12 +28,9 @@ class ControlBarContainer extends Component {
     }
 
     componentDidMount() {
-        //this.focusContextMenu();
+        //empty
     }
 
-    /*focusContextMenu() {
-        setTimeout(() => (ReactDOM.findDOMNode(this.refs.contextMenu).focus()), 0);
-    }*/
 
     getColor() {
         const {currentId} = this.props;
@@ -126,7 +123,6 @@ class ControlBarContainer extends Component {
 function mapStateToProps(state, ownProps) {
     return {
         mapCurrentState: state.WorkAreaReducer[ownProps.currentId],
-        mapStateWorkArea: state.WorkAreaReducer,
         mapStateToolbar: state.ToolbarReducer
     }
 }

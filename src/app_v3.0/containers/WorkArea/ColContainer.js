@@ -57,7 +57,6 @@ class ColContainer extends Component {
 		}
 
 		handleDropElement(id, item) {
-				console.log('drop element', id, item.elementType);
 				const {ActionCreateNode, ActionAddNode, ActionElementType} = this.props.mapDispactchWorkArea;
 				const childrenIdElement = ActionCreateNode(id).nodeId;
 				// create Element
