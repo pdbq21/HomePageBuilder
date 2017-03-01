@@ -35,7 +35,8 @@ function DropAreaElement(props) {
 				</div>);
 }
 
-const DropAreaTarget = DropTarget('DROP_ELEMENT', {
+
+const DropAreaTarget = DropTarget(['DROP_ELEMENT', 'DRAG_ELEMENT'], {
 		drop(props, monitor) {
 				//console.log('drop', props, monitor, component, monitor.getItem());//{ name: 'test_name' };
 				props.onDrop(monitor.getItem());
@@ -57,18 +58,35 @@ class ColContainer extends Component {
 		}
 
 		handleDropElement(id, item) {
-				const {ActionCreateNode, ActionAddNode, ActionElementType} = this.props.mapDispactchWorkArea;
+				/*const {ActionCreateNode, ActionAddNode, ActionElementType} = this.props.mapDispactchWorkArea;
 				const childrenIdElement = ActionCreateNode(id).nodeId;
 				// create Element
 				ActionAddNode(id, childrenIdElement);
 				// add element type => Text/Image/Button...
-				ActionElementType(childrenIdElement, item.elementType);
+				ActionElementType(childrenIdElement, item.elementType);*/
+
+
+				if (typeof item.elementType !== 'undefined') {
+						const {ActionCreateNode, ActionAddNode, ActionElementType} = this.props.mapDispactchWorkArea;
+						const childrenIdElement = ActionCreateNode(id).nodeId;
+						// create Element
+						ActionAddNode(id, childrenIdElement);
+						// add element type => Text/Image/Button...
+						ActionElementType(childrenIdElement, item.elementType);
+				} else {
+						//console.log(id, item.id, item.parentId);
+						// id => drop parentId; item.id => drag id; item.parentId => drag parentId
+						const {ActionExchangeNodeRemove, ActionExchangeNodeAdd} = this.props.mapDispactchWorkArea;
+						ActionExchangeNodeRemove(item.parentId, item.id);
+						ActionExchangeNodeAdd(id, item.id);
+				}
+
 		}
 
 
 		render() {
 				const {gridIndex, childrenIds} = this.props.mapStateCol;
-				const {id, handleContextMenu} = this.props;
+				const {id, opacityId, handleContextMenu, handleMoveElement} = this.props;
 
 				return (
 						<ColComponent
@@ -81,7 +99,9 @@ class ColContainer extends Component {
 														parentId={id}
 														index={index}
 														key={`key-${childrenId}`}
+														opacityId={opacityId}
 														handleContextMenu={handleContextMenu}
+														handleMoveElement={handleMoveElement}
 												/>
 										))) :
 										(<DropAreaTarget

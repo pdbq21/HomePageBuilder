@@ -82,41 +82,21 @@ class ControlBarContainer extends Component {
     }*/
 
     render() {
-        const {currentId, parentId, connectDragSource, handleContextMenu} = this.props;
-        const {colorControlBar} = this.props.mapCurrentState;
-        //const {activeContextMenu} = this.props.mapStateWorkArea;
-        //const display = (activeContextMenu.id === currentId) ? 'block' : 'none';
+				const {currentId, parentId, connectDragSource, handleContextMenu} = this.props;
+				const {colorControlBar} = this.props.mapCurrentState;
+				//const {activeContextMenu} = this.props.mapStateWorkArea;
+				//const display = (activeContextMenu.id === currentId) ? 'block' : 'none';
 //classActiveMenu
-        return (
-            <div>
-                {connectDragSource(<div>
-                    <ControlBarComponent
-                        backgroundColor={colorControlBar}
-                        handleClickControlBar={(event) => handleContextMenu(event, currentId, parentId)}
-                    >
-                    </ControlBarComponent>
-                </div>)}
-{/*                <div>
-                    <ul
-                        className="pb-context-menu"
-                        onBlur={this.handelBlurContextMenu}
-                        style={{
-                            'display': display,
-                            'top': activeContextMenu.top
-                        }}
-                        ref="contextMenu"
-                        tabIndex={0}
-                    >
-                        <li onClick={() => this.handleRemove(currentId, parentId)} className="pb-context-menu-btn">Remove</li>
-                        <li className="pb-context-menu-btn">Copy</li>
-                        <li className="pb-context-menu-btn">Paste</li>
-                    </ul>
-                </div>*/}
+				return connectDragSource(<div>
+            <ControlBarComponent
+                backgroundColor={colorControlBar}
+                handleClickControlBar={(event) => handleContextMenu(event, currentId, parentId)}
+            >
+            </ControlBarComponent>
+        </div>);
 
-            </div>
-        );
 
-    }
+		}
 }
 
 

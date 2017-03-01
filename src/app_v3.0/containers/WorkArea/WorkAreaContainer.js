@@ -27,6 +27,7 @@ class WorkAreaContainer extends Component {
 				this.handleContextMenu = this.handleContextMenu.bind(this);
 				this.handelBlurContextMenu = this.handelBlurContextMenu.bind(this);
 				this.handleRemove = this.handleRemove.bind(this);
+				this.handleMoveElement = this.handleMoveElement.bind(this);
 		}
 
 		componentDidMount() {
@@ -97,6 +98,32 @@ class WorkAreaContainer extends Component {
 				 }*/
 
 		}
+		handleMoveElement(dragIndex, hoverIndex, items, component) {
+				console.log(dragIndex, hoverIndex, items, component);
+				// hover => component; drag => item;
+				const {parentId} = component;
+
+				const {ActionMoveRow} = this.props.mapDispactchWorkArea;
+				//console.log('index drag: ',items.index, 'index hover: ',index);
+// up index drag:  0 index hover:  3
+				//down index drag:  2 index hover:  0
+				//console.log('this parent', component);
+				if (items.parentId === parentId) {
+
+						ActionMoveRow(items.parentId, dragIndex, hoverIndex);
+				} else {
+						//console.log('other parent', items.parentId, dragIndex, hoverIndex);
+						const {ActionRemoveChild, ActionAddNode, ActionActiveOpacity} = this.props.mapDispactchWorkArea;
+						ActionRemoveChild(items.parentId, items.id);
+						ActionAddNode(component.parentId, items.id, component.id);
+						ActionActiveOpacity(items.id);
+						//const opacity = 0;
+						items.parentId = component.parentId;
+						items.index = component.index;
+						let newHoverIndex = items.index + 1;
+						ActionMoveRow(items.parentId, items.index, newHoverIndex);
+				}
+		}
 
 		handleClickAddSection() {
 				//console.log('click Add Section');
@@ -153,6 +180,7 @@ class WorkAreaContainer extends Component {
 												index={index}
 												handleMoveSection={this.handleMoveSection}
 												handleMoveRow={this.handleMoveRow}
+												handleMoveElement={this.handleMoveElement}
 												opacityId={opacityId}
 												handleContextMenu={this.handleContextMenu}
 										/>

@@ -163,7 +163,7 @@ class SectionContainer extends Component {
     }
 
     render() {
-        const {id, handleMoveRow, opacityId, parentId, handleContextMenu} = this.props;
+        const {id, handleMoveRow, opacityId, parentId, handleContextMenu, handleMoveElement} = this.props;
         const {isDragging, connectDragSource, connectDropTarget, connectDragPreview} = this.props;
         const opacity = (isDragging) ? 0 : 1;
         const {childrenIds} = this.props.mapStateSection;
@@ -187,8 +187,9 @@ class SectionContainer extends Component {
                                 parentId={id}
                                 index={index}
                                 key={`key-${childrenId}`}
-                                opacityId={(opacityId === childrenId)}
+                                opacityId={opacityId}
                                 handleMoveRow={handleMoveRow}
+                                handleMoveElement={handleMoveElement}
                                 handleContextMenu={handleContextMenu}
                             />
                         ))) :

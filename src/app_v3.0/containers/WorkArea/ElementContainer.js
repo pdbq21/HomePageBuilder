@@ -5,12 +5,98 @@
 import React, {Component} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import {DropTarget} from 'react-dnd';
+import {findDOMNode} from 'react-dom';
+import {DragSource, DropTarget} from 'react-dnd';
+//import ItemTypes for Drag'n'Drop
+import {DRAG_ELEMENT} from '../../constants/ItemTypes'
 // components
 import ElementComponent from '../../components/WorkArea/ElementComponent'
 //containers
 // actions
 import * as WorkAreaActions from '../../actions/WorkAreaActions'
+
+const sectionSource = {
+		beginDrag(props) {
+				return {
+						id: props.id,
+						index: props.index,
+						parentId: props.parentId
+				};
+		},
+		endDrag(props){
+				const {ActionActiveOpacity} = props.mapDispactchWorkArea;
+				ActionActiveOpacity('');
+		}
+};
+
+const sectionTarget = {
+		hover(props, monitor, component) {
+
+				const dragIndex = monitor.getItem().index;
+				const hoverIndex = props.index;
+				const dragParentId = monitor.getItem().parentId;
+				const hoverParentId = component.props.parentId;
+
+
+				// Don't replace items with themselves
+				if (dragIndex === hoverIndex && dragParentId === hoverParentId) {
+						return;
+				}
+
+				// Determine rectangle on screen
+				const hoverBoundingRect = findDOMNode(component).getBoundingClientRect();
+
+				// Get vertical middle
+				const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
+
+				// Determine mouse position
+				const clientOffset = monitor.getClientOffset();
+
+				// Get pixels to the top
+				const hoverClientY = clientOffset.y - hoverBoundingRect.top;
+
+				// Only perform the move when the mouse has crossed half of the items height
+				// When dragging downwards, only move when the cursor is below 50%
+				// When dragging upwards, only move when the cursor is above 50%
+
+				// Dragging downwards
+				if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
+						return;
+				}
+
+				// Dragging upwards
+				if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
+						return;
+				}
+
+				// Time to actually perform the action
+        /*console.log(props, component.props, monitor.getItem())
+         if (component.props.parentId === monitor.getItem().parentId){
+         props.handleMoveRow(dragIndex, hoverIndex);
+         } else {
+         props.handleMoveRow(dragIndex, hoverIndex, monitor.getItem());
+         }*/
+
+				props.handleMoveElement(dragIndex, hoverIndex, monitor.getItem(), component.props);
+
+        // Note: we're mutating the monitor item here!
+				// Generally it's better to avoid mutations,
+				// but it's good here for the sake of performance
+				// to avoid expensive index searches.
+				monitor.getItem().index = hoverIndex;
+		}
+};
+
+const targetCollect = connect => ({
+		connectDropTarget: connect.dropTarget()
+});
+
+const sourceCollect = (connect, monitor) => ({
+		connectDragSource: connect.dragSource(),
+		connectDragPreview: connect.dragPreview(),
+		isDragging: monitor.isDragging()
+});
+
 
 function DropAreaElement(props) {
 		const {canDrop, isOver, connectDropTarget} = props;
@@ -68,15 +154,20 @@ class ElementContainer extends Component {
 
 		render() {
 				const {elementType} = this.props.mapStateElement;
-				const {id, parentId, handleContextMenu} = this.props;
-
-				return (
-				    <div>
+				const {id, parentId, opacityId, handleContextMenu} = this.props;
+				const {isDragging, connectDragSource, connectDropTarget} = this.props;
+				const opacity = (isDragging || (opacityId === id)) ? 0 : 1;
+				return connectDropTarget(
+				    <div
+                style={{'opacity': opacity}}
+            >
+                {connectDragSource(<div>
                 <ElementComponent
                     handleClickContextMenu={(event) => handleContextMenu(event, id, parentId)}
                     type={elementType}
                 >
                 </ElementComponent>
+                </div>)}
                 <DropAreaElementTarget
                     onDrop={item => this.handleDropElement(parentId, id, item)}
                 />
@@ -98,4 +189,6 @@ function mapDispatchToProps(dispatch) {
 		}
 }
 
+ElementContainer = DropTarget(DRAG_ELEMENT, sectionTarget, targetCollect)(ElementContainer);
+ElementContainer = DragSource(DRAG_ELEMENT, sectionSource, sourceCollect)(ElementContainer);
 export default connect(mapStateToProps, mapDispatchToProps)(ElementContainer)

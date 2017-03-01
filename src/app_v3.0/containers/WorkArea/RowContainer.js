@@ -174,10 +174,10 @@ class RowContainer extends Component {
 
     render() {
 
-        const {id, parentId, opacityId, handleContextMenu} = this.props;
+        const {id, parentId, opacityId, handleContextMenu, handleMoveElement} = this.props;
         const {childrenIds} = this.props.mapStateRow;
         const {isDragging, connectDragSource, connectDropTarget, connectDragPreview} = this.props;
-        const opacity = (isDragging || opacityId) ? 0 : 1;
+        const opacity = (isDragging || (opacityId === id)) ? 0 : 1;
 
         return connectDragPreview(connectDropTarget(
             <div
@@ -197,8 +197,10 @@ class RowContainer extends Component {
                                 id={childrenId}
                                 parentId={id}
                                 index={index}
+                                opacityId={opacityId}
                                 key={`key-${childrenId}`}
                                 handleContextMenu={handleContextMenu}
+                                handleMoveElement={handleMoveElement}
                             />
 
                         ))
