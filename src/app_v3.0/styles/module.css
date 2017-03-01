@@ -135,6 +135,45 @@
     left: auto;
 }
 
+.pb-counter-joystick {
+    position: relative;
+    padding: 0 40px;
+}
+.pb-counter-joystick-plus {
+    left: 0;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+}
+.pb-counter-joystick-minus {
+    right: 0;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+}
+.pb-counter-joystick-plus,
+.pb-counter-joystick-minus {
+    height: 100%;
+    top: 0;
+    width: 40px;
+    position: absolute;
+    background-color: red;
+}
+.pb-counter-joystick-plus:hover,
+.pb-counter-joystick-minus:hover {
+    cursor: pointer;
+}
+.pb-counter-joystick-plus:before,
+.pb-counter-joystick-minus:before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: white;
+    transform: translate(-50%, -50%);
+}
+.pb-counter-joystick-value {
+    width: 50px;
+    border-radius: 0;
+    border: none;
+}
 
 /* Menu */
 .pb-menu {
