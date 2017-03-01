@@ -82,7 +82,7 @@ class ControlBarContainer extends Component {
     }*/
 
     render() {
-				const {currentId, parentId, connectDragSource, handleContextMenu} = this.props;
+				const {currentId, parentId, structure, connectDragSource, handleContextMenu} = this.props;
 				const {colorControlBar} = this.props.mapCurrentState;
 				//const {activeContextMenu} = this.props.mapStateWorkArea;
 				//const display = (activeContextMenu.id === currentId) ? 'block' : 'none';
@@ -90,7 +90,7 @@ class ControlBarContainer extends Component {
 				return connectDragSource(<div>
             <ControlBarComponent
                 backgroundColor={colorControlBar}
-                handleClickControlBar={(event) => handleContextMenu(event, currentId, parentId)}
+                handleClickControlBar={(event) => handleContextMenu(event, currentId, parentId, structure)}
             >
             </ControlBarComponent>
         </div>);

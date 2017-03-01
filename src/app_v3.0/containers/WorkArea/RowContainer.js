@@ -187,6 +187,7 @@ class RowContainer extends Component {
                     <ControlBarContainer
                         currentId={id}
                         parentId={parentId}
+                        structure="Row"
                         connectDragSource={connectDragSource}
                         handleContextMenu={handleContextMenu}
                     />

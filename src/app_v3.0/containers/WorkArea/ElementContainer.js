@@ -163,7 +163,7 @@ class ElementContainer extends Component {
             >
                 {connectDragSource(<div>
                 <ElementComponent
-                    handleClickContextMenu={(event) => handleContextMenu(event, id, parentId)}
+                    handleClickContextMenu={(event) => handleContextMenu(event, id, parentId, elementType)}
                     type={elementType}
                 >
                 </ElementComponent>

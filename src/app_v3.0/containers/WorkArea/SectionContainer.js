@@ -177,6 +177,7 @@ class SectionContainer extends Component {
                     <ControlBarContainer
                         currentId={id}
                         parentId={parentId}
+                        structure="section"
                         connectDragSource={connectDragSource}
                         handleContextMenu={handleContextMenu}
                     />

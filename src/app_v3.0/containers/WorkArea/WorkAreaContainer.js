@@ -15,6 +15,7 @@ import WorkAreaComponent from '../../components/WorkArea/WorkAreaComponent'
 //import ContextMenuComponent from '../../components/WorkArea/ContextMenuComponent'
 // import actions
 import * as WorkAreaActions from '../../actions/WorkAreaActions'
+import * as EditPanelActions from '../../actions/EditPanelActions'
 
 class WorkAreaContainer extends Component {
 		constructor(props) {
@@ -98,26 +99,19 @@ class WorkAreaContainer extends Component {
 				 }*/
 
 		}
+
 		handleMoveElement(dragIndex, hoverIndex, items, component) {
-				console.log(dragIndex, hoverIndex, items, component);
-				// hover => component; drag => item;
+				//console.log(dragIndex, hoverIndex, items, component);
+
 				const {parentId} = component;
-
 				const {ActionMoveRow} = this.props.mapDispactchWorkArea;
-				//console.log('index drag: ',items.index, 'index hover: ',index);
-// up index drag:  0 index hover:  3
-				//down index drag:  2 index hover:  0
-				//console.log('this parent', component);
 				if (items.parentId === parentId) {
-
 						ActionMoveRow(items.parentId, dragIndex, hoverIndex);
 				} else {
-						//console.log('other parent', items.parentId, dragIndex, hoverIndex);
 						const {ActionRemoveChild, ActionAddNode, ActionActiveOpacity} = this.props.mapDispactchWorkArea;
 						ActionRemoveChild(items.parentId, items.id);
 						ActionAddNode(component.parentId, items.id, component.id);
 						ActionActiveOpacity(items.id);
-						//const opacity = 0;
 						items.parentId = component.parentId;
 						items.index = component.index;
 						let newHoverIndex = items.index + 1;
@@ -138,7 +132,7 @@ class WorkAreaContainer extends Component {
 				ActionActiveContextMenu('', '', 0, 0);
 		}
 
-		handleContextMenu(event, id, parentId) {
+		handleContextMenu(event, id, parentId, structure) {
 				event.preventDefault();
 				if (event.type === 'contextmenu') {
 // if click right button
@@ -148,6 +142,34 @@ class WorkAreaContainer extends Component {
 						this.focusContextMenu();
 				} else {
 						// if click left button => event.type === 'click'
+						// need activate Edit panel for this structure
+						console.log('click ',id, parentId, structure);
+//structure - Section/Row/Text/Image...
+
+						/*const { ActionIsActiveEditPanel, ActionCreateNodeStyles } = this.props.mapDispactchEditPanel;
+						const {ActionActivateEditPanel, ActionDeactivateEditPanel} = this.props.mapDispactchConstructorView;
+						const {isActiveEditPanel, ActiveStructure} = this.props.mapStateEditPanel;
+//console.log(ActiveStructure);
+						if (ActiveStructure.id === id){
+								ActionDeactivateEditPanel(ActiveStructure.id);
+								ActionIsActiveEditPanel('', '', false);
+						}else{
+								if (isActiveEditPanel === false) {
+										// на даному етапі тільки активує структуру
+										ActionActivateEditPanel(id);
+										// need if first time
+
+								} else if (isActiveEditPanel === true){
+										// деактивує попереднню активну структуру
+										ActionDeactivateEditPanel(ActiveStructure.id);
+										// активує поточну структуру
+										ActionActivateEditPanel(id);
+
+								}
+								ActionCreateNodeStyles(id);
+								// додає id активної структури для Edit Panel
+								ActionIsActiveEditPanel(id, name, true);
+						}*/
 				}
 		}
 
@@ -223,7 +245,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 		return {
-				mapDispactchWorkArea: bindActionCreators(WorkAreaActions, dispatch)
+				mapDispactchWorkArea: bindActionCreators(WorkAreaActions, dispatch),
+				mapDispactchEditPanel: bindActionCreators(EditPanelActions, dispatch)
 		}
 }
 
