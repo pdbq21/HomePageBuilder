@@ -90,6 +90,52 @@
 }
 
 
+/* Joystick */
+.pb-joystick {
+
+}
+
+.pb-toggle-joystick {
+
+}
+.pb-toggle-joystick-btn {
+    background-color: transparent;
+    border: 2px solid #428bca;
+    height: 20px;
+    width: 35px;
+    border-radius: 1em;
+    position: relative;
+}
+.pb-toggle-joystick-btn:after {
+    width: 12px;
+    height: 12px;
+    content: "";
+    display: block;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    border-radius: 1em;
+}
+.pb-toggle-joystick-value {
+    display: none;
+}
+.pb-toggle-joystick-value ~ .pb-toggle-joystick-btn {
+    border-color: #aeb2b7;
+}
+.pb-toggle-joystick-value:checked ~ .pb-toggle-joystick-btn {
+    border-color: #428bca;
+    background-color: #428bca;
+}
+.pb-toggle-joystick-value ~ .pb-toggle-joystick-btn:after {
+    background-color: #aeb2b7;
+}
+.pb-toggle-joystick-value:checked ~ .pb-toggle-joystick-btn:after {
+    background-color: white;
+    right: 2px;
+    left: auto;
+}
+
+
 /* Menu */
 .pb-menu {
 
@@ -262,6 +308,8 @@
 .pb-control-bar:active {
     cursor: move;
 }
+
+
 /* Bar + Context menu*/
 .pb-context-menu,
 .pb-context-menu:focus{
@@ -273,7 +321,7 @@
     padding: 1em;
     top: 0;
     left: 1.5em;
-cursor: default;
+    cursor: default;
 }
 .pb-context-menu:before{
     border: 8px solid transparent;
@@ -332,15 +380,16 @@ cursor: default;
 }
 .pb-icon-plus {
     font-size: 3em;
+    font-style: normal;
 }
 
 /* Drop Zone */
 .pb-drop-zone{
     visibility: hidden;
-height: 3em;
-position: absolute;
-width: 100%;
-bottom: 0;
-left: 0;
-background: linear-gradient(0deg, #14ec46 0%, rgba(255, 255, 255, 0) 100%);
+    height: 3em;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(0deg, #14ec46 0%, rgba(255, 255, 255, 0) 100%);
 }
