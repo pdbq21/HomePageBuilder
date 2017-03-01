@@ -5,7 +5,7 @@
 import {
     COLOR_PICKER, CREATE_ID, ADD_NODE, REMOVE_CHILD, MOVE_SECTION, GRID_INDEX, EXCHANGE_NODE_REMOVE,
     EXCHANGE_NODE_ADD, MOVE_CHANGE_SECTION, MOVE_ROW, IS_OPACITY, ACTIVE_CONTEXT_MENU,
-    DELETE_NODE
+    DELETE_NODE, ELEMENT_TYPE
 } from '../constants/WorkAreaConstants'
 
 // default data state
@@ -90,6 +90,10 @@ const node = (state, action) => {
         case GRID_INDEX:
             return Object.assign({}, state, {
                 gridIndex: action.gridIndex
+            });
+        case ELEMENT_TYPE:
+            return Object.assign({}, state, {
+								elementType: action.elementType
             });
         case MOVE_SECTION:
 // todo: refactoring this

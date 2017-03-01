@@ -1,17 +1,48 @@
 /**
  * Created by ruslan on 23.02.17.
  */
-// import lib
-import React from 'react';
+// lib
+import React, {Component} from 'react'
+import {bindActionCreators} from 'redux'
+import {connect} from 'react-redux'
 
-//import component
+// components
+import ElementComponent from '../../components/WorkArea/ElementComponent'
+//containers
+// actions
+import * as WorkAreaActions from '../../actions/WorkAreaActions'
+
+// Application
+class ElementContainer extends Component {
+		/*constructor(props) {
+				super(props);
+		}*/
 
 
-export default function ElementComponent() {
+		render() {
+				const {elementType} = this.props.mapStateElement;
+				const {id} = this.props;
 
-    return (
-        <div className="">
+				return (
+            <ElementComponent
+                type={elementType}
+            >
+            </ElementComponent>
 
-        </div>
-    );
+				);
+		}
 }
+
+function mapStateToProps(state, ownProps) {
+		return {
+				mapStateElement: state.WorkAreaReducer[ownProps.id],
+		}
+}
+
+function mapDispatchToProps(dispatch) {
+		return {
+				mapDispactchWorkArea: bindActionCreators(WorkAreaActions, dispatch)
+		}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ElementContainer)

@@ -5,7 +5,7 @@
 import {
     COLOR_PICKER, CREATE_ID, ADD_NODE, MOVE_SECTION, GRID_INDEX, EXCHANGE_NODE_ADD,
     EXCHANGE_NODE_REMOVE, MOVE_CHANGE_SECTION, REMOVE_CHILD, MOVE_ROW, IS_OPACITY,
-    ACTIVE_CONTEXT_MENU, DELETE_NODE
+    ACTIVE_CONTEXT_MENU, DELETE_NODE, ELEMENT_TYPE
 } from '../constants/WorkAreaConstants'
 
 // color data base
@@ -138,6 +138,13 @@ export function ActionGridIndex(nodeId, gridIndex) {
         type: GRID_INDEX,
         nodeId,
         gridIndex
+    };
+}
+export function ActionElementType(nodeId, elementType) {
+    return {
+        type: ELEMENT_TYPE,
+        nodeId,
+				elementType
     };
 }
 

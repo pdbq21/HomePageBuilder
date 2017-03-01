@@ -87,7 +87,7 @@ const sourceCollect = (connect, monitor) => ({
 });
 
 const DropAreaTarget = DropTarget(['DROP_ROW', 'DRAG_ROW'], {
-    drop(props, monitor, component) {
+    drop(props, monitor) {
         //console.log('drop', props, monitor, component, monitor.getItem());//{ name: 'test_name' };
         props.onDrop(monitor.getItem());
 

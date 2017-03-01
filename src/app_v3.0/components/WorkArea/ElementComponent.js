@@ -36,7 +36,7 @@ export default function ElementComponent(props) {
                 </a>
             </div>);
             break;
-        case 'Title':
+        case 'Heading':
             element = (<div className="pb-element pb-heading-element">
                 <h2>Sample heading</h2>
             </div>);
@@ -62,7 +62,7 @@ export default function ElementComponent(props) {
                 <input type="file" className="pb-gallery-element-input"/>
             </div>);
             break;
-        case 'Icon':
+        case 'Icons':
             element = (<div className="pb-element pb-icon-element">
                 <i className="fa fa-grav"/>
             </div>);
