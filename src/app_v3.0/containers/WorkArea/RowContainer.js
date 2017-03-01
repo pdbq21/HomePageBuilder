@@ -175,13 +175,14 @@ class RowContainer extends Component {
     render() {
 
         const {id, parentId, opacityId, handleContextMenu, handleMoveElement} = this.props;
-        const {childrenIds} = this.props.mapStateRow;
+        const {childrenIds, isActiveEditPanel} = this.props.mapStateRow;
         const {isDragging, connectDragSource, connectDropTarget, connectDragPreview} = this.props;
         const opacity = (isDragging || (opacityId === id)) ? 0 : 1;
+				const boxShadow = (isActiveEditPanel) ? 'inset 0 0 0 10px #4caf50' : 'none';
 
         return connectDragPreview(connectDropTarget(
             <div
-                style={{'opacity': opacity}}
+                style={{'opacity': opacity, 'boxShadow': boxShadow}}
             >
                 <RowComponent>
                     <ControlBarContainer

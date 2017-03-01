@@ -153,13 +153,14 @@ class ElementContainer extends Component {
 
 
 		render() {
-				const {elementType} = this.props.mapStateElement;
+				const {elementType, isActiveEditPanel} = this.props.mapStateElement;
 				const {id, parentId, opacityId, handleContextMenu} = this.props;
 				const {isDragging, connectDragSource, connectDropTarget} = this.props;
 				const opacity = (isDragging || (opacityId === id)) ? 0 : 1;
+				const boxShadow = (isActiveEditPanel) ? 'inset 0 0 0 10px #4caf50' : 'none';
 				return connectDropTarget(
 				    <div
-                style={{'opacity': opacity}}
+                style={{'opacity': opacity, 'boxShadow': boxShadow}}
             >
                 {connectDragSource(<div>
                 <ElementComponent
