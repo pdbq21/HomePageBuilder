@@ -21,7 +21,7 @@ class ElementContainer extends Component {
 
 		render() {
 				const {elementType} = this.props.mapStateElement;
-				const {id} = this.props;
+				//const {id} = this.props;
 
 				return (
             <ElementComponent
