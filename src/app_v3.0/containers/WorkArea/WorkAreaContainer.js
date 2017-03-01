@@ -146,6 +146,8 @@ class WorkAreaContainer extends Component {
 						console.log('click ',id, parentId, structure);
 //structure - Section/Row/Text/Image...
 
+
+
 						/*const { ActionIsActiveEditPanel, ActionCreateNodeStyles } = this.props.mapDispactchEditPanel;
 						const {ActionActivateEditPanel, ActionDeactivateEditPanel} = this.props.mapDispactchConstructorView;
 						const {isActiveEditPanel, ActiveStructure} = this.props.mapStateEditPanel;
