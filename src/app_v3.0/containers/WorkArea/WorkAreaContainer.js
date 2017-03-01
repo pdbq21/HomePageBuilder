@@ -145,13 +145,11 @@ class WorkAreaContainer extends Component {
 						// need activate Edit panel for this structure
 						console.log('click ',id, parentId, structure);
 //structure - Section/Row/Text/Image...
-
-
-
-						/*const { ActionIsActiveEditPanel, ActionCreateNodeStyles } = this.props.mapDispactchEditPanel;
-						const {ActionActivateEditPanel, ActionDeactivateEditPanel} = this.props.mapDispactchConstructorView;
+						const { ActionIsActiveEditPanel, ActionCreateNodeStyles } = this.props.mapDispactchEditPanel;
+						const {ActionActivateEditPanel, ActionDeactivateEditPanel} = this.props.mapDispactchWorkArea;
 						const {isActiveEditPanel, ActiveStructure} = this.props.mapStateEditPanel;
-//console.log(ActiveStructure);
+
+
 						if (ActiveStructure.id === id){
 								ActionDeactivateEditPanel(ActiveStructure.id);
 								ActionIsActiveEditPanel('', '', false);
@@ -170,8 +168,8 @@ class WorkAreaContainer extends Component {
 								}
 								ActionCreateNodeStyles(id);
 								// додає id активної структури для Edit Panel
-								ActionIsActiveEditPanel(id, name, true);
-						}*/
+								ActionIsActiveEditPanel(id, structure, true);
+						}
 				}
 		}
 
@@ -241,7 +239,7 @@ function mapStateToProps(state) {
 		//console.log('state WorkAreaContainer', state);
 		return {
 				mapStateWorkArea: state.WorkAreaReducer,
-				mapStateToolbar: state.ToolbarReducer
+				mapStateEditPanel: state.EditPanelReducer
 		}
 }
 

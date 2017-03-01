@@ -5,7 +5,7 @@
 import {
     COLOR_PICKER, CREATE_ID, ADD_NODE, REMOVE_CHILD, MOVE_SECTION, GRID_INDEX, EXCHANGE_NODE_REMOVE,
     EXCHANGE_NODE_ADD, MOVE_CHANGE_SECTION, MOVE_ROW, IS_OPACITY, ACTIVE_CONTEXT_MENU,
-    DELETE_NODE, ELEMENT_TYPE
+    DELETE_NODE, ELEMENT_TYPE, ACTIVATE_EDIT_PANEL, DEACTIVATE_EDIT_PANEL
 } from '../constants/WorkAreaConstants'
 
 // default data state
@@ -75,7 +75,8 @@ const node = (state, action) => {
                 id: action.nodeId,
                 parentId: action.parentId,
                 childrenIds: [],
-                opacity: 1
+                opacity: 1,
+								isActiveEditPanel: false
             };
 
         case ADD_NODE:
@@ -129,6 +130,14 @@ const node = (state, action) => {
                 childrenIds: exchangeNode(state.childrenIds, action)
             });
 
+				case ACTIVATE_EDIT_PANEL:
+						return Object.assign({}, state, {
+								isActiveEditPanel: true
+						});
+				case DEACTIVATE_EDIT_PANEL:
+						return Object.assign({}, state, {
+								isActiveEditPanel: false
+						});
         default:
             return state
     }

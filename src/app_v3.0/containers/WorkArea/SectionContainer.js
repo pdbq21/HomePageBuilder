@@ -165,15 +165,15 @@ class SectionContainer extends Component {
     render() {
         const {id, handleMoveRow, opacityId, parentId, handleContextMenu, handleMoveElement} = this.props;
         const {isDragging, connectDragSource, connectDropTarget, connectDragPreview} = this.props;
+				const {childrenIds, isActiveEditPanel} = this.props.mapStateSection;
         const opacity = (isDragging) ? 0 : 1;
-        const {childrenIds} = this.props.mapStateSection;
+        const boxShadow = (isActiveEditPanel) ? 'inset 0 0 0 10px #4caf50' : 'none';
+
         return connectDragPreview(connectDropTarget(
             <div
-                style={{'opacity': opacity}}
+                style={{'opacity': opacity, 'boxShadow': boxShadow}}
             >
-                <SectionComponent
-
-                >
+                <SectionComponent>
                     <ControlBarContainer
                         currentId={id}
                         parentId={parentId}

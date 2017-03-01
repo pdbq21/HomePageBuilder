@@ -14,5 +14,5 @@ import EditPanelReducer from './EditPanelReducer';
 export default combineReducers({
     ConstructorViewReducer,
     ToolbarReducer,
-    EditPanelReducer
+		EditPanelReducer
 })

@@ -293,7 +293,8 @@ cursor: default;
 /* Card */
 .pb-dashed-card {
     border: 2px dashed #828295;
-    background-color: #E5E6EB;
+    /*background-color: #E5E6EB;*/
+    background-color: rgba(236, 238, 239, 0.5);
     text-align: center;
     width: 100%;
 }
