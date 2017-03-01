@@ -22,6 +22,7 @@ class ContentPanelsContainer extends Component {
         super(props);
 
         this.renderContentPanel = this.renderContentPanel.bind(this);
+
     }
 
     renderContentPanel() {
@@ -43,10 +44,11 @@ class ContentPanelsContainer extends Component {
     }
 
     render() {
-
+				//const {isActiveEditPanel} = this.props.mapStateEditPanel;
         return (
             <div>
-                {this.renderContentPanel()}
+								{/*{(isActiveEditPanel) ? this.renderEditPanel() : this.renderContentPanel()}*/}
+								{this.renderContentPanel()}
             </div>
 
         );
@@ -56,13 +58,14 @@ class ContentPanelsContainer extends Component {
 function mapStateToProps(state) {
     return {
         //mapStateWorkArea: state.WorkAreaReducer,
-        mapStateToolbar: state.ToolbarReducer
+        mapStateToolbar: state.ToolbarReducer,
+				mapStateEditPanel: state.EditPanelReducer
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-       // mapDispactchToolbar: bindActionCreators(ToolbarActions, dispatch)
+       //mapDispactchToolbar: bindActionCreators(ToolbarActions, dispatch)
     }
 }
 

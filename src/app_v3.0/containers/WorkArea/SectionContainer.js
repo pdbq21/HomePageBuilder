@@ -163,11 +163,13 @@ class SectionContainer extends Component {
     }
 
     render() {
-        const {id, handleMoveRow, opacityId, parentId, handleContextMenu, handleMoveElement} = this.props;
+        const {
+            id, handleMoveRow, opacityId, activeStructureId, parentId, handleContextMenu, handleMoveElement
+        } = this.props;
         const {isDragging, connectDragSource, connectDropTarget, connectDragPreview} = this.props;
-				const {childrenIds, isActiveEditPanel} = this.props.mapStateSection;
+				const {childrenIds} = this.props.mapStateSection;
         const opacity = (isDragging) ? 0 : 1;
-        const boxShadow = (isActiveEditPanel) ? 'inset 0 0 0 10px #4caf50' : 'none';
+        const boxShadow = (activeStructureId === id) ? 'inset 0 0 0 10px #4caf50' : 'none';
 
         return connectDragPreview(connectDropTarget(
             <div
@@ -189,6 +191,7 @@ class SectionContainer extends Component {
                                 index={index}
                                 key={`key-${childrenId}`}
                                 opacityId={opacityId}
+                                activeStructureId={activeStructureId}
                                 handleMoveRow={handleMoveRow}
                                 handleMoveElement={handleMoveElement}
                                 handleContextMenu={handleContextMenu}

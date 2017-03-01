@@ -16,6 +16,7 @@ import WorkAreaComponent from '../../components/WorkArea/WorkAreaComponent'
 // import actions
 import * as WorkAreaActions from '../../actions/WorkAreaActions'
 import * as EditPanelActions from '../../actions/EditPanelActions'
+import * as ToolbarActions from '../../actions/ToolbarActions'
 
 class WorkAreaContainer extends Component {
 		constructor(props) {
@@ -146,29 +147,33 @@ class WorkAreaContainer extends Component {
 						console.log('click ',id, parentId, structure);
 //structure - Section/Row/Text/Image...
 						const { ActionIsActiveEditPanel, ActionCreateNodeStyles } = this.props.mapDispactchEditPanel;
-						const {ActionActivateEditPanel, ActionDeactivateEditPanel} = this.props.mapDispactchWorkArea;
+						//const {ActionActivateEditPanel, ActionDeactivateEditPanel} = this.props.mapDispactchWorkArea;
 						const {isActiveEditPanel, ActiveStructure} = this.props.mapStateEditPanel;
+						const {ActionSelectMenuItem} = this.props.mapDispactchToolbar;
+
 
 
 						if (ActiveStructure.id === id){
-								ActionDeactivateEditPanel(ActiveStructure.id);
+								//ActionDeactivateEditPanel(ActiveStructure.id);
+								ActionSelectMenuItem('Rows');
 								ActionIsActiveEditPanel('', '', false);
 						}else{
 								if (isActiveEditPanel === false) {
 										// на даному етапі тільки активує структуру
-										ActionActivateEditPanel(id);
+										//ActionActivateEditPanel(id);
 										// need if first time
 
 								} else if (isActiveEditPanel === true){
 										// деактивує попереднню активну структуру
-										ActionDeactivateEditPanel(ActiveStructure.id);
+										//ActionDeactivateEditPanel(ActiveStructure.id);
 										// активує поточну структуру
-										ActionActivateEditPanel(id);
+										//ActionActivateEditPanel(id);
 
 								}
 								ActionCreateNodeStyles(id);
 								// додає id активної структури для Edit Panel
 								ActionIsActiveEditPanel(id, structure, true);
+								ActionSelectMenuItem('Edit');
 						}
 				}
 		}
@@ -189,7 +194,7 @@ class WorkAreaContainer extends Component {
 				const {childrenIds} = this.props.mapStateWorkArea[id];
 				const {opacityId, activeContextMenu} = this.props.mapStateWorkArea;
 				const display = (activeContextMenu.id !== '') ? 'block' : 'none';
-
+				const {ActiveStructure} = this.props.mapStateEditPanel;
 				return (
 						<WorkAreaComponent
 								handleClickAddSection={this.handleClickAddSection}
@@ -204,6 +209,7 @@ class WorkAreaContainer extends Component {
 												handleMoveRow={this.handleMoveRow}
 												handleMoveElement={this.handleMoveElement}
 												opacityId={opacityId}
+												activeStructureId={ActiveStructure.id}
 												handleContextMenu={this.handleContextMenu}
 										/>
 								))}
@@ -246,6 +252,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
 		return {
 				mapDispactchWorkArea: bindActionCreators(WorkAreaActions, dispatch),
+				mapDispactchToolbar: bindActionCreators(ToolbarActions, dispatch),
 				mapDispactchEditPanel: bindActionCreators(EditPanelActions, dispatch)
 		}
 }

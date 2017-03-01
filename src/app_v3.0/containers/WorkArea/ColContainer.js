@@ -86,7 +86,7 @@ class ColContainer extends Component {
 
 		render() {
 				const {gridIndex, childrenIds} = this.props.mapStateCol;
-				const {id, opacityId, handleContextMenu, handleMoveElement} = this.props;
+				const {id, opacityId, activeStructureId, handleContextMenu, handleMoveElement} = this.props;
 
 				return (
 						<ColComponent
@@ -100,6 +100,7 @@ class ColContainer extends Component {
 														index={index}
 														key={`key-${childrenId}`}
 														opacityId={opacityId}
+														activeStructureId={activeStructureId}
 														handleContextMenu={handleContextMenu}
 														handleMoveElement={handleMoveElement}
 												/>

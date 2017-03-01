@@ -174,11 +174,11 @@ class RowContainer extends Component {
 
     render() {
 
-        const {id, parentId, opacityId, handleContextMenu, handleMoveElement} = this.props;
-        const {childrenIds, isActiveEditPanel} = this.props.mapStateRow;
+        const {id, parentId, opacityId, activeStructureId, handleContextMenu, handleMoveElement} = this.props;
+        const {childrenIds} = this.props.mapStateRow;
         const {isDragging, connectDragSource, connectDropTarget, connectDragPreview} = this.props;
         const opacity = (isDragging || (opacityId === id)) ? 0 : 1;
-				const boxShadow = (isActiveEditPanel) ? 'inset 0 0 0 10px #4caf50' : 'none';
+				const boxShadow = (activeStructureId === id) ? 'inset 0 0 0 10px #4caf50' : 'none';
 
         return connectDragPreview(connectDropTarget(
             <div
@@ -200,6 +200,7 @@ class RowContainer extends Component {
                                 parentId={id}
                                 index={index}
                                 opacityId={opacityId}
+                                activeStructureId={activeStructureId}
                                 key={`key-${childrenId}`}
                                 handleContextMenu={handleContextMenu}
                                 handleMoveElement={handleMoveElement}

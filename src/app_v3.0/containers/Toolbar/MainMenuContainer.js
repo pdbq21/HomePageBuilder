@@ -11,6 +11,7 @@ import {connect} from 'react-redux'
 import MainMenuComponent from '../../components/Toolbar/MainMenu/MainMenuComponent'
 // import actions
 import * as ToolbarActions from '../../actions/ToolbarActions'
+import * as EditPanelActions from '../../actions/EditPanelActions'
 
 class MainMenuContainer extends Component {
 		constructor(props) {
@@ -31,9 +32,11 @@ class MainMenuContainer extends Component {
 
 		handelNavigationItems(event) {
 				const {ActionSelectMenuItem} = this.props.mapDispactchToolbar;
+				const { ActionIsActiveEditPanel } = this.props.mapDispactchEditPanel;
 				//console.log(event.target.getAttribute('title'));
 				// event.target.getAttribute('title') => Rows/Elements/Edit/Template
 				ActionSelectMenuItem(event.target.getAttribute('title'));
+				ActionIsActiveEditPanel('', '', false);
 		}
 
 		render() {
@@ -69,7 +72,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
 		return {
-				mapDispactchToolbar: bindActionCreators(ToolbarActions, dispatch)
+				mapDispactchToolbar: bindActionCreators(ToolbarActions, dispatch),
+				mapDispactchEditPanel: bindActionCreators(EditPanelActions, dispatch)
 		}
 }
 
