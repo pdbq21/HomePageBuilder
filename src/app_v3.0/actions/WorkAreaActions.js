@@ -193,11 +193,13 @@ export function ActionActiveOpacity(id) {
         id
     };
 }
-export function ActionActiveContextMenu(id, top) {
+export function ActionActiveContextMenu(id, parentId, top, left) {
     return {
         type: ACTIVE_CONTEXT_MENU,
         id,
-        top
+				parentId,
+        top,
+				left
     };
 }
 /*

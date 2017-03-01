@@ -16,8 +16,9 @@ const { children, handleClickAddSection } = props;
     return (
         <div className="pb-workarea col-sm-12 col-md-7 col-lg-8 col-xl-9">
             {/* section */}
-            {children}
-
+            {children[0]}
+						{/* context menu */}
+						{children[1]}
             <button
                 className="pb-add-section-button"
                 onClick={handleClickAddSection}

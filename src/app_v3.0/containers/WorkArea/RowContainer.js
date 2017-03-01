@@ -174,7 +174,7 @@ class RowContainer extends Component {
 
     render() {
 
-        const {id, parentId, opacityId} = this.props;
+        const {id, parentId, opacityId, handleContextMenu} = this.props;
         const {childrenIds} = this.props.mapStateRow;
         const {isDragging, connectDragSource, connectDropTarget, connectDragPreview} = this.props;
         const opacity = (isDragging || opacityId) ? 0 : 1;
@@ -188,6 +188,7 @@ class RowContainer extends Component {
                         currentId={id}
                         parentId={parentId}
                         connectDragSource={connectDragSource}
+                        handleContextMenu={handleContextMenu}
                     />
                     {
                         childrenIds.map((childrenId, index) => (
@@ -197,6 +198,7 @@ class RowContainer extends Component {
                                 parentId={id}
                                 index={index}
                                 key={`key-${childrenId}`}
+                                handleContextMenu={handleContextMenu}
                             />
 
                         ))

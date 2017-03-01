@@ -157,7 +157,9 @@ export function WorkAreaReducer(state = initialState, action) {
                 return Object.assign({}, state, {
                     activeContextMenu: {
                         id: action.id,
-                        top: action.top
+												parentId: action.parentId,
+                        top: action.top,
+												left: action.left
                     }
                 });
 

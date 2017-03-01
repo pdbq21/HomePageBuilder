@@ -5,7 +5,7 @@
 import React, {Component} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
-import {DragSource, DropTarget} from 'react-dnd';
+import {DropTarget} from 'react-dnd';
 
 // components
 import ColComponent from '../../components/WorkArea/ColComponent'
@@ -69,7 +69,7 @@ class ColContainer extends Component {
 
 		render() {
 				const {gridIndex, childrenIds} = this.props.mapStateCol;
-				const {id} = this.props;
+				const {id, handleContextMenu} = this.props;
 
 				return (
 						<ColComponent
@@ -82,6 +82,7 @@ class ColContainer extends Component {
 														parentId={id}
 														index={index}
 														key={`key-${childrenId}`}
+														handleContextMenu={handleContextMenu}
 												/>
 										))) :
 										(<DropAreaTarget

@@ -65,13 +65,15 @@ class ElementContainer extends Component {
 				ActionElementType(childrenIdElement, item.elementType);
     }
 
+
 		render() {
 				const {elementType} = this.props.mapStateElement;
-				const {id, parentId} = this.props;
+				const {id, parentId, handleContextMenu} = this.props;
 
 				return (
 				    <div>
                 <ElementComponent
+                    handleClickContextMenu={(event) => handleContextMenu(event, id, parentId)}
                     type={elementType}
                 >
                 </ElementComponent>
@@ -86,6 +88,7 @@ class ElementContainer extends Component {
 function mapStateToProps(state, ownProps) {
 		return {
 				mapStateElement: state.WorkAreaReducer[ownProps.id],
+				mapStateWorkArea: state.WorkAreaReducer,
 		}
 }
 

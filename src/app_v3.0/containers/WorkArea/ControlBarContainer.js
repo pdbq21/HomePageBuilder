@@ -4,7 +4,6 @@
 
 // import lib
 import React, {Component} from 'react';
-import ReactDOM from 'react-dom'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 //import component
@@ -18,9 +17,7 @@ class ControlBarContainer extends Component {
         super(props);
 
         this.getColor = this.getColor.bind(this);
-        this.handleClickControlBar = this.handleClickControlBar.bind(this);
-        this.handelBlurContextMenu = this.handelBlurContextMenu.bind(this);
-        this.handleRemove = this.handleRemove.bind(this);
+
     }
 
     componentWillMount() {
@@ -31,12 +28,12 @@ class ControlBarContainer extends Component {
     }
 
     componentDidMount() {
-        this.focusContextMenu();
+        //this.focusContextMenu();
     }
 
-    focusContextMenu() {
+    /*focusContextMenu() {
         setTimeout(() => (ReactDOM.findDOMNode(this.refs.contextMenu).focus()), 0);
-    }
+    }*/
 
     getColor() {
         const {currentId} = this.props;
@@ -44,7 +41,7 @@ class ControlBarContainer extends Component {
         return ActionColorPicker(currentId);
     }
 
-    handleClickControlBar(event) {
+    /*handleClickControlBar(event) {
         event.preventDefault();
         if (event.type === 'contextmenu') {
 // if click right button
@@ -57,26 +54,26 @@ class ControlBarContainer extends Component {
         } else {
             // if click left button => event.type === 'click'
         }
-    }
+    }*/
 
-    handelBlurContextMenu() {
+    /*handelBlurContextMenu() {
         const {ActionActiveContextMenu} = this.props.mapDispactchWorkArea;
         ActionActiveContextMenu('', 0);
-        /*let currentTarget = e.currentTarget;
+        /!*let currentTarget = e.currentTarget;
 
          setTimeout(function () {
          if (!currentTarget.contains(document.activeElement)) {
          console.log('component officially blurred');
          }
-         }, 0);*/
-        /*const {ActionActiveContextMenu} = this.props.mapDispactchWorkArea;
+         }, 0);*!/
+        /!*const {ActionActiveContextMenu} = this.props.mapDispactchWorkArea;
          //Todo: need change this logic
          setTimeout(function () {
          ActionActiveContextMenu('');
-         }, 200);*/
-    }
+         }, 200);*!/
+    }*/
 
-    handleRemove(id, parentId){
+    /*handleRemove(id, parentId){
         //console.log(parentId, id);
         const {ActionRemoveChild, ActionDeleteNode, ActionActiveContextMenu} = this.props.mapDispactchWorkArea;
         //const {ActionDeleteNodeStyles} = this.props.mapDispactchEditPanel;
@@ -85,24 +82,24 @@ class ControlBarContainer extends Component {
         ActionActiveContextMenu('', 0);
 // remove styles
         //ActionDeleteNodeStyles(id);
-    }
+    }*/
 
     render() {
-        const {currentId, parentId, connectDragSource} = this.props;
+        const {currentId, parentId, connectDragSource, handleContextMenu} = this.props;
         const {colorControlBar} = this.props.mapCurrentState;
-        const {activeContextMenu} = this.props.mapStateWorkArea;
-        const display = (activeContextMenu.id === currentId) ? 'block' : 'none';
+        //const {activeContextMenu} = this.props.mapStateWorkArea;
+        //const display = (activeContextMenu.id === currentId) ? 'block' : 'none';
 //classActiveMenu
         return (
             <div>
                 {connectDragSource(<div>
                     <ControlBarComponent
                         backgroundColor={colorControlBar}
-                        handleClickControlBar={(event) => this.handleClickControlBar(event)}
+                        handleClickControlBar={(event) => handleContextMenu(event, currentId, parentId)}
                     >
                     </ControlBarComponent>
                 </div>)}
-                <div>
+{/*                <div>
                     <ul
                         className="pb-context-menu"
                         onBlur={this.handelBlurContextMenu}
@@ -117,7 +114,7 @@ class ControlBarContainer extends Component {
                         <li className="pb-context-menu-btn">Copy</li>
                         <li className="pb-context-menu-btn">Paste</li>
                     </ul>
-                </div>
+                </div>*/}
 
             </div>
         );
