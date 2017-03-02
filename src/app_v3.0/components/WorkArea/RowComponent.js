@@ -14,7 +14,7 @@ const {children} = props;
             {/* control bar */}
             {children[0]}
             <div className="pb-row-content">
-                <div className="row">
+                <div className="row no-gutters">
                     {/* col */}
                     {children[1]}
                 </div>
