@@ -324,7 +324,7 @@
 .pb-control-bar {
     position: absolute;
     width: 15px;
-    background-color: white;
+    background-color: black;
     top: 0;
     left: 0;
     height: 100%;
@@ -332,14 +332,14 @@
     vertical-align: middle;
 }
 .pb-control-bar:before {
-    content: "☰";
+    content: "\2630";
     position: absolute;
-    color: black;
-    height: 100%;
-    top: 0;
-    left: 0;
-    width: 100%;
-    text-align: center;
+    top: 50%;
+    left: calc(50% - 1px);
+    transform: translate(-50%, -50%);
+    display: block;
+    font-size: 10px;
+    color: white;
 }
 .pb-control-bar:hover {
     cursor: pointer;
