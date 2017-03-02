@@ -7,11 +7,13 @@ import { combineReducers } from 'redux';
 // Reducers
 import {WorkAreaReducer} from './WorkAreaReducer';
 import ToolbarReducer from './ToolbarReducer';
+import EditPanelReducer from './EditPanelReducer';
 
 // Combine Reducers
 export default combineReducers({
 		WorkAreaReducer,
-    ToolbarReducer
+    ToolbarReducer,
+		EditPanelReducer
 })
 /*
 const reducers = combineReducers({

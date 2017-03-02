@@ -4,7 +4,6 @@
 
 // lib
 import React, {Component} from 'react'
-import {DragSource} from 'react-dnd'
 //import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 
@@ -23,20 +22,17 @@ class ContentPanelsContainer extends Component {
         super(props);
 
         this.renderContentPanel = this.renderContentPanel.bind(this);
+
     }
 
     renderContentPanel() {
         const {activeMenuItem} = this.props.mapStateToolbar;
-        const {connectDragSource,} = this.props;
         switch (activeMenuItem) {
             case 'Rows':
                 return (<RowsPanelComponent
-                    connectDragSource={connectDragSource}
                 />);
             case 'Elements':
-                return <ElementsPanelComponent
-
-                />;
+                return <ElementsPanelComponent />;
             case 'Edit':
                 return <StylesPanelComponent />;
             case 'Templates':
@@ -48,10 +44,11 @@ class ContentPanelsContainer extends Component {
     }
 
     render() {
-
+				//const {isActiveEditPanel} = this.props.mapStateEditPanel;
         return (
             <div>
-                {this.renderContentPanel()}
+								{/*{(isActiveEditPanel) ? this.renderEditPanel() : this.renderContentPanel()}*/}
+								{this.renderContentPanel()}
             </div>
 
         );
@@ -61,37 +58,17 @@ class ContentPanelsContainer extends Component {
 function mapStateToProps(state) {
     return {
         //mapStateWorkArea: state.WorkAreaReducer,
-        mapStateToolbar: state.ToolbarReducer
+        mapStateToolbar: state.ToolbarReducer,
+				mapStateEditPanel: state.EditPanelReducer
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-       // mapDispactchToolbar: bindActionCreators(ToolbarActions, dispatch)
+       //mapDispactchToolbar: bindActionCreators(ToolbarActions, dispatch)
     }
 }
 
 
-ContentPanelsContainer = DragSource('BOX', {
-    beginDrag(props) {
-        return {
-            name: props.name
-        };
-    },
-
-    endDrag(props, monitor) {
-        const item = monitor.getItem();
-        const dropResult = monitor.getDropResult();
-
-        if (dropResult) {
-            window.alert( // eslint-disable-line no-alert
-                `You dropped ${item.name} into ${dropResult.name}!`
-            );
-        }
-    }
-}, (connect, monitor) => ({
-    connectDragSource: connect.dragSource(),
-    isDragging: monitor.isDragging()
-}))(ContentPanelsContainer);
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContentPanelsContainer)

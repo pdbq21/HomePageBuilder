@@ -2,9 +2,11 @@
  * Created by ruslan on 23.02.17.
  */
 
-import {COLOR_PICKER, CREATE_ID, ADD_NODE, MOVE_SECTION, GRID_INDEX, EXCHANGE_NODE_ADD,
-		EXCHANGE_NODE_REMOVE, MOVE_CHANGE_SECTION, REMOVE_CHILD, MOVE_ROW, IS_OPACITY,
-		ACTIVE_CONTEXT_MENU
+import {
+    COLOR_PICKER, CREATE_ID, ADD_NODE, MOVE_SECTION, GRID_INDEX, EXCHANGE_NODE_ADD,
+    EXCHANGE_NODE_REMOVE, MOVE_CHANGE_SECTION, REMOVE_CHILD, MOVE_ROW, IS_OPACITY,
+    ACTIVE_CONTEXT_MENU, DELETE_NODE, ELEMENT_TYPE, ACTIVATE_EDIT_PANEL, DEACTIVATE_EDIT_PANEL
+
 } from '../constants/WorkAreaConstants'
 
 // color data base
@@ -120,18 +122,30 @@ export function ActionAddNode(nodeId, childrenId, dropId) {
     };
 }
 export function ActionRemoveChild(nodeId, childId) {
-		return {
-				type: REMOVE_CHILD,
-				nodeId,
-				childId
-		};
+    return {
+        type: REMOVE_CHILD,
+        nodeId,
+        childId
+    };
 }
-
+export function ActionDeleteNode(nodeId) {
+    return {
+        type: DELETE_NODE,
+        nodeId
+    };
+}
 export function ActionGridIndex(nodeId, gridIndex) {
     return {
         type: GRID_INDEX,
         nodeId,
         gridIndex
+    };
+}
+export function ActionElementType(nodeId, elementType) {
+    return {
+        type: ELEMENT_TYPE,
+        nodeId,
+				elementType
     };
 }
 
@@ -155,7 +169,7 @@ export function ActionMoveChangeSection(nodeId, dragId, dragIndex, hoverIndex) {
     return {
         type: MOVE_CHANGE_SECTION,
         nodeId,
-				dragId,
+        dragId,
         dragIndex,
         hoverIndex
     };
@@ -180,17 +194,32 @@ export function ActionActiveOpacity(id) {
         id
     };
 }
-export function ActionActiveContextMenu(id) {
+export function ActionActiveContextMenu(id, parentId, top, left) {
     return {
         type: ACTIVE_CONTEXT_MENU,
-        id
+        id,
+				parentId,
+        top,
+				left
     };
 }
+export function ActionActivateEditPanel(nodeId) {
+		return {
+				type: ACTIVATE_EDIT_PANEL,
+				nodeId
+		};
+}
+export function ActionDeactivateEditPanel(nodeId) {
+		return {
+				type: DEACTIVATE_EDIT_PANEL,
+				nodeId
+		};
+}
 /*
-export function ActionBlurContextMenu(id) {
-    return {
-        type: BLUR_CONTEXT_MENU,
-        id
-    };
-}*/
+ export function ActionBlurContextMenu(id) {
+ return {
+ type: BLUR_CONTEXT_MENU,
+ id
+ };
+ }*/
 

@@ -8,21 +8,25 @@ const initialState = {
     isVisibleContentMenu: true,
     //navigation menu-items
     activeMenuItem: 'Rows', // default
-   /* menuItems: [
+    menuItems: [
         {
             name: 'Rows',
+            classIcon: 'fa-th'
         },
         {
             name: 'Elements',
+						classIcon: 'fa-puzzle-piece'
         },
         {
             name: 'Edit',
+						classIcon: 'fa-paint-brush'
         },
         {
             name: 'Templates',
+						classIcon: 'fa-newspaper-o'
         },
 
-    ],*/
+    ],
 };
 
 

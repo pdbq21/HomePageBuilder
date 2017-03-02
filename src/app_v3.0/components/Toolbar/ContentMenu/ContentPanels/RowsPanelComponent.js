@@ -41,21 +41,6 @@ export default function RowsPanelComponent() {
 
             <p className="pb-menu-description lead">Blocks that help you to build section structure</p>
 
-            <div className="pb-panel">
-                <h4 className="pb-panel-caption">Favorites</h4>
-
-                <div className="pb-panel-content">
-                    <div className="pb-option">
-                        <span className="pb-option-name">Show the button</span>
-                        <div className="pb-option-value">
-                            <div className="pb-joystick pb-toggle-joystick">
-                                On / Off
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <div className="pb-panel pb-collapsed-panel">
                 <h4 className="pb-panel-caption">Common</h4>
 

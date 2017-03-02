@@ -3,9 +3,33 @@
  */
 // import lib
 import React from 'react';
-
+import {DragSource} from 'react-dnd'
 //import component
+function ElementItem(props) {
+    const {name, classIcon, connectDragSource} = props;
+    return connectDragSource(
+        <div className="col-4">
+            <div className="pb-sketch pb-element-sketch">
+                <i className={`fa ${classIcon} pb-element-sketch-icon`}/>
+                <span className="pb-element-sketch-caption">{name}</span>
+            </div>
+        </div>
+    );
+}
 
+const ElementItemDrag = DragSource('DROP_ELEMENT', {
+    beginDrag(props) {
+        return {
+            elementType: props.name
+        };
+    },
+
+    endDrag() {
+    }
+}, (connect, monitor) => ({
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging()
+}))(ElementItem);
 
 export default function ElementsPanelComponent() {
 
@@ -19,56 +43,86 @@ export default function ElementsPanelComponent() {
                 <h4 className="pb-panel-caption">Common</h4>
 
                 <div className="pb-panel-content row no-gutters clearfix">
-                    <div className="col-4">
-                        <div className="pb-sketch pb-element-sketch">
-                            <i className="fa fa-link pb-element-sketch-icon"/>
-                            <span className="pb-element-sketch-caption">Link</span>
-                        </div>
-                    </div>
+                    <ElementItemDrag
+                        name="Link"
+                        classIcon="fa-link"
+                    />
+                    <ElementItemDrag
+                        name="Image"
+                        classIcon="fa-photo"
+                    />
+                    <ElementItemDrag
+                        name="Heading"
+                        classIcon="fa-header"
+                    />
+                    <ElementItemDrag
+                        name="Text"
+                        classIcon="fa-file-text"
+                    />
+                    <ElementItemDrag
+                        name="Gallery"
+                        classIcon="fa-desktop"
+                    />
+                    <ElementItemDrag
+                        name="Button"
+                        classIcon="fa-plus-square-o"
+                    />
+                    <ElementItemDrag
+                        name="Icons"
+                        classIcon="fa-grav"
+                    />
 
-                    <div className="col-4">
-                        <div className="pb-sketch pb-element-sketch">
-                            <i className="fa fa-photo pb-element-sketch-icon"/>
-                            <span className="pb-element-sketch-caption">Image</span>
-                        </div>
-                    </div>
-
-                    <div className="col-4">
-                        <div className="pb-sketch pb-element-sketch">
-                            <i className="fa fa-header pb-element-sketch-icon"/>
-                            <span className="pb-element-sketch-caption">Heading</span>
-                        </div>
-                    </div>
-
-                    <div className="col-4">
-                        <div className="pb-sketch pb-element-sketch">
-                            <i className="fa fa-file-text pb-element-sketch-icon"/>
-                            <span className="pb-element-sketch-caption">Text</span>
-                        </div>
-                    </div>
-
-                    <div className="col-4">
-                        <div className="pb-sketch pb-element-sketch">
-                            <i className="fa fa-desktop pb-element-sketch-icon"/>
-                            <span className="pb-element-sketch-caption">Gallery</span>
-                        </div>
-                    </div>
-
-                    <div className="col-4">
-                        <div className="pb-sketch pb-element-sketch">
-                            <i className="fa fa-plus-square-o pb-element-sketch-icon"/>
-                            <span className="pb-element-sketch-caption">Button</span>
-                        </div>
-                    </div>
-
-                    <div className="col-4">
-                        <div className="pb-sketch pb-element-sketch">
-                            <i className="fa fa-grav pb-element-sketch-icon"/>
-                            <span className="pb-element-sketch-caption">Icons</span>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
     );
 }
+
+/*                    <div className="col-4">
+ <div className="pb-sketch pb-element-sketch">
+ <i className="fa fa-link pb-element-sketch-icon"/>
+ <span className="pb-element-sketch-caption">Link</span>
+ </div>
+ </div>
+
+ <div className="col-4">
+ <div className="pb-sketch pb-element-sketch">
+ <i className="fa fa-photo pb-element-sketch-icon"/>
+ <span className="pb-element-sketch-caption">Image</span>
+ </div>
+ </div>
+
+ <div className="col-4">
+ <div className="pb-sketch pb-element-sketch">
+ <i className="fa fa-header pb-element-sketch-icon"/>
+ <span className="pb-element-sketch-caption">Heading</span>
+ </div>
+ </div>
+
+ <div className="col-4">
+ <div className="pb-sketch pb-element-sketch">
+ <i className="fa fa-file-text pb-element-sketch-icon"/>
+ <span className="pb-element-sketch-caption">Text</span>
+ </div>
+ </div>
+
+ <div className="col-4">
+ <div className="pb-sketch pb-element-sketch">
+ <i className="fa fa-desktop pb-element-sketch-icon"/>
+ <span className="pb-element-sketch-caption">Gallery</span>
+ </div>
+ </div>
+
+ <div className="col-4">
+ <div className="pb-sketch pb-element-sketch">
+ <i className="fa fa-plus-square-o pb-element-sketch-icon"/>
+ <span className="pb-element-sketch-caption">Button</span>
+ </div>
+ </div>
+
+ <div className="col-4">
+ <div className="pb-sketch pb-element-sketch">
+ <i className="fa fa-grav pb-element-sketch-icon"/>
+ <span className="pb-element-sketch-caption">Icons</span>
+ </div>
+ </div>*/

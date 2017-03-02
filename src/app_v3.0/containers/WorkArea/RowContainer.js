@@ -28,9 +28,9 @@ const sectionSource = {
             parentId: props.parentId
         };
     },
-		endDrag(props){
-				const {ActionActiveOpacity} = props.mapDispactchWorkArea;
-				ActionActiveOpacity('');
+    endDrag(props){
+        const {ActionActiveOpacity} = props.mapDispactchWorkArea;
+        ActionActiveOpacity('');
     }
 };
 
@@ -76,13 +76,13 @@ const sectionTarget = {
 
         // Time to actually perform the action
         /*console.log(props, component.props, monitor.getItem())
-        if (component.props.parentId === monitor.getItem().parentId){
-						props.handleMoveRow(dragIndex, hoverIndex);
-        } else {
-						props.handleMoveRow(dragIndex, hoverIndex, monitor.getItem());
-        }*/
+         if (component.props.parentId === monitor.getItem().parentId){
+         props.handleMoveRow(dragIndex, hoverIndex);
+         } else {
+         props.handleMoveRow(dragIndex, hoverIndex, monitor.getItem());
+         }*/
 
-				props.handleMoveRow(dragIndex, hoverIndex, monitor.getItem(), component.props);
+        props.handleMoveRow(dragIndex, hoverIndex, monitor.getItem(), component.props);
         // Note: we're mutating the monitor item here!
         // Generally it's better to avoid mutations,
         // but it's good here for the sake of performance
@@ -102,7 +102,7 @@ const sourceCollect = (connect, monitor) => ({
 });
 
 function DropAreaRow(props) {
-    const {canDrop, isOver,connectDropTarget} = props;
+    const {canDrop, isOver, connectDropTarget} = props;
     const isActive = canDrop && isOver;
     let styles;
 
@@ -146,6 +146,7 @@ class RowContainer extends Component {
     componentDidMount() {
         // empty
     }
+
     componentWillMount() {
         // empty
     }
@@ -173,37 +174,44 @@ class RowContainer extends Component {
 
     render() {
 
-        const {id, parentId, opacityId} = this.props;
+        const {id, parentId, opacityId, activeStructureId, handleContextMenu, handleMoveElement} = this.props;
         const {childrenIds} = this.props.mapStateRow;
         const {isDragging, connectDragSource, connectDropTarget, connectDragPreview} = this.props;
-        const opacity = (isDragging || opacityId) ? 0 : 1;
+        const opacity = (isDragging || (opacityId === id)) ? 0 : 1;
+				const boxShadow = (activeStructureId === id) ? 'inset 0 0 0 10px #4caf50' : 'none';
 
         return connectDragPreview(connectDropTarget(
             <div
-                style={{'opacity': opacity}}
+                style={{'opacity': opacity, 'boxShadow': boxShadow}}
             >
-            <RowComponent>
-                {connectDragSource(<div>
+                <RowComponent>
                     <ControlBarContainer
                         currentId={id}
+                        parentId={parentId}
+                        structure="Row"
+                        connectDragSource={connectDragSource}
+                        handleContextMenu={handleContextMenu}
                     />
-                </div>)}
-                {
-                    childrenIds.map((childrenId, index) => (
+                    {
+                        childrenIds.map((childrenId, index) => (
 
-                        <ColContainer
-                            id={childrenId}
-                            parentId={id}
-                            index={index}
-                            key={`key-${childrenId}`}
-                        />
+                            <ColContainer
+                                id={childrenId}
+                                parentId={id}
+                                index={index}
+                                opacityId={opacityId}
+                                activeStructureId={activeStructureId}
+                                key={`key-${childrenId}`}
+                                handleContextMenu={handleContextMenu}
+                                handleMoveElement={handleMoveElement}
+                            />
 
-                    ))
-                }
-                <DropAreaRowTarget
-                    onDrop={item => this.handleDropRow(parentId, id, item)}
-                />
-            </RowComponent>
+                        ))
+                    }
+                    <DropAreaRowTarget
+                        onDrop={item => this.handleDropRow(parentId, id, item)}
+                    />
+                </RowComponent>
             </div>
         ));
     }

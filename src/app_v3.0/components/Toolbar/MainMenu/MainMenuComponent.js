@@ -8,7 +8,7 @@ import React from 'react';
 
 
 export default function MainMenuComponent(props) {
-    const {handleToggleContentMenu, handelNavigationItems} = props;
+    const {handleToggleContentMenu, handelNavigationItems, children} = props;
     return (
         <div className="pb-menu pb-main-menu">
             <ul className="pb-main-menu-start list-unstyled">
@@ -25,27 +25,8 @@ export default function MainMenuComponent(props) {
                 className="pb-menu-items list-unstyled"
                 onClick={handelNavigationItems}
             >
-                <li className="pb-active-menu-item" title="Rows">
-                    <i className="fa fa-th"
-                       style={{'pointerEvents': 'none'}}
-                    />
-                </li>
-                <li className="" title="Elements">
-                    <i className="fa fa-puzzle-piece"
-                    style={{'pointerEvents': 'none'}}
-                    />
-                </li>
-                <li className="" title="Edit">
-                    <i className="fa fa-paint-brush"
-                       style={{'pointerEvents': 'none'}}
-                    />
-                </li>
-                <li className="" title="Templates">
-                    <i className="fa fa-newspaper-o"
-                    style={{'pointerEvents': 'none'}}
-                    />
-                </li>
-
+                {/* navigation items */}
+                {children}
             </ul>
 
             <ul className="pb-main-menu-end list-unstyled">
@@ -59,3 +40,25 @@ export default function MainMenuComponent(props) {
         </div>
     );
 }
+/*
+<li className="pb-active-menu-item" title="Rows">
+    <i className="fa fa-th"
+       style={{'pointerEvents': 'none'}}
+    />
+</li>
+<li className="" title="Elements">
+		<i className="fa fa-puzzle-piece"
+style={{'pointerEvents': 'none'}}
+/>
+</li>
+<li className="" title="Edit">
+		<i className="fa fa-paint-brush"
+style={{'pointerEvents': 'none'}}
+/>
+</li>
+<li className="" title="Templates">
+		<i className="fa fa-newspaper-o"
+style={{'pointerEvents': 'none'}}
+/>
+</li>
+*/
