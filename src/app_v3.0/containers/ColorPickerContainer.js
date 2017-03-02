@@ -31,7 +31,9 @@ class ColorPickerContainer extends React.Component {
 		render() {
 
 				return (
-						<div>
+						<div style={{
+							'position': 'relative'
+						}}>
 								<div style={{
 										'padding': '5px',
 										'background': '#fff',
