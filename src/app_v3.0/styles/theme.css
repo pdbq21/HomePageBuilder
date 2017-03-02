@@ -2,11 +2,13 @@
     color: #767676;
 }
 
+
 /* Button */
 .btn:hover {
     cursor: pointer;
 }
 
+/* Button > btn-default */
 .btn-default {
     background-color: #c7cbd6;
     border-color: #c7cbd6;
@@ -18,6 +20,7 @@
     color: #fff;
 }
 
+/* Button > btn-primary */
 .btn-primary {
     background-color: #1fb5ad;
     border-color: #1fb5ad;
@@ -29,6 +32,7 @@
     color: #FFFFFF;
 }
 
+/* Button > btn-transparent */
 .btn-transparent {
     background-color: transparent;
     border-color: transparent;
@@ -38,4 +42,11 @@
     background-color: #b0b5b9;
     border-color: #b0b5b9;
     color: white;
+}
+
+
+/* Form > form-control */
+.form-control {
+    font-size: 14px;
+    height: 45px;
 }

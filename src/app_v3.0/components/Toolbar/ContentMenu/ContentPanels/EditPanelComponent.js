@@ -30,10 +30,12 @@ export default function EditPanelComponent(props) {
                     </div>
 
                     <div className="pb-option">
-                        <label htmlFor="ji-1" className="pb-option-name">Link</label>
                         <div className="pb-option-value">
-                            <div className="input-group">
-                                <input type="text" className="form-control" id="ji-1" placeholder="http://example.com/"/>
+                            <div className="pb-joystick pb-input-joystick">
+                                <label className="pb-label">
+                                    <input type="text" className="pb-label-value form-control"/>
+                                    <span className="pb-label-name">Link</span>
+                                </label>
                             </div>
                         </div>
                     </div>
@@ -64,6 +66,14 @@ export default function EditPanelComponent(props) {
                         </div>
                     </div>
 
+                    <div className="pb-option">
+                        <div className="pb-option-value">
+                            <div className="pb-joystick pb-textarea-joystick">
+                                <label htmlFor="jta-1" className="pb-textarea-joystick-label">Text content</label>
+                                <textarea className="form-control pb-textarea-joystick-value" id="jta-1"/>
+                            </div>
+                        </div>
+                    </div>
 
                     <div className="pb-option">
                         <label className="pb-option-name">Background color</label>
