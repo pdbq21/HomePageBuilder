@@ -9,10 +9,13 @@ import {connect} from 'react-redux'
 
 //actions
 //import * as ToolbarActions from '../../actions/ToolbarActions'
+//import container
+//import ColorPickerContainer from '../ColorPickerContainer'
+import EditPanelContainer from './Panel/EditPanelContainer'
 //import component
 import RowsPanelComponent from '../../components/Toolbar/ContentMenu/ContentPanels/RowsPanelComponent'
 import ElementsPanelComponent from '../../components/Toolbar/ContentMenu/ContentPanels/ElementsPanelComponent'
-import StylesPanelComponent from '../../components/Toolbar/ContentMenu/ContentPanels/StylesPanelComponent'
+//import StylesPanelComponent from '../../components/Toolbar/ContentMenu/ContentPanels/StylesPanelComponent'
 import TemplatesPanelComponent from '../../components/Toolbar/ContentMenu/ContentPanels/TemplatesPanelComponent'
 
 
@@ -34,7 +37,10 @@ class ContentPanelsContainer extends Component {
             case 'Elements':
                 return <ElementsPanelComponent />;
             case 'Edit':
-                return <StylesPanelComponent />;
+                /*return (<StylesPanelComponent >
+                    <ColorPickerContainer />
+                </StylesPanelComponent>);*/
+                return <EditPanelContainer />;
             case 'Templates':
                 return <TemplatesPanelComponent />;
 

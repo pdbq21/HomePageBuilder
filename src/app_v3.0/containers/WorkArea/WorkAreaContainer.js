@@ -144,11 +144,11 @@ class WorkAreaContainer extends Component {
 				} else {
 						// if click left button => event.type === 'click'
 						// need activate Edit panel for this structure
-						console.log('click ',id, parentId, structure);
+					//	console.log('click ',id, parentId, structure);
 //structure - Section/Row/Text/Image...
 						const { ActionIsActiveEditPanel, ActionCreateNodeStyles } = this.props.mapDispactchEditPanel;
 						//const {ActionActivateEditPanel, ActionDeactivateEditPanel} = this.props.mapDispactchWorkArea;
-						const {isActiveEditPanel, ActiveStructure} = this.props.mapStateEditPanel;
+						const {ActiveStructure} = this.props.mapStateEditPanel;
 						const {ActionSelectMenuItem} = this.props.mapDispactchToolbar;
 
 
@@ -158,7 +158,7 @@ class WorkAreaContainer extends Component {
 								ActionSelectMenuItem('Rows');
 								ActionIsActiveEditPanel('', '', false);
 						}else{
-								if (isActiveEditPanel === false) {
+								/*if (isActiveEditPanel === false) {
 										// на даному етапі тільки активує структуру
 										//ActionActivateEditPanel(id);
 										// need if first time
@@ -169,7 +169,7 @@ class WorkAreaContainer extends Component {
 										// активує поточну структуру
 										//ActionActivateEditPanel(id);
 
-								}
+								}*/
 								ActionCreateNodeStyles(id);
 								// додає id активної структури для Edit Panel
 								ActionIsActiveEditPanel(id, structure, true);

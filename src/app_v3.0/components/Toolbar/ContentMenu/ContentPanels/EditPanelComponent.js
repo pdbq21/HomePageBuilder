@@ -7,7 +7,8 @@ import React from 'react';
 //import component
 
 
-export default function StylesPanelComponent() {
+export default function EditPanelComponent(props) {
+    const {children} = props;
     return (
         <div className="">
             <h3 className="pb-menu-caption">
@@ -62,6 +63,15 @@ export default function StylesPanelComponent() {
                             </div>
                         </div>
                     </div>
+
+
+                    <div className="pb-option">
+                        <label className="pb-option-name">Background color</label>
+                        <div className="pb-option-value">
+														{children}
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
