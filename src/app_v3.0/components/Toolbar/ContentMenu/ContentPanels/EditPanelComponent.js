@@ -30,10 +30,10 @@ export default function EditPanelComponent(props) {
                     </div>
 
                     <div className="pb-option">
+                        <label htmlFor="ji-1" className="pb-option-name">Link</label>
                         <div className="pb-option-value">
                             <div className="input-group">
-                                <div className="input-group-addon">Link</div>
-                                <input type="text" className="form-control" id="inlineFormInputGroup" placeholder="http://example.com/"/>
+                                <input type="text" className="form-control" id="ji-1" placeholder="http://example.com/"/>
                             </div>
                         </div>
                     </div>

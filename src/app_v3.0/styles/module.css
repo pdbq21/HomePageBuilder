@@ -93,6 +93,8 @@
     border: 2px solid #428bca;
     height: 20px;
     width: 35px;
+    margin: 0;
+    padding: 0;
     border-radius: 1em;
     position: relative;
 }
@@ -301,10 +303,12 @@
 /* Option */
 .pb-option {
     display: flex;
+    align-items: center;
 }
 
 .pb-option-name {
-
+    padding: 0;
+    margin: 0;
 }
 
 .pb-option-value {
