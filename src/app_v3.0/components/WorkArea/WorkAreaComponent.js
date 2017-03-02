@@ -14,7 +14,7 @@ import ControlBarComponent from './ControlBarComponent'*/
 export default function WorkAreaComponent(props) {
 const { children, handleClickAddSection } = props;
     return (
-        <div className="pb-workarea col-sm-12 col-md-7 col-lg-8 col-xl-9">
+        <div className="pb-workarea col">
             {/* section */}
             {children[0]}
 						{/* context menu */}
