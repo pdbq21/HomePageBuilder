@@ -17,6 +17,10 @@
     background-color: dodgerblue;
 }
 
+.pb-section-content > .pb-dashed-card {
+    margin-left: 20px;
+}
+
 
 /* Toolbar */
 .pb-toolbar .pb-menu {

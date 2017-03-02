@@ -30,15 +30,6 @@
     width: 100%;
 }
 
-/* Row */
-.pb-row {
-    margin: 15px 0;
-}
-
-.pb-row-content {
-    padding: 0;
-}
-
 /* Element */
 .pb-element {
 
@@ -271,7 +262,8 @@
     background-color: #474752;
 }
 .pb-element-sketch:hover {
-    color: #bfbfc1;
+    color: #D3D2D2;
+    background-color: #636370;
     cursor: grab;
 }
 .pb-element-sketch:active {
@@ -334,7 +326,7 @@
 .pb-control-bar:before {
     content: "\2630";
     position: absolute;
-    top: 50%;
+    top: calc(50% - 1px);
     left: calc(50% - 1px);
     transform: translate(-50%, -50%);
     display: block;
@@ -379,11 +371,13 @@
 
 /* Card */
 .pb-dashed-card {
-    border: 2px dashed #828295;
-    /*background-color: #E5E6EB;*/
-    background-color: rgba(236, 238, 239, 0.5);
+    border: 1px dashed #A3A3A3;
+    color: #A3A3A3;
+    background-color: transparent;
     text-align: center;
-    width: 100%;
+    outline: 5px solid transparent;
+    margin: 5px;
+    font-size: 90%;
 }
 
 

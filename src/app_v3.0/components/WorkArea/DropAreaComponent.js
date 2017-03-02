@@ -17,9 +17,10 @@ export default function DropAreaComponent(props) {
     }
     return connectDropTarget(
         <div className="card pb-dashed-card"
-        style={style}>
+            style={style}
+        >
             <div className="card-block">
-                <i className="fa fa-hand-paper-o"/> Drag and drop a <b>{name}</b> here to start!
+                <i className="fa fa-hand-paper-o"/> Drag and drop <b>{name}</b> here to start!
             </div>
         </div>
     );
