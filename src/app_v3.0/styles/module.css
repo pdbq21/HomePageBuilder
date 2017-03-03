@@ -9,6 +9,14 @@
     padding: 0;
     margin: 0;
 }
+.pb-workarea:before {
+    content: "";
+    display: block;
+    position: fixed;
+    width: 30px;
+    height: inherit;
+    background-color: #aeb2b7;
+}
 
 /* Toolbar */
 .pb-toolbar {
