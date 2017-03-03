@@ -75,8 +75,9 @@ export default function RowsPanelComponent() {
                     </RowItemDrag>
 
                     <RowItemDrag
-                    gridType="2-2-2-2-2"
+                    gridType="2-2-2-2-2-2"
                     >
+                        <span className="pb-row-sketch-item"/>
                         <span className="pb-row-sketch-item"/>
                         <span className="pb-row-sketch-item"/>
                         <span className="pb-row-sketch-item"/>
@@ -90,6 +91,22 @@ export default function RowsPanelComponent() {
                 <h4 className="pb-panel-caption">Rare</h4>
 
                 <div className="pb-panel-content">
+                    <RowItemDrag
+                        gridType="1-10-1"
+                    >
+                        <span className="pb-row-sketch-item grow-1"/>
+                        <span className="pb-row-sketch-item grow-10"/>
+                        <span className="pb-row-sketch-item grow-1"/>
+                    </RowItemDrag>
+
+                    <RowItemDrag
+                        gridType="2-8-2"
+                    >
+                        <span className="pb-row-sketch-item grow-2"/>
+                        <span className="pb-row-sketch-item grow-8"/>
+                        <span className="pb-row-sketch-item grow-2"/>
+                    </RowItemDrag>
+
                     <RowItemDrag
                         gridType="3-6-3"
                     >
@@ -112,6 +129,22 @@ export default function RowsPanelComponent() {
                         <span className="pb-row-sketch-item grow-3"/>
                         <span className="pb-row-sketch-item grow-3"/>
                         <span className="pb-row-sketch-item grow-6"/>
+                    </RowItemDrag>
+
+                    <RowItemDrag
+                        gridType="5-5-2"
+                    >
+                        <span className="pb-row-sketch-item grow-5"/>
+                        <span className="pb-row-sketch-item grow-5"/>
+                        <span className="pb-row-sketch-item grow-2"/>
+                    </RowItemDrag>
+
+                    <RowItemDrag
+                        gridType="2-5-5"
+                    >
+                        <span className="pb-row-sketch-item grow-2"/>
+                        <span className="pb-row-sketch-item grow-5"/>
+                        <span className="pb-row-sketch-item grow-5"/>
                     </RowItemDrag>
                 </div>
             </div>
