@@ -14,7 +14,23 @@ const initialState = {
         name: ''
     },
     defaultStyle: {
-        backgroundColor: '#ffffff'
+        Section: {
+						backgroundColor: {
+						    r: 255,
+                b: 255,
+                g: 255,
+                a: 1
+            }
+        },
+        Row: {
+						backgroundColor: {
+								r: 255,
+								b: 255,
+								g: 255,
+								a: 1
+						}
+        }
+        // elements
     },
 
     activeTab: 'Content', // default
@@ -41,13 +57,13 @@ const changeStyle = (state, action) => {
     }
 };
 
-const nodeStyle = (state, action) => {
+const nodeStyle = (state, action, styles) => {
 
     switch (action.type) {
         case CREATE_NODE_STYLES:
             return {
                 id: action.nodeId,
-                currentStyle: {}
+                currentStyle: {...styles},
             };
 
         case CHANGE_BACKGROUND_COLOR:
@@ -97,8 +113,9 @@ export default function EditPanelReducer(state = initialState, action) {
         }
 
         return Object.assign({}, state, {
-            [nodeId]: nodeStyle(state[nodeId], action)
+            [nodeId]: nodeStyle(state[nodeId], action, state.defaultStyle[action.structure])
         });
     }
 
 }
+

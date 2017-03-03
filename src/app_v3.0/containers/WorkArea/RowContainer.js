@@ -176,15 +176,20 @@ class RowContainer extends Component {
 
         const {id, parentId, opacityId, activeStructureId, handleContextMenu, handleMoveElement} = this.props;
         const {childrenIds} = this.props.mapStateRow;
+				const {defaultStyle} = this.props.mapStateEditPanel;
         const {isDragging, connectDragSource, connectDropTarget, connectDragPreview} = this.props;
         const opacity = (isDragging || (opacityId === id)) ? 0 : 1;
 				const boxShadow = (activeStructureId === id) ? 'inset 0 0 0 10px #4caf50' : 'none';
-
+				const styles = (typeof this.props.mapStateEditPanel[id] === "undefined") ?
+						defaultStyle["Section"] :
+						this.props.mapStateEditPanel[id].currentStyle;
         return connectDragPreview(connectDropTarget(
             <div
                 style={{'opacity': opacity, 'boxShadow': boxShadow}}
             >
-                <RowComponent>
+                <RowComponent
+                    styles={styles}
+                >
                     <ControlBarContainer
                         currentId={id}
                         parentId={parentId}
@@ -220,6 +225,7 @@ function mapStateToProps(state, ownProps) {
     return {
         mapStateRow: state.WorkAreaReducer[ownProps.id],
         mapStateWorkArea: state.WorkAreaReducer,
+				mapStateEditPanel: state.EditPanelReducer
     }
 }
 

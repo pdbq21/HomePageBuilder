@@ -8,14 +8,16 @@ import React from 'react';
 
 
 export default function SectionComponent(props) {
-    const {children} = props;
+    const {children, styles} = props;
+    //'background': `rgba(${ color.r }, ${ color.g }, ${ color.b }, ${ color.a })`,
+    const {r, g, b, a} = styles.backgroundColor;
     return (
         <div className="pb-section">
             {/* control bar */}
             {children[0]}
             <div
                 className="pb-section-content"
-                style={{'position': 'relative'}}
+                style={{'backgroundColor': `rgba(${r},${g},${b},${a})`, 'position': 'relative'}}
             >
                 {/* row / drop area */}
                 {children[1]}

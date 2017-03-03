@@ -8,12 +8,16 @@ import React from 'react';
 
 
 export default function RowComponent(props) {
-const {children} = props;
+const {children, styles} = props;
+		const {r, g, b, a} = styles.backgroundColor;
     return (
         <div className="pb-row written-row">
             {/* control bar */}
             {children[0]}
-            <div className="pb-row-content">
+            <div
+                className="pb-row-content"
+                style={{'backgroundColor': `rgba(${r},${g},${b},${a})`}}
+            >
                 <div className="row no-gutters">
                     {/* col */}
                     {children[1]}

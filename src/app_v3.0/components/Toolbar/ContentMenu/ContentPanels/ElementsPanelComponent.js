@@ -68,7 +68,7 @@ export default function ElementsPanelComponent() {
                         classIcon="fa-plus-square-o"
                     />
                     <ElementItemDrag
-                        name="Icon"
+                        name="Icons"
                         classIcon="fa-grav"
                     />
 

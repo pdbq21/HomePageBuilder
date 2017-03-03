@@ -22,10 +22,11 @@ export function ActionSelectEditPanelNavigation(name) {
 name, // Content / Styles
     }
 }
-export function ActionCreateNodeStyles(nodeId) {
+export function ActionCreateNodeStyles(nodeId, structure) {
     return {
         type: CREATE_NODE_STYLES,
-        nodeId
+        nodeId,
+				structure
     }
 }
 export function ActionDeleteNodeStyles(nodeId) {

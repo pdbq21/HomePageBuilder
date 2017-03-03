@@ -3,7 +3,7 @@
  */
 
 import React from 'react'
-import { SketchPicker } from 'react-color'
+import {SketchPicker} from 'react-color'
 
 class ColorPickerContainer extends React.Component {
 		state = {
@@ -17,26 +17,28 @@ class ColorPickerContainer extends React.Component {
 		};
 
 		handleClick = () => {
-				this.setState({ displayColorPicker: !this.state.displayColorPicker })
+				this.setState({displayColorPicker: !this.state.displayColorPicker})
 		};
 
 		handleClose = () => {
-				this.setState({ displayColorPicker: false })
+				this.setState({displayColorPicker: false})
 		};
 
 		handleChange = (color) => {
-				this.setState({ color: color.rgb })
+				this.setState({color: color.rgb});
+				//ActionChangeBackgroundColor
 		};
 
 		render() {
-
+				//color => backgroundColor: {r: 255,	b: 255,	g: 255,	a: 1}
+				const {color, handleChangeColor} = this.props;
 				return (
 						<div style={{
-							'position': 'relative'
+								'position': 'relative'
 						}}>
 								<div style={{
 										'padding': '5px',
-										'background': '#fff',
+										'background': 'rgba(0, 0, 0, 1)',
 										'borderRadius': '1px',
 										'boxShadow': '0 0 0 1px rgba(0,0,0,.1)',
 										'display': 'inline-block',
@@ -46,8 +48,9 @@ class ColorPickerContainer extends React.Component {
 												'width': '36px',
 												'height': '14px',
 												'borderRadius': '2px',
-												'background': `rgba(${ this.state.color.r }, ${ this.state.color.g }, ${ this.state.color.b }, ${ this.state.color.a })`,
-										} } />
+												'background': `rgba(${ color.r }, ${ color.g }, ${ color.b }, ${ color.a })`,
+
+										} }/>
 								</div>
 								{ this.state.displayColorPicker ? <div style={ {
 												'position': 'absolute',
@@ -61,7 +64,7 @@ class ColorPickerContainer extends React.Component {
 														'bottom': '0px',
 														'left': '0px',
 												}} onClick={ this.handleClose }/>
-												<SketchPicker color={ this.state.color } onChange={ this.handleChange } />
+												<SketchPicker color={ this.props.color } onChange={ handleChangeColor }/>
 										</div> : null }
 
 						</div>

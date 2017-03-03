@@ -170,7 +170,7 @@ class WorkAreaContainer extends Component {
 										//ActionActivateEditPanel(id);
 
 								}*/
-								ActionCreateNodeStyles(id);
+								ActionCreateNodeStyles(id, structure);
 								// додає id активної структури для Edit Panel
 								ActionIsActiveEditPanel(id, structure, true);
 								ActionSelectMenuItem('Edit');
