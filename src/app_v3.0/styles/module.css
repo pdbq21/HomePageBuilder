@@ -246,17 +246,17 @@
 .pb-label-value {
 
 }
-.pb-label-value[value*=""],
-.pb-label-value:focus {
+.pb-label-value[value]:not([value=""]),
+.pb-label-value[value]:focus {
     padding-top: 16px;
     padding-bottom: 0;
 }
-
-.pb-label-value[value=""] + .pb-label-name,
-.pb-label-value:focus + .pb-label-name {
+.pb-label-value[value]:not([value=""]) + .pb-label-name,
+.pb-label-value[value]:focus + .pb-label-name {
     top: 30%;
     font-size: 10px;
 }
+
 
 
 /* Sketch */

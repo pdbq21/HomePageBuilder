@@ -32,7 +32,8 @@ export default function EditPanelComponent(props) {
                     <div className="pb-option">
                         <div className="pb-option-value">
                             <div className="pb-joystick pb-input-joystick">
-                                <label className="pb-label">
+                                <label className="pb-label w-100">
+                                    {/* Require "value" attribute to work correctly with CSS */}
                                     <input type="text" className="pb-label-value form-control"/>
                                     <span className="pb-label-name">Link</span>
                                 </label>
