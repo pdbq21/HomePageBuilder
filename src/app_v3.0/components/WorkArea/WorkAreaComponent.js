@@ -7,18 +7,18 @@ import React from 'react';
 //import component
 
 /*import SectionComponent from './SectionComponent'
-import RowComponent from './RowComponent'
-import ControlBarComponent from './ControlBarComponent'*/
+ import RowComponent from './RowComponent'
+ import ControlBarComponent from './ControlBarComponent'*/
 
 
 export default function WorkAreaComponent(props) {
-const { children, handleClickAddSection } = props;
+    const {children, handleClickAddSection} = props;
     return (
         <div className="pb-workarea col">
             {/* section */}
             {children[0]}
-						{/* context menu */}
-						{children[1]}
+            {/* context menu */}
+            {children[1]}
             <button
                 className="pb-add-section-button"
                 onClick={handleClickAddSection}

@@ -38,8 +38,8 @@ class ContentPanelsContainer extends Component {
                 return <ElementsPanelComponent />;
             case 'Edit':
                 /*return (<StylesPanelComponent >
-                    <ColorPickerContainer />
-                </StylesPanelComponent>);*/
+                 <ColorPickerContainer />
+                 </StylesPanelComponent>);*/
                 return <EditPanelContainer />;
             case 'Templates':
                 return <TemplatesPanelComponent />;
@@ -50,11 +50,11 @@ class ContentPanelsContainer extends Component {
     }
 
     render() {
-				//const {isActiveEditPanel} = this.props.mapStateEditPanel;
+        //const {isActiveEditPanel} = this.props.mapStateEditPanel;
         return (
             <div>
-								{/*{(isActiveEditPanel) ? this.renderEditPanel() : this.renderContentPanel()}*/}
-								{this.renderContentPanel()}
+                {/*{(isActiveEditPanel) ? this.renderEditPanel() : this.renderContentPanel()}*/}
+                {this.renderContentPanel()}
             </div>
 
         );
@@ -65,16 +65,15 @@ function mapStateToProps(state) {
     return {
         //mapStateWorkArea: state.WorkAreaReducer,
         mapStateToolbar: state.ToolbarReducer,
-				mapStateEditPanel: state.EditPanelReducer
+        mapStateEditPanel: state.EditPanelReducer
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-       //mapDispactchToolbar: bindActionCreators(ToolbarActions, dispatch)
+        //mapDispactchToolbar: bindActionCreators(ToolbarActions, dispatch)
     }
 }
-
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(ContentPanelsContainer)

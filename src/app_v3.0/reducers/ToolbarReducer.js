@@ -15,20 +15,19 @@ const initialState = {
         },
         {
             name: 'Elements',
-						classIcon: 'fa-puzzle-piece'
+            classIcon: 'fa-puzzle-piece'
         },
         {
             name: 'Edit',
-						classIcon: 'fa-paint-brush'
+            classIcon: 'fa-paint-brush'
         },
         {
             name: 'Templates',
-						classIcon: 'fa-newspaper-o'
+            classIcon: 'fa-newspaper-o'
         },
 
     ],
 };
-
 
 
 export default function ToolbarReducer(state = initialState, action) {

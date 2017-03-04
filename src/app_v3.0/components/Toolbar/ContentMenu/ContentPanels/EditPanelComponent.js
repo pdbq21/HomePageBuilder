@@ -23,7 +23,7 @@ export default function EditPanelComponent(props) {
                         <label htmlFor="jt-1" className="pb-option-name">Toggle button</label>
                         <div className="pb-option-value">
                             <div className="pb-joystick pb-toggle-joystick">
-                                <input type="checkbox" id="jt-1" className="pb-toggle-joystick-value" />
+                                <input type="checkbox" id="jt-1" className="pb-toggle-joystick-value"/>
                                 <label htmlFor="jt-1" className="pb-toggle-joystick-btn"/>
                             </div>
                         </div>
@@ -61,7 +61,12 @@ export default function EditPanelComponent(props) {
                         <div className="pb-option-value">
                             <div className="pb-joystick pb-counter-joystick">
                                 <i className="pb-counter-joystick-plus fa fa-plus"/>
-                                <input type="text" id="jc-1" className="pb-counter-joystick-value form-control" value={1}/>
+                                <input type="text"
+                                       id="jc-1"
+                                       className="pb-counter-joystick-value form-control"
+                                       // this is error.
+                                       /*value={1}*/
+                                />
                                 <i className="pb-counter-joystick-minus fa fa-minus"/>
                             </div>
                         </div>
@@ -79,7 +84,7 @@ export default function EditPanelComponent(props) {
                     <div className="pb-option">
                         <label className="pb-option-name">Background color</label>
                         <div className="pb-option-value">
-														{children}
+                            {children}
                         </div>
                     </div>
 

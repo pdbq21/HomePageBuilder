@@ -10,7 +10,7 @@ import React from 'react';
 export default function SectionComponent(props) {
     const {children, styles} = props;
     //'background': `rgba(${ color.r }, ${ color.g }, ${ color.b }, ${ color.a })`,
-    const {r, g, b, a} = styles.backgroundColor;
+    const {r, g, b, a} = styles.background.backgroundColor;
     return (
         <div className="pb-section">
             {/* control bar */}

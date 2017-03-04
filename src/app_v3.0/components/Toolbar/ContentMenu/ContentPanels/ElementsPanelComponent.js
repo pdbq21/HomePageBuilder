@@ -44,31 +44,31 @@ export default function ElementsPanelComponent() {
 
                 <div className="pb-panel-content row no-gutters clearfix">
                     <ElementItemDrag
-                        name="Link"
+                        name="link"
                         classIcon="fa-link"
                     />
                     <ElementItemDrag
-                        name="Image"
+                        name="image"
                         classIcon="fa-photo"
                     />
                     <ElementItemDrag
-                        name="Heading"
+                        name="heading"
                         classIcon="fa-header"
                     />
                     <ElementItemDrag
-                        name="Text"
+                        name="text"
                         classIcon="fa-file-text"
                     />
-                    <ElementItemDrag
-                        name="Gallery"
+                    {/*<ElementItemDrag
+                        name="gallery"
                         classIcon="fa-desktop"
-                    />
+                    />*/}
                     <ElementItemDrag
-                        name="Button"
+                        name="button"
                         classIcon="fa-plus-square-o"
                     />
                     <ElementItemDrag
-                        name="Icons"
+                        name="icon"
                         classIcon="fa-grav"
                     />
 

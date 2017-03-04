@@ -93,7 +93,7 @@ const node = (state, action) => {
             });
         case ELEMENT_TYPE:
             return Object.assign({}, state, {
-								elementType: action.elementType
+                elementType: action.elementType
             });
         case MOVE_SECTION:
 // todo: refactoring this
@@ -157,9 +157,9 @@ export function WorkAreaReducer(state = initialState, action) {
                 return Object.assign({}, state, {
                     activeContextMenu: {
                         id: action.id,
-												parentId: action.parentId,
+                        parentId: action.parentId,
                         top: action.top,
-												left: action.left
+                        left: action.left
                     }
                 });
 

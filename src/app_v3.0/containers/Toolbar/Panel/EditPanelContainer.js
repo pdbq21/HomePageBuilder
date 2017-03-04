@@ -14,87 +14,86 @@ import EditPanelComponent from '../../../components/Toolbar/ContentMenu/ContentP
 import * as EditPanelActions from '../../../actions/EditPanelActions'
 
 class EditPanelContainer extends Component {
-		constructor(props) {
-				super(props);
-				this.renderEditPanel = this.renderEditPanel.bind(this);
-				this.handleChangeColor = this.handleChangeColor.bind(this);
-		}
+    constructor(props) {
+        super(props);
+        this.renderEditPanel = this.renderEditPanel.bind(this);
+        this.handleChangeColor = this.handleChangeColor.bind(this);
+    }
 
-		componentDidMount() {
-				// empty
-		}
+    componentDidMount() {
+        // empty
+    }
 
-		componentWillMount() {
-				// empty
-		}
+    componentWillMount() {
+        // empty
+    }
 
-		handleChangeColor(id, color){
-const {ActionChangeBackgroundColor} = this.props.mapDispactchEditPanel;
-console.log(id, color.rgb);
-				ActionChangeBackgroundColor(id, color.rgb);
-		}
+    handleChangeColor(id, color) {
+        const {ActionChangeBackgroundColor} = this.props.mapDispactchEditPanel;
+        //console.log(id, color.rgb);
+        ActionChangeBackgroundColor(id, color.rgb);
+    }
 
-		renderEditPanel() {
-				const {ActiveStructure} = this.props.mapStateEditPanel;
-				const {currentStyle} = this.props.mapStateEditPanel[ActiveStructure.id];
-				const {backgroundColor} = currentStyle;
-				//const {} = this.props.mapStateWorkArea;
-				console.log(currentStyle);
-				/// ActiveStructure => id, name
-				//currentStyle
-				/*switch (ActiveStructure.name) {
-				 case 'Section':
-				 case 'Row':
-				 return;
-				 case 'Image':
-				 return;
-				 case 'Link':
-				 return;
-				 case 'Heading':
-				 case 'Text':
-				 return;
-				 case 'Button':
-				 return;
-				 case 'Gallery':
-				 return;
-				 case 'Icons':
-				 return;
+    renderEditPanel() {
+        const {ActiveStructure} = this.props.mapStateEditPanel;
+        //stop if click on Edit in WorkArea / need currentStyle for WorkArea
+        if (ActiveStructure.id === '') {
+            return <EditPanelComponent />;
+        }
+        const {currentStyle} = this.props.mapStateEditPanel[ActiveStructure.id];
+        const {background} = currentStyle;
+        //const {} = this.props.mapStateWorkArea;
+        //console.log(ActiveStructure.id);
+        /// ActiveStructure => id, name
+        //currentStyle
+        switch (ActiveStructure.name) {
+            case 'section':
+            case 'row':
+            case 'link':
+            case 'heading':
+            case 'text':
+            case 'button':
+                return (<EditPanelComponent>
+                    <ColorPickerContainer
+                        color={background.backgroundColor}
+                        handleChangeColor={(color) => this.handleChangeColor(ActiveStructure.id, color)}
+                    />
+                </EditPanelComponent>
+            );
+            case 'image':
+            case 'icon':
+                return (<EditPanelComponent>
 
-				 default:
-				 return;
-				 }*/
+                    </EditPanelComponent>
+                );
+
+            default:
+                return <div>Error: {ActiveStructure.name}</div>;
+        }
 
 
-				return (
-						<EditPanelComponent>
-								<ColorPickerContainer
-color={backgroundColor}
-handleChangeColor={(color) => this.handleChangeColor(ActiveStructure.id, color)}
-								/>
-						</EditPanelComponent>
-				);
-		}
 
-		render() {
+    }
 
-				return (
-						this.renderEditPanel()
-				);
-		}
+    render() {
+        return (
+            this.renderEditPanel()
+        );
+    }
 }
 
 
 function mapStateToProps(state) {
-		return {
-				mapStateEditPanel: state.EditPanelReducer,
-				mapStateWorkArea: state.WorkAreaReducer
-		}
+    return {
+        mapStateEditPanel: state.EditPanelReducer,
+        mapStateWorkArea: state.WorkAreaReducer
+    }
 }
 
 function mapDispatchToProps(dispatch) {
-		return {
-				mapDispactchEditPanel: bindActionCreators(EditPanelActions, dispatch)
-		}
+    return {
+        mapDispactchEditPanel: bindActionCreators(EditPanelActions, dispatch)
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditPanelContainer)

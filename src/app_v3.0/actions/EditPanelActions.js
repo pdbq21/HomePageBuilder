@@ -19,14 +19,15 @@ export function ActionIsActiveEditPanel(id, name, boolean) {
 export function ActionSelectEditPanelNavigation(name) {
     return {
         type: SELECT_EDIT_PANEL_NAVIGATION,
-name, // Content / Styles
+        name, // Content / Styles
     }
 }
+
 export function ActionCreateNodeStyles(nodeId, structure) {
     return {
         type: CREATE_NODE_STYLES,
         nodeId,
-				structure
+        structure
     }
 }
 export function ActionDeleteNodeStyles(nodeId) {

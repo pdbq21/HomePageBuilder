@@ -9,7 +9,7 @@ import React from 'react';
 
 export default function RowComponent(props) {
 const {children, styles} = props;
-		const {r, g, b, a} = styles.backgroundColor;
+    const {r, g, b, a} = styles.background.backgroundColor;
     return (
         <div className="pb-row written-row">
             {/* control bar */}

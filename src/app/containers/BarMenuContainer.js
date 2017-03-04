@@ -69,40 +69,40 @@ class BarMenuContainer extends Component {
         ActionIsActiveExchangeStructure(false, type);
     }
 
-    handleActiveEditPanel(id, parentId, name){
+    handleActiveEditPanel(id, parentId, name) {
 // id - Row id; parentId - Section id; name - Section/Row/Text/Image...
-        console.log('id: ',id,'parentId: ', parentId, name);
-        const { ActionIsActiveEditPanel, ActionCreateNodeStyles } = this.props.mapDispactchEditPanel;
+        console.log('id: ', id, 'parentId: ', parentId, name);
+        const {ActionIsActiveEditPanel, ActionCreateNodeStyles} = this.props.mapDispactchEditPanel;
         const {ActionActivateEditPanel, ActionDeactivateEditPanel} = this.props.mapDispactchConstructorView;
         const {isActiveEditPanel, ActiveStructure} = this.props.mapStateEditPanel;
-//console.log(ActiveStructure);
-        if (ActiveStructure.id === id){
+
+        if (ActiveStructure.id === id) {
             ActionDeactivateEditPanel(ActiveStructure.id);
             ActionIsActiveEditPanel('', '', false);
-        }else{
+        } else {
             if (isActiveEditPanel === false) {
                 // на даному етапі тільки активує структуру
                 ActionActivateEditPanel(id);
                 // need if first time
 
-            } else if (isActiveEditPanel === true){
+            } else if (isActiveEditPanel === true) {
                 // деактивує попереднню активну структуру
                 ActionDeactivateEditPanel(ActiveStructure.id);
                 // активує поточну структуру
                 ActionActivateEditPanel(id);
-
             }
+
+            console.log(this.props.mapStateEditPanel[id]);
             ActionCreateNodeStyles(id);
             // додає id активної структури для Edit Panel
             ActionIsActiveEditPanel(id, name, true);
         }
 
 
-
         /*const {ActionActiveEditPanel} = this.props.mapDispactchConstructorView;
-        const {ActionEditPanel} = this.props.mapDispactchToolbar;
-        ActionActiveEditPanel(id);
-        ActionEditPanel();*/
+         const {ActionEditPanel} = this.props.mapDispactchToolbar;
+         ActionActiveEditPanel(id);
+         ActionEditPanel();*/
 
     }
 
