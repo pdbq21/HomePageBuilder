@@ -3,7 +3,7 @@
  */
 import {
     IS_ACTIVE_EDIT_PANEL, CHANGE_BACKGROUND_COLOR, CREATE_NODE_STYLES, DELETE_NODE_STYLES,
-    SELECT_EDIT_PANEL_NAVIGATION
+    SELECT_EDIT_PANEL_NAVIGATION, TOGGLE_COLOR_PICKER
 } from '../constants/EditPanelConstants'
 
 
@@ -16,10 +16,18 @@ export function ActionIsActiveEditPanel(id, name, boolean) {
         boolean
     }
 }
+
 export function ActionSelectEditPanelNavigation(name) {
     return {
         type: SELECT_EDIT_PANEL_NAVIGATION,
         name, // Content / Styles
+    }
+}
+
+export function ActionToggleColorPicker(bool) {
+    return {
+        type: TOGGLE_COLOR_PICKER,
+        bool
     }
 }
 
