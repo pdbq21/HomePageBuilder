@@ -93,4 +93,23 @@
     margin-bottom: 7px;
 }
 
+
+/* Active */
+/*.pb-workarea {*/
+    /*opacity: 1;*/
+/*}*/
+
+.pb-active-workflow :not(.pb-active-box) .pb-element {
+    opacity: .3;
+}
+
+.pb-active-workflow .pb-active-box .pb-element {
+    opacity: 1;
+}
+
+/*.pb-workarea .pb-element {*/
+    /*opacity: .5;*/
+/*}*/
+
+
 /* TinyMCE */
