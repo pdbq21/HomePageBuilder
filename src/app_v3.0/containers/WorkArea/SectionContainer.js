@@ -172,12 +172,14 @@ class SectionContainer extends Component {
         const {defaultStyle} = this.props.mapStateEditPanel;
         const opacity = (isDragging) ? 0 : 1;
         const boxShadow = (activeStructureId === id) ? 'inset 0 0 0 10px #4caf50' : 'none';
+        const classActiveStructure = (activeStructureId === id) ? 'pb-active-box' : '';
         const styles = (typeof this.props.mapStateEditPanel[id] === "undefined") ?
             defaultStyle["section"] :
             this.props.mapStateEditPanel[id].currentStyle;
 
         return connectDragPreview(connectDropTarget(
             <div
+                className={classActiveStructure}
                 style={{'opacity': opacity, 'boxShadow': boxShadow}}
             >
                 <SectionComponent

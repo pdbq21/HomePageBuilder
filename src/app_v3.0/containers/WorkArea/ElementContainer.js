@@ -158,6 +158,7 @@ class ElementContainer extends Component {
         const {id, parentId, opacityId, activeStructureId, handleContextMenu} = this.props;
         const {isDragging, connectDragSource, connectDropTarget} = this.props;
         const opacity = (isDragging || (opacityId === id)) ? 0 : 1;
+				const classActiveStructure = (activeStructureId === id) ? 'pb-active-box' : '';
         const boxShadow = (activeStructureId === id) ? 'inset 0 0 0 10px #4caf50' : 'none';
         const styles = (typeof this.props.mapStateEditPanel[id] === "undefined") ?
             defaultStyle[elementType] :
@@ -168,6 +169,7 @@ class ElementContainer extends Component {
         }
         return connectDropTarget(
             <div
+                className={classActiveStructure}
                 style={{'opacity': opacity, 'boxShadow': boxShadow}}
             >
                 {connectDragSource(<div>

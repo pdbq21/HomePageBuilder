@@ -17,7 +17,7 @@ export default function SectionComponent(props) {
             {children[0]}
             <div
                 className="pb-section-content"
-                style={{'backgroundColor': `rgba(${r},${g},${b},${a})`, 'position': 'relative'}}
+                style={{...styles, 'backgroundColor': `rgba(${r},${g},${b},${a})`, 'position': 'relative'}}
             >
                 {/* row / drop area */}
                 {children[1]}
