@@ -3,11 +3,10 @@
  */
 // import lib
 import React from 'react';
-import TinyMCE from 'react-tinymce';
 
 //import component
 export default function ElementComponent(props) {
-    const {type, handleClickContextMenu, handleEditorChange, styles} = props;
+    const {type, handleClickContextMenu, handleEditorChange, styles, TinyMCE} = props;
     let element;
     if (typeof styles.background === "undefined") {
         switch (type) {
@@ -46,12 +45,11 @@ export default function ElementComponent(props) {
                             content="<p>This is the initial content of the editor</p>"
                             config={{
                                 inline: true,
-                                linkchecker_service_url: '',
-                                linkchecker_api_key: 'idds1ja21nirk6ca3rxkpxi0mirk22w2zyvzz1f3y15dzelg',
                                 plugins: 'link image code',
-                                toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
+                                toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code',
+
                             }}
-                            onChange={handleEditorChange}
+                            onClick={handleEditorChange}
                         />
                     </div>);
                 break;
@@ -81,7 +79,7 @@ export default function ElementComponent(props) {
                                 plugins: 'link image code',
                                 toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
                             }}
-                            onChange={handleEditorChange}
+                            onClick={handleEditorChange}
                         />
                     </div>);
                 break;
