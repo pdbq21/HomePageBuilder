@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
+//import Tinymce from 'tinymce';
 
+//import tiny from './static/lib/tinymce/js/tinymce/tinymce.min'
 //import Builder from './app/containers/BuilderContainer';
 //import configureStore from './app/store/configureStore';
 import configureStore from './app_v3.0/store/configureStore';
