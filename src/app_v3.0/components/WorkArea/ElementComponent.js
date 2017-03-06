@@ -45,6 +45,8 @@ export default function ElementComponent(props) {
 												<TinyMCE
 														content="<p>This is the initial content of the editor</p>"
 														config={{
+																inline: true,
+																linkchecker_api_key: 'idds1ja21nirk6ca3rxkpxi0mirk22w2zyvzz1f3y15dzelg',
 																plugins: 'link image code',
 																toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
 														}}
@@ -70,7 +72,16 @@ export default function ElementComponent(props) {
 												className="pb-element pb-heading-element"
 												style={{'backgroundColor': `rgba(${r},${g},${b},${a})`}}
 										>
-												<h2>Sample heading</h2>
+												<TinyMCE
+														content="<h2>This is simple heading</h2>"
+														config={{
+																inline: true,
+																linkchecker_api_key: 'idds1ja21nirk6ca3rxkpxi0mirk22w2zyvzz1f3y15dzelg',
+																plugins: 'link image code',
+																toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
+														}}
+														onChange={handleEditorChange}
+												/>
 										</div>);
 								break;
 						case 'link':
