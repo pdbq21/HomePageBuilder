@@ -138,6 +138,7 @@ class ElementContainer extends Component {
     constructor(props) {
         super(props);
         this.handleDropElement = this.handleDropElement.bind(this);
+        this.handleEditorChange = this.handleEditorChange.bind(this);
     }
 
     handleDropElement(parentId, id, item) {
@@ -151,7 +152,9 @@ class ElementContainer extends Component {
         ActionElementType(childrenIdElement, item.elementType);
     }
 
-
+		handleEditorChange(e){
+				console.log('Content was updated:', e.target.getContent());
+		}
     render() {
         const {elementType} = this.props.mapStateElement;
         const {defaultStyle} = this.props.mapStateEditPanel;
@@ -176,6 +179,7 @@ class ElementContainer extends Component {
                     <ElementComponent
                         styles={styles}
                         handleClickContextMenu={(event) => handleContextMenu(event, id, parentId, elementType)}
+												handleEditorChange={this.handleEditorChange}
                         type={elementType}
                     >
                     </ElementComponent>
