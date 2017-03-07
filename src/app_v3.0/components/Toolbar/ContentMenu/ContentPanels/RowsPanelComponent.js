@@ -92,22 +92,6 @@ export default function RowsPanelComponent() {
 
                 <div className="pb-panel-content">
                     <RowItemDrag
-                        gridType="1-10-1"
-                    >
-                        <span className="pb-row-sketch-item grow-1"/>
-                        <span className="pb-row-sketch-item grow-10"/>
-                        <span className="pb-row-sketch-item grow-1"/>
-                    </RowItemDrag>
-
-                    <RowItemDrag
-                        gridType="2-8-2"
-                    >
-                        <span className="pb-row-sketch-item grow-2"/>
-                        <span className="pb-row-sketch-item grow-8"/>
-                        <span className="pb-row-sketch-item grow-2"/>
-                    </RowItemDrag>
-
-                    <RowItemDrag
                         gridType="3-6-3"
                     >
                         <span className="pb-row-sketch-item grow-3"/>
@@ -145,6 +129,20 @@ export default function RowsPanelComponent() {
                         <span className="pb-row-sketch-item grow-2"/>
                         <span className="pb-row-sketch-item grow-5"/>
                         <span className="pb-row-sketch-item grow-5"/>
+                    </RowItemDrag>
+
+                    <RowItemDrag
+                        gridType="4-8"
+                    >
+                        <span className="pb-row-sketch-item grow-4"/>
+                        <span className="pb-row-sketch-item grow-8"/>
+                    </RowItemDrag>
+
+                    <RowItemDrag
+                        gridType="8-4"
+                    >
+                        <span className="pb-row-sketch-item grow-8"/>
+                        <span className="pb-row-sketch-item grow-4"/>
                     </RowItemDrag>
                 </div>
             </div>

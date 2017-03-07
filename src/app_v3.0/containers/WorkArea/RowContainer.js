@@ -187,7 +187,6 @@ class RowContainer extends Component {
         return connectDragPreview(connectDropTarget(
             <div
                 className={classActiveStructure}
-                style={{'opacity': opacity, 'boxShadow': boxShadow}}
             >
                 <RowComponent
                     styles={styles}

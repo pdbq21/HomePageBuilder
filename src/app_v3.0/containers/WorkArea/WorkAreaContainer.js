@@ -193,7 +193,7 @@ class WorkAreaContainer extends Component {
         const {opacityId, activeContextMenu, isActiveTextEdit} = this.props.mapStateWorkArea;
         const display = (activeContextMenu.id !== '') ? 'block' : 'none';
         const {ActiveStructure} = this.props.mapStateEditPanel;
-        const classActiveWorkArea = (ActiveStructure.id === '') ? 'pb-active-workflow' : '';
+        const classActiveWorkArea = (ActiveStructure.id !== '') ? 'pb-active-workflow' : '';
         return (
             <WorkAreaComponent
                 classActiveWorkArea={classActiveWorkArea}

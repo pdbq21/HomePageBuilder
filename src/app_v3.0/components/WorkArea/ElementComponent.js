@@ -45,9 +45,10 @@ export default function ElementComponent(props) {
                             content="<p>This is the initial content of the editor</p>"
                             config={{
                                 inline: true,
-                                plugins: 'link image code',
-                                toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code',
-
+                                menubar: false,
+                                toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | fontsizeselect fontselect',
+                                fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt',
+                                font_formats: 'Arial=arial,helvetica,sans-serif;Courier New=courier new,courier,monospace;AkrutiKndPadmini=Akpdmi-n'
                             }}
                             onClick={handleTextEditor}
                         />

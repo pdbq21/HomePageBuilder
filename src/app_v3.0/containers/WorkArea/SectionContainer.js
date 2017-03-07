@@ -180,7 +180,6 @@ class SectionContainer extends Component {
         return connectDragPreview(connectDropTarget(
             <div
                 className={classActiveStructure}
-                style={{'opacity': opacity, 'boxShadow': boxShadow}}
             >
                 <SectionComponent
                     styles={styles}

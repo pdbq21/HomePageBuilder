@@ -181,7 +181,6 @@ class ElementContainer extends Component {
         return connectDropTarget(
             <div
                 className={classActiveStructure}
-                style={{'opacity': opacity, 'boxShadow': boxShadow}}
             >
                 {connectDragSource(<div
                 draggable={(isActiveTextEdit)? false : true}

@@ -2,10 +2,3 @@ body {
     padding: 10px;
     /*font-size: 14px;*/
 }
-
-* {
-    transition: all .25s;
-}
-*:hover {
-    transition: all .15s;
-}

@@ -14,7 +14,7 @@ export default function BuilderComponent(props) {
 const {children} = props;
     return (
         <div className="pb-main-box container-fluid">
-            <div className="row">
+            <div className="row no-gutters">
 
                 {/* Workarea */}
 
