@@ -139,7 +139,7 @@ class ElementContainer extends Component {
     constructor(props) {
         super(props);
         this.handleDropElement = this.handleDropElement.bind(this);
-        this.handleEditorChange = this.handleEditorChange.bind(this);
+        this.handleTextEditor = this.handleTextEditor.bind(this);
     }
 
     handleDropElement(parentId, id, item) {
@@ -153,14 +153,18 @@ class ElementContainer extends Component {
         ActionElementType(childrenIdElement, item.elementType);
     }
 
-    handleEditorChange() {
-        console.log('Content was updated:')
+    handleTextEditor() {
+        const {isActiveTextEdit} = this.props.mapStateWorkArea;
+        if (isActiveTextEdit === false){
+            const {ActionActiveTextEdit} = this.props.mapDispactchWorkArea;
+            ActionActiveTextEdit(true);
+        }
     }
-
 
     render() {
         const {elementType} = this.props.mapStateElement;
         const {defaultStyle} = this.props.mapStateEditPanel;
+        const {isActiveTextEdit} = this.props.mapStateWorkArea;
         const {id, parentId, opacityId, activeStructureId, handleContextMenu} = this.props;
         const {isDragging, connectDragSource, connectDropTarget} = this.props;
         const opacity = (isDragging || (opacityId === id)) ? 0 : 1;
@@ -180,12 +184,12 @@ class ElementContainer extends Component {
                 style={{'opacity': opacity, 'boxShadow': boxShadow}}
             >
                 {connectDragSource(<div
-                className="test"
+                draggable={(isActiveTextEdit)? false : true}
                 >
                     <ElementComponent
                         styles={styles}
                         handleClickContextMenu={(event) => handleContextMenu(event, id, parentId, elementType)}
-                        handleEditorChange={this.handleEditorChange}
+                        handleTextEditor={this.handleTextEditor}
                         type={elementType}
                         TinyMCE={TinyMCE}
                     >

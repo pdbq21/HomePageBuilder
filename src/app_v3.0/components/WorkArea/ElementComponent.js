@@ -6,7 +6,7 @@ import React from 'react';
 
 //import component
 export default function ElementComponent(props) {
-    const {type, handleClickContextMenu, handleEditorChange, styles, TinyMCE} = props;
+    const {type, handleClickContextMenu, handleTextEditor, styles, TinyMCE} = props;
     let element;
     if (typeof styles.background === "undefined") {
         switch (type) {
@@ -39,7 +39,7 @@ export default function ElementComponent(props) {
                 element = (
                     <div
                         className="pb-element pb-text-element"
-                        style={{'backgroundColor': `rgba(${r},${g},${b},${a})`}}
+                        style={{'backgroundColor': `rgba(${r},${g},${b},${a})`, 'zIndex': 2, 'position': 'relative'}}
                     >
                         <TinyMCE
                             content="<p>This is the initial content of the editor</p>"
@@ -49,7 +49,7 @@ export default function ElementComponent(props) {
                                 toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code',
 
                             }}
-                            onClick={handleEditorChange}
+                            onClick={handleTextEditor}
                         />
                     </div>);
                 break;
@@ -69,7 +69,7 @@ export default function ElementComponent(props) {
                 element = (
                     <div
                         className="pb-element pb-heading-element"
-                        style={{'backgroundColor': `rgba(${r},${g},${b},${a})`}}
+                        style={{'backgroundColor': `rgba(${r},${g},${b},${a})`, 'zIndex': 2, 'position': 'relative'}}
                     >
                         <TinyMCE
                             content="<h2>This is simple heading</h2>"
@@ -79,7 +79,7 @@ export default function ElementComponent(props) {
                                 plugins: 'link image code',
                                 toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
                             }}
-                            onClick={handleEditorChange}
+                            onClick={handleTextEditor}
                         />
                     </div>);
                 break;

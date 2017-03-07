@@ -27,6 +27,8 @@ export default function WorkAreaComponent(props) {
             >
                 <i className="pb-icon-plus"/>
             </button>
+            {/* zone for blur text edit */}
+            {children[2]}
         </div>
     );
 }

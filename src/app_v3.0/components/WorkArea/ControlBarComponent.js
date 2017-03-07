@@ -17,7 +17,6 @@ export default function ControlBarComponent(props) {
             }}
             onClick={handleClickControlBar}
             onContextMenu={handleClickControlBar}
-
         >
 
         </div>
