@@ -6,6 +6,7 @@ import React, {Component} from 'react'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import {findDOMNode} from 'react-dom';
+import TinyMCE from 'react-tinymce';
 import {DragSource, DropTarget} from 'react-dnd';
 //import ItemTypes for Drag'n'Drop
 import {DRAG_ELEMENT} from '../../constants/ItemTypes'
@@ -152,37 +153,44 @@ class ElementContainer extends Component {
         ActionElementType(childrenIdElement, item.elementType);
     }
 
-		handleEditorChange(e){
-				console.log('Content was updated:', e.target.getContent());
-		}
+    handleEditorChange() {
+        console.log('Content was updated:')
+    }
+
+
     render() {
         const {elementType} = this.props.mapStateElement;
         const {defaultStyle} = this.props.mapStateEditPanel;
         const {id, parentId, opacityId, activeStructureId, handleContextMenu} = this.props;
         const {isDragging, connectDragSource, connectDropTarget} = this.props;
         const opacity = (isDragging || (opacityId === id)) ? 0 : 1;
-				const classActiveStructure = (activeStructureId === id) ? 'pb-active-box' : '';
+        const classActiveStructure = (activeStructureId === id) ? 'pb-active-box' : '';
         const boxShadow = (activeStructureId === id) ? 'inset 0 0 0 10px #4caf50' : 'none';
         const styles = (typeof this.props.mapStateEditPanel[id] === "undefined") ?
             defaultStyle[elementType] :
             this.props.mapStateEditPanel[id].currentStyle;
 
-        if (typeof elementType === "undefined"){
+        if (typeof elementType === "undefined") {
             return <div></div>;
         }
+//Todo: draggable = ()? : ;
         return connectDropTarget(
             <div
                 className={classActiveStructure}
             >
-                {connectDragSource(<div>
+                {connectDragSource(<div
+                className="test"
+                >
                     <ElementComponent
                         styles={styles}
                         handleClickContextMenu={(event) => handleContextMenu(event, id, parentId, elementType)}
-												handleEditorChange={this.handleEditorChange}
+                        handleEditorChange={this.handleEditorChange}
                         type={elementType}
+                        TinyMCE={TinyMCE}
                     >
                     </ElementComponent>
                 </div>)}
+
                 <DropAreaElementTarget
                     onDrop={item => this.handleDropElement(parentId, id, item)}
                 />

@@ -3,11 +3,10 @@
  */
 // import lib
 import React from 'react';
-import TinyMCE from 'react-tinymce';
 
 //import component
 export default function ElementComponent(props) {
-    const {type, handleClickContextMenu, handleEditorChange, styles} = props;
+    const {type, handleClickContextMenu, handleEditorChange, styles, TinyMCE} = props;
     let element;
     if (typeof styles.background === "undefined") {
         switch (type) {
@@ -51,7 +50,7 @@ export default function ElementComponent(props) {
                                 fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt',
                                 font_formats: 'Arial=arial,helvetica,sans-serif;Courier New=courier new,courier,monospace;AkrutiKndPadmini=Akpdmi-n'
                             }}
-                            onChange={handleEditorChange}
+                            onClick={handleEditorChange}
                         />
                     </div>);
                 break;
@@ -81,7 +80,7 @@ export default function ElementComponent(props) {
                                 plugins: 'link image code',
                                 toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
                             }}
-                            onChange={handleEditorChange}
+                            onClick={handleEditorChange}
                         />
                     </div>);
                 break;
