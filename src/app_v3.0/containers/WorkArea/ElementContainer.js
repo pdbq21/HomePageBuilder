@@ -142,7 +142,7 @@ class ElementContainer extends Component {
         this.handleTextEditor = this.handleTextEditor.bind(this);
     }
 
-    handleDropElement(parentId, id, item) {
+    handleDropElement(parentId, item) {
         // parentId => id Col; id => drop id Element; item => {elementType: 'Text'/'Image' ..}
 //console.log('drop element', parentId, id, item);
         const {ActionCreateNode, ActionAddNode, ActionElementType} = this.props.mapDispactchWorkArea;
@@ -165,11 +165,11 @@ class ElementContainer extends Component {
         const {elementType} = this.props.mapStateElement;
         const {defaultStyle} = this.props.mapStateEditPanel;
         const {isActiveTextEdit} = this.props.mapStateWorkArea;
-        const {id, parentId, opacityId, activeStructureId, handleContextMenu} = this.props;
-        const {isDragging, connectDragSource, connectDropTarget} = this.props;
-        const opacity = (isDragging || (opacityId === id)) ? 0 : 1;
+        const {id, parentId, activeStructureId, handleContextMenu} = this.props;//opacityId
+        const {connectDragSource, connectDropTarget} = this.props;// isDragging
+        //const opacity = (isDragging || (opacityId === id)) ? 0 : 1;
         const classActiveStructure = (activeStructureId === id) ? 'pb-active-box' : '';
-        const boxShadow = (activeStructureId === id) ? 'inset 0 0 0 10px #4caf50' : 'none';
+        //const boxShadow = (activeStructureId === id) ? 'inset 0 0 0 10px #4caf50' : 'none';
         const styles = (typeof this.props.mapStateEditPanel[id] === "undefined") ?
             defaultStyle[elementType] :
             this.props.mapStateEditPanel[id].currentStyle;
@@ -177,7 +177,7 @@ class ElementContainer extends Component {
         if (typeof elementType === "undefined") {
             return <div></div>;
         }
-//Todo: draggable = ()? : ;
+
         return connectDropTarget(
             <div
                 className={classActiveStructure}
@@ -196,7 +196,7 @@ class ElementContainer extends Component {
                 </div>)}
 
                 <DropAreaElementTarget
-                    onDrop={item => this.handleDropElement(parentId, id, item)}
+                    onDrop={item => this.handleDropElement(parentId, item)}
                 />
             </div>
         );

@@ -167,11 +167,11 @@ class SectionContainer extends Component {
             id, handleMoveRow, opacityId, activeStructureId, parentId, handleContextMenu, handleMoveElement,
 
         } = this.props;
-        const {isDragging, connectDragSource, connectDropTarget, connectDragPreview} = this.props;
+        const {connectDragSource, connectDropTarget, connectDragPreview} = this.props;
         const {childrenIds} = this.props.mapStateSection;
         const {defaultStyle} = this.props.mapStateEditPanel;
-        const opacity = (isDragging) ? 0 : 1;
-        const boxShadow = (activeStructureId === id) ? 'inset 0 0 0 10px #4caf50' : 'none';
+        //const opacity = (isDragging) ? 0 : 1;
+        //const boxShadow = (activeStructureId === id) ? 'inset 0 0 0 10px #4caf50' : 'none';
         const classActiveStructure = (activeStructureId === id) ? 'pb-active-box' : '';
         const styles = (typeof this.props.mapStateEditPanel[id] === "undefined") ?
             defaultStyle["section"] :
