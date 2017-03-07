@@ -30,6 +30,7 @@ class WorkAreaContainer extends Component {
         this.handelBlurContextMenu = this.handelBlurContextMenu.bind(this);
         this.handleRemove = this.handleRemove.bind(this);
         this.handleMoveElement = this.handleMoveElement.bind(this);
+        this.handelClickBlurArea = this.handelClickBlurArea.bind(this);
     }
 
     componentDidMount() {
@@ -156,7 +157,7 @@ class WorkAreaContainer extends Component {
                 ActionIsActiveEditPanel('', '', false);
             } else {
 
-                if (typeof this.props.mapStateEditPanel[id] === "undefined"){
+                if (typeof this.props.mapStateEditPanel[id] === "undefined") {
                     ActionCreateNodeStyles(id, structure);
                 }
                 // add id active structure for Edit Panel
@@ -171,7 +172,7 @@ class WorkAreaContainer extends Component {
         const {ActionDeleteNodeStyles} = this.props.mapDispactchEditPanel;
         const {ActionRemoveChild, ActionDeleteNode, ActionActiveContextMenu} = this.props.mapDispactchWorkArea;
 
-        for (let child of this.props.mapStateWorkArea[activeContextMenu.id].childrenIds){
+        for (let child of this.props.mapStateWorkArea[activeContextMenu.id].childrenIds) {
             ActionDeleteNodeStyles(child);
         }
 
@@ -181,14 +182,21 @@ class WorkAreaContainer extends Component {
         ActionActiveContextMenu('', '', 0, 0);
     }
 
+    handelClickBlurArea() {
+        const {ActionActiveTextEdit} = this.props.mapDispactchWorkArea;
+        ActionActiveTextEdit(false);
+    }
+
     render() {
         const {id} = this.props;
         const {childrenIds} = this.props.mapStateWorkArea[id];
-        const {opacityId, activeContextMenu} = this.props.mapStateWorkArea;
+        const {opacityId, activeContextMenu, isActiveTextEdit} = this.props.mapStateWorkArea;
         const display = (activeContextMenu.id !== '') ? 'block' : 'none';
         const {ActiveStructure} = this.props.mapStateEditPanel;
+        const classActiveWorkArea = (ActiveStructure.id !== '') ? 'pb-active-workflow' : '';
         return (
             <WorkAreaComponent
+                classActiveWorkArea={classActiveWorkArea}
                 handleClickAddSection={this.handleClickAddSection}
             >
                 {childrenIds.map((childrenId, index) => (
@@ -227,6 +235,17 @@ class WorkAreaContainer extends Component {
                         <li className="pb-context-menu-btn">Paste</li>
                     </ul>
                 </div>
+                {(isActiveTextEdit) ?
+                    (<div className=""
+                          onClick={this.handelClickBlurArea}
+                          style={{
+                              'position': 'fixed',
+                              'top': '0px',
+                              'right': '0px',
+                              'bottom': '0px',
+                              'left': '0px',
+                          }}
+                    />) : null}
 
             </WorkAreaComponent>
         );

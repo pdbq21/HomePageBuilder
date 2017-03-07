@@ -12,9 +12,11 @@ import React from 'react';
 
 
 export default function WorkAreaComponent(props) {
-    const {children, handleClickAddSection} = props;
+    const {children, handleClickAddSection, classActiveWorkArea} = props;
     return (
-        <div className="pb-workarea col">
+        <div
+            className={`pb-workarea col ${classActiveWorkArea}`}
+        >
             {/* section */}
             {children[0]}
             {/* context menu */}
@@ -25,6 +27,8 @@ export default function WorkAreaComponent(props) {
             >
                 <i className="pb-icon-plus"/>
             </button>
+            {/* zone for blur text edit */}
+            {children[2]}
         </div>
     );
 }

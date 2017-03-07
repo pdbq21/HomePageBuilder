@@ -41,6 +41,7 @@
     "react-dev-utils": "^0.4.2",
     "react-dnd": "^2.2.3",
     "react-dnd-html5-backend": "^2.2.3",
+    "react-tinymce": "^0.5.1",
     "recursive-readdir": "2.1.0",
     "redux": "^3.6.0",
     "strip-ansi": "3.0.1",

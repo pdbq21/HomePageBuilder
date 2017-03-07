@@ -165,11 +165,13 @@ class ElementContainer extends Component {
         const {elementType} = this.props.mapStateElement;
         const {defaultStyle} = this.props.mapStateEditPanel;
         const {isActiveTextEdit} = this.props.mapStateWorkArea;
+
         const {id, parentId, activeStructureId, handleContextMenu} = this.props;//opacityId
-        const {connectDragSource, connectDropTarget} = this.props;//isDragging
+        const {connectDragSource, connectDropTarget} = this.props;// isDragging
         //const opacity = (isDragging || (opacityId === id)) ? 0 : 1;
         const classActiveStructure = (activeStructureId === id) ? 'pb-active-box' : '';
         //const boxShadow = (activeStructureId === id) ? 'inset 0 0 0 10px #4caf50' : 'none';
+
         const styles = (typeof this.props.mapStateEditPanel[id] === "undefined") ?
             defaultStyle[elementType] :
             this.props.mapStateEditPanel[id].currentStyle;

@@ -2,7 +2,15 @@
 .pb-main-box .pb-workarea,
 .pb-main-box .pb-toolbar {
     height: 900px;
+}
+
+.pb-main-box .pb-workarea-content,
+.pb-main-box .pb-toolbar {
     overflow: auto;
+}
+
+.pb-main-box .pb-workarea {
+    padding-left: 30px;
 }
 
 
@@ -14,11 +22,11 @@
 
 /* Section */
 .pb-section .pb-control-bar {
-    background-color: dodgerblue;
+    margin-left: -30px;
 }
 
-.pb-section-content > .pb-dashed-card {
-    margin-left: 20px;
+.pb-row .pb-control-bar {
+    margin-left: -15px;
 }
 
 
@@ -92,3 +100,24 @@
 .pb-content-menu .pb-panel-content .pb-row-sketch {
     margin-bottom: 7px;
 }
+
+
+/* Active */
+/*.pb-workarea {*/
+    /*opacity: 1;*/
+/*}*/
+
+.pb-active-workflow :not(.pb-active-box) .pb-element {
+    opacity: .3;
+}
+
+.pb-active-workflow .pb-active-box .pb-element {
+    opacity: 1;
+}
+
+/*.pb-workarea .pb-element {*/
+    /*opacity: .5;*/
+/*}*/
+
+
+/* TinyMCE */

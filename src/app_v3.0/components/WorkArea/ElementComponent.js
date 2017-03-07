@@ -6,9 +6,9 @@ import React from 'react';
 
 //import component
 export default function ElementComponent(props) {
-    const {type, handleClickContextMenu, styles} = props;
+    const {type, handleClickContextMenu, handleTextEditor, styles, TinyMCE} = props;
     let element;
-    if (typeof styles.background === "undefined"){
+    if (typeof styles.background === "undefined") {
         switch (type) {
 
             case 'image':
@@ -32,16 +32,26 @@ export default function ElementComponent(props) {
             default:
                 break;
         }
-    }else{
+    } else {
         const {r, g, b, a} = styles.background.backgroundColor;
         switch (type) {
             case 'text':
                 element = (
                     <div
                         className="pb-element pb-text-element"
-                        style={{'backgroundColor': `rgba(${r},${g},${b},${a})`}}
+                        style={{'backgroundColor': `rgba(${r},${g},${b},${a})`, 'zIndex': 2, 'position': 'relative'}}
                     >
-                        <p>Sample paragraph text</p>
+                        <TinyMCE
+                            content="<p>This is the initial content of the editor</p>"
+                            config={{
+                                inline: true,
+                                menubar: false,
+                                toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | fontsizeselect fontselect',
+                                fontsize_formats: '8pt 10pt 12pt 14pt 18pt 24pt 36pt',
+                                font_formats: 'Arial=arial,helvetica,sans-serif;Courier New=courier new,courier,monospace;AkrutiKndPadmini=Akpdmi-n'
+                            }}
+                            onClick={handleTextEditor}
+                        />
                     </div>);
                 break;
             case 'button':
@@ -60,9 +70,18 @@ export default function ElementComponent(props) {
                 element = (
                     <div
                         className="pb-element pb-heading-element"
-                        style={{'backgroundColor': `rgba(${r},${g},${b},${a})`}}
+                        style={{'backgroundColor': `rgba(${r},${g},${b},${a})`, 'zIndex': 2, 'position': 'relative'}}
                     >
-                        <h2>Sample heading</h2>
+                        <TinyMCE
+                            content="<h2>This is simple heading</h2>"
+                            config={{
+                                inline: true,
+                                linkchecker_api_key: 'idds1ja21nirk6ca3rxkpxi0mirk22w2zyvzz1f3y15dzelg',
+                                plugins: 'link image code',
+                                toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
+                            }}
+                            onClick={handleTextEditor}
+                        />
                     </div>);
                 break;
             case 'link':

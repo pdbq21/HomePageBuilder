@@ -6,17 +6,22 @@
 /* Workarea  */
 .pb-workarea {
     background-color: #f7f7f9;
-    padding: 0;
+    padding-left: 0;
     margin: 0;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 .pb-workarea:before {
     content: "";
     display: block;
-    position: fixed;
     width: 30px;
     height: inherit;
-    background-color: #aeb2b7;
+    background-color: red;
+    position: fixed;
+    margin-left: -30px;
 }
 
 /* Toolbar */
@@ -404,6 +409,13 @@
 }
 
 /* Bar */
+.pb-pad-bar {
+    width: 30px;
+    height: 100%;
+    background-color: #aeb2b7;
+    float: left;
+}
+
 .pb-control-bar {
     position: absolute;
     width: 15px;
@@ -479,7 +491,7 @@
 .pb-section,
 .pb-row {
     position: relative;
-    padding-left: 15px;
+
 }
 
 /* Button */
