@@ -64,8 +64,8 @@ export function EditPanelComponent(props) {
                                 <input type="text"
                                        id="jc-1"
                                        className="pb-counter-joystick-value form-control"
-                                       // this is error.
-                                       /*value={1}*/
+                                    // this is error.
+                                    /*value={1}*/
                                 />
                                 <i className="pb-counter-joystick-minus fa fa-minus"/>
                             </div>
@@ -102,12 +102,8 @@ export function ImageEditPanelComponent(props) {
             <h3 className="pb-menu-caption">
                 <i className="fa fa-paint-brush pb-menu-caption-icon"/>Edit
             </h3>
-
             <div className="pb-panel">
-
                 <div className="pb-panel-content">
-
-
                     <div className="pb-option">
                         <div className="pb-option-value">
                             <div className="pb-joystick pb-input-joystick">
@@ -122,10 +118,8 @@ export function ImageEditPanelComponent(props) {
                                 </label>
                             </div>
                         </div>
-
                         <button onClick={onClickLink} type="button">Enter</button>
                     </div>
-
                 </div>
             </div>
         </div>
