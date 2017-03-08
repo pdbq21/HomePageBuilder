@@ -8,10 +8,14 @@ import {connect} from 'react-redux'
 
 // import container
 //import component
-import EditPanelComponent from '../../../components/Toolbar/ContentMenu/ContentPanels/EditPanelComponent'
+import {
+    EditPanelComponent,
+    ImageEditPanelComponent
+} from '../../../components/Toolbar/ContentMenu/ContentPanels/EditPanelComponent'
 import ColorPickerComponent from '../../../components/Toolbar/ContentMenu/ContentPanels/EditPanel/ColorPickerComponent'
 // import actions
 import * as EditPanelActions from '../../../actions/EditPanelActions'
+import * as WorkAreaActions from '../../../actions/WorkAreaActions'
 
 class EditPanelContainer extends Component {
     constructor(props) {
@@ -19,6 +23,8 @@ class EditPanelContainer extends Component {
         this.renderEditPanel = this.renderEditPanel.bind(this);
         this.handleChangeColor = this.handleChangeColor.bind(this);
         this.handleCloseColorPicker = this.handleCloseColorPicker.bind(this);
+        this.handleClickLink = this.handleClickLink.bind(this);
+        this.handleChangeLink = this.handleChangeLink.bind(this);
     }
 
     componentDidMount() {
@@ -35,13 +41,26 @@ class EditPanelContainer extends Component {
         ActionChangeBackgroundColor(id, color.rgb);
     }
 
-    handleClickColorPicker(bool){
+    handleClickColorPicker(bool) {
         const {ActionToggleColorPicker} = this.props.mapDispactchEditPanel;
         ActionToggleColorPicker(!bool);
     }
-    handleCloseColorPicker(){
+
+    handleCloseColorPicker() {
         const {ActionToggleColorPicker} = this.props.mapDispactchEditPanel;
         ActionToggleColorPicker(false);
+    }
+
+    handleClickLink() {
+        const {imageLink, ActiveStructure} = this.props.mapStateEditPanel;
+        const {ActionAddImageLink} = this.props.mapDispactchWorkArea;
+        //todo: check for correct url
+        ActionAddImageLink(ActiveStructure.id, imageLink);
+    }
+
+    handleChangeLink({target}) {
+        const {ActionValueImageLink} = this.props.mapDispactchEditPanel;
+        ActionValueImageLink(target.value)
     }
 
     renderEditPanel() {
@@ -64,16 +83,20 @@ class EditPanelContainer extends Component {
             case 'text':
             case 'button':
                 return (<EditPanelComponent>
-                    <ColorPickerComponent
-                        color={background.backgroundColor}
-                        isActiveColorPicker={isActiveColorPicker}
-                        handleChangeColor={(color) => this.handleChangeColor(ActiveStructure.id, color)}
-                        handleClickColorPicker={() => this.handleClickColorPicker(isActiveColorPicker)}
-                        handleCloseColorPicker={this.handleCloseColorPicker}
-                    />
-                </EditPanelComponent>
-            );
+                        <ColorPickerComponent
+                            color={background.backgroundColor}
+                            isActiveColorPicker={isActiveColorPicker}
+                            handleChangeColor={(color) => this.handleChangeColor(ActiveStructure.id, color)}
+                            handleClickColorPicker={() => this.handleClickColorPicker(isActiveColorPicker)}
+                            handleCloseColorPicker={this.handleCloseColorPicker}
+                        />
+                    </EditPanelComponent>
+                );
             case 'image':
+                return (<ImageEditPanelComponent
+                    onChangeLink={this.handleChangeLink}
+                    onClickLink={this.handleClickLink}
+                />);
             case 'icon':
                 return (<EditPanelComponent>
 
@@ -83,7 +106,6 @@ class EditPanelContainer extends Component {
             default:
                 return <div>Error: {ActiveStructure.name}</div>;
         }
-
 
 
     }
@@ -105,7 +127,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        mapDispactchEditPanel: bindActionCreators(EditPanelActions, dispatch)
+        mapDispactchEditPanel: bindActionCreators(EditPanelActions, dispatch),
+        mapDispactchWorkArea: bindActionCreators(WorkAreaActions, dispatch),
     }
 }
 

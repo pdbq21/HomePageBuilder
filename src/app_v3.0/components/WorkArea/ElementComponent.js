@@ -12,17 +12,26 @@ export default function ElementComponent(props) {
         switch (type) {
 
             case 'image':
-                element = (<div className="pb-element pb-image-element pb-default-element">
-                    <i className="pb-image-element-icon fa fa-image"/>
-                    <span className="pb-image-element-caption">
+                const {link} = props;
+                if (typeof link === "undefined") {
+                    element = (<div className="pb-element pb-image-element pb-default-element">
+                        <i className="pb-image-element-icon fa fa-image"/>
+                        <span className="pb-image-element-caption">
                                             Drop your image here OR:
                                         </span>
-                    <button className="pb-image-element-button btn btn-primary">
-                        Select an image
-                        {/* e.preventDefault() -> click on input below */}
-                    </button>
-                    <input type="file" className="pb-image-element-input"/>
-                </div>);
+                        <button className="pb-image-element-button btn btn-primary">
+                            Select an image
+                            {/* e.preventDefault() -> click on input below */}
+                        </button>
+                        <input type="file" className="pb-image-element-input"/>
+                    </div>);
+                } else {
+                    element = (
+                        <div className="pb-element pb-image-element pb-default-element">
+                            <img src={link} alt=""/>
+                        </div>);
+                }
+
                 break;
             case 'icon':
                 element = (<div className="pb-element pb-icon-element">

@@ -4,7 +4,7 @@
 // import constants from '../constants'
 import {
     IS_ACTIVE_EDIT_PANEL, CHANGE_BACKGROUND_COLOR, CREATE_NODE_STYLES, DELETE_NODE_STYLES,
-    SELECT_EDIT_PANEL_NAVIGATION, TOGGLE_COLOR_PICKER
+    SELECT_EDIT_PANEL_NAVIGATION, TOGGLE_COLOR_PICKER, VALUE_IMAGE_LINK
 } from '../constants/EditPanelConstants'
 // default data state
 const initialState = {
@@ -687,6 +687,9 @@ const initialState = {
             name: 'Styles',
         }
     ],
+    imageLink: ''
+
+
 };
 
 
@@ -751,6 +754,10 @@ export default function EditPanelReducer(state = initialState, action) {
             case TOGGLE_COLOR_PICKER:
                 return Object.assign({}, state, {
                     isActiveColorPicker: action.bool
+                });
+            case VALUE_IMAGE_LINK:
+                return Object.assign({}, state, {
+                    imageLink: action.link
                 });
 
             default:

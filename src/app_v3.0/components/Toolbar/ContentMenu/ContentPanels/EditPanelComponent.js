@@ -7,7 +7,7 @@ import React from 'react';
 //import component
 
 
-export default function EditPanelComponent(props) {
+export function EditPanelComponent(props) {
     const {children} = props;
     return (
         <div className="">
@@ -86,6 +86,44 @@ export default function EditPanelComponent(props) {
                         <div className="pb-option-value">
                             {children}
                         </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    );
+
+}
+
+export function ImageEditPanelComponent(props) {
+    const {onClickLink, onChangeLink} = props;
+    return (
+        <div className="">
+            <h3 className="pb-menu-caption">
+                <i className="fa fa-paint-brush pb-menu-caption-icon"/>Edit
+            </h3>
+
+            <div className="pb-panel">
+
+                <div className="pb-panel-content">
+
+
+                    <div className="pb-option">
+                        <div className="pb-option-value">
+                            <div className="pb-joystick pb-input-joystick">
+                                <label className="pb-label w-100">
+                                    {/* Require "value" attribute to work correctly with CSS */}
+                                    <input
+                                        type="text"
+                                        className="pb-label-value form-control"
+                                        onChange={onChangeLink}
+                                    />
+                                    <span className="pb-label-name">Link</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button onClick={onClickLink} type="button">Enter</button>
                     </div>
 
                 </div>
