@@ -84,7 +84,19 @@ export function EditPanelComponent(props) {
                     <div className="pb-option">
                         <label className="pb-option-name">Background color</label>
                         <div className="pb-option-value">
-                            {children}
+                            {children[0]}
+                        </div>
+                    </div>
+                    <div className="pb-option">
+                        <label className="pb-option-name">Margin</label>
+                        <div className="pb-option-value">
+                            {children[1]}
+                        </div>
+                    </div>
+                    <div className="pb-option">
+                        <label className="pb-option-name">Padding</label>
+                        <div className="pb-option-value">
+                            {children[2]}
                         </div>
                     </div>
 

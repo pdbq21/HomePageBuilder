@@ -13,6 +13,7 @@ import {
     ImageEditPanelComponent
 } from '../../../components/Toolbar/ContentMenu/ContentPanels/EditPanelComponent'
 import ColorPickerComponent from '../../../components/Toolbar/ContentMenu/ContentPanels/EditPanel/ColorPickerComponent'
+import MarginPaddingComponent from '../../../components/Toolbar/ContentMenu/ContentPanels/EditPanel/MarginPaddingComponent'
 // import actions
 import * as EditPanelActions from '../../../actions/EditPanelActions'
 import * as WorkAreaActions from '../../../actions/WorkAreaActions'
@@ -25,6 +26,10 @@ class EditPanelContainer extends Component {
         this.handleCloseColorPicker = this.handleCloseColorPicker.bind(this);
         this.handleClickLink = this.handleClickLink.bind(this);
         this.handleChangeLink = this.handleChangeLink.bind(this);
+        this.handelClickMargin = this.handelClickMargin.bind(this);
+        this.handelClickPadding = this.handelClickPadding.bind(this);
+        this.handelChangeMargin = this.handelChangeMargin.bind(this);
+        this.handelChangePadding = this.handelChangePadding.bind(this);
     }
 
     componentDidMount() {
@@ -63,6 +68,35 @@ class EditPanelContainer extends Component {
         ActionValueImageLink(target.value)
     }
 
+    handelClickMargin({target}, id, name) {
+        const {ActionValueMargin} = this.props.mapDispactchEditPanel;
+        const {currentStyle} = this.props.mapStateEditPanel[id];
+        let marginValue = currentStyle.margin[`margin${name}`];
+        marginValue = (target.getAttribute('data-counter') === '+') ? ++marginValue : --marginValue;
+        //console.log(id, name, marginValue);
+        ActionValueMargin(id, name, marginValue);
+    }
+
+    handelClickPadding({target}, id, name) {
+        const {ActionValuePadding} = this.props.mapDispactchEditPanel;
+        const {currentStyle} = this.props.mapStateEditPanel[id];
+        let paddingValue = currentStyle.padding[`padding${name}`];
+        paddingValue = (target.getAttribute('data-counter') === '+') ? ++paddingValue : --paddingValue;
+        //console.log(id, name, marginValue);
+        ActionValuePadding(id, name, paddingValue);
+    }
+
+    handelChangeMargin({target}, id, name) {
+        //console.log(id, name, target.value);
+        const {ActionValueMargin} = this.props.mapDispactchEditPanel;
+        ActionValueMargin(id, name, target.value);
+    }
+
+    handelChangePadding({target}, id, name) {
+        const {ActionValuePadding} = this.props.mapDispactchEditPanel;
+        ActionValuePadding(id, name, target.value);
+    }
+
     renderEditPanel() {
         const {ActiveStructure, isActiveColorPicker} = this.props.mapStateEditPanel;
         //stop if click on Edit in WorkArea / need currentStyle for WorkArea
@@ -90,6 +124,60 @@ class EditPanelContainer extends Component {
                             handleClickColorPicker={() => this.handleClickColorPicker(isActiveColorPicker)}
                             handleCloseColorPicker={this.handleCloseColorPicker}
                         />
+                        <div >
+                            <MarginPaddingComponent
+                                onClick={(event) => this.handelClickMargin(event, ActiveStructure.id, 'Top')}
+                                onChange={(event) => this.handelChangeMargin(event, ActiveStructure.id, 'Top')}
+                                value={currentStyle.margin.marginTop}
+                                name="Top"
+                            />
+                            <MarginPaddingComponent
+                                onClick={(event) => this.handelClickMargin(event, ActiveStructure.id, 'Right')}
+                                onChange={(event) => this.handelChangeMargin(event, ActiveStructure.id, 'Right')}
+                                value={currentStyle.margin.marginRight}
+                                name="Right"
+                            />
+                            <MarginPaddingComponent
+                                onClick={(event) => this.handelClickMargin(event, ActiveStructure.id, 'Bottom')}
+                                onChange={(event) => this.handelChangeMargin(event, ActiveStructure.id, 'Bottom')}
+                                value={currentStyle.margin.marginBottom}
+                                name="Bottom"
+                            />
+                            <MarginPaddingComponent
+                                onClick={(event) => this.handelClickMargin(event, ActiveStructure.id, 'Left')}
+                                onChange={(event) => this.handelChangeMargin(event, ActiveStructure.id, 'Left')}
+                                value={currentStyle.margin.marginLeft}
+                                name="Left"
+                            />
+                        </div>
+
+                        <div >
+                            <MarginPaddingComponent
+                                onClick={(event) => this.handelClickPadding(event, ActiveStructure.id, 'Top')}
+                                onChange={(event) => this.handelChangePadding(event, ActiveStructure.id, 'Top')}
+                                value={currentStyle.padding.paddingTop}
+                                name="Top"
+                            />
+                            <MarginPaddingComponent
+                                onClick={(event) => this.handelClickPadding(event, ActiveStructure.id, 'Right')}
+                                onChange={(event) => this.handelChangePadding(event, ActiveStructure.id, 'Right')}
+                                value={currentStyle.padding.paddingRight}
+                                name="Right"
+                            />
+                            <MarginPaddingComponent
+                                onClick={(event) => this.handelClickPadding(event, ActiveStructure.id, 'Bottom')}
+                                onChange={(event) => this.handelChangePadding(event, ActiveStructure.id, 'Bottom')}
+                                value={currentStyle.padding.paddingBottom}
+                                name="Bottom"
+                            />
+                            <MarginPaddingComponent
+                                onClick={(event) => this.handelClickPadding(event, ActiveStructure.id, 'Left')}
+                                onChange={(event) => this.handelChangePadding(event, ActiveStructure.id, 'Left')}
+                                value={currentStyle.padding.paddingLeft}
+                                name="Left"
+                            />
+                        </div>
+
                     </EditPanelComponent>
                 );
             case 'image':
