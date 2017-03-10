@@ -9,6 +9,7 @@ import React from 'react';
 
 export default function SectionComponent(props) {
     const {children, styles} = props;
+    console.log(`${styles.padding.paddingTop}px, ${styles.padding.paddingRight}px, ${styles.padding.paddingBottom}px, ${styles.padding.paddingLeft}px, `);// margin / padding
     //'background': `rgba(${ color.r }, ${ color.g }, ${ color.b }, ${ color.a })`,
     const {r, g, b, a} = styles.background.backgroundColor;
     return (
@@ -17,7 +18,18 @@ export default function SectionComponent(props) {
             {children[0]}
             <div
                 className="pb-section-content"
-                style={{...styles, 'backgroundColor': `rgba(${r},${g},${b},${a})`, 'position': 'relative'}}
+                style={{
+                    'backgroundColor': `rgba(${r},${g},${b},${a})`,
+                    'position': 'relative',
+                    'marginTop': `${styles.margin.marginTop}px`,
+                    'marginRight': `${styles.margin.marginRight}px`,
+                    'marginBottom': `${styles.margin.marginBottom}px`,
+                    'marginLeft': `${styles.margin.marginLeft}px`,
+                    'paddingTop': `${styles.padding.paddingTop}px`,
+                    'paddingRight': `${styles.padding.paddingRight}px`,
+                    'paddingBottom': `${styles.padding.paddingBottom}px`,
+                    'paddingLeft': `${styles.padding.paddingLeft}px`,
+                }}
             >
                 {/* row / drop area */}
                 {children[1]}
