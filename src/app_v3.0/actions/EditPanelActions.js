@@ -3,7 +3,8 @@
  */
 import {
     IS_ACTIVE_EDIT_PANEL, CHANGE_BACKGROUND_COLOR, CREATE_NODE_STYLES, DELETE_NODE_STYLES,
-    SELECT_EDIT_PANEL_NAVIGATION, TOGGLE_COLOR_PICKER
+    SELECT_EDIT_PANEL_NAVIGATION, TOGGLE_COLOR_PICKER, VALUE_IMAGE_LINK, VALUE_MARGIN,
+    VALUE_PADDING
 } from '../constants/EditPanelConstants'
 
 
@@ -51,5 +52,28 @@ export function ActionChangeBackgroundColor(nodeId, color) {
         type: CHANGE_BACKGROUND_COLOR,
         nodeId,
         color
+    }
+}
+
+export function ActionValueImageLink(link) {
+    return {
+        type: VALUE_IMAGE_LINK,
+        link
+    }
+}
+export function ActionValueMargin(nodeId, name, value) {
+    return {
+        type: VALUE_MARGIN,
+        nodeId,
+        name,
+        value
+    }
+}
+export function ActionValuePadding(nodeId, name, value) {
+    return {
+        type: VALUE_PADDING,
+        nodeId,
+        name,
+        value
     }
 }

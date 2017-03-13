@@ -167,7 +167,7 @@ class SectionContainer extends Component {
             id, handleMoveRow, opacityId, activeStructureId, parentId, handleContextMenu, handleMoveElement,
 
         } = this.props;
-        const {connectDragSource, connectDropTarget, connectDragPreview} = this.props;//isDragging
+        const {connectDragSource, connectDropTarget, connectDragPreview} = this.props;
         const {childrenIds} = this.props.mapStateSection;
         const {defaultStyle} = this.props.mapStateEditPanel;
         //const opacity = (isDragging) ? 0 : 1;

@@ -178,7 +178,7 @@ class RowContainer extends Component {
         const {childrenIds} = this.props.mapStateRow;
         const {defaultStyle} = this.props.mapStateEditPanel;
         const {connectDragSource, connectDropTarget, connectDragPreview} = this.props;//isDragging
-       // const opacity = (isDragging || (opacityId === id)) ? 0 : 1;
+        //const opacity = (isDragging || (opacityId === id)) ? 0 : 1;
 				const classActiveStructure = (activeStructureId === id) ? 'pb-active-box' : '';
         //const boxShadow = (activeStructureId === id) ? 'inset 0 0 0 10px #4caf50' : 'none';
         const styles = (typeof this.props.mapStateEditPanel[id] === "undefined") ?

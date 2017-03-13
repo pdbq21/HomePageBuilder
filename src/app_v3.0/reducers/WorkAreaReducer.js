@@ -5,7 +5,7 @@
 import {
     COLOR_PICKER, CREATE_ID, ADD_NODE, REMOVE_CHILD, MOVE_SECTION, GRID_INDEX, EXCHANGE_NODE_REMOVE,
     EXCHANGE_NODE_ADD, MOVE_CHANGE_SECTION, MOVE_ROW, IS_OPACITY, ACTIVE_CONTEXT_MENU,
-    DELETE_NODE, ELEMENT_TYPE, ACTIVE_TEXT_EDIT
+    DELETE_NODE, ELEMENT_TYPE, ACTIVE_TEXT_EDIT, ADD_IMAGE_LINK
 } from '../constants/WorkAreaConstants'
 
 // default data state
@@ -128,6 +128,10 @@ const node = (state, action) => {
         case EXCHANGE_NODE_REMOVE:
             return Object.assign({}, state, {
                 childrenIds: exchangeNode(state.childrenIds, action)
+            });
+        case ADD_IMAGE_LINK:
+            return Object.assign({}, state, {
+                link: action.link
             });
 
         default:

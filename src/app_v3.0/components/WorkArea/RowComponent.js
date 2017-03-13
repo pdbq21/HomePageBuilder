@@ -16,7 +16,17 @@ const {children, styles} = props;
             {children[0]}
             <div
                 className="pb-row-content"
-                style={{'backgroundColor': `rgba(${r},${g},${b},${a})`}}
+                style={{
+                    'backgroundColor': `rgba(${r},${g},${b},${a})`,
+                    'marginTop': `${styles.margin.marginTop}px`,
+                    'marginRight': `${styles.margin.marginRight}px`,
+                    'marginBottom': `${styles.margin.marginBottom}px`,
+                    'marginLeft': `${styles.margin.marginLeft}px`,
+                    'paddingTop': `${styles.padding.paddingTop}px`,
+                    'paddingRight': `${styles.padding.paddingRight}px`,
+                    'paddingBottom': `${styles.padding.paddingBottom}px`,
+                    'paddingLeft': `${styles.padding.paddingLeft}px`,
+                }}
             >
                 <div className="row no-gutters">
                     {/* col */}
