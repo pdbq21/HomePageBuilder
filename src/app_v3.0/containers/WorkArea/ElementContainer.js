@@ -183,7 +183,7 @@ class ElementContainer extends Component {
                 className={classActiveStructure}
             >
                 {connectDragSource(<div
-                draggable={(isActiveTextEdit)? false : true}
+                draggable={!isActiveTextEdit}
                 >
                     <ElementComponent
                         styles={styles}

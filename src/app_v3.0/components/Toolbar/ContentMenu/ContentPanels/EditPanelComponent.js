@@ -7,7 +7,7 @@ import React from 'react';
 //import component
 
 
-export default function EditPanelComponent(props) {
+export function EditPanelComponent(props) {
     const {children} = props;
     return (
         <div className="">
@@ -64,8 +64,8 @@ export default function EditPanelComponent(props) {
                                 <input type="text"
                                        id="jc-1"
                                        className="pb-counter-joystick-value form-control"
-                                       // this is error.
-                                       /*value={1}*/
+                                    // this is error.
+                                    /*value={1}*/
                                 />
                                 <i className="pb-counter-joystick-minus fa fa-minus"/>
                             </div>
@@ -88,6 +88,32 @@ export default function EditPanelComponent(props) {
                         </div>
                     </div>
 
+                </div>
+            </div>
+        </div>
+    );
+
+}
+
+export function ImageEditPanelComponent(props) {
+    //const {children} = props;
+    return (
+        <div className="">
+            <h3 className="pb-menu-caption">
+                <i className="fa fa-paint-brush pb-menu-caption-icon"/>Edit
+            </h3>
+            <div className="pb-panel">
+                <div className="pb-option">
+                    <div className="pb-option-value">
+                        <div className="pb-joystick pb-input-joystick">
+                            <label className="pb-label">
+                                {/* Require "value" attribute to work correctly with CSS */}
+                                <input type="text" className="pb-label-value form-control"/>
+                                <span className="pb-label-name">Link</span>
+                                <button className="btn btn-default">sdfsd</button>
+                            </label>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

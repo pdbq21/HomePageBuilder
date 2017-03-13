@@ -8,7 +8,7 @@ import {connect} from 'react-redux'
 
 // import container
 //import component
-import EditPanelComponent from '../../../components/Toolbar/ContentMenu/ContentPanels/EditPanelComponent'
+import {EditPanelComponent, ImageEditPanelComponent} from '../../../components/Toolbar/ContentMenu/ContentPanels/EditPanelComponent'
 import ColorPickerComponent from '../../../components/Toolbar/ContentMenu/ContentPanels/EditPanel/ColorPickerComponent'
 // import actions
 import * as EditPanelActions from '../../../actions/EditPanelActions'
@@ -74,6 +74,7 @@ class EditPanelContainer extends Component {
                 </EditPanelComponent>
             );
             case 'image':
+                return (<ImageEditPanelComponent />);
             case 'icon':
                 return (<EditPanelComponent>
 
