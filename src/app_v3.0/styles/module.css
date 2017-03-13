@@ -19,7 +19,7 @@
     display: block;
     width: 30px;
     height: inherit;
-    background-color: red;
+    background-color: #202025;
     position: fixed;
     margin-left: -30px;
 }
