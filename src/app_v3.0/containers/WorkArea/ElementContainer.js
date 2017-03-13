@@ -162,7 +162,7 @@ class ElementContainer extends Component {
     }
 
     render() {
-        const {elementType} = this.props.mapStateElement;
+        const {elementType, link} = this.props.mapStateElement;
         const {defaultStyle} = this.props.mapStateEditPanel;
         const {isActiveTextEdit} = this.props.mapStateWorkArea;
         const {id, parentId, activeStructureId, handleContextMenu} = this.props;//opacityId
@@ -190,6 +190,7 @@ class ElementContainer extends Component {
                         handleClickContextMenu={(event) => handleContextMenu(event, id, parentId, elementType)}
                         handleTextEditor={this.handleTextEditor}
                         type={elementType}
+                        link={link}
                         TinyMCE={TinyMCE}
                     >
                     </ElementComponent>

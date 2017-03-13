@@ -84,7 +84,19 @@ export function EditPanelComponent(props) {
                     <div className="pb-option">
                         <label className="pb-option-name">Background color</label>
                         <div className="pb-option-value">
-                            {children}
+                            {children[0]}
+                        </div>
+                    </div>
+                    <div className="pb-option">
+                        <label className="pb-option-name">Margin</label>
+                        <div className="pb-option-value">
+                            {children[1]}
+                        </div>
+                    </div>
+                    <div className="pb-option">
+                        <label className="pb-option-name">Padding</label>
+                        <div className="pb-option-value">
+                            {children[2]}
                         </div>
                     </div>
 
@@ -96,23 +108,29 @@ export function EditPanelComponent(props) {
 }
 
 export function ImageEditPanelComponent(props) {
-    //const {children} = props;
+    const {onClickLink, onChangeLink} = props;
     return (
         <div className="">
             <h3 className="pb-menu-caption">
                 <i className="fa fa-paint-brush pb-menu-caption-icon"/>Edit
             </h3>
             <div className="pb-panel">
-                <div className="pb-option">
-                    <div className="pb-option-value">
-                        <div className="pb-joystick pb-input-joystick">
-                            <label className="pb-label">
-                                {/* Require "value" attribute to work correctly with CSS */}
-                                <input type="text" className="pb-label-value form-control"/>
-                                <span className="pb-label-name">Link</span>
-                                <button className="btn btn-default">sdfsd</button>
-                            </label>
+                <div className="pb-panel-content">
+                    <div className="pb-option">
+                        <div className="pb-option-value">
+                            <div className="pb-joystick pb-input-joystick">
+                                <label className="pb-label w-100">
+                                    {/* Require "value" attribute to work correctly with CSS */}
+                                    <input
+                                        type="text"
+                                        className="pb-label-value form-control"
+                                        onChange={onChangeLink}
+                                    />
+                                    <span className="pb-label-name">Link</span>
+                                </label>
+                            </div>
                         </div>
+                        <button onClick={onClickLink} type="button">Enter</button>
                     </div>
                 </div>
             </div>

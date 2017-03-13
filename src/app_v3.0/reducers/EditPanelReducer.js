@@ -4,7 +4,8 @@
 // import constants from '../constants'
 import {
     IS_ACTIVE_EDIT_PANEL, CHANGE_BACKGROUND_COLOR, CREATE_NODE_STYLES, DELETE_NODE_STYLES,
-    SELECT_EDIT_PANEL_NAVIGATION, TOGGLE_COLOR_PICKER
+    SELECT_EDIT_PANEL_NAVIGATION, TOGGLE_COLOR_PICKER, VALUE_IMAGE_LINK, VALUE_PADDING,
+    VALUE_MARGIN
 } from '../constants/EditPanelConstants'
 // default data state
 const initialState = {
@@ -16,22 +17,6 @@ const initialState = {
     },
     defaultStyle: {
         WorkArea: {
-            backgroundColor: {
-                r: 255,
-                b: 255,
-                g: 255,
-                a: 0
-            }
-        },
-        Section: {
-            backgroundColor: {
-                r: 255,
-                b: 255,
-                g: 255,
-                a: 0
-            }
-        },
-        Row: {
             backgroundColor: {
                 r: 255,
                 b: 255,
@@ -687,6 +672,9 @@ const initialState = {
             name: 'Styles',
         }
     ],
+    imageLink: ''
+
+
 };
 
 
@@ -697,6 +685,20 @@ const changeStyle = (state, action) => {
             return Object.assign({}, state, {
                 background: {
                     backgroundColor: action.color
+                }
+            });
+        case VALUE_PADDING:
+            return Object.assign({}, state, {
+                padding: {
+                    ...state.padding,
+                    [`padding${action.name}`]: action.value,
+                }
+            });
+        case VALUE_MARGIN:
+            return Object.assign({}, state, {
+                margin: {
+                    ...state.margin,
+                    [`margin${action.name}`]: action.value,
                 }
             });
         default:
@@ -714,6 +716,8 @@ const nodeStyle = (state, action, styles) => {
             };
 
         case CHANGE_BACKGROUND_COLOR:
+        case VALUE_PADDING:
+        case VALUE_MARGIN:
             return Object.assign({}, state, {
                 currentStyle: changeStyle(state.currentStyle, action)
             });
@@ -751,6 +755,10 @@ export default function EditPanelReducer(state = initialState, action) {
             case TOGGLE_COLOR_PICKER:
                 return Object.assign({}, state, {
                     isActiveColorPicker: action.bool
+                });
+            case VALUE_IMAGE_LINK:
+                return Object.assign({}, state, {
+                    imageLink: action.link
                 });
 
             default:

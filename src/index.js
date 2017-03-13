@@ -8,8 +8,6 @@ import {Provider} from 'react-redux';
 //import configureStore from './app/store/configureStore';
 import configureStore from './app_v3.0/store/configureStore';
 // import styles
-//app 3.0
-//import BuilderComponent from './app_v3.0/components/BuilderComponent'
 
 import BuilderContainer from './app_v3.0/containers/BuilderContainer'
 import './app_v3.0/styles/bootstrap/bootstrap-reboot.css';
@@ -26,7 +24,7 @@ import './app_v3.0/styles/index.css';
 
 // styles web kit
 
-//import './styles/material.css'
+import './index.css'
 //import './styles/pb.css'
 //import './styles/main.css'
 

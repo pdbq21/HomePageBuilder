@@ -6,7 +6,7 @@ import {
     COLOR_PICKER, CREATE_ID, ADD_NODE, MOVE_SECTION, GRID_INDEX, EXCHANGE_NODE_ADD,
     EXCHANGE_NODE_REMOVE, MOVE_CHANGE_SECTION, REMOVE_CHILD, MOVE_ROW, IS_OPACITY,
     ACTIVE_CONTEXT_MENU, DELETE_NODE, ELEMENT_TYPE, ACTIVATE_EDIT_PANEL, DEACTIVATE_EDIT_PANEL,
-    ACTIVE_TEXT_EDIT
+    ACTIVE_TEXT_EDIT, ADD_IMAGE_LINK
 } from '../constants/WorkAreaConstants'
 
 // color data base
@@ -219,6 +219,14 @@ export function ActionActiveTextEdit(bool) {
     return {
         type: ACTIVE_TEXT_EDIT,
         bool
+    };
+}
+
+export function ActionAddImageLink(nodeId, link) {
+    return {
+        type: ADD_IMAGE_LINK,
+        nodeId,
+        link
     };
 }
 /*
