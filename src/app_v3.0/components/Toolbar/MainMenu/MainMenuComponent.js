@@ -8,7 +8,7 @@ import React from 'react';
 
 
 export default function MainMenuComponent(props) {
-    const {handleToggleContentMenu, handelNavigationItems, children} = props;
+    const {handleToggleContentMenu, handelNavigationItems, children, handelPreview} = props;
     return (
         <div className="pb-menu pb-main-menu">
             <ul className="pb-main-menu-start list-unstyled">
@@ -31,7 +31,11 @@ export default function MainMenuComponent(props) {
 
             <ul className="pb-main-menu-end list-unstyled">
                 <li title="Preview">
-                    <button className="btn btn-transparent fa fa-eye" type="button"/>
+                    <button
+                        className="btn btn-transparent fa fa-eye"
+                        type="button"
+                        onClick={handelPreview}
+                    />
                 </li>
                 <li title="Save">
                     <button className="btn btn-primary fa fa-save" type="button"/>

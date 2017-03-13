@@ -19,6 +19,7 @@ class MainMenuContainer extends Component {
 
         this.handleToggleContentMenu = this.handleToggleContentMenu.bind(this);
         this.handelNavigationItems = this.handelNavigationItems.bind(this);
+        this.handelPreview = this.handelPreview.bind(this);
     }
 
     componentDidMount() {
@@ -48,12 +49,18 @@ class MainMenuContainer extends Component {
         }
     }
 
+    handelPreview(){
+const {ActionActivePreview} = this.props.mapDispactchToolbar;
+        ActionActivePreview(true);
+    }
+
     render() {
         const {menuItems, activeMenuItem} = this.props.mapStateToolbar;
         return (
             <MainMenuComponent
                 handleToggleContentMenu={this.handleToggleContentMenu}
                 handelNavigationItems={event => this.handelNavigationItems(event)}
+                handelPreview={this.handelPreview}
             >
                 {menuItems.map((item, index) => (
                     <li

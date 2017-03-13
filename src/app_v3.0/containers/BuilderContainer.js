@@ -13,18 +13,26 @@ import BuilderComponent from '../components/BuilderComponent'
 //containers
 import WorkAreaContainer from './WorkArea/WorkAreaContainer'
 import ToolbarContainer from './Toolbar/ToolbarContainer'
+import PreviewContainer from './PreviewContainer'
 //actions
 
 // Application
 class BuilderContainer extends Component {
 
     render() {
+        const {isActivePreview} = this.props.mapStateToolbar;
         return (
             <BuilderComponent >
-                <WorkAreaContainer
-                    id={'id_work_area'}
-                />
-                <ToolbarContainer />
+                {(!isActivePreview)? (
+                    [<WorkAreaContainer
+                        key="key-WorkAreaContainer"
+                        id={'id_work_area'}
+                    />,
+                    <ToolbarContainer
+                        key="key-ToolbarContainer"
+                    />
+                    ]) : (<PreviewContainer />)
+                }
             </BuilderComponent>
         );
     }
@@ -33,7 +41,7 @@ class BuilderContainer extends Component {
 function mapStateToProps(state, other) {
     //console.log('state BuilderContainer', state, other);
     return {
-
+        mapStateToolbar: state.ToolbarReducer,
     }
 }
 
