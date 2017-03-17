@@ -13,7 +13,7 @@ import BuilderComponent from '../components/BuilderComponent'
 //containers
 import WorkAreaContainer from './WorkArea/WorkAreaContainer'
 import ToolbarContainer from './Toolbar/ToolbarContainer'
-import PreviewContainer from './PreviewContainer'
+import PreviewContainer from './Preview/PreviewContainer'
 //actions
 
 // Application
@@ -31,7 +31,7 @@ class BuilderContainer extends Component {
                     <ToolbarContainer
                         key="key-ToolbarContainer"
                     />
-                    ]) : (<PreviewContainer />)
+                    ]) : (<PreviewContainer id={'id_work_area'} />)
                 }
             </BuilderComponent>
         );
