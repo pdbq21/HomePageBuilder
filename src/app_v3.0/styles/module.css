@@ -2,7 +2,17 @@
 .pb-main-box {
     position: relative;
 }
-
+/* get back from preview */
+.pb-preview-get-back{
+    position: fixed;
+    z-index: 3;
+    top: 1em;
+    right: 1em;
+    opacity: 0.5;
+}
+.pb-preview-get-back:hover{
+    opacity: 1;
+}
 /* Workarea  */
 .pb-workarea {
     background-color: #f7f7f9;

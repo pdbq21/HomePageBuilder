@@ -33,7 +33,7 @@ class MainMenuContainer extends Component {
 
     handelNavigationItems(event) {
         const {activeMenuItem} = this.props.mapStateToolbar;
-        if (activeMenuItem === event.target.getAttribute('title')){
+        if (activeMenuItem === event.target.getAttribute('title')) {
             return;
         }
 
@@ -44,13 +44,13 @@ class MainMenuContainer extends Component {
         // event.target.getAttribute('title') => Rows/Elements/Edit/Template
         ActionSelectMenuItem(event.target.getAttribute('title'));
         // todo: fix error if click on Edit in WorkArea
-        if (isActiveEditPanel){
+        if (isActiveEditPanel) {
             ActionIsActiveEditPanel('', '', false);
         }
     }
 
-    handelPreview(){
-const {ActionActivePreview} = this.props.mapDispactchToolbar;
+    handelPreview() {
+        const {ActionActivePreview} = this.props.mapDispactchToolbar;
         ActionActivePreview(true);
     }
 

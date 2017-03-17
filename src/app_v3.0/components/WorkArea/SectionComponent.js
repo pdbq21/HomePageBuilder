@@ -9,7 +9,6 @@ import React from 'react';
 
 export default function SectionComponent(props) {
     const {children, styles} = props;
-    console.log(props);
     //'background': `rgba(${ color.r }, ${ color.g }, ${ color.b }, ${ color.a })`,
     const {r, g, b, a} = styles.background.backgroundColor;
     const {marginTop, marginRight, marginBottom, marginLeft} = styles.margin;
