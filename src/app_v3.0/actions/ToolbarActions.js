@@ -4,7 +4,7 @@
 // import constants
 
 
-import {TOGGLE_VISIBILITY_CONTENT_MENU, SELECT_MENU_ITEM} from '../constants/ToolbarConstants'
+import {TOGGLE_VISIBILITY_CONTENT_MENU, SELECT_MENU_ITEM, ACTIVE_PREVIEW} from '../constants/ToolbarConstants'
 
 export function ActionToggleContentMenu() {
     return {
@@ -17,5 +17,12 @@ export function ActionSelectMenuItem(name) {
     return {
         type: SELECT_MENU_ITEM,
         name,
+    }
+}
+
+export function ActionActivePreview(bool) {
+    return {
+        type: ACTIVE_PREVIEW,
+        bool: bool
     }
 }
