@@ -21,13 +21,10 @@ class PreviewContainer extends Component {
         let data = childrenIds.map((childrenId) => {
 
             const {elementType, link} = this.props.mapStateWorkArea[childrenId];
-            console.log(this.props.mapStateWorkArea[childrenId]);
             const {defaultStyle} = this.props.mapStateEditPanel;
-
             const styles = (this.props.mapStateEditPanel[childrenId]) ?
                 this.props.mapStateEditPanel[childrenId].currentStyle :
                 defaultStyle.section;
-            //let data = [];
             let element;
             if (typeof styles.background === "undefined") {
                 switch (elementType) {
@@ -159,8 +156,7 @@ class PreviewContainer extends Component {
                         break;
                 }
             }
-            console.log(element);
-            return <div key={`key-${childrenId}`}>{element}</div> ;
+            return <div key={`key-${childrenId}`}>{element}</div>;
         });
 
         return data;
@@ -189,8 +185,6 @@ class PreviewContainer extends Component {
         const styles = (this.props.mapStateEditPanel[id]) ?
             this.props.mapStateEditPanel[id].currentStyle :
             defaultStyle.section;
-        //let data = [];
-
         let data = childrenIds.map((childrenId) => {
             const {r, g, b, a} = styles.background.backgroundColor;
             const {marginTop, marginRight, marginBottom, marginLeft} = styles.margin;
@@ -231,8 +225,6 @@ class PreviewContainer extends Component {
         const styles = (this.props.mapStateEditPanel[id]) ?
             this.props.mapStateEditPanel[id].currentStyle :
             defaultStyle.section;
-        //let data = [];
-
         let data = childrenIds.map((childrenId) => {
             const {r, g, b, a} = styles.background.backgroundColor;
             const {marginTop, marginRight, marginBottom, marginLeft} = styles.margin;
