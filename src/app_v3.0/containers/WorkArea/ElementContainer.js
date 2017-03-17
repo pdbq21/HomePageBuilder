@@ -140,6 +140,7 @@ class ElementContainer extends Component {
         super(props);
         this.handleDropElement = this.handleDropElement.bind(this);
         this.handleTextEditor = this.handleTextEditor.bind(this);
+        this.handleChangeTextEditor = this.handleChangeTextEditor.bind(this);
     }
 
     handleDropElement(parentId, item) {
@@ -161,8 +162,13 @@ class ElementContainer extends Component {
         }
     }
 
+    handleChangeTextEditor({target}, id){
+        const {ActionChangeTextEditor} = this.props.mapDispactchWorkArea;
+        ActionChangeTextEditor(id, target.getContent());
+    }
+
     render() {
-        const {elementType, link} = this.props.mapStateElement;
+        const {elementType, link, text} = this.props.mapStateElement;
         const {defaultStyle} = this.props.mapStateEditPanel;
         const {isActiveTextEdit} = this.props.mapStateWorkArea;
         const {id, parentId, activeStructureId, handleContextMenu} = this.props;//opacityId
@@ -191,7 +197,9 @@ class ElementContainer extends Component {
                         handleTextEditor={this.handleTextEditor}
                         type={elementType}
                         link={link}
+                        text={text}
                         TinyMCE={TinyMCE}
+                        handleChangeTextEditor={(event) => this.handleChangeTextEditor(event, id)}
                     >
                     </ElementComponent>
                 </div>)}

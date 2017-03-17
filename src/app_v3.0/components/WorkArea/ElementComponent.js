@@ -6,7 +6,7 @@ import React from 'react';
 
 //import component
 export default function ElementComponent(props) {
-    const {type, handleClickContextMenu, handleTextEditor, styles, TinyMCE} = props;
+    const {type, handleClickContextMenu, handleTextEditor, styles, TinyMCE, handleChangeTextEditor} = props;
     let element;
     if (typeof styles.background === "undefined") {
         switch (type) {
@@ -45,6 +45,7 @@ export default function ElementComponent(props) {
         const {r, g, b, a} = styles.background.backgroundColor;
         switch (type) {
             case 'text':
+                const {text} = props;
                 element = (
                     <div
                         className="pb-element pb-text-element"
@@ -63,7 +64,7 @@ export default function ElementComponent(props) {
                         }}
                     >
                         <TinyMCE
-                            content="<p>This is the initial content of the editor</p>"
+                            content={(text)? text : "<p>This is the initial content of the editor</p>"}
                             config={{
                                 inline: true,
                                 menubar: false,
@@ -72,6 +73,7 @@ export default function ElementComponent(props) {
                                 font_formats: 'Arial=arial,helvetica,sans-serif;Courier New=courier new,courier,monospace;AkrutiKndPadmini=Akpdmi-n'
                             }}
                             onClick={handleTextEditor}
+                            onChange={handleChangeTextEditor}
                         />
                     </div>);
                 break;
@@ -176,83 +178,3 @@ export default function ElementComponent(props) {
         </div>
     );
 }
-
-
-/*
-
- <div className="pb-section">
- <div className="pb-bar pb-control-bar"></div>
- <div className="pb-section-content">
- <div className="pb-row written-row">
- <div className="pb-bar pb-control-bar"></div>
- <div className="pb-row-content">
- <div className="row">
- <div className="col">
- <div className="pb-element pb-link-element">
- <a href="#">
- Sample link
- {/!* e.preventDefault() *!/}
- </a>
- </div>
- </div>
- <div className="col">
- <div className="pb-element pb-image-element pb-default-element">
- <i className="pb-image-element-icon fa fa-image"/>
- <span className="pb-image-element-caption">
- Drop your image here OR:
- </span>
- <button className="pb-image-element-button btn btn-primary">
- Select an image
- {/!* e.preventDefault() -> click on input below *!/}
- </button>
- <input type="file" className="pb-image-element-input"/>
- </div>
- </div>
- <div className="col">
- <div className="pb-element pb-heading-element">
- <h2>Sample heading</h2>
- </div>
- </div>
- </div>
-
- <div className="row">
- <div className="col">
- <div className="pb-element pb-text-element">
- <p>Sample paragraph text</p>
- </div>
- </div>
- <div className="col">
- <div className="pb-element pb-gallery-element pb-default-element">
- <i className="pb-gallery-element-icon fa fa-desktop"/>
- <span className="pb-gallery-element-caption">
- Drop your images here OR:
- </span>
- <button className="pb-gallery-element-button btn btn-primary">
- Select images
- {/!* e.preventDefault() -> click on input below *!/}
- </button>
- <input type="file" className="pb-gallery-element-input"/>
- </div>
- </div>
- <div className="col">
- <div className="pb-element pb-button-element">
- <a href="#" className="btn btn-primary">
- Sample button text
- {/!* e.preventDefault() *!/}
- </a>
- </div>
- </div>
- </div>
-
- <div className="row">
- <div className="col">
- <div className="pb-element pb-icon-element">
- <i className="fa fa-grav"/>
- </div>
- </div>
- </div>
- </div>
- </div>
- </div>
- </div>
- */
